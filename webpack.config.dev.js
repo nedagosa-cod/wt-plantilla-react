@@ -72,6 +72,7 @@ module.exports = {
       '@images': path.join(__dirname, '/src/assets/images/'),
       '@components': path.join(__dirname, '/src/components/'),
       '@styles': path.join(__dirname, '/src/styles/'),
+      '@icons': path.join(__dirname, '/src/icons/'),
     }
   },
   devServer: {
