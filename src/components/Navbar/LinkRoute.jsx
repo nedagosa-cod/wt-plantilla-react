@@ -2,6 +2,7 @@ import IconHome from "../../icons/IconHome";
 import IconCircleQuestion from '../../icons/IconCircleQuestion'
 import IconCheckList from '../../icons/IconCheckList'
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function LinkRoute({ link }) {
 
@@ -12,18 +13,26 @@ export default function LinkRoute({ link }) {
   })
   return (
     <li className="sidebar__li">
-      <a href={link.route}>
+
+      <Link to={link.route}>
+        {console.log(link.route)}
         {selectIcon[link.icon]}
         <span className="sidebar__li--name">{link.title}</span>
-      </a>
+      </Link>
+      {/* <a href={link.route}>
+        {selectIcon[link.icon]}
+        <span className="sidebar__li--name">{link.title}</span>
+      </a> */}
+
+
       <ul className="sidebar__submenu blank">
         <li>
-          <a
+          <Link
             className="sidebar__submenu--name sidebar__submenu--link"
-            href={link.route}
+            to={link.route}
           >
             {link.title}
-          </a>
+          </Link>
         </li>
       </ul>
     </li>

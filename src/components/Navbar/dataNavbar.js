@@ -1,41 +1,41 @@
 const projectNavbar = [
       {
             title: 'Inicio',
-            route: '#/',
+            route: '/',
             icon: 'home'
       },
       {
             title: 'Preguntas frecuentes',
-            route: '#/preguntas_frecuentes',
+            route: '/checklist',
             icon: 'question'
       },
       {
             title: 'CheckList',
-            route: '#/',
+            route: '/checklist',
             icon: 'checklist',
             dropDown: [
                   {
                         title: 'Checklist 1',
-                        route: '#/'
+                        route: '/checklist'
                   },
                   {
                         title: 'Checklist 2',
-                        route: '#/'
+                        route: '/checklist'
                   }
             ]
       },
       {
             title: 'Otros',
-            route: '#/',
+            route: '/',
             icon: 'question',
             dropDown: [
                   {
                         title: 'Checklist 1',
-                        route: '#/'
+                        route: '/'
                   },
                   {
                         title: 'Checklist 2',
-                        route: '#/'
+                        route: '/'
                   }
             ]
       }
