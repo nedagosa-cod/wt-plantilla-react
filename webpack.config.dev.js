@@ -41,7 +41,7 @@ module.exports = {
     ],
   },
   plugins: [
-    // new CleanWebpackPlugin(),
+    new CleanWebpackPlugin(),
     new HTMLWebpackPlugin({
       template: path.join(__dirname, "/public/index.html"),
       favicon: "./public/favicon.png",
@@ -51,24 +51,37 @@ module.exports = {
       // extrae el css del javascript para empaquetarlo como archivo aparte
       filename: "noTocar/styles.css",
     }),
-    new CopyPlugin({
-      patterns: [
-        {
-          from: path.join(__dirname, "/src/assets/images/"), //deja por separado las imagenes de las bases de datos
-          to: "noTocar/imagenes",
-          noErrorOnMissing: true
-        },
-      ],
-    }),
+    // new CopyPlugin({
+    //   patterns: [
+    //     {
+    //       from: path.join(__dirname, "/src/assets/images/"), //deja por separado las imagenes de las bases de datos
+    //       to: "noTocar/imagenes",
+    //       noErrorOnMissing: true
+    //     },
+    //   ],
+    // }),
   ],
-  // optimization: {
-  //   // optimiza el codigo
-  //   minimize: true,
-  //   minimizer: [new CssMinimiZerPlugin(), new TerserPlugin()],
-  // },
+  optimization: {
+    // optimiza el codigo
+    minimize: true,
+    minimizer: [new CssMinimiZerPlugin(), new TerserPlugin()],
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+    alias: {  // evitar estar poniendo rutas relativas en los import
+      '@images': path.join(__dirname, '/src/assets/images/'),
+      '@components': path.join(__dirname, '/src/components/'),
+      '@styles': path.join(__dirname, '/src/styles/'),
+    }
+  },
   devServer: {
     port: 3000,
     open: true,
     // historyApiFallBack: true
+  },
+  performance: { // 
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000
   },
 };

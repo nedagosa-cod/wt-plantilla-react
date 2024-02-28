@@ -14,7 +14,7 @@ module.exports = {
     path: path.join(__dirname, "Web Tranining"),
     filename: "noTocar/bundle.js",
     publicPath: "./", //ALERTA configuracion de produccion (/)
-    assetModuleFilename: "[name][ext]",
+    assetModuleFilename: "noTocar/assets/[name][ext]", //*
     sourceMapFilename: "[file].map", // crea archvo map que mapea el cod de produccion a development
   },
   module: {
@@ -51,11 +51,11 @@ module.exports = {
     ],
   },
   plugins: [
-    // new CleanWebpackPlugin(),
+    new CleanWebpackPlugin(),
     new HTMLWebpackPlugin({
       template: path.join(__dirname, "/public/index.html"),
       favicon: "./public/favicon.png",
-      //filename: 'Web Training.html' //solo en produccion
+      filename: 'Web Training.html' //solo en produccion
     }),
     new MiniCssExtractPlugin({
       // extrae el css del javascript para empaquetarlo como archivo aparte
@@ -71,14 +71,27 @@ module.exports = {
     //   ],
     // }),
   ],
-  // optimization: {
-  //   // optimiza el codigo
-  //   minimize: true,
-  //   minimizer: [new CssMinimiZerPlugin(), new TerserPlugin()],
-  // },
+  optimization: {
+    // optimiza el codigo
+    minimize: true,
+    minimizer: [new CssMinimiZerPlugin(), new TerserPlugin()],
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+    alias: {  // evitar estar poniendo rutas relativas en los import
+      '@images': path.join(__dirname, '/src/assets/images/'),
+      '@components': path.join(__dirname, '/src/components/'),
+      '@styles': path.join(__dirname, '/src/styles/'),
+    }
+  },
   devServer: {
     port: 3000,
     open: true,
     // historyApiFallBack: true
+  },
+  performance: { // 
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000
   },
 };

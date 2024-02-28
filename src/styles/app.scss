@@ -1,0 +1,41 @@
+.welcome {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 6rem;
+      font-weight: bold;
+      width: 100%;
+      height: 100vh;
+      color: #fff;
+      & span {
+            display: block;
+      }
+      & p {
+            font-size: 2rem;
+            text-wrap: balance;
+      }
+      & .contador {
+            display: flex;
+            gap: 1.2rem;
+            margin: 2rem 0;
+            & button {
+                  font-size: 4rem;
+                  background: #382141;
+                  border-radius: .8rem;
+                  -webkit-border-radius: .8rem;
+                  -moz-border-radius: .8rem;
+                  -ms-border-radius: .8rem;
+                  -o-border-radius: .8rem;
+                  padding: .8rem 1.2rem;
+            }
+            & p {
+                  text-align: center;
+                  font-size: 4rem;
+                  width: 6rem;
+                  &:focus {
+                        outline: none;
+                  }
+            }
+      }
+}
