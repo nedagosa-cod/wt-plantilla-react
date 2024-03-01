@@ -1,13 +1,13 @@
 import '@styles/app.scss'
 import { Routes, Route } from 'react-router-dom'
 
-import imgBackground from '@images/index/background.jpg'
+import imgBackground from '@images/index/back.jpg'
 
 import Navbar from './components/Navbar/Navbar'
 import Bienvenida from './components/Bienvenida/Bienvenida'
 import Checklist from './components/Checklist/Checklist'
 import Corrector from './components/Corrector/Corrector'
-import { SessionAccess } from './components/SessionAccess.jsx/SessionAccess'
+// import { SessionAccess } from './components/SessionAccess.jsx/SessionAccess'
 
 export default function App() {
 	const style = {
@@ -19,7 +19,7 @@ export default function App() {
 
 	return (
 		<div className="app" style={style}>
-			<SessionAccess />
+			{/* <SessionAccess /> */}
 			<Navbar />
 			<Routes>
 				<Route path="/" element={<Bienvenida />} />

@@ -4,6 +4,7 @@ import IconArrowDown from "../../icons/IconArrowDown";
 import IconArrowUp from "../../icons/IconArrowUp";
 import IconHome from "../../icons/IconHome";
 import IconCheckList from "../../icons/IconCheckList";
+import IconNext from "../../icons/IconNext";
 
 export default function DropDown({link}) {
 
@@ -11,7 +12,8 @@ export default function DropDown({link}) {
       const [selectIcon, setSelectIcon] = useState({
             home: <IconHome />,
             question: <IconCircleQuestion />,
-            checklist: <IconCheckList />
+            checklist: <IconCheckList />,
+            next: <IconNext />
           })
   const toggleDropDown = () => {
     if (dropDownActive) return setDropDownActive(!dropDownActive);
