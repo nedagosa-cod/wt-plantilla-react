@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import './styles.scss'
 import Swal from 'sweetalert2'
-import imgPrueba from '/public/test/click.png'
 
 export const SessionAccess = () => {
 	const [campana, setCamapana] = useState([
@@ -31,6 +30,7 @@ export const SessionAccess = () => {
 		'VTR',
 		'WHIRLPOOL',
 	])
+
 	const [segmento, setSegmento] = useState([
 		'B2B',
 		'B2C',
@@ -113,7 +113,6 @@ export const SessionAccess = () => {
 	if (active) {
 		return (
 			<div className="sessionRec">
-				<img src={imgPrueba} alt="img" />
 				<form className="form" id="sendForm">
 					<p className="title">Registro de acceso</p>
 					<p className="message">
