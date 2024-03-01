@@ -25,19 +25,9 @@ const projectNavbar = [
             ]
       },
       {
-            title: 'Otros',
-            route: '/',
-            icon: 'question',
-            dropDown: [
-                  {
-                        title: 'Checklist 1',
-                        route: '/'
-                  },
-                  {
-                        title: 'Checklist 2',
-                        route: '/'
-                  }
-            ]
+            title: 'Corrector Ortográfico',
+            route: '/corrector',
+            icon: 'textSlash',
       }
 ]
 
