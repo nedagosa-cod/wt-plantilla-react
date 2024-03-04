@@ -7,6 +7,8 @@ import Navbar from './components/Navbar/Navbar'
 import Bienvenida from './components/Bienvenida/Bienvenida'
 import Checklist from './components/Checklist/Checklist'
 import Corrector from './components/Corrector/Corrector'
+import Aplicativos from './components/Aplicativo/Aplicativo'
+
 // import { SessionAccess } from './components/SessionAccess.jsx/SessionAccess'
 
 export default function App() {
@@ -25,6 +27,7 @@ export default function App() {
 				<Route path="/" element={<Bienvenida />} />
 				<Route path="/checklist" element={<Checklist />} />
 				<Route path="/corrector" element={<Corrector />} />
+				<Route path="/aplicativo" element={<Aplicativos />} />
 			</Routes>
 		</div>
 	)

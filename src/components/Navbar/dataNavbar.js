@@ -11,14 +11,14 @@ const projectNavbar = [
 		dropDown: [
 			{
 				title: 'Aplicativos Web',
+				route: '/aplicativo',
+			},
+			{
+				title: 'Guia de Aplicativos',
 				route: '/checklist',
 			},
 			{
-				title: 'Checklist 2',
-				route: '/checklist',
-			},
-			{
-				title: 'Checklist 2',
+				title: 'Calculadora',
 				route: '/checklist',
 			},
 		],
