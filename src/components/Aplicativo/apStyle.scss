@@ -27,4 +27,37 @@
 		color: $p3-color;
 		margin: 2rem auto;
 	}
+	&__cont {
+		width: 85%;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-evenly;
+		flex-wrap: wrap;
+		.buttOpc {
+			background-color: $b-color;
+			width: 35%;
+			color: $w-color;
+			font-size: $subtitles2;
+			font-family: $tipo-terciaria;
+			padding: 10px;
+			cursor: pointer;
+			border-radius: 5px;
+			transition: 0.3s ease-in-out;
+			border-bottom: transparent 4px solid;
+			display: flex;
+			justify-content: space-around;
+		}
+		.selected {
+			background-color: $p-color;
+			width: 40%;
+			box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+		}
+		.capa {
+			background-color: rgba(0, 0, 0, 0.74);
+			width: 100%;
+			margin-top: 20px;
+			border-radius: 10px;
+			padding: 15px;
+		}
+	}
 }
