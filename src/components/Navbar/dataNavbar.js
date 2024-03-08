@@ -14,8 +14,8 @@ const projectNavbar = [
 				route: '/aplicativo',
 			},
 			{
-				title: 'Guia de Aplicativos',
-				route: '/checklist',
+				title: 'Tipificaciones DINSIDE',
+				route: '/tipificador',
 			},
 			{
 				title: 'Calculadora',

@@ -1,0 +1,30 @@
+@use '@styles/variables' as *;
+
+.contTipificador {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	width: 100%;
+	height: 100vh;
+	overflow: auto;
+	overflow-y: scroll;
+
+	&::-webkit-scrollbar {
+		width: 10px;
+		box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+		border-radius: 10px;
+		background-color: $w-color;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		border-radius: 10px;
+		box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+		background-color: $p-color;
+	}
+
+	&__title {
+		font-size: 3rem;
+		color: $p3-color;
+		margin: 3rem auto;
+	}
+}

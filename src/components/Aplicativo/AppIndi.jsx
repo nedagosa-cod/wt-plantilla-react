@@ -1,4 +1,5 @@
-// import img1 from '../../assets/images/app/img1.png'
+import { Link } from 'react-router-dom'
+
 const AppIndi = ({ aplicativo }) => {
 	return (
 		<div className="card">
@@ -11,9 +12,9 @@ const AppIndi = ({ aplicativo }) => {
 					<div className="infoCard__title">{aplicativo.nombre}</div>
 				</div>
 				<hr />
-				<a className="enlaceCard" href={aplicativo.enlace}>
+				<Link className="enlaceCard" to={aplicativo.enlace}>
 					Enlace
-				</a>
+				</Link>
 			</div>
 		</div>
 	)
