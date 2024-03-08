@@ -1,14 +1,20 @@
+// import img1 from '../../assets/images/app/img1.png'
 const AppIndi = ({ aplicativo }) => {
 	return (
 		<div className="card">
-			<img
-				src={`${aplicativo.imagen}.png`}
-				alt={aplicativo.nombre}
-			/>
-			<h2>{aplicativo.nombre}</h2>
-			<h2>{aplicativo.imagen}</h2>
-			<h2>{aplicativo.modulo}</h2>
-			<a href={aplicativo.enlace}>Enlace</a>
+			<div className="card__main">
+				<img
+					className="imageCard"
+					src={`./noTocar/imagenes/app/${aplicativo.imagen}`}
+				/>
+				<div className="infoCard">
+					<div className="infoCard__title">{aplicativo.nombre}</div>
+				</div>
+				<hr />
+				<a className="enlaceCard" href={aplicativo.enlace}>
+					Enlace
+				</a>
+			</div>
 		</div>
 	)
 }
