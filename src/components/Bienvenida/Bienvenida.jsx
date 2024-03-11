@@ -1,4 +1,5 @@
 import { useState } from 'react'
+// import img from '../../assets/images/index/favicon.jpg'
 
 export default function Bienvenida() {
 	const [contador, setContador] = useState(0)
@@ -18,6 +19,23 @@ export default function Bienvenida() {
 					Count
 				</button>
 				<p>{contador}</p>
+			</div>
+			<div className="testImages">
+				<figure className="image">
+					<img src="/imagenes/logoMain.png" alt="hola" />
+				</figure>
+				<figure className="image">
+					<img src="./imagenes/logoMain.png" alt="hola" />
+				</figure>
+				<figure className="image">
+					<img src="../imagenes/logoMain.png" alt="hola" />
+				</figure>
+				<figure className="image">
+					<img src="./noTocar/assets/logoMain.png" alt="hola" />
+				</figure>
+				<figure className="image">
+					<img src="../src/assets/images/index/logoMain.png" alt="hola" />
+				</figure>
 			</div>
 		</div>
 	)

@@ -1,15 +1,17 @@
 import '@styles/app.scss'
 import { Routes, Route } from 'react-router-dom'
 
-import imgBackground from '@images/index/background.jpg'
+import imgBackground from './assets/images/index/background.jpg'
 
 import Navbar from './components/Navbar/Navbar'
 import Bienvenida from './components/Bienvenida/Bienvenida'
 import Checklist from './components/Checklist/Checklist'
 import Corrector from './components/Corrector/Corrector'
 import { SessionAccess } from './components/SessionAccess.jsx/SessionAccess'
+import { Page } from './components/Test/Page'
+import { ContadorProvider } from './context/ContadorContext'
 
-export default function App() {
+const App = () => {
 	const style = {
 		backgroundImage: `url(${imgBackground})`,
 		backgroundSize: '100% 100%',
@@ -18,14 +20,19 @@ export default function App() {
 	}
 
 	return (
-		<div className="app" style={style}>
-			<SessionAccess />
-			<Navbar />
-			<Routes>
-				<Route path="/" element={<Bienvenida />} />
-				<Route path="/checklist" element={<Checklist />} />
-				<Route path="/corrector" element={<Corrector />} />
-			</Routes>
-		</div>
+		<ContadorProvider>
+			<div className="app" style={style}>
+				<SessionAccess />
+				<Navbar />
+
+				<Routes>
+					<Route path="/" element={<Bienvenida />} />
+					<Route path="/checklist" element={<Checklist />} />
+					<Route path="/corrector" element={<Corrector />} />
+				</Routes>
+			</div>
+		</ContadorProvider>
 	)
 }
+
+export default App

@@ -29,6 +29,11 @@ export default function Corrector() {
 		],
 	}
 
+	const guardarValor = valor => {
+		setDataCorrector(valor)
+		console.log(dataCorrector)
+	}
+
 	return (
 		<section className="corrector-ortografico">
 			<h1 className="corrector-ortografico__title">CORRECTOR ORTOGRAFICO</h1>
@@ -39,7 +44,7 @@ export default function Corrector() {
 					value={dataCorrector}
 					modules={module}
 					className="corrector-ortografico__quill"
-					onChange={() => setDataCorrector(dataCorrector)}
+					onChange={valor => guardarValor(valor)}
 				/>
 
 				<div
