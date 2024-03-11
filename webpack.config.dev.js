@@ -9,7 +9,7 @@ const path = require("path");
 
 module.exports = {
 	entry: './src/index.jsx',
-	devtool: 'source-map',
+	devtool: 'eval-source-map',
 	output: {
 		path: path.join(__dirname, 'Web Tranining'),
 		filename: 'noTocar/bundle.js',
@@ -24,6 +24,9 @@ module.exports = {
 				exclude: /node_modules/,
 				use: {
 					loader: 'babel-loader',
+					options: {
+						presets: ['@babel/preset-env'],
+					},
 				},
 			},
 			{
@@ -70,11 +73,11 @@ module.exports = {
 			],
 		}),
 	],
-	optimization: {
+	// optimization: {
 		// optimiza el codigo
-		minimize: true,
-		minimizer: [new CssMinimiZerPlugin(), new TerserPlugin()],
-	},
+		// minimize: true,
+		// minimizer: [new CssMinimiZerPlugin(), new TerserPlugin()],
+	// },
 	resolve: {
 		extensions: ['.js', '.jsx'],
 		alias: {
@@ -93,7 +96,7 @@ module.exports = {
 	performance: {
 		//
 		hints: false,
-		maxEntrypointSize: 512000,
-		maxAssetSize: 512000,
+		// maxEntrypointSize: 512000,
+		// maxAssetSize: 512000,
 	},
 }

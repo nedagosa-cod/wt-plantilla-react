@@ -63,11 +63,11 @@ module.exports = {
 		}),
 		new CopyPlugin({
 			patterns: [
-				    {
-				      from: path.join(__dirname, "/src/assets/images/"), //deja por separado las imagenes de las bases de datos
-				      to: "noTocar/imagenes",
-				      noErrorOnMissing: true
-				    },
+				{
+					from: path.join(__dirname, '/src/assets/images/'), //deja por separado las imagenes de las bases de datos
+					to: 'noTocar/imagenes',
+					noErrorOnMissing: true,
+				},
 			],
 		}),
 	],
@@ -80,7 +80,7 @@ module.exports = {
 		extensions: ['.js', '.jsx'],
 		alias: {
 			// evitar estar poniendo rutas relativas en los import
-			'@images': path.join(__dirname, '/src/assets/images/'),
+			'@images': path.join(__dirname, './noTocar/imagenes/'),
 			'@components': path.join(__dirname, '/src/components/'),
 			'@styles': path.join(__dirname, '/src/styles/'),
 		},
