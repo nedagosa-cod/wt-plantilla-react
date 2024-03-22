@@ -9,6 +9,17 @@ import { LinkDesc } from './RightSide/componentes/LinkDesc'
 import ImageDesc from './RightSide/componentes/ImageDesc'
 import { createPortal } from 'react-dom'
 import PopImageDesc from './RightSide/componentes/PopImageDesc'
+import SubtitleDesc from './RightSide/componentes/SubtitleDesc'
+import ImportantDesc from './RightSide/componentes/importantDesc'
+import ScriptDesc from './RightSide/componentes/ScriptDesc'
+import { CompanyA } from './BigIcons/CompanyA'
+import ValBoolDesc from './RightSide/componentes/ValBoolDesc'
+import ValTextDesc from './RightSide/componentes/ValTextDesc'
+import ValDateDesc from './RightSide/componentes/ValDateDesc'
+import ValListDesc from './RightSide/componentes/ValListDesc'
+import { InsideBool } from './RightSide/componentes/DataInside'
+import InsideAnswer from './RightSide/componentes/InsideAnswer'
+import { CheckListProvider } from '../../context/ChecklistContext'
 
 export default function Checklist() {
 	const [descripciones, setDescripciones] = useState([
@@ -18,24 +29,111 @@ export default function Checklist() {
 				return (
 					<>
 						<TitleDesc>Titulo del Paso A</TitleDesc>
-						<ParagraphDesc>
-							1. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam
-							porro, quisquam consectetur provident suscipit atque! Commodi.
-						</ParagraphDesc>
-						<ListDesc>
-							<li>Dato 1</li>
-							<li>Dato 2</li>
-							<li>Dato 3</li>
-						</ListDesc>
-						<ParagraphDesc>
-							2. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam
-							porro, quisquam consectetur provident suscipit atque! Commodi.
-						</ParagraphDesc>
-						<LinkDesc
-							url="https://reactrouter.com/en/main/components/link"
-							buttonName="Link Page"
-						/>
-						<ImageDesc activatePopImage={activatePopImage} />
+						<article className="description__container">
+							<ParagraphDesc>
+								1. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+								Ipsam porro, quisquam consectetur provident suscipit atque!
+								Commodi.
+							</ParagraphDesc>
+							<ListDesc>
+								<li>Dato 1</li>
+								<li>Dato 2</li>
+								<li>Dato 3</li>
+							</ListDesc>
+							<ParagraphDesc>
+								2. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+								Ipsam porro, quisquam consectetur provident suscipit atque!
+								Commodi.
+							</ParagraphDesc>
+							<LinkDesc
+								url="https://reactrouter.com/en/main/components/link"
+								buttonName="Link Page"
+							/>
+							<ImageDesc activatePopImage={activatePopImage} />
+							<SubtitleDesc>Subtitlo del proceso del checklist</SubtitleDesc>
+							<ParagraphDesc>
+								3. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+								Ipsam porro, quisquam consectetur provident suscipit atque!
+								Commodi.
+							</ParagraphDesc>
+							<ParagraphDesc>
+								3. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+								Ipsam porro, quisquam consectetur provident suscipit atque!
+								Commodi.
+							</ParagraphDesc>
+							<ParagraphDesc>
+								3. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+								Ipsam porro, quisquam consectetur provident suscipit atque!
+								Commodi.
+							</ParagraphDesc>
+							<ImportantDesc title="IMPORTANTE">
+								Mensaje importante del dia a tener en cuenta en esta lista de
+								checkeo
+							</ImportantDesc>
+							<ParagraphDesc>
+								3. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+								Ipsam porro, quisquam consectetur provident suscipit atque!
+								Commodi.
+							</ParagraphDesc>
+							<ScriptDesc>
+								Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero
+								tempora quod deleniti placeat, aperiam ad ab reprehenderit
+								dolores modi ex distinctio odit dolorum porro explicabo
+								cupiditate! Repudiandae doloremque dicta quos!
+							</ScriptDesc>
+
+							<ValBoolDesc
+								position="A"
+								title="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+								<InsideAnswer answer="SI" position="A">
+									<ParagraphDesc>RESPUESTA DE SI</ParagraphDesc>
+								</InsideAnswer>
+								<InsideAnswer answer="NO" position="B">
+									<ParagraphDesc>RESPUESTA DE NO</ParagraphDesc>
+								</InsideAnswer>
+							</ValBoolDesc>
+
+							<ValBoolDesc
+								position="Z"
+								title="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+								<InsideAnswer answer="SI" position="Z">
+									<ParagraphDesc>RESPUESTA DE SI</ParagraphDesc>
+								</InsideAnswer>
+								<InsideAnswer answer="NO" position="Z">
+									<ParagraphDesc>RESPUESTA DE NO</ParagraphDesc>
+								</InsideAnswer>
+							</ValBoolDesc>
+							<ValBoolDesc
+								position="G"
+								title="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+								<InsideAnswer answer="SI" position="G">
+									<ParagraphDesc>RESPUESTA DE SI</ParagraphDesc>
+								</InsideAnswer>
+								<InsideAnswer answer="NO" position="G">
+									<ParagraphDesc>RESPUESTA DE NO</ParagraphDesc>
+								</InsideAnswer>
+							</ValBoolDesc>
+							<ValTextDesc position="B">
+								Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam
+								porro, quisquam consectetur provident suscipit atque! Commodi.
+							</ValTextDesc>
+							<ValDateDesc position="C">Fecha ge gestión</ValDateDesc>
+							<ValListDesc
+								position="D"
+								list={['Dato 1', 'Dato 2', 'Dato 3', 'Dato 4']}>
+								Titulo de la lista
+							</ValListDesc>
+							<ParagraphDesc>
+								3. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+								Ipsam porro, quisquam consectetur provident suscipit atque!
+								Commodi.
+							</ParagraphDesc>
+							<ParagraphDesc>
+								3. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+								Ipsam porro, quisquam consectetur provident suscipit atque!
+								Commodi.
+							</ParagraphDesc>
+						</article>
 					</>
 				)
 			},
@@ -71,22 +169,23 @@ export default function Checklist() {
 	const [showPopImage, setPopShowImage] = useState(false)
 
 	const activatePopImage = () => {
-		console.log('yes')
 		setPopShowImage(true)
 	}
 
 	return (
-		<section className="checklist-container">
-			<div className="Checklist">
-				<LeftSide />
-				<RightSide descripciones={descripciones} />
-			</div>
+		<CheckListProvider>
+			<section className="checklist-container">
+				<div className="Checklist">
+					<LeftSide />
+					<RightSide descripciones={descripciones} />
+				</div>
 
-			{showPopImage &&
-				createPortal(
-					<PopImageDesc setPopShowImage={setPopShowImage} />,
-					document.body
-				)}
-		</section>
+				{showPopImage &&
+					createPortal(
+						<PopImageDesc setPopShowImage={setPopShowImage} />,
+						document.body
+					)}
+			</section>
+		</CheckListProvider>
 	)
 }

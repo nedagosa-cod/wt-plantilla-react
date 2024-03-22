@@ -10,10 +10,10 @@
 .Checklist {
 	display: flex;
 	width: 70%;
-	max-width: 90rem;
+	max-width: 100rem;
+	max-height: 50rem;
 	background: #3d3d3d;
-	padding: 1rem;
-	gap: 1.6rem;
+	overflow: hidden;
 	color: $w-color;
 	border-radius: 2rem;
 	-webkit-border-radius: 2rem;
@@ -24,9 +24,11 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		justify-content: space-between;
 		gap: 3rem;
-		padding: 1rem 0;
 		width: 50%;
+		border-right: 1px inset $g-color;
+		padding: 3rem 2rem;
 		& .ListCheck {
 			width: 100%;
 			font-size: 1.6rem;
@@ -46,6 +48,7 @@
 		&__title {
 			font-size: 2rem;
 			text-align: center;
+			color: $p-color;
 		}
 		&__btn-reiniciar {
 			width: 30rem;
@@ -64,7 +67,7 @@
 			justify-content: center;
 			align-items: center;
 			width: 100%;
-			gap: 0.6rem;
+			gap: 2rem;
 			& li {
 				list-style: none;
 				width: 100%;
@@ -72,7 +75,11 @@
 		}
 	}
 	& .rightSide {
+		position: relative;
 		width: 50%;
+		overflow-y: auto;
+		scrollbar-width: thin;
+		scrollbar-color: $p-color $p3-color;
 	}
 	& .rightSide__description {
 		display: none;

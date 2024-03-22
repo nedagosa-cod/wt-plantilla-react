@@ -1,17 +1,37 @@
 @use '../../../styles/variables' as *;
 
 .description {
+	position: relative;
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
 	align-items: center;
 	font-size: 1.6rem;
 	gap: 0.8rem;
+	&__container {
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		align-items: center;
+		font-size: 1.6rem;
+		padding: 0 2rem;
+		gap: 0.8rem;
+	}
 	&__title {
-		font-size: 2rem;
+		padding: 1.2rem;
+		top: 0;
+		font-size: 2.2rem;
 		text-align: center;
 		width: 100%;
+		z-index: 10;
 		border-bottom: 1px solid $g-color;
+		color: $w-color;
+		background: $p-color;
+		position: sticky;
+	}
+	&__subtitle {
+		color: $s-color;
+		font-size: 1.8rem;
 	}
 	&__paragraph {
 		font-size: 1.6rem;
@@ -20,6 +40,294 @@
 			font-weight: 600;
 			color: $p-color;
 		}
+	}
+	&__important {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		margin: 1rem 0;
+		gap: 0.6rem;
+		background: $p-color;
+		padding: 0.6rem;
+		text-align: center;
+		width: 90%;
+		border: 1px solid $w-color;
+		box-shadow: -2px 2px 5px 4px rgba(0, 0, 0, 0.1);
+		& span {
+			font-size: 1.8rem;
+			font-weight: 600;
+			border-bottom: 1px solid $p3-color;
+		}
+		& p {
+			color: $w-color;
+			font-size: 1.6rem;
+		}
+		border-radius: 2rem;
+		-webkit-border-radius: 2rem;
+		-moz-border-radius: 2rem;
+		-ms-border-radius: 2rem;
+		-o-border-radius: 2rem;
+	}
+	&__script {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		margin: 1rem 0;
+		background: rgba(255, 118, 118, 0.1);
+		padding: 1rem;
+		cursor: pointer;
+		text-align: center;
+		width: 90%;
+		border: 1px solid $w-color;
+		box-shadow: -2px 2px 5px 4px rgba(0, 0, 0, 0.1);
+		font-style: italic;
+		border-radius: 0.8rem;
+		-webkit-border-radius: 0.8rem;
+		-moz-border-radius: 0.8rem;
+		-ms-border-radius: 0.8rem;
+		-o-border-radius: 0.8rem;
+	}
+	&__pop-image {
+		width: 40px;
+		height: 40px;
+		position: relative;
+		background: #fff;
+		border-radius: 4px;
+		overflow: hidden;
+		box-shadow: -2px 2px 5px 4px rgba(0, 0, 0, 0.1);
+		cursor: pointer;
+		margin: 1rem 0;
+		&:before {
+			content: '';
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			width: 28px;
+			height: 28px;
+			transform: rotate(45deg) translate(30%, 40%);
+			background: #ff9371;
+			box-shadow: 32px -34px 0 5px #ff3d00;
+			animation: slide 2s infinite ease-in-out alternate;
+		}
+		&:after {
+			content: '';
+			position: absolute;
+			left: 10px;
+			top: 10px;
+			width: 12px;
+			height: 12px;
+			border-radius: 50%;
+			background: #ff3d00;
+			transform: rotate(0deg);
+			transform-origin: 35px 145px;
+			animation: rotate 2s infinite ease-in-out;
+		}
+		&:hover {
+			transform: scale(1.1);
+			-webkit-transform: scale(1.1);
+			-moz-transform: scale(1.1);
+			-ms-transform: scale(1.1);
+			-o-transform: scale(1.1);
+		}
+	}
+	&__valtext {
+		display: flex;
+		width: 100%;
+		justify-content: space-between;
+		align-items: center;
+		background: $p-color;
+		padding: 1rem;
+		border: 1px solid $p3-color;
+		box-shadow: -2px 2px 5px 4px rgba(0, 0, 0, 0.1);
+		&--ask {
+			width: 60%;
+			border-right: 1px solid $p3-color;
+		}
+		&--radios {
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+			width: 40%;
+
+			& .label {
+				display: flex;
+				gap: 0.6rem;
+			}
+		}
+		border-radius: 0.8rem;
+		-webkit-border-radius: 0.8rem;
+		-moz-border-radius: 0.8rem;
+		-ms-border-radius: 0.8rem;
+		-o-border-radius: 0.8rem;
+	}
+	&__valbool {
+		display: flex;
+		width: 100%;
+		justify-content: center;
+		align-items: center;
+		background: $p-color;
+		padding: 1rem;
+		text-align: center;
+		border: 1px solid $p3-color;
+		box-shadow: -2px 2px 5px 4px rgba(0, 0, 0, 0.1);
+		& .label {
+			width: 100%;
+			display: flex;
+			align-items: center;
+			gap: 1rem;
+			flex-direction: column;
+			& input {
+				width: 100%;
+				padding: 0.6rem 1rem;
+				background: $w-color;
+				color: $b-color;
+				outline: none;
+				border-radius: 0.8rem;
+				-webkit-border-radius: 0.8rem;
+				-moz-border-radius: 0.8rem;
+				-ms-border-radius: 0.8rem;
+				-o-border-radius: 0.8rem;
+			}
+		}
+		border-radius: 0.8rem;
+		-webkit-border-radius: 0.8rem;
+		-moz-border-radius: 0.8rem;
+		-ms-border-radius: 0.8rem;
+		-o-border-radius: 0.8rem;
+	}
+	&__valdate {
+		display: flex;
+		width: 100%;
+		text-align: start;
+		justify-content: space-between;
+		align-items: center;
+		background: $p-color;
+		padding: 1rem;
+		text-align: center;
+		border: 1px solid $p3-color;
+		box-shadow: -2px 2px 5px 4px rgba(0, 0, 0, 0.1);
+
+		&--ask {
+			width: fit-content;
+			text-align: start;
+		}
+		&--date {
+			& input {
+				outline: none;
+			}
+		}
+		border-radius: 0.8rem;
+		-webkit-border-radius: 0.8rem;
+		-moz-border-radius: 0.8rem;
+		-ms-border-radius: 0.8rem;
+		-o-border-radius: 0.8rem;
+	}
+	&__vallist {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		justify-content: space-between;
+		align-items: center;
+		background: $p-color;
+		padding: 1rem;
+		border: 1px solid $p3-color;
+		box-shadow: -2px 2px 5px 4px rgba(0, 0, 0, 0.1);
+		&--list {
+			position: relative;
+			width: 80%;
+			display: flex;
+			flex-direction: column;
+			& .list {
+				padding: 0.2rem 0.6rem;
+				display: flex;
+				flex-direction: column;
+				gap: 0.4rem;
+				top: 100%;
+				left: auto;
+				position: absolute;
+				list-style: none;
+				width: 100%;
+				border: 1px solid $p3-color;
+				background: $p-color;
+				box-shadow: 4px 6px 8px 2px rgba(0, 0, 0, 0.5);
+				border-radius: 0.8rem;
+				-webkit-border-radius: 0.8rem;
+				-moz-border-radius: 0.8rem;
+				-ms-border-radius: 0.8rem;
+				-o-border-radius: 0.8rem;
+				& li {
+					cursor: pointer;
+					padding: 0.6rem;
+					border-bottom: 1px solid $p3-color;
+				}
+				& .li {
+					cursor: pointer;
+					padding: 0.6rem;
+					border-bottom: 1px solid $p3-color;
+					&:hover {
+						background: $s-color;
+						border-radius: 0.8rem;
+						-webkit-border-radius: 0.8rem;
+						-moz-border-radius: 0.8rem;
+						-ms-border-radius: 0.8rem;
+						-o-border-radius: 0.8rem;
+					}
+				}
+			}
+			& .label {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				outline: none;
+				background: $w-color;
+				padding: 0.4rem 1rem;
+				border: 1px solid $p3-color;
+				border-radius: 0.8rem;
+				-webkit-border-radius: 0.8rem;
+				-moz-border-radius: 0.8rem;
+				-ms-border-radius: 0.8rem;
+				-o-border-radius: 0.8rem;
+				display: flex;
+				& svg {
+					cursor: pointer;
+					width: 2rem;
+					height: 2rem;
+					color: $p-color;
+				}
+			}
+		}
+		&--input {
+			outline: none;
+			padding: 0.4rem 1rem;
+			color: $b-color;
+			cursor: pointer;
+		}
+		border-radius: 0.8rem;
+		-webkit-border-radius: 0.8rem;
+		-moz-border-radius: 0.8rem;
+		-ms-border-radius: 0.8rem;
+		-o-border-radius: 0.8rem;
+	}
+	& .insidebool {
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		align-items: center;
+		font-size: 1.6rem;
+		padding: 1rem 2rem;
+		gap: 0.8rem;
+		width: 100%;
+		box-shadow: -2px 2px 5px 4px rgba(0, 0, 0, 0.1);
+		background: rgba(255, 255, 255, 0.1);
+		position: relative;
+		top: -0.8rem;
+		border-radius: 0.8rem;
+		-webkit-border-radius: 0.8rem;
+		-moz-border-radius: 0.8rem;
+		-ms-border-radius: 0.8rem;
+		-o-border-radius: 0.8rem;
 	}
 	& .cssbuttons-io-button {
 		background: $p-color;
@@ -67,49 +375,6 @@
 		}
 		&:hover .icon {
 			width: calc(100% - 0.6em);
-		}
-	}
-	&__pop-image {
-		width: 40px;
-		height: 40px;
-		position: relative;
-		background: #fff;
-		border-radius: 4px;
-		overflow: hidden;
-		box-shadow: -2px 2px 5px 4px rgba(0, 0, 0, 0.1);
-		cursor: pointer;
-		margin: 1rem 0;
-		&:before {
-			content: '';
-			position: absolute;
-			left: 0;
-			bottom: 0;
-			width: 28px;
-			height: 28px;
-			transform: rotate(45deg) translate(30%, 40%);
-			background: #ff9371;
-			box-shadow: 32px -34px 0 5px #ff3d00;
-			animation: slide 2s infinite ease-in-out alternate;
-		}
-		&:after {
-			content: '';
-			position: absolute;
-			left: 10px;
-			top: 10px;
-			width: 12px;
-			height: 12px;
-			border-radius: 50%;
-			background: #ff3d00;
-			transform: rotate(0deg);
-			transform-origin: 35px 145px;
-			animation: rotate 2s infinite ease-in-out;
-		}
-		&:hover {
-			transform: scale(1.1);
-			-webkit-transform: scale(1.1);
-			-moz-transform: scale(1.1);
-			-ms-transform: scale(1.1);
-			-o-transform: scale(1.1);
 		}
 	}
 	@keyframes slide {

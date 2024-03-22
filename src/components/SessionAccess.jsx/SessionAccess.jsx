@@ -1,65 +1,18 @@
 import { useState } from 'react'
 import './styles.scss'
 import Swal from 'sweetalert2'
+import imgBackground from '../../assets/images/index/sessionBackground.jpg'
+import ImgLogo from '../../assets/images/index/logoSIn.png'
+import 'animate.css'
 
-export const SessionAccess = () => {
-	const [campana, setCamapana] = useState([
-		'BANCO CAJA SOCIAL',
-		'BANCO POPULAR',
-		'BANCO W',
-		'BBVA',
-		'CABLETICA/LIBERTY',
-		'CLARO',
-		'COLCERAMICAS',
-		'COLPATRIA',
-		'DAVIVIENDA',
-		'DIDI',
-		'FACEBOOK',
-		'FALABELLA',
-		'JETSMART',
-		'LINDEE',
-		'OXIGENOS',
-		'PEPSICO',
-		'PNC',
-		'REMARK',
-		'RUNT',
-		'SHOPEE',
-		'SUFI',
-		'TELEFONICA',
-		'VEOLIA',
-		'VTR',
-		'WHIRLPOOL',
-	])
-
-	const [segmento, setSegmento] = useState([
-		'B2B',
-		'B2C',
-		'RETENCION',
-		'PQR',
-		'VENTAS',
-		'SOPORTE',
-		'CET',
-		'INBOUND',
-		'OUTBOUND',
-		'ANTIFRAUDE',
-		'MEDICALIZACION',
-		'SEGUROS DE VIDA',
-		'PREVENCION',
-		'MEDICALIZACION Y MEDIOS',
-		'HOGAR',
-		'MOVIL',
-		'SAC',
-		'VTR',
-		'CND',
-		'SWAT',
-	])
+export const SessionAccess = ({ campana, segmento }) => {
 	const [dataSession, setDataSession] = useState({
 		usuario: '',
 		campana: '',
 		segmento: '',
 		observaciones: '',
 	})
-	const [active, setActive] = useState(false)
+	const [active, setActive] = useState(true)
 	const updateData = (newData, key) => {
 		setDataSession(personaActual => ({
 			...personaActual,
@@ -81,7 +34,7 @@ export const SessionAccess = () => {
 		})
 
 		fetch(
-			'https://colbogweb20:9086/Webservices_Simulador_pre/api/main/insUpdTransaccion',
+			'http://colbogweb20:8081/Webservices_Simulador/api/main/insUpdTransaccion',
 			{
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
@@ -109,88 +62,93 @@ export const SessionAccess = () => {
 				})
 			})
 	}
-
+	const style = {
+		backgroundImage: `url(${imgBackground})`,
+		backgroundSize: '100% 100%',
+		backgroundRepeat: 'no-repeat',
+		backgroundPosition: 'center',
+	}
 	if (active) {
 		return (
-			<div className="sessionRec">
-				<form className="form" id="sendForm">
-					<p className="title">Registro de acceso</p>
-					<p className="message">
-						Agrega tus datos, para llevar el registro obligatorio
-					</p>
-					<label>
-						<input
-							className="input"
-							type="text"
-							name="usuario"
-							placeholder=""
-							required=""
-							onChange={e => {
-								updateData(e.target.value, e.target.name)
-							}}
-						/>
-						<span>Usuario</span>
-					</label>
+			<div className="sessionRec" style={style}>
+				<div className="sessionRec__data">
+					<span className="sessionRec__data--title">Web Training</span>
+					<figure className="animate__animated animate__bounceIn">
+						<img src={ImgLogo} alt="Logo" />
+					</figure>
 
-					<label>
-						<datalist id="campana">
-							{campana.map((nameCampana, i) => (
-								<option value={nameCampana} key={i} />
-							))}
-						</datalist>
-						<input
-							className="input"
-							type="text"
-							placeholder=""
-							required=""
-							list="campana"
-							name="campana"
-							onChange={e => {
-								updateData(e.target.value, e.target.name)
-							}}
-						/>
-						<span>Camapaña</span>
-					</label>
+					<div className="sessionRec__data--footer">
+						<span>
+							<strong>Automatizaciones</strong> Formación
+						</span>
+						<p>v1.0.0</p>
+					</div>
+				</div>
 
-					<label>
-						<datalist className="input" id="modulo">
-							{segmento.map((nameSegmento, i) => (
-								<option value={nameSegmento} key={i} />
-							))}
-						</datalist>
-						<input
-							className="input"
-							type="text"
-							placeholder=""
-							required=""
-							list="modulo"
-							name="segmento"
-							onChange={e => {
-								updateData(e.target.value, e.target.name)
-							}}
-						/>
-						<span>Segmento</span>
-					</label>
-					<label>
-						<input
-							className="input"
-							type="text"
-							placeholder=""
-							required=""
-							name="observaciones"
-							onChange={e => {
-								updateData(e.target.value, e.target.name)
-							}}
-						/>
-						<span>Observaciones</span>
-					</label>
-					<button
-						onClick={e => {
-							sendData(e)
-						}}>
-						Enviar
-					</button>
-				</form>
+				<div className="sessionRec__form">
+					<form className="form animate__animated animate__fadeInUp">
+						<p className="title">Registro de acceso</p>
+						<p className="message">
+							Agrega tus datos, para llevar el registro obligatorio
+						</p>
+						<label>
+							<input
+								className="input"
+								type="text"
+								name="usuario"
+								placeholder=""
+								required=""
+								onChange={e => {
+									updateData(e.target.value, e.target.name)
+								}}
+							/>
+							<span>Usuario</span>
+						</label>
+
+						<label>
+							<input
+								className="input"
+								type="text"
+								placeholder=""
+								required=""
+								name="campana"
+								defaultValue={campana}
+							/>
+							<span>Camapaña</span>
+						</label>
+						<label>
+							<input
+								className="input"
+								type="text"
+								placeholder=""
+								required=""
+								name="segmento"
+								defaultValue={segmento}
+							/>
+							<span>Segmento</span>
+						</label>
+						<label>
+							<input
+								className="input"
+								type="text"
+								placeholder=""
+								required=""
+								name="observaciones"
+								onChange={e => {
+									updateData(e.target.value, e.target.name)
+								}}
+							/>
+							<span>Observaciones</span>
+						</label>
+						<button
+							className="submit"
+							onClick={e => {
+								sendData(e)
+							}}>
+							Enviar
+						</button>
+					</form>
+				</div>
 			</div>
 		)
 	}

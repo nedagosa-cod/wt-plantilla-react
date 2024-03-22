@@ -20,23 +20,6 @@ export default function Bienvenida() {
 				</button>
 				<p>{contador}</p>
 			</div>
-			<div className="testImages">
-				<figure className="image">
-					<img src="/imagenes/logoMain.png" alt="hola" />
-				</figure>
-				<figure className="image">
-					<img src="./imagenes/logoMain.png" alt="hola" />
-				</figure>
-				<figure className="image">
-					<img src="../imagenes/logoMain.png" alt="hola" />
-				</figure>
-				<figure className="image">
-					<img src="./noTocar/assets/logoMain.png" alt="hola" />
-				</figure>
-				<figure className="image">
-					<img src="../src/assets/images/index/logoMain.png" alt="hola" />
-				</figure>
-			</div>
 		</div>
 	)
 }
