@@ -178,10 +178,25 @@ export default function Checklist() {
 			html: () => {
 				return (
 					<>
-						<h1>Descripción B</h1>
-						<p>1. Punto Uno del cheklist</p>
-						<p>2. Punto Uno del cheklist</p>
-						<p>2. Punto Uno del cheklist</p>
+						<TitleDesc>Titulo del Paso B</TitleDesc>
+						<article className="description__container">
+							<ParagraphDesc>
+								1. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+								Ipsam porro, quisquam consectetur provident suscipit atque!
+								Commodi.
+							</ParagraphDesc>
+							<ParagraphDesc>
+								2. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+								Ipsam porro, quisquam consectetur provident suscipit atque!
+								Commodi.
+							</ParagraphDesc>
+							<LinkDesc
+								url="https://reactrouter.com/en/main/components/link"
+								buttonName="Link Page"
+							/>
+							<ImageDesc activatePopImage={activatePopImage} />
+							<SubtitleDesc>Subtitlo del proceso del checklist</SubtitleDesc>
+						</article>
 					</>
 				)
 			},

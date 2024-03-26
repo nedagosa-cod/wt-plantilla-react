@@ -1,12 +1,30 @@
+import { useContext } from 'react'
+import CheckListContext from '../../../context/ChecklistContext'
+
 const ListCheck = ({ check, title }) => {
+	const { changeDescription, relativePosition } = useContext(CheckListContext)
+
+	const checked = e => {
+		if (e.target.checked) {
+			return relativePosition[check][0]
+		} else {
+			return relativePosition[check][1]
+		}
+	}
+
 	return (
 		<li>
 			<label className="ListCheck">
-				<span>{check})</span>
+				<span>{check}</span>
 				<h2>{title}</h2>
 				<div className="checkbox-wrapper-44">
 					<label className="toggleButton">
-						<input type="checkbox" />
+						<input
+							type="checkbox"
+							onChange={e => {
+								changeDescription(checked(e))
+							}}
+						/>
 						<div className="svg">
 							<svg viewBox="0 0 44 44">
 								<path

@@ -1,8 +1,10 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import './styles.scss'
+import CheckListContext from '../../../context/ChecklistContext'
 
 const RightSide = ({ descripciones }) => {
-	const [checkSelected, setCheckSelected] = useState('A')
+	const { checkSelected } = useContext(CheckListContext)
+
 	return (
 		<div className="rightSide">
 			{descripciones.map(descripcion => {
@@ -11,7 +13,7 @@ const RightSide = ({ descripciones }) => {
 						key={descripcion.check}
 						className={
 							'rightSide__description description ' +
-							(checkSelected == descripcion.check ? checkSelected : '')
+							(checkSelected == descripcion.check ? 'active' : '')
 						}>
 						{descripcion.html()}
 					</div>
