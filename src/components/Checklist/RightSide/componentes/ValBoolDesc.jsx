@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react'
-import { DataInside, InsideBool } from './DataInside'
+import 'animate.css'
 import CheckListContext from '../../../../context/ChecklistContext'
 
 const ValBoolDesc = ({ children, title, position }) => {
@@ -11,18 +11,24 @@ const ValBoolDesc = ({ children, title, position }) => {
 		}
 	}
 
+	const startAnimated = () => {
+		let result = ''
+		activeInside.forEach(valData => {
+			console.log(valData.id)
+			console.log(position)
+			if (valData.id == position) {
+				result = 'animate__slideInDown animate__faster'
+			}
+		})
+		return result
+	}
+
 	return (
 		<>
-			<div className="description__valtext">
+			<div className="description__valtext ">
 				<span className="description__valtext--ask">
 					<strong>{position}.</strong> {title}
 				</span>
-				<button
-					onClick={() => {
-						console.log(activeInside)
-					}}>
-					test
-				</button>
 				<form className="description__valtext--radios" onChange={getData}>
 					<label className="label">
 						SI
@@ -42,11 +48,10 @@ const ValBoolDesc = ({ children, title, position }) => {
 					</label>
 				</form>
 			</div>
-
 			{activeInside && (
-				<DataInside activeInside={activeInside} position={position}>
+				<section className={'insidebool animate__animated ' + startAnimated()}>
 					{children}
-				</DataInside>
+				</section>
 			)}
 		</>
 	)

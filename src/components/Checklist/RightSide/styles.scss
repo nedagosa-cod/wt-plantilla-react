@@ -244,6 +244,8 @@
 				display: flex;
 				flex-direction: column;
 				gap: 0.4rem;
+				z-index: 10;
+				background: red;
 				top: 100%;
 				left: auto;
 				position: absolute;
@@ -316,7 +318,7 @@
 		flex-direction: column;
 		align-items: center;
 		font-size: 1.6rem;
-		padding: 1rem 2rem;
+		padding: 0 1rem;
 		gap: 0.8rem;
 		width: 100%;
 		box-shadow: -2px 2px 5px 4px rgba(0, 0, 0, 0.1);
@@ -328,6 +330,14 @@
 		-moz-border-radius: 0.8rem;
 		-ms-border-radius: 0.8rem;
 		-o-border-radius: 0.8rem;
+		transition: 1s all;
+		-webkit-transition: 1s all;
+		-moz-transition: 1s all;
+		-ms-transition: 1s all;
+		-o-transition: 1s all;
+		&.animate__slideInDown {
+			padding: 2rem 1rem;
+		}
 	}
 	& .cssbuttons-io-button {
 		background: $p-color;

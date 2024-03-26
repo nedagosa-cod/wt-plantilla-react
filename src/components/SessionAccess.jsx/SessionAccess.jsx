@@ -12,7 +12,7 @@ export const SessionAccess = ({ campana, segmento }) => {
 		segmento: '',
 		observaciones: '',
 	})
-	const [active, setActive] = useState(true)
+	const [active, setActive] = useState(false)
 	const updateData = (newData, key) => {
 		setDataSession(personaActual => ({
 			...personaActual,
@@ -112,6 +112,7 @@ export const SessionAccess = ({ campana, segmento }) => {
 								placeholder=""
 								required=""
 								name="campana"
+								readOnly
 								defaultValue={campana}
 							/>
 							<span>Camapaña</span>
@@ -121,6 +122,7 @@ export const SessionAccess = ({ campana, segmento }) => {
 								className="input"
 								type="text"
 								placeholder=""
+								readOnly
 								required=""
 								name="segmento"
 								defaultValue={segmento}

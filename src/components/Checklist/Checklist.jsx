@@ -86,9 +86,38 @@ export default function Checklist() {
 								position="A"
 								title="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
 								<InsideAnswer answer="SI" position="A">
-									<ParagraphDesc>RESPUESTA DE SI</ParagraphDesc>
+									<ParagraphDesc>
+										1. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+										Ipsam porro, quisquam consectetur provident suscipit atque!
+										Commodi.
+									</ParagraphDesc>
+									<ListDesc>
+										<li>Dato 1</li>
+										<li>Dato 2</li>
+										<li>Dato 3</li>
+									</ListDesc>
+									<ParagraphDesc>
+										2. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+										Ipsam porro, quisquam consectetur provident suscipit atque!
+										Commodi.
+									</ParagraphDesc>
+									<LinkDesc
+										url="https://reactrouter.com/en/main/components/link"
+										buttonName="Link Page"
+									/>
+									<ImageDesc activatePopImage={activatePopImage} />
+									<ValBoolDesc
+										position="X"
+										title="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+										<InsideAnswer answer="SI" position="X">
+											<ParagraphDesc>RESPUESTA DE SI</ParagraphDesc>
+										</InsideAnswer>
+										<InsideAnswer answer="NO" position="X">
+											<ParagraphDesc>RESPUESTA DE NO</ParagraphDesc>
+										</InsideAnswer>
+									</ValBoolDesc>
 								</InsideAnswer>
-								<InsideAnswer answer="NO" position="B">
+								<InsideAnswer answer="NO" position="A">
 									<ParagraphDesc>RESPUESTA DE NO</ParagraphDesc>
 								</InsideAnswer>
 							</ValBoolDesc>
@@ -119,9 +148,15 @@ export default function Checklist() {
 							</ValTextDesc>
 							<ValDateDesc position="C">Fecha ge gestión</ValDateDesc>
 							<ValListDesc
+								title="Titulo de la lista"
 								position="D"
 								list={['Dato 1', 'Dato 2', 'Dato 3', 'Dato 4']}>
-								Titulo de la lista
+								<InsideAnswer answer="Dato 1" position="D">
+									<ParagraphDesc>RESPUESTA DE DATO 1</ParagraphDesc>
+								</InsideAnswer>
+								<InsideAnswer answer="Dato 2" position="D">
+									<ParagraphDesc>RESPUESTA DE DATO 2</ParagraphDesc>
+								</InsideAnswer>
 							</ValListDesc>
 							<ParagraphDesc>
 								3. Lorem ipsum dolor sit amet consectetur adipisicing elit.
