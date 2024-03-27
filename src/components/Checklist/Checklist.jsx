@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useContext, useRef, useState } from 'react'
 import LeftSide from './LeftSide/LeftSide'
 import RightSide from './RightSide/RightSide'
 import './styles.scss'
@@ -7,29 +7,32 @@ import ParagraphDesc from './RightSide/componentes/ParagraphDesc'
 import ListDesc from './RightSide/componentes/ListDesc'
 import { LinkDesc } from './RightSide/componentes/LinkDesc'
 import ImageDesc from './RightSide/componentes/ImageDesc'
-import { createPortal } from 'react-dom'
-import PopImageDesc from './RightSide/componentes/PopImageDesc'
 import SubtitleDesc from './RightSide/componentes/SubtitleDesc'
 import ImportantDesc from './RightSide/componentes/importantDesc'
 import ScriptDesc from './RightSide/componentes/ScriptDesc'
-import { CompanyA } from './BigIcons/CompanyA'
 import ValBoolDesc from './RightSide/componentes/ValBoolDesc'
 import ValTextDesc from './RightSide/componentes/ValTextDesc'
 import ValDateDesc from './RightSide/componentes/ValDateDesc'
 import ValListDesc from './RightSide/componentes/ValListDesc'
-import { InsideBool } from './RightSide/componentes/DataInside'
 import InsideAnswer from './RightSide/componentes/InsideAnswer'
-import { CheckListProvider } from '../../context/ChecklistContext'
+import CheckListContext from '../../context/ChecklistContext'
+import PopImageDesc from './RightSide/componentes/PopImageDesc'
+import { createPortal } from 'react-dom'
+import PopNota from './PopNota'
 
 export default function Checklist() {
+	const { theme, resetCheckList, resetList } = useContext(CheckListContext)
+	const [showPopImage, setPopShowImage] = useState(false)
+	const [showPopNota, setShowPopNota] = useState(false)
+	const formElement = useRef()
 	const [descripciones, setDescripciones] = useState([
 		{
 			check: 'A',
 			html: () => {
 				return (
 					<>
-						<TitleDesc>Titulo del Paso A</TitleDesc>
-						<article className="description__container">
+						<TitleDesc>Protocolo Bienvenida</TitleDesc>
+						<article className="description__container" ref={formElement}>
 							<ParagraphDesc>
 								1. Lorem ipsum dolor sit amet consectetur adipisicing elit.
 								Ipsam porro, quisquam consectetur provident suscipit atque!
@@ -178,7 +181,7 @@ export default function Checklist() {
 			html: () => {
 				return (
 					<>
-						<TitleDesc>Titulo del Paso B</TitleDesc>
+						<TitleDesc>Verifica</TitleDesc>
 						<article className="description__container">
 							<ParagraphDesc>
 								1. Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -206,36 +209,123 @@ export default function Checklist() {
 			html: () => {
 				return (
 					<>
-						<h1>Descripción C</h1>
-						<p>1. Punto Uno del cheklist</p>
-						<p>2. Punto Uno del cheklist</p>
-						<p>2. Punto Uno del cheklist</p>
+						<TitleDesc>Gestiona</TitleDesc>
+						<article className="description__container">
+							<ParagraphDesc>
+								1. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+								Ipsam porro, quisquam consectetur provident suscipit atque!
+								Commodi.
+							</ParagraphDesc>
+							<ParagraphDesc>
+								2. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+								Ipsam porro, quisquam consectetur provident suscipit atque!
+								Commodi.
+							</ParagraphDesc>
+							<LinkDesc
+								url="https://reactrouter.com/en/main/components/link"
+								buttonName="Link Page"
+							/>
+							<ImageDesc activatePopImage={activatePopImage} />
+							<SubtitleDesc>Subtitlo del proceso del checklist</SubtitleDesc>
+						</article>
+					</>
+				)
+			},
+		},
+		{
+			check: 'D',
+			html: () => {
+				return (
+					<>
+						<TitleDesc>Tipifica</TitleDesc>
+						<article className="description__container">
+							<ParagraphDesc>
+								1. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+								Ipsam porro, quisquam consectetur provident suscipit atque!
+								Commodi.
+							</ParagraphDesc>
+							<ParagraphDesc>
+								2. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+								Ipsam porro, quisquam consectetur provident suscipit atque!
+								Commodi.
+							</ParagraphDesc>
+							<LinkDesc
+								url="https://reactrouter.com/en/main/components/link"
+								buttonName="Link Page"
+							/>
+							<ImageDesc activatePopImage={activatePopImage} />
+							<SubtitleDesc>Subtitlo del proceso del checklist</SubtitleDesc>
+						</article>
+					</>
+				)
+			},
+		},
+		{
+			check: 'E',
+			html: () => {
+				return (
+					<>
+						<TitleDesc>Despedida de la gestión</TitleDesc>
+						<article className="description__container">
+							<ParagraphDesc>
+								1. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+								Ipsam porro, quisquam consectetur provident suscipit atque!
+								Commodi.
+							</ParagraphDesc>
+							<ParagraphDesc>
+								2. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+								Ipsam porro, quisquam consectetur provident suscipit atque!
+								Commodi.
+							</ParagraphDesc>
+							<LinkDesc
+								url="https://reactrouter.com/en/main/components/link"
+								buttonName="Link Page"
+							/>
+							<ImageDesc activatePopImage={activatePopImage} />
+							<SubtitleDesc>Subtitlo del proceso del checklist</SubtitleDesc>
+						</article>
 					</>
 				)
 			},
 		},
 	])
 
-	const [showPopImage, setPopShowImage] = useState(false)
-
 	const activatePopImage = () => {
 		setPopShowImage(true)
 	}
+	const activePopNota = () => {
+		setShowPopNota(!showPopNota)
+	}
 
 	return (
-		<CheckListProvider>
-			<section className="checklist-container">
-				<div className="Checklist">
-					<LeftSide />
-					<RightSide descripciones={descripciones} />
-				</div>
-
-				{showPopImage &&
-					createPortal(
-						<PopImageDesc setPopShowImage={setPopShowImage} />,
-						document.body
-					)}
+		<form className={'Checklist ' + theme}>
+			<section className="data">
+				<LeftSide resetList={resetList} />
+				<RightSide descripciones={descripciones} key={resetList} />
 			</section>
-		</CheckListProvider>
+			<div className="Checklist__buttons">
+				<button
+					type="reset"
+					onClick={() => {
+						resetCheckList()
+					}}>
+					Reiniciar
+				</button>
+				<button
+					type="button"
+					onClick={() => {
+						setShowPopNota(true)
+					}}>
+					Obtener datos
+				</button>
+			</div>
+			{showPopImage &&
+				createPortal(
+					<PopImageDesc setPopShowImage={setPopShowImage} />,
+					document.body
+				)}
+			{showPopNota &&
+				createPortal(<PopNota activePopNota={activePopNota} />, document.body)}
+		</form>
 	)
 }

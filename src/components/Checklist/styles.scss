@@ -6,25 +6,159 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	overflow: hidden;
+	&--settings {
+		position: relative;
+		display: flex;
+		justify-content: center;
+		width: 70%;
+	}
+	& .settings {
+		position: absolute;
+		bottom: 2rem;
+		right: -25rem;
+		height: fit-content;
+		width: 30rem;
+		min-width: 30rem;
+		background: $b-color;
+		color: $w-color;
+		padding: 1rem;
+		border-radius: 0.8rem;
+		-webkit-border-radius: 0.8rem;
+		-moz-border-radius: 0.8rem;
+		-ms-border-radius: 0.8rem;
+		-o-border-radius: 0.8rem;
+		&__list {
+			display: flex;
+			align-items: center;
+			gap: 1rem;
+			padding: 1rem;
+			cursor: pointer;
+			color: $w-color;
+			&:hover {
+				background: rgba(0, 0, 0, 0.1);
+			}
+			& svg {
+				user-select: none;
+				pointer-events: none;
+				fill: $w-color;
+				width: 2rem;
+				height: 2rem;
+			}
+
+			border-radius: 0.8rem;
+			-webkit-border-radius: 0.8rem;
+			-moz-border-radius: 0.8rem;
+			-ms-border-radius: 0.8rem;
+			-o-border-radius: 0.8rem;
+		}
+		&.true {
+			right: -14rem;
+		}
+		&.light {
+			background: $w-color;
+			color: $b-color;
+			&,
+			.settings__list {
+				color: $b-color;
+				& svg {
+					fill: $b-color;
+				}
+			}
+		}
+		transition: 1s ease-in-out;
+		-webkit-transition: 1s ease-in-out;
+		-moz-transition: 1s ease-in-out;
+		-ms-transition: 1s ease-in-out;
+		-o-transition: 1s ease-in-out;
+	}
+	&.true {
+		width: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		background: $w-color;
+		z-index: 100;
+		& .Checklist {
+			width: 90%;
+			height: 90%;
+			max-width: 200rem;
+			& .LeftSide {
+				&__title {
+					font-size: 3rem;
+				}
+			}
+			& .rightSide {
+				& .description {
+					&__title {
+						font-size: 3rem;
+					}
+					&__paragraph {
+						font-size: 2rem;
+					}
+					&__valtext,
+					.description__valbool,
+					.description__valdate,
+					.description__vallist {
+						max-width: 40rem;
+					}
+				}
+			}
+		}
+	}
+	transition: 1s ease-in-out;
+	-webkit-transition: 1s ease-in-out;
+	-moz-transition: 1s ease-in-out;
+	-ms-transition: 1s ease-in-out;
+	-o-transition: 1s ease-in-out;
 }
 .Checklist {
+	position: relative;
+	z-index: 5;
+	overflow-x: hidden;
 	display: flex;
+	flex-direction: column;
 	width: 70%;
 	max-width: 100rem;
-	max-height: 50rem;
+	height: 60rem;
 	background: #3d3d3d;
-	overflow: hidden;
 	color: $w-color;
+	box-shadow: 0px 0px 0px 24px rgba(255, 255, 255, 0.1);
 	border-radius: 2rem;
 	-webkit-border-radius: 2rem;
 	-moz-border-radius: 2rem;
 	-ms-border-radius: 2rem;
 	-o-border-radius: 2rem;
+	& .data {
+		font-size: 2rem;
+		overflow: hidden;
+		width: 100%;
+		height: 100%;
+		display: flex;
+	}
+	&__buttons {
+		display: flex;
+		justify-content: center;
+		gap: 2rem;
+		width: 100%;
+		& button {
+			cursor: pointer;
+			background: $p-color;
+			width: 20rem;
+			padding: 0.6rem 0;
+			font-size: 2rem;
+			margin: 1rem auto;
+			border-radius: 0.8rem;
+			-webkit-border-radius: 0.8rem;
+			-moz-border-radius: 0.8rem;
+			-ms-border-radius: 0.8rem;
+			-o-border-radius: 0.8rem;
+		}
+	}
 	& .LeftSide {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		justify-content: space-between;
 		gap: 3rem;
 		width: 50%;
 		border-right: 1px inset $g-color;
@@ -43,6 +177,10 @@
 			-moz-border-radius: 1rem;
 			-ms-border-radius: 1rem;
 			-o-border-radius: 1rem;
+			&.checked {
+				box-shadow: inset 0px -14px 43px -11px rgba(112, 112, 112, 0.5);
+				color: rgba(0, 0, 0, 0.2);
+			}
 		}
 
 		&__title {
@@ -86,6 +224,138 @@
 		&.active {
 			display: flex;
 		}
+	}
+	&.light {
+		background: #e2e2e2;
+		color: $b-color;
+	}
+	transition: 1s ease-in-out;
+	-webkit-transition: 1s ease-in-out;
+	-moz-transition: 1s ease-in-out;
+	-ms-transition: 1s ease-in-out;
+	-o-transition: 1s ease-in-out;
+}
+
+.PopNota {
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100vh;
+	/* From https://css.glass */
+	background: rgba(255, 255, 255, 0.2);
+	z-index: 100;
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(5px);
+	-webkit-backdrop-filter: blur(5px);
+	border: 1px solid rgba(255, 255, 255, 0.3);
+
+	& .paper {
+		position: relative;
+		width: 90%;
+		max-width: 800px;
+		min-width: 400px;
+		margin: 2rem 0;
+		height: 60rem;
+		margin: 0 auto;
+		background: #fafafa;
+		border-radius: 10px;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+		overflow: hidden;
+	}
+	& .paper:before {
+		content: '';
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		width: 60px;
+		background: radial-gradient(#575450 6px, transparent 7px) repeat-y;
+		background-size: 30px 30px;
+		border-left: 3px solid $p3-color;
+		box-sizing: border-box;
+	}
+
+	& .paper-content {
+		position: absolute;
+		top: 30px;
+		left: 0;
+		bottom: 30px;
+		right: 60px;
+		background: linear-gradient(transparent, transparent 28px, #dbdbdb 28px);
+		background-size: 30px 30px;
+	}
+
+	& .paper-content section {
+		width: 100%;
+		max-width: 100%;
+		height: 100%;
+		max-height: 100%;
+		line-height: 30px;
+		padding: 0 10px;
+		border: 0;
+		outline: 0;
+		background: transparent;
+		color: $b-color;
+		font-weight: bold;
+		font-size: 1.8rem;
+		box-sizing: border-box;
+		z-index: 1;
+		overflow-y: auto;
+		scrollbar-width: thin;
+		scrollbar-color: $w-color $p3-color;
+	}
+
+	& .papper {
+		position: relative;
+		box-sizing: border-box;
+		width: 200px;
+		height: 4rem;
+		background: #ffffff;
+		background-image: linear-gradient(#ffffff 1.1rem, #636363 1.2rem);
+		background-size: 100% 1.2rem;
+		border-radius: 10px;
+		cursor: move;
+		font-size: 2rem;
+		text-align: center;
+		margin: 2rem 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		font-weight: 800;
+	}
+
+	& .papper::before,
+	.papper::after {
+		position: absolute;
+		content: '';
+		bottom: 10px;
+		width: 40%;
+		height: 10px;
+		box-shadow: 0 5px 14px rgba(0, 0, 0, 1);
+		z-index: -1;
+		transition: all 0.3s ease;
+	}
+
+	& .papper::before {
+		left: 15px;
+		transform: skew(-5deg) rotate(-5deg);
+	}
+
+	& .papper::after {
+		right: 15px;
+		transform: skew(5deg) rotate(5deg);
+	}
+
+	& .papper:hover::before,
+	.papper:hover::after {
+		box-shadow: 0 2px 14px rgba(0, 0, 0, 1);
 	}
 }
 

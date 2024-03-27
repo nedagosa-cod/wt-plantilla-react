@@ -3,21 +3,19 @@ import IconArrowDown from '../../../../icons/IconArrowDown'
 import CheckListContext from '../../../../context/ChecklistContext'
 
 const ValListDesc = ({ children, position, list, title }) => {
-	const [showList, setShowList] = useState(true)
+	const [showList, setShowList] = useState(false)
 	const [valueList, setValueList] = useState('')
 	const { activeInside, updateActiveInside } = useContext(CheckListContext)
 
 	const changeValueList = e => {
 		setValueList(e.target.textContent)
 		setShowList(false)
-		updateActiveInside(position, e.target.textContent)
+		updateActiveInside(position, e.target.textContent, title)
 	}
 
 	const startAnimated = () => {
 		let result = ''
 		activeInside.forEach(valData => {
-			console.log(valData.id)
-			console.log(position)
 			if (valData.id == position) {
 				result = 'animate__slideInDown animate__faster'
 			}

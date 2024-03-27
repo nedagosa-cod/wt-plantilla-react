@@ -5,7 +5,13 @@ const CheckListContext = createContext()
 const CheckListProvider = ({ children }) => {
 	const [activeInside, setActiveInside] = useState([])
 	const [checkSelected, setCheckSelected] = useState('A')
-	const [relativePosition, setRelativePosition] = useState({
+	const [resetList, setResetList] = useState(true)
+
+	const [theme, setTheme] = useState('dark')
+	const [listChecked, setListChecked] = useState('')
+	const [zoom, setZoom] = useState(false)
+
+	const relativePosition = {
 		A: ['B', 'A'],
 		B: ['C', 'B'],
 		C: ['D', 'C'],
@@ -33,13 +39,13 @@ const CheckListProvider = ({ children }) => {
 		X: ['Y', 'X'],
 		Y: ['Z', 'Y'],
 		Z: ['A', 'Z'],
-	})
+	}
 
-	const updateActiveInside = (id, active) => {
+	const updateActiveInside = (id, active, title) => {
 		let resExist = activeInside.some(dataActive => dataActive.id == id)
 
 		if (!resExist) {
-			setActiveInside([...activeInside, { id, active }])
+			setActiveInside([...activeInside, { id, active, title }])
 		} else {
 			setActiveInside(prevInside => {
 				return prevInside.map(item => {
@@ -51,9 +57,19 @@ const CheckListProvider = ({ children }) => {
 			})
 		}
 	}
-
 	const changeDescription = position => {
 		setCheckSelected(position)
+	}
+	const changeTheme = () => {
+		theme == 'dark' ? setTheme('light') : setTheme('dark')
+	}
+	const resetCheckList = () => {
+		setActiveInside([])
+		setCheckSelected('A')
+		setResetList(!resetList)
+	}
+	const zoomChecklist = () => {
+		setZoom(true)
 	}
 	const data = {
 		activeInside,
@@ -61,6 +77,15 @@ const CheckListProvider = ({ children }) => {
 		checkSelected,
 		changeDescription,
 		relativePosition,
+		changeTheme,
+		theme,
+		resetCheckList,
+		listChecked,
+		setListChecked,
+		zoomChecklist,
+		setResetList,
+		resetList,
+		zoom,
 	}
 
 	return (

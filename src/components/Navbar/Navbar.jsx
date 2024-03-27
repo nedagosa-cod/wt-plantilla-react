@@ -50,15 +50,6 @@ export default function Navbar() {
 							return <LinkRoute key={i} link={link} />
 						}
 					})}
-
-				{/* {projectNavbar &&
-          projectNavbar.map((link, i) => {
-            if (!link.dropDown) {
-              return <LinkRoute key={i} link={link} />;
-            } else {
-              return <DropDown key={i} link={link} />;
-            }
-          })} */}
 			</ul>
 
 			{/* {version} */}

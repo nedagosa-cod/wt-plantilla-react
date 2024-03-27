@@ -6,7 +6,7 @@ const ValDateDesc = ({ children, position }) => {
 
 	const getData = e => {
 		if (e.target.nodeName == 'INPUT') {
-			updateActiveInside(position, e.target.value)
+			updateActiveInside(position, e.target.value, children)
 		}
 	}
 

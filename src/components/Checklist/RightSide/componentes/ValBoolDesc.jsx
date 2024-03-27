@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import 'animate.css'
 import CheckListContext from '../../../../context/ChecklistContext'
 
@@ -7,7 +7,7 @@ const ValBoolDesc = ({ children, title, position }) => {
 
 	const getData = e => {
 		if (e.target.nodeName == 'INPUT') {
-			updateActiveInside(position, e.target.value)
+			updateActiveInside(position, e.target.value, title)
 		}
 	}
 
@@ -29,13 +29,14 @@ const ValBoolDesc = ({ children, title, position }) => {
 				<span className="description__valtext--ask">
 					<strong>{position}.</strong> {title}
 				</span>
-				<form className="description__valtext--radios" onChange={getData}>
+				<article className="description__valtext--radios">
 					<label className="label">
 						SI
 						<input
 							type="radio"
 							name={'valtext_' + position}
 							defaultValue="SI"
+							onChange={getData}
 						/>
 					</label>
 					<label className="label">
@@ -44,9 +45,10 @@ const ValBoolDesc = ({ children, title, position }) => {
 							type="radio"
 							name={'valtext_' + position}
 							defaultValue="NO"
+							onChange={getData}
 						/>
 					</label>
-				</form>
+				</article>
 			</div>
 			{activeInside && (
 				<section className={'insidebool animate__animated ' + startAnimated()}>
