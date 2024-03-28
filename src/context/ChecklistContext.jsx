@@ -10,6 +10,7 @@ const CheckListProvider = ({ children }) => {
 	const [theme, setTheme] = useState('dark')
 	const [listChecked, setListChecked] = useState('')
 	const [zoom, setZoom] = useState(false)
+	const [post, setPost] = useState(0)
 
 	const relativePosition = {
 		A: ['B', 'A'],
@@ -55,6 +56,7 @@ const CheckListProvider = ({ children }) => {
 				})
 			})
 		}
+		setPost(post + 1)
 	}
 	const changeDescription = position => {
 		setCheckSelected(position)
@@ -85,6 +87,7 @@ const CheckListProvider = ({ children }) => {
 		setResetList,
 		resetList,
 		zoom,
+		post,
 	}
 
 	return <CheckListContext.Provider value={data}>{children}</CheckListContext.Provider>

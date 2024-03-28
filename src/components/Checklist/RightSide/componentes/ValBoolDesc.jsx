@@ -4,6 +4,8 @@ import CheckListContext from '../../../../context/ChecklistContext'
 
 const ValBoolDesc = ({ children, title, position }) => {
 	const { activeInside, updateActiveInside } = useContext(CheckListContext)
+	const [si, setSi] = useState(false)
+	const [no, setNo] = useState(false)
 
 	const getData = e => {
 		if (e.target.nodeName == 'INPUT') {
@@ -21,6 +23,20 @@ const ValBoolDesc = ({ children, title, position }) => {
 		return result
 	}
 
+	useEffect(() => {
+		if (activeInside.length > 0) {
+			activeInside.map(res => {
+				if (res.id == position && res.active == 'SI') {
+					setSi(true)
+					setNo(false)
+				} else if (res.id == position && res.active == 'NO') {
+					setSi(false)
+					setNo(true)
+				}
+			})
+		}
+	}, [activeInside])
+
 	return (
 		<>
 			<div className="description__valtext ">
@@ -30,11 +46,23 @@ const ValBoolDesc = ({ children, title, position }) => {
 				<article className="description__valtext--radios">
 					<label className="label">
 						SI
-						<input type="radio" name={'valtext_' + position} value="SI" onChange={getData} />
+						<input
+							type="radio"
+							name={'valtext_' + position}
+							value="SI"
+							onChange={getData}
+							checked={si}
+						/>
 					</label>
 					<label className="label">
 						NO
-						<input type="radio" name={'valtext_' + position} value="NO" onChange={getData} />
+						<input
+							type="radio"
+							name={'valtext_' + position}
+							value="NO"
+							onChange={getData}
+							checked={no}
+						/>
 					</label>
 				</article>
 			</div>

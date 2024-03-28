@@ -5,6 +5,7 @@ const InsideAnswer = ({ children, position, answer }) => {
 	const { activeInside } = useContext(CheckListContext)
 	const [active, setActive] = useState(false)
 
+	// funcion que se ejecuta despues de guardarse la rta desde ValBoolDesc
 	const waitInside = () => {
 		activeInside.forEach(valData => {
 			if (valData.id == position) {
@@ -24,7 +25,5 @@ const InsideAnswer = ({ children, position, answer }) => {
 	if (active) {
 		return <>{children} </>
 	}
-
-	return
 }
 export default InsideAnswer

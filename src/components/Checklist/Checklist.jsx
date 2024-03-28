@@ -22,13 +22,11 @@ import PopNota from './PopNota'
 import plantilla from './BASES/plantilla.json'
 
 export default function Checklist() {
-	const { theme, resetCheckList, resetList, activeInside } = useContext(CheckListContext)
+	const { theme, resetCheckList, resetList, activeInside, post } = useContext(CheckListContext)
 	const [showPopImage, setPopShowImage] = useState(false)
 	const [showPopNota, setShowPopNota] = useState(false)
-	// const [position, setPosition] = useState(0)
-	const aleatory = () => {
-		return Math.random() * 999
-	}
+	// const [position, setPosition] = useState([])
+	let position = []
 	const renderElement = (element, index) => {
 		if (!element) {
 			return null
@@ -58,27 +56,34 @@ export default function Checklist() {
 		} else if (element.SCRIPT) {
 			return <ScriptDesc key={'def_' + index}>{element.SCRIPT}</ScriptDesc>
 		} else if (element.DATA_TEXT) {
+			position.push('dato')
 			return (
-				<ValTextDesc position={numToWord(index)} key={'data_' + index}>
+				<ValTextDesc position={numToWord(position.length)} key={'data_' + index}>
 					{element.DATA_TEXT}
 				</ValTextDesc>
 			)
 		} else if (element.DATA_DATE) {
+			position.push('dato')
 			return (
-				<ValDateDesc position={numToWord(index)} key={'data_' + index}>
+				<ValDateDesc position={numToWord(position.length)} key={'data_' + index}>
 					{element.DATA_DATE}
 				</ValDateDesc>
 			)
 		} else if (element.DATA_BOOL) {
+			position.push('dato')
 			return (
-				<ValBoolDesc position={numToWord(index)} title={element.DATA_BOOL} key={'data_' + index}>
-					<InsideAnswer answer="SI" position={numToWord(index)}>
-						<p>hola</p>
+				<ValBoolDesc
+					position={numToWord(position.length)}
+					title={element.DATA_BOOL}
+					key={'data_' + index}>
+					<InsideAnswer answer="SI" position={numToWord(position.length)}>
+						<p>si</p>
 						{/* {element.SI.map((subElement, j) => {
 							return <React.Fragment key={j}>{renderElement(subElement, index)}</React.Fragment>
 						})} */}
 					</InsideAnswer>
-					<InsideAnswer answer="NO" position={numToWord(index)}>
+					<InsideAnswer answer="NO" position={numToWord(position.length)}>
+						<p>no</p>
 						{/* {element.NO.map((subElement, j) => {
 							return <React.Fragment key={j}>{renderElement(subElement, index)}</React.Fragment>
 						})} */}
@@ -86,6 +91,7 @@ export default function Checklist() {
 				</ValBoolDesc>
 			)
 		} else if (element.DATA_LIST) {
+			position.push('dato')
 			return (
 				<ValListDesc
 					title={element.DATA_LIST}
@@ -137,6 +143,7 @@ export default function Checklist() {
 										}
 									})
 								}
+								position = []
 							})}
 						</article>
 					</>
@@ -371,8 +378,16 @@ export default function Checklist() {
 		setShowPopNota(!showPopNota)
 	}
 
+	useEffect(() => {
+		position = []
+	}, [post])
+
 	return (
-		<form className={'Checklist ' + theme}>
+		<form
+			className={'Checklist ' + theme}
+			onChange={e => {
+				e.preventDefault()
+			}}>
 			<section className="data">
 				<LeftSide resetList={resetList} />
 				<RightSide descripciones={descripciones} key={resetList} />

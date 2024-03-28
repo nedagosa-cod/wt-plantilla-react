@@ -39,7 +39,10 @@
 					"DATA_BOOL": "Pregunta de respuesta booleana",
 					"SI": [
 						{
-							"P": "4. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
+							"P": "4. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro"
+						},
+						{
+							"SCRIPT": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
 						},
 						{
 							"LIST": ["DATO 1", "DATO 2", "DATO 3"]
@@ -49,7 +52,37 @@
 							"TITLE": "IMPORTANTE!"
 						},
 						{
-							"SCRIPT": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
+							"DATA_BOOL": "Pregunta de respuesta booleana",
+							"SI": [
+								{
+									"P": "4. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro"
+								},
+								{
+									"SCRIPT": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
+								},
+								{
+									"LIST": ["DATO 1", "DATO 2", "DATO 3"]
+								},
+								{
+									"IMPORTANT": "Mensaje importante para el checklist o la gestion del paso del checklist",
+									"TITLE": "IMPORTANTE!"
+								}
+							],
+							"NO": [
+								{
+									"P": "1. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
+								},
+								{
+									"LIST": ["DATO 1", "DATO 2", "DATO 3"]
+								},
+								{
+									"IMPORTANT": "Mensaje importante para el checklist o la gestion del paso del checklist",
+									"TITLE": "IMPORTANTE!"
+								},
+								{
+									"SCRIPT": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
+								}
+							]
 						}
 					],
 					"NO": [
