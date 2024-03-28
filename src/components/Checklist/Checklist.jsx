@@ -34,16 +34,16 @@ export default function Checklist() {
 			return null
 		}
 		if (element.P) {
-			return <ParagraphDesc key={aleatory()}>{element.P}</ParagraphDesc>
+			return <ParagraphDesc key={'def_' + index}>{element.P}</ParagraphDesc>
 		} else if (element.LINK) {
-			return <LinkDesc url={element.LINK} buttonName={element.NAME} key={aleatory()} />
+			return <LinkDesc url={element.LINK} buttonName={element.NAME} key={'def_' + index} />
 		} else if (element.IMG) {
-			return <ImageDesc activatePopImage={activatePopImage} key={aleatory()} />
+			return <ImageDesc activatePopImage={activatePopImage} key={'def_' + index} />
 		} else if (element.SUBTITLE) {
-			return <SubtitleDesc key={aleatory()}>{element.SUBTITLE}</SubtitleDesc>
+			return <SubtitleDesc key={'def_' + index}>{element.SUBTITLE}</SubtitleDesc>
 		} else if (element.LIST) {
 			return (
-				<ListDesc key={aleatory()}>
+				<ListDesc key={'def_' + index}>
 					{element.LIST.map((list, j) => {
 						return <li key={j}>{list}</li>
 					})}
@@ -51,36 +51,37 @@ export default function Checklist() {
 			)
 		} else if (element.IMPORTANT) {
 			return (
-				<ImportantDesc title={element.TITLE} key={aleatory()}>
+				<ImportantDesc title={element.TITLE} key={'def_' + index}>
 					{element.IMPORTANT}
 				</ImportantDesc>
 			)
 		} else if (element.SCRIPT) {
-			return <ScriptDesc key={aleatory()}>{element.SCRIPT}</ScriptDesc>
+			return <ScriptDesc key={'def_' + index}>{element.SCRIPT}</ScriptDesc>
 		} else if (element.DATA_TEXT) {
 			return (
-				<ValTextDesc position={numToWord(index)} key={aleatory()}>
+				<ValTextDesc position={numToWord(index)} key={'data_' + index}>
 					{element.DATA_TEXT}
 				</ValTextDesc>
 			)
 		} else if (element.DATA_DATE) {
 			return (
-				<ValDateDesc position={numToWord(index)} key={aleatory()}>
+				<ValDateDesc position={numToWord(index)} key={'data_' + index}>
 					{element.DATA_DATE}
 				</ValDateDesc>
 			)
 		} else if (element.DATA_BOOL) {
 			return (
-				<ValBoolDesc position={numToWord(index)} title={element.DATA_BOOL} key={aleatory()}>
+				<ValBoolDesc position={numToWord(index)} title={element.DATA_BOOL} key={'data_' + index}>
 					<InsideAnswer answer="SI" position={numToWord(index)}>
-						{element.SI.map((subElement, j) => {
+						<p>hola</p>
+						{/* {element.SI.map((subElement, j) => {
 							return <React.Fragment key={j}>{renderElement(subElement, index)}</React.Fragment>
-						})}
+						})} */}
 					</InsideAnswer>
 					<InsideAnswer answer="NO" position={numToWord(index)}>
-						{element.NO.map((subElement, j) => {
+						{/* {element.NO.map((subElement, j) => {
 							return <React.Fragment key={j}>{renderElement(subElement, index)}</React.Fragment>
-						})}
+						})} */}
 					</InsideAnswer>
 				</ValBoolDesc>
 			)
@@ -90,13 +91,14 @@ export default function Checklist() {
 					title={element.DATA_LIST}
 					position={numToWord(index)}
 					list={element.OPTIONS}
-					key={aleatory()}>
+					key={'data_' + index}>
 					{element.OPTIONS.map((pos, l) => {
 						return (
 							<InsideAnswer answer={'Dato ' + (l + 1)} position={'x'} key={l}>
-								{element[pos].map((subElement, j) => {
+								<p>nada</p>
+								{/* {element[pos].map((subElement, j) => {
 									return <React.Fragment key={j}>{renderElement(subElement, index)}</React.Fragment>
-								})}
+								})} */}
 							</InsideAnswer>
 						)
 					})}
@@ -131,7 +133,7 @@ export default function Checklist() {
 											contador = contador + 1
 											return renderElement(element, contador)
 										} else {
-											return renderElement(element, contador)
+											return renderElement(element, i)
 										}
 									})
 								}
