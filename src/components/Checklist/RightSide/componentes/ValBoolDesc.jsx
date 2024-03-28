@@ -14,8 +14,6 @@ const ValBoolDesc = ({ children, title, position }) => {
 	const startAnimated = () => {
 		let result = ''
 		activeInside.forEach(valData => {
-			console.log(valData.id)
-			console.log(position)
 			if (valData.id == position) {
 				result = 'animate__slideInDown animate__faster'
 			}
@@ -32,28 +30,16 @@ const ValBoolDesc = ({ children, title, position }) => {
 				<article className="description__valtext--radios">
 					<label className="label">
 						SI
-						<input
-							type="radio"
-							name={'valtext_' + position}
-							defaultValue="SI"
-							onChange={getData}
-						/>
+						<input type="radio" name={'valtext_' + position} value="SI" onChange={getData} />
 					</label>
 					<label className="label">
 						NO
-						<input
-							type="radio"
-							name={'valtext_' + position}
-							defaultValue="NO"
-							onChange={getData}
-						/>
+						<input type="radio" name={'valtext_' + position} value="NO" onChange={getData} />
 					</label>
 				</article>
 			</div>
 			{activeInside && (
-				<section className={'insidebool animate__animated ' + startAnimated()}>
-					{children}
-				</section>
+				<section className={'insidebool animate__animated ' + startAnimated()}>{children}</section>
 			)}
 		</>
 	)

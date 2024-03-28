@@ -7,18 +7,19 @@ const RightSide = ({ descripciones }) => {
 
 	return (
 		<div className="rightSide">
-			{descripciones.map(descripcion => {
-				return (
-					<div
-						key={descripcion.check}
-						className={
-							'rightSide__description description ' +
-							(checkSelected == descripcion.check ? 'active' : '')
-						}>
-						{descripcion.html()}
-					</div>
-				)
-			})}
+			{descripciones &&
+				descripciones.map(descripcion => {
+					return (
+						<div
+							key={descripcion.check}
+							className={
+								'rightSide__description description ' +
+								(checkSelected == descripcion.check ? 'active' : '')
+							}>
+							{descripcion.html()}
+						</div>
+					)
+				})}
 		</div>
 	)
 }

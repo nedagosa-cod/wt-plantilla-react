@@ -5,7 +5,7 @@ const InsideAnswer = ({ children, position, answer }) => {
 	const { activeInside } = useContext(CheckListContext)
 	const [active, setActive] = useState(false)
 
-	useEffect(() => {
+	const waitInside = () => {
 		activeInside.forEach(valData => {
 			if (valData.id == position) {
 				if (valData.active == answer) {
@@ -15,6 +15,10 @@ const InsideAnswer = ({ children, position, answer }) => {
 				}
 			}
 		})
+	}
+
+	useEffect(() => {
+		waitInside()
 	}, [activeInside])
 
 	if (active) {

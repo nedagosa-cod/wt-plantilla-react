@@ -43,7 +43,6 @@ const CheckListProvider = ({ children }) => {
 
 	const updateActiveInside = (id, active, title) => {
 		let resExist = activeInside.some(dataActive => dataActive.id == id)
-
 		if (!resExist) {
 			setActiveInside([...activeInside, { id, active, title }])
 		} else {
@@ -88,11 +87,7 @@ const CheckListProvider = ({ children }) => {
 		zoom,
 	}
 
-	return (
-		<CheckListContext.Provider value={data}>
-			{children}
-		</CheckListContext.Provider>
-	)
+	return <CheckListContext.Provider value={data}>{children}</CheckListContext.Provider>
 }
 
 export { CheckListProvider }
