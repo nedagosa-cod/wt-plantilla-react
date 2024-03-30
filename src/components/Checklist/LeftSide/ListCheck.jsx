@@ -1,9 +1,8 @@
-import { useContext, useEffect, useReducer, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import CheckListContext from '../../../context/ChecklistContext'
 
 const ListCheck = ({ check, title, resetList }) => {
-	const { checkSelected, changeDescription, relativePosition } =
-		useContext(CheckListContext)
+	const { checkSelected, changeDescription, relativePosition } = useContext(CheckListContext)
 	const [listChecked, setListChecked] = useState('')
 	const inputCheck = useRef()
 
@@ -37,12 +36,7 @@ const ListCheck = ({ check, title, resetList }) => {
 				<h2>{title}</h2>
 				<div className="checkbox-wrapper-44">
 					<label className="toggleButton">
-						<input
-							ref={inputCheck}
-							id={check}
-							type="checkbox"
-							onChange={showRelativeDescription}
-						/>
+						<input ref={inputCheck} id={check} type="checkbox" onChange={showRelativeDescription} />
 						<div className="svg">
 							<svg viewBox="0 0 44 44">
 								<path

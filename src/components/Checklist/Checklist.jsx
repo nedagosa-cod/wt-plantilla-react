@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import LeftSide from './LeftSide/LeftSide'
 import RightSide from './RightSide/RightSide'
 import './styles.scss'
@@ -22,16 +22,14 @@ import PopNota from './PopNota'
 import plantilla from './BASES/plantilla.json'
 
 export default function Checklist() {
-	const { theme, resetCheckList, resetList, activeInside, post } = useContext(CheckListContext)
+	const { theme, resetCheckList, resetList, activeInside } = useContext(CheckListContext)
 	const [showPopImage, setPopShowImage] = useState(false)
 	const [showPopNota, setShowPopNota] = useState(false)
 
-	let position = []
 	const renderElement = (element, index) => {
 		if (!element) {
 			return null
-		}
-		if (element.P) {
+		} else if (element.P) {
 			return <ParagraphDesc key={'def_' + index}>{element.P}</ParagraphDesc>
 		} else if (element.LINK) {
 			return <LinkDesc url={element.LINK} buttonName={element.NAME} key={'def_' + index} />
@@ -56,21 +54,18 @@ export default function Checklist() {
 		} else if (element.SCRIPT) {
 			return <ScriptDesc key={'def_' + index}>{element.SCRIPT}</ScriptDesc>
 		} else if (element.DATA_TEXT) {
-			position.push('dato')
 			return (
 				<ValTextDesc position={element.POS} key={'data_' + index}>
 					{element.DATA_TEXT}
 				</ValTextDesc>
 			)
 		} else if (element.DATA_DATE) {
-			position.push('dato')
 			return (
 				<ValDateDesc position={element.POS} key={'data_' + index}>
 					{element.DATA_DATE}
 				</ValDateDesc>
 			)
 		} else if (element.DATA_BOOL) {
-			position.push('dato')
 			return (
 				<ValBoolDesc position={element.POS} title={element.DATA_BOOL} key={'data_' + index}>
 					<InsideAnswer answer="SI" position={element.POS}>
@@ -86,7 +81,6 @@ export default function Checklist() {
 				</ValBoolDesc>
 			)
 		} else if (element.DATA_LIST) {
-			position.push('dato')
 			return (
 				<ValListDesc
 					title={element.DATA_LIST}
@@ -129,7 +123,6 @@ export default function Checklist() {
 										return renderElement(element, i)
 									})
 								}
-								position = []
 							})}
 						</article>
 					</>
@@ -353,21 +346,12 @@ export default function Checklist() {
 			},
 		},
 	])
-
-	const numToWord = position => {
-		return String.fromCharCode(64 + position)
-	}
 	const activatePopImage = () => {
 		setPopShowImage(true)
 	}
 	const activePopNota = () => {
 		setShowPopNota(!showPopNota)
 	}
-
-	useEffect(() => {
-		position = []
-	}, [post])
-
 	return (
 		<form
 			className={'Checklist ' + theme}
