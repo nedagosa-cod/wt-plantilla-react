@@ -59,29 +59,28 @@ export default function Checklist() {
 			return <ScriptDesc key={'def_' + index}>{element.SCRIPT}</ScriptDesc>
 		} else if (element.DATA_TEXT) {
 			return (
-				<ValTextDesc position={numToWord(index)} key={'data_' + index}>
+				<ValTextDesc position={element.POS} key={'data_' + index}>
 					{element.DATA_TEXT}
 				</ValTextDesc>
 			)
 		} else if (element.DATA_DATE) {
 			return (
-				<ValDateDesc position={numToWord(index)} key={'data_' + index}>
+				<ValDateDesc position={element.POS} key={'data_' + index}>
 					{element.DATA_DATE}
 				</ValDateDesc>
 			)
 		} else if (element.DATA_BOOL) {
 			return (
-				<ValBoolDesc position={numToWord(index)} title={element.DATA_BOOL} key={'data_' + index}>
-					<InsideAnswer answer="SI" position={numToWord(index)}>
-						<p>hola</p>
-						{/* {element.SI.map((subElement, j) => {
-							return <React.Fragment key={j}>{renderElement(subElement, index)}</React.Fragment>
-						})} */}
+				<ValBoolDesc position={element.POS} title={element.DATA_BOOL} key={'data_' + index}>
+					<InsideAnswer answer="SI" position={element.POS}>
+						{element.SI.map((subElement, j) => {
+							return renderElement(subElement, j)
+						})}
 					</InsideAnswer>
-					<InsideAnswer answer="NO" position={numToWord(index)}>
-						{/* {element.NO.map((subElement, j) => {
-							return <React.Fragment key={j}>{renderElement(subElement, index)}</React.Fragment>
-						})} */}
+					<InsideAnswer answer="NO" position={element.POS}>
+						{element.NO.map((subElement, j) => {
+							return renderElement(subElement, j)
+						})}
 					</InsideAnswer>
 				</ValBoolDesc>
 			)
@@ -89,16 +88,15 @@ export default function Checklist() {
 			return (
 				<ValListDesc
 					title={element.DATA_LIST}
-					position={numToWord(index)}
-					list={element.OPTIONS}
+					position={element.POS}
+					list={element.OPTIONS.map(option => option.NAME)}
 					key={'data_' + index}>
-					{element.OPTIONS.map((pos, l) => {
+					{element.OPTIONS.map((option, l) => {
 						return (
-							<InsideAnswer answer={'Dato ' + (l + 1)} position={'x'} key={l}>
-								<p>nada</p>
-								{/* {element[pos].map((subElement, j) => {
-									return <React.Fragment key={j}>{renderElement(subElement, index)}</React.Fragment>
-								})} */}
+							<InsideAnswer answer={option.NAME} position={element.POS} key={l}>
+								{option.HTML.map((subElement, j) => {
+									return renderElement(subElement, j)
+								})}
 							</InsideAnswer>
 						)
 					})}
@@ -126,15 +124,8 @@ export default function Checklist() {
 						<article className="description__container">
 							{plantilla.plantilla.map(list => {
 								if (list.check == 'A') {
-									let contador = 0
 									return list.html.map((element, i) => {
-										const { DATA_BOOL, DATA_DATE, DATA_LIST, DATA_TEXT } = element
-										if (DATA_BOOL || DATA_DATE || DATA_LIST || DATA_TEXT) {
-											contador = contador + 1
-											return renderElement(element, contador)
-										} else {
-											return renderElement(element, i)
-										}
+										return renderElement(element, i)
 									})
 								}
 							})}
