@@ -30,13 +30,16 @@
 					"SCRIPT": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
 				},
 				{
-					"DATA_TEXT": "Nombre del cliente"
+					"DATA_TEXT": "Nombre del cliente",
+					"POS": "A"
 				},
 				{
-					"DATA_DATE": "Fecha de gestión"
+					"DATA_DATE": "Fecha de gestión",
+					"POS": "B"
 				},
 				{
 					"DATA_BOOL": "Pregunta de respuesta booleana",
+					"POS": "C",
 					"SI": [
 						{
 							"P": "4. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro"
@@ -87,22 +90,16 @@
 					],
 					"NO": [
 						{
-							"P": "1. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
+							"P": "1. Soy La Rta de No dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
 						},
 						{
 							"LIST": ["DATO 1", "DATO 2", "DATO 3"]
-						},
-						{
-							"IMPORTANT": "Mensaje importante para el checklist o la gestion del paso del checklist",
-							"TITLE": "IMPORTANTE!"
-						},
-						{
-							"SCRIPT": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
 						}
 					]
 				},
 				{
 					"DATA_LIST": "Pregunta de la lista",
+					"POS": "D",
 					"OPTIONS": ["EJEMPLO 1", "EJEMPLO 2", "EJEMPLO 3"],
 					"EJEMPLO 1": [
 						{

@@ -66,8 +66,8 @@ const ValBoolDesc = ({ children, title, position }) => {
 					</label>
 				</article>
 			</div>
-			{activeInside && (
-				<section className={'insidebool animate__animated ' + startAnimated()}>{children}</section>
+			{activeInside.length > 0 && (
+				<section className={'insidebool animate__animated ' + startAnimated()}> {children}</section>
 			)}
 		</>
 	)

@@ -25,7 +25,7 @@ export default function Checklist() {
 	const { theme, resetCheckList, resetList, activeInside, post } = useContext(CheckListContext)
 	const [showPopImage, setPopShowImage] = useState(false)
 	const [showPopNota, setShowPopNota] = useState(false)
-	// const [position, setPosition] = useState([])
+
 	let position = []
 	const renderElement = (element, index) => {
 		if (!element) {
@@ -58,35 +58,44 @@ export default function Checklist() {
 		} else if (element.DATA_TEXT) {
 			position.push('dato')
 			return (
-				<ValTextDesc position={numToWord(position.length)} key={'data_' + index}>
+				<ValTextDesc position={element.POS} key={'data_' + index}>
 					{element.DATA_TEXT}
 				</ValTextDesc>
 			)
 		} else if (element.DATA_DATE) {
 			position.push('dato')
 			return (
-				<ValDateDesc position={numToWord(position.length)} key={'data_' + index}>
+				<ValDateDesc position={element.POS} key={'data_' + index}>
 					{element.DATA_DATE}
 				</ValDateDesc>
 			)
 		} else if (element.DATA_BOOL) {
 			position.push('dato')
 			return (
-				<ValBoolDesc
-					position={numToWord(position.length)}
-					title={element.DATA_BOOL}
-					key={'data_' + index}>
+				<ValBoolDesc position={element.POS} title={element.DATA_BOOL} key={'data_' + index}>
 					<InsideAnswer answer="SI" position={numToWord(position.length)}>
-						<p>si</p>
-						{/* {element.SI.map((subElement, j) => {
-							return <React.Fragment key={j}>{renderElement(subElement, index)}</React.Fragment>
-						})} */}
+						{element.SI.map((subElementA, j) => {
+							return <React.Fragment key={j}>{renderElement(subElementA, index)}</React.Fragment>
+							const { DATA_BOOL, DATA_DATE, DATA_LIST, DATA_TEXT } = subElementA
+							if (DATA_BOOL || DATA_DATE || DATA_LIST || DATA_TEXT) {
+								position.push('dato')
+								return <React.Fragment key={j}>{renderElement(subElementA, index)}</React.Fragment>
+							} else {
+								return <React.Fragment key={j}>{renderElement(subElementA, j)}</React.Fragment>
+							}
+						})}
 					</InsideAnswer>
 					<InsideAnswer answer="NO" position={numToWord(position.length)}>
-						<p>no</p>
-						{/* {element.NO.map((subElement, j) => {
-							return <React.Fragment key={j}>{renderElement(subElement, index)}</React.Fragment>
-						})} */}
+						{element.NO.map((subElementB, j) => {
+							return <React.Fragment key={j}>{renderElement(subElementB, index)}</React.Fragment>
+							const { DATA_BOOL, DATA_DATE, DATA_LIST, DATA_TEXT } = subElementB
+							if (DATA_BOOL || DATA_DATE || DATA_LIST || DATA_TEXT) {
+								position.push('dato')
+								return <React.Fragment key={j}>{renderElement(subElementB, index)}</React.Fragment>
+							} else {
+								return <React.Fragment key={j}> {renderElement(subElementB, j)}</React.Fragment>
+							}
+						})}
 					</InsideAnswer>
 				</ValBoolDesc>
 			)
@@ -95,12 +104,12 @@ export default function Checklist() {
 			return (
 				<ValListDesc
 					title={element.DATA_LIST}
-					position={numToWord(index)}
+					position={element.POS}
 					list={element.OPTIONS}
 					key={'data_' + index}>
 					{element.OPTIONS.map((pos, l) => {
 						return (
-							<InsideAnswer answer={'Dato ' + (l + 1)} position={'x'} key={l}>
+							<InsideAnswer answer={'Dato ' + (l + 1)} position={element.POS} key={l}>
 								<p>nada</p>
 								{/* {element[pos].map((subElement, j) => {
 									return <React.Fragment key={j}>{renderElement(subElement, index)}</React.Fragment>
@@ -112,7 +121,6 @@ export default function Checklist() {
 			)
 		}
 	}
-	// necesito que el index solo incremente cuando entre a DATAS
 
 	const [descripciones, setDescripciones] = useState([
 		{
@@ -132,15 +140,8 @@ export default function Checklist() {
 						<article className="description__container">
 							{plantilla.plantilla.map(list => {
 								if (list.check == 'A') {
-									let contador = 0
 									return list.html.map((element, i) => {
-										const { DATA_BOOL, DATA_DATE, DATA_LIST, DATA_TEXT } = element
-										if (DATA_BOOL || DATA_DATE || DATA_LIST || DATA_TEXT) {
-											contador = contador + 1
-											return renderElement(element, contador)
-										} else {
-											return renderElement(element, i)
-										}
+										return renderElement(element, i)
 									})
 								}
 								position = []
