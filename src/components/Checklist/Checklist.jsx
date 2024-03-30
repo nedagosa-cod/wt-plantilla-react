@@ -22,7 +22,7 @@ import PopNota from './PopNota'
 import plantilla from './BASES/plantilla.json'
 
 export default function Checklist() {
-	const { theme, resetCheckList, resetList, activeInside } = useContext(CheckListContext)
+	const { theme, resetCheckList, activeInside } = useContext(CheckListContext)
 	const [showPopImage, setPopShowImage] = useState(false)
 	const [showPopNota, setShowPopNota] = useState(false)
 
@@ -353,14 +353,10 @@ export default function Checklist() {
 		setShowPopNota(!showPopNota)
 	}
 	return (
-		<form
-			className={'Checklist ' + theme}
-			onChange={e => {
-				e.preventDefault()
-			}}>
+		<article className={'Checklist ' + theme}>
 			<section className="data">
-				<LeftSide resetList={resetList} />
-				<RightSide descripciones={descripciones} key={resetList} />
+				<LeftSide />
+				<RightSide descripciones={descripciones} key="keyRightSide" />
 			</section>
 			<div className="Checklist__buttons">
 				<button
@@ -382,6 +378,6 @@ export default function Checklist() {
 			{showPopImage &&
 				createPortal(<PopImageDesc setPopShowImage={setPopShowImage} />, document.body)}
 			{showPopNota && createPortal(<PopNota activePopNota={activePopNota} />, document.body)}
-		</form>
+		</article>
 	)
 }

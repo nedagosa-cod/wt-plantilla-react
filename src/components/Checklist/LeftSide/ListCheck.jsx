@@ -1,8 +1,9 @@
-import { useContext, useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useReducer, useRef, useState } from 'react'
 import CheckListContext from '../../../context/ChecklistContext'
 
-const ListCheck = ({ check, title, resetList }) => {
-	const { checkSelected, changeDescription, relativePosition } = useContext(CheckListContext)
+const ListCheck = ({ check, title }) => {
+	const { checkSelected, changeDescription, relativePosition, resetList } =
+		useContext(CheckListContext)
 	const [listChecked, setListChecked] = useState('')
 	const inputCheck = useRef()
 

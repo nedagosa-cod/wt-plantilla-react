@@ -56,6 +56,7 @@
 						},
 						{
 							"DATA_BOOL": "Pregunta de respuesta booleana",
+							"POS": "E",
 							"SI": [
 								{
 									"P": "4. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro"
