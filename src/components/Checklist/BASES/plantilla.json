@@ -100,50 +100,60 @@
 				{
 					"DATA_LIST": "Pregunta de la lista",
 					"POS": "D",
-					"OPTIONS": ["EJEMPLO 1", "EJEMPLO 2", "EJEMPLO 3"],
-					"EJEMPLO 1": [
+					"OPTIONS": [
 						{
-							"P": "4. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
+							"NAME": "HOGAR",
+							"HTML": [
+								{
+									"P": "1. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
+								},
+								{
+									"LIST": ["DATO 1", "DATO 2", "DATO 3"]
+								},
+								{
+									"IMPORTANT": "Mensaje importante para el checklist o la gestion del paso del checklist",
+									"TITLE": "IMPORTANTE!"
+								},
+								{
+									"SCRIPT": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
+								}
+							]
 						},
 						{
-							"LIST": ["DATO 1", "DATO 2", "DATO 3"]
+							"NAME": "MOVIL",
+							"HTML": [
+								{
+									"P": "2. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
+								},
+								{
+									"LIST": ["DATO 1", "DATO 2", "DATO 3"]
+								},
+								{
+									"IMPORTANT": "Mensaje importante para el checklist o la gestion del paso del checklist",
+									"TITLE": "IMPORTANTE!"
+								},
+								{
+									"SCRIPT": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
+								}
+							]
 						},
 						{
-							"IMPORTANT": "Mensaje importante para el checklist o la gestion del paso del checklist",
-							"TITLE": "IMPORTANTE!"
-						},
-						{
-							"SCRIPT": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
-						}
-					],
-					"EJEMPLO 2": [
-						{
-							"P": "4. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
-						},
-						{
-							"LIST": ["DATO 1", "DATO 2", "DATO 3"]
-						},
-						{
-							"IMPORTANT": "Mensaje importante para el checklist o la gestion del paso del checklist",
-							"TITLE": "IMPORTANTE!"
-						},
-						{
-							"SCRIPT": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
-						}
-					],
-					"EJEMPLO 3": [
-						{
-							"P": "4. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
-						},
-						{
-							"LIST": ["DATO 1", "DATO 2", "DATO 3"]
-						},
-						{
-							"IMPORTANT": "Mensaje importante para el checklist o la gestion del paso del checklist",
-							"TITLE": "IMPORTANTE!"
-						},
-						{
-							"SCRIPT": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
+							"NAME": "DUO",
+							"HTML": [
+								{
+									"P": "3. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
+								},
+								{
+									"LIST": ["DATO 1", "DATO 2", "DATO 3"]
+								},
+								{
+									"IMPORTANT": "Mensaje importante para el checklist o la gestion del paso del checklist",
+									"TITLE": "IMPORTANTE!"
+								},
+								{
+									"SCRIPT": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
+								}
+							]
 						}
 					]
 				}

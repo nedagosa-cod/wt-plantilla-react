@@ -73,28 +73,14 @@ export default function Checklist() {
 			position.push('dato')
 			return (
 				<ValBoolDesc position={element.POS} title={element.DATA_BOOL} key={'data_' + index}>
-					<InsideAnswer answer="SI" position={numToWord(position.length)}>
-						{element.SI.map((subElementA, j) => {
-							return <React.Fragment key={j}>{renderElement(subElementA, index)}</React.Fragment>
-							const { DATA_BOOL, DATA_DATE, DATA_LIST, DATA_TEXT } = subElementA
-							if (DATA_BOOL || DATA_DATE || DATA_LIST || DATA_TEXT) {
-								position.push('dato')
-								return <React.Fragment key={j}>{renderElement(subElementA, index)}</React.Fragment>
-							} else {
-								return <React.Fragment key={j}>{renderElement(subElementA, j)}</React.Fragment>
-							}
+					<InsideAnswer answer="SI" position={element.POS}>
+						{element.SI.map((subElement, j) => {
+							return renderElement(subElement, j)
 						})}
 					</InsideAnswer>
-					<InsideAnswer answer="NO" position={numToWord(position.length)}>
-						{element.NO.map((subElementB, j) => {
-							return <React.Fragment key={j}>{renderElement(subElementB, index)}</React.Fragment>
-							const { DATA_BOOL, DATA_DATE, DATA_LIST, DATA_TEXT } = subElementB
-							if (DATA_BOOL || DATA_DATE || DATA_LIST || DATA_TEXT) {
-								position.push('dato')
-								return <React.Fragment key={j}>{renderElement(subElementB, index)}</React.Fragment>
-							} else {
-								return <React.Fragment key={j}> {renderElement(subElementB, j)}</React.Fragment>
-							}
+					<InsideAnswer answer="NO" position={element.POS}>
+						{element.NO.map((subElement, j) => {
+							return renderElement(subElement, j)
 						})}
 					</InsideAnswer>
 				</ValBoolDesc>
@@ -105,15 +91,14 @@ export default function Checklist() {
 				<ValListDesc
 					title={element.DATA_LIST}
 					position={element.POS}
-					list={element.OPTIONS}
+					list={element.OPTIONS.map(option => option.NAME)}
 					key={'data_' + index}>
-					{element.OPTIONS.map((pos, l) => {
+					{element.OPTIONS.map((option, l) => {
 						return (
-							<InsideAnswer answer={'Dato ' + (l + 1)} position={element.POS} key={l}>
-								<p>nada</p>
-								{/* {element[pos].map((subElement, j) => {
-									return <React.Fragment key={j}>{renderElement(subElement, index)}</React.Fragment>
-								})} */}
+							<InsideAnswer answer={option.NAME} position={element.POS} key={l}>
+								{option.HTML.map((subElement, j) => {
+									return renderElement(subElement, j)
+								})}
 							</InsideAnswer>
 						)
 					})}
