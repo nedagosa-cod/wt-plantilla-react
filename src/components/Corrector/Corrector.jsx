@@ -31,7 +31,6 @@ export default function Corrector() {
 
 	const guardarValor = valor => {
 		setDataCorrector(valor)
-		console.log(dataCorrector)
 	}
 
 	return (

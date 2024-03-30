@@ -45,8 +45,8 @@ const ValListDesc = ({ children, position, list, title }) => {
 									setShowList(false)
 								}, 100)
 							}}
-							onChange={() => {
-								console.log('cambio list')
+							onChange={e => {
+								setValueList(e.target.value)
 							}}
 						/>
 						<IconArrowDown />
@@ -67,9 +67,7 @@ const ValListDesc = ({ children, position, list, title }) => {
 				</div>
 			</div>
 			{activeInside && (
-				<section className={'insidebool animate__animated ' + startAnimated()}>
-					{children}
-				</section>
+				<section className={'insidebool animate__animated ' + startAnimated()}>{children}</section>
 			)}
 		</>
 	)

@@ -23,12 +23,7 @@ const InsideAnswer = ({ children, position, answer }) => {
 	}, [activeInside])
 
 	if (active) {
-		return (
-			<>
-				{console.log(children)}
-				{children}{' '}
-			</>
-		)
+		return <>{children}</>
 	}
 }
 export default InsideAnswer

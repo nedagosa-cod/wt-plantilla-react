@@ -1,21 +1,26 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { CheckListProvider } from '../../context/ChecklistContext'
 import Checklist from './Checklist'
-import PopImageDesc from './RightSide/componentes/PopImageDesc'
 import { Settings } from './Settings'
-import { createPortal } from 'react-dom'
+import ejemploA from './BASES/ejemploA.json'
+import ejemploB from './BASES/ejemploB.json'
 
-const CheckListBase = () => {
+const CheckListBase = ({ checklist }) => {
 	const [zoom, setZoom] = useState(false)
+	const [cheklists, setCheckList] = useState({
+		ejemploA,
+		ejemploB,
+	})
 	const zoomChecklist = () => {
 		setZoom(!zoom)
 	}
+
 	return (
 		<>
 			<CheckListProvider>
 				<section className={'checklist-container ' + zoom}>
 					<Settings zoomChecklist={zoomChecklist} />
-					<Checklist />
+					<Checklist dataCheckList={cheklists[checklist]} />
 				</section>
 			</CheckListProvider>
 		</>

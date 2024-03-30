@@ -1,15 +1,13 @@
 import ListCheck from './ListCheck'
 
-const LeftSide = () => {
+const LeftSide = ({ title, data }) => {
 	return (
 		<div className="LeftSide">
-			<h1 className="LeftSide__title">Titulo del Check List</h1>
+			<h1 className="LeftSide__title">{title}</h1>
 			<ul className="LeftSide__ul">
-				<ListCheck check="A" title="Protocolo Bienvenida" />
-				<ListCheck check="B" title="Verifica" />
-				<ListCheck check="C" title="Gestiona" />
-				<ListCheck check="D" title="Tipifica" />
-				<ListCheck check="E" title="Despedida de la gestión" />
+				{data.map((paso, i) => {
+					return <ListCheck check={paso.check} title={paso.html[0].TITULO} key={i} />
+				})}
 			</ul>
 		</div>
 	)

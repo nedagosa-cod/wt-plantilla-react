@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import LeftSide from './LeftSide/LeftSide'
 import RightSide from './RightSide/RightSide'
 import './styles.scss'
@@ -19,9 +19,8 @@ import CheckListContext from '../../context/ChecklistContext'
 import PopImageDesc from './RightSide/componentes/PopImageDesc'
 import { createPortal } from 'react-dom'
 import PopNota from './PopNota'
-import plantilla from './BASES/plantilla.json'
 
-export default function Checklist() {
+export default function Checklist({ dataCheckList }) {
 	const { theme, resetCheckList, activeInside } = useContext(CheckListContext)
 	const [showPopImage, setPopShowImage] = useState(false)
 	const [showPopNota, setShowPopNota] = useState(false)
@@ -101,261 +100,48 @@ export default function Checklist() {
 		}
 	}
 
-	const [descripciones, setDescripciones] = useState([
-		{
-			check: 'A',
-			html: () => {
-				return (
-					<>
-						{plantilla.plantilla.map(list => {
-							if (list.check == 'A') {
-								return list.html.map((element, i) => {
-									if (element.TITULO) {
-										return <TitleDesc key={i}>{element.TITULO}</TitleDesc>
-									}
-								})
-							}
-						})}
-						<article className="description__container">
-							{plantilla.plantilla.map(list => {
-								if (list.check == 'A') {
-									return list.html.map((element, i) => {
-										return renderElement(element, i)
-									})
-								}
-							})}
-						</article>
-					</>
-				)
-			},
-		},
-		{
-			check: 'B',
-			html: () => {
-				return (
-					<>
-						<TitleDesc>Verifica</TitleDesc>
-						<article className="description__container">
-							<ParagraphDesc>
-								1. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam
-								consectetur provident suscipit atque! Commodi.
-							</ParagraphDesc>
-							<ParagraphDesc>
-								2. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam
-								consectetur provident suscipit atque! Commodi.
-							</ParagraphDesc>
-							<LinkDesc
-								url="https://reactrouter.com/en/main/components/link"
-								buttonName="Link Page"
-							/>
-							<ImageDesc activatePopImage={activatePopImage} />
-							<SubtitleDesc>Subtitlo del proceso del checklist</SubtitleDesc>
-						</article>
-					</>
-				)
-			},
-		},
-		{
-			check: 'C',
-			html: () => {
-				return (
-					<>
-						<TitleDesc>Gestiona</TitleDesc>
-						<article className="description__container">
-							<ParagraphDesc>
-								1. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam
-								consectetur provident suscipit atque! Commodi.
-							</ParagraphDesc>
-							<ParagraphDesc>
-								2. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam
-								consectetur provident suscipit atque! Commodi.
-							</ParagraphDesc>
-							<LinkDesc
-								url="https://reactrouter.com/en/main/components/link"
-								buttonName="Link Page"
-							/>
-							<ImageDesc activatePopImage={activatePopImage} />
-							<SubtitleDesc>Subtitlo del proceso del checklist</SubtitleDesc>
-						</article>
-					</>
-				)
-			},
-		},
-		{
-			check: 'D',
-			html: () => {
-				return (
-					<>
-						<TitleDesc>Tipifica</TitleDesc>
-						<article className="description__container">
-							<ParagraphDesc>
-								1. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam
-								consectetur provident suscipit atque! Commodi.
-							</ParagraphDesc>
-							<ParagraphDesc>
-								2. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam
-								consectetur provident suscipit atque! Commodi.
-							</ParagraphDesc>
-							<LinkDesc
-								url="https://reactrouter.com/en/main/components/link"
-								buttonName="Link Page"
-							/>
-							<ImageDesc activatePopImage={activatePopImage} />
-							<SubtitleDesc>Subtitlo del proceso del checklist</SubtitleDesc>
-						</article>
-					</>
-				)
-			},
-		},
-		{
-			check: 'E',
-			html: () => {
-				return (
-					<>
-						<TitleDesc>Despedida de la gestión</TitleDesc>
-						<article className="description__container">
-							<ParagraphDesc>
-								1. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam
-								consectetur provident suscipit atque! Commodi.
-							</ParagraphDesc>
-							<ListDesc>
-								<li>Dato 1</li>
-								<li>Dato 2</li>
-								<li>Dato 3</li>
-							</ListDesc>
-							<ParagraphDesc>
-								2. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam
-								consectetur provident suscipit atque! Commodi.
-							</ParagraphDesc>
-							<LinkDesc
-								url="https://reactrouter.com/en/main/components/link"
-								buttonName="Link Page"
-							/>
-							<ImageDesc activatePopImage={activatePopImage} />
-							<SubtitleDesc>Subtitlo del proceso del checklist</SubtitleDesc>
-							<ParagraphDesc>
-								3. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam
-								consectetur provident suscipit atque! Commodi.
-							</ParagraphDesc>
-							<ParagraphDesc>
-								3. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam
-								consectetur provident suscipit atque! Commodi.
-							</ParagraphDesc>
-							<ParagraphDesc>
-								3. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam
-								consectetur provident suscipit atque! Commodi.
-							</ParagraphDesc>
-							<ImportantDesc title="IMPORTANTE">
-								Mensaje importante del dia a tener en cuenta en esta lista de checkeo
-							</ImportantDesc>
-							<ParagraphDesc>
-								3. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam
-								consectetur provident suscipit atque! Commodi.
-							</ParagraphDesc>
-							<ScriptDesc>
-								Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero tempora quod deleniti
-								placeat, aperiam ad ab reprehenderit dolores modi ex distinctio odit dolorum porro
-								explicabo cupiditate! Repudiandae doloremque dicta quos!
-							</ScriptDesc>
-
-							<ValBoolDesc
-								position="A"
-								title="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
-								<InsideAnswer answer="SI" position="A">
-									<ParagraphDesc>
-										1. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro,
-										quisquam consectetur provident suscipit atque! Commodi.
-									</ParagraphDesc>
-									<ListDesc>
-										<li>Dato 1</li>
-										<li>Dato 2</li>
-										<li>Dato 3</li>
-									</ListDesc>
-									<ParagraphDesc>
-										2. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro,
-										quisquam consectetur provident suscipit atque! Commodi.
-									</ParagraphDesc>
-									<LinkDesc
-										url="https://reactrouter.com/en/main/components/link"
-										buttonName="Link Page"
-									/>
-									<ImageDesc activatePopImage={activatePopImage} />
-									<ValBoolDesc
-										position="X"
-										title="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
-										<InsideAnswer answer="SI" position="X">
-											<ParagraphDesc>RESPUESTA DE SI</ParagraphDesc>
-										</InsideAnswer>
-										<InsideAnswer answer="NO" position="X">
-											<ParagraphDesc>RESPUESTA DE NO</ParagraphDesc>
-										</InsideAnswer>
-									</ValBoolDesc>
-								</InsideAnswer>
-								<InsideAnswer answer="NO" position="A">
-									<ParagraphDesc>RESPUESTA DE NO</ParagraphDesc>
-								</InsideAnswer>
-							</ValBoolDesc>
-
-							<ValBoolDesc
-								position="Z"
-								title="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
-								<InsideAnswer answer="SI" position="Z">
-									<ParagraphDesc>RESPUESTA DE SI</ParagraphDesc>
-								</InsideAnswer>
-								<InsideAnswer answer="NO" position="Z">
-									<ParagraphDesc>RESPUESTA DE NO</ParagraphDesc>
-								</InsideAnswer>
-							</ValBoolDesc>
-							<ValBoolDesc
-								position="G"
-								title="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
-								<InsideAnswer answer="SI" position="G">
-									<ParagraphDesc>RESPUESTA DE SI</ParagraphDesc>
-								</InsideAnswer>
-								<InsideAnswer answer="NO" position="G">
-									<ParagraphDesc>RESPUESTA DE NO</ParagraphDesc>
-								</InsideAnswer>
-							</ValBoolDesc>
-							<ValTextDesc position="B">
-								Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam
-								consectetur provident suscipit atque! Commodi.
-							</ValTextDesc>
-							<ValDateDesc position="C">Fecha ge gestión</ValDateDesc>
-							<ValListDesc
-								title="Titulo de la lista"
-								position="D"
-								list={['Dato 1', 'Dato 2', 'Dato 3', 'Dato 4']}>
-								<InsideAnswer answer="Dato 1" position="D">
-									<ParagraphDesc>RESPUESTA DE DATO 1</ParagraphDesc>
-								</InsideAnswer>
-								<InsideAnswer answer="Dato 2" position="D">
-									<ParagraphDesc>RESPUESTA DE DATO 2</ParagraphDesc>
-								</InsideAnswer>
-							</ValListDesc>
-							<ParagraphDesc>
-								3. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam
-								consectetur provident suscipit atque! Commodi.
-							</ParagraphDesc>
-							<ParagraphDesc>
-								3. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam
-								consectetur provident suscipit atque! Commodi.
-							</ParagraphDesc>
-						</article>
-					</>
-				)
-			},
-		},
-	])
+	const [descripciones, setDescripciones] = useState([])
 	const activatePopImage = () => {
 		setPopShowImage(true)
 	}
 	const activePopNota = () => {
 		setShowPopNota(!showPopNota)
 	}
+
+	const fixDescriptions = () => {
+		let result = dataCheckList.DESCRIPCIONES.map((element, i) => {
+			let data = {
+				check: element.check,
+				html: () => {
+					return (
+						<>
+							{element.html.map((list, l) => {
+								if (list.TITULO) {
+									return <TitleDesc key={l}>{list.TITULO}</TitleDesc>
+								}
+							})}
+							<article className="description__container">
+								{element.html.map((list, j) => {
+									return renderElement(list, j)
+								})}
+							</article>
+						</>
+					)
+				},
+			}
+			return data
+		})
+		setDescripciones(result)
+	}
+
+	useEffect(() => {
+		resetCheckList()
+		fixDescriptions()
+	}, [dataCheckList])
 	return (
 		<article className={'Checklist ' + theme}>
 			<section className="data">
-				<LeftSide />
+				<LeftSide title={dataCheckList.TITLE} data={dataCheckList.DESCRIPCIONES} />
 				<RightSide descripciones={descripciones} key="keyRightSide" />
 			</section>
 			<div className="Checklist__buttons">
@@ -369,7 +155,7 @@ export default function Checklist() {
 				<button
 					type="button"
 					onClick={() => {
-						// setShowPopNota(true)
+						setShowPopNota(true)
 						console.log(activeInside)
 					}}>
 					Obtener datos
