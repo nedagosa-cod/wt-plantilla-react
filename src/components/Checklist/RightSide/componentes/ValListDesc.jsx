@@ -58,12 +58,16 @@ const ValListDesc = ({ children, position, list, title }) => {
 					</label>
 
 					{showList && (
-						<ul className="list">
+						<ul
+							className="list"
+							onClick={() => {
+								console.log('hola')
+							}}>
 							<li>Seleccion opción...</li>
 							{list.map((liData, i) => {
 								return (
-									<li key={i} onClick={changeValueList} className="li">
-										{liData}
+									<li key={i} onMouseDown={changeValueList} className="li">
+										<p>{liData}</p>
 									</li>
 								)
 							})}
