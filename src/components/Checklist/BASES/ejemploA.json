@@ -18,12 +18,76 @@
 					"P": "4. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
 				},
 				{
-					"IMPORTANT": "Mensaje importante para el checklist o la gestion del paso del checklist",
-					"TITLE": "IMPORTANTE!"
+					"TITLE": "IMPORTANTE!",
+					"IMPORTANT": "Mensaje importante para el checklist o la gestion del paso del checklist"
 				},
 				{
 					"DATA_TEXT": "Nombre del cliente",
 					"POS": "A"
+				},
+				{
+					"DATA_DATE": "Fecha de gestión",
+					"POS": "B"
+				},
+				{
+					"DATA_LIST": "Pregunta de la lista",
+					"POS": "F",
+					"OPTIONS": [
+						{
+							"NAME": "HOGAR",
+							"HTML": [
+								{
+									"P": "1. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
+								},
+								{
+									"LIST": ["DATO 1", "DATO 2", "DATO 3"]
+								},
+								{
+									"IMPORTANT": "Mensaje importante para el checklist o la gestion del paso del checklist",
+									"TITLE": "IMPORTANTE!"
+								},
+								{
+									"SCRIPT": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
+								}
+							]
+						},
+						{
+							"NAME": "MOVIL",
+							"HTML": [
+								{
+									"P": "2. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
+								},
+								{
+									"LIST": ["DATO 1", "DATO 2", "DATO 3"]
+								},
+								{
+									"IMPORTANT": "Mensaje importante para el checklist o la gestion del paso del checklist",
+									"TITLE": "IMPORTANTE!"
+								},
+								{
+									"SCRIPT": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
+								}
+							]
+						},
+						{
+							"NAME": "DUO",
+							"HTML": [
+								{
+									"P": "3. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
+								},
+								{
+									"LIST": ["DATO 1", "DATO 2", "DATO 3"]
+								},
+								{
+									"IMPORTANT": "Mensaje importante para el checklist o la gestion del paso del checklist",
+									"TITLE": "IMPORTANTE!"
+								},
+								{
+									"SCRIPT": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
+								}
+							]
+						}
+					]
 				},
 				{
 					"DATA_BOOL": "Pregunta de respuesta booleana",
