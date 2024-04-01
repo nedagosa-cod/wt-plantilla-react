@@ -3,13 +3,15 @@ import 'animate.css'
 import CheckListContext from '../../../../context/ChecklistContext'
 
 const ValBoolDesc = ({ children, title, position }) => {
-	const { activeInside, updateActiveInside } = useContext(CheckListContext)
+	const { activeInside, updateActiveInside, resetList } = useContext(CheckListContext)
 
 	const [optSelected, setOptSelected] = useState('custom')
-	const [si, setSi] = useState(activeInside.filter(el => el.id == position))
+	const [showSubEl, SetshowSubEl] = useState(false)
 
 	const getData = e => {
 		if (e.target.nodeName == 'INPUT') {
+			setOptSelected(e.target.value)
+			SetshowSubEl(true)
 			updateActiveInside(position, e.target.value, title)
 		}
 	}
@@ -25,24 +27,9 @@ const ValBoolDesc = ({ children, title, position }) => {
 	}
 
 	useEffect(() => {
-		console.log(activeInside.length)
-		if (activeInside.length > 0) {
-			activeInside.map(res => {
-				console.log(res.id)
-				console.log(position)
-				console.log(res.active)
-				if (res.id == position && res.active == 'SI') {
-					setOptSelected('SI')
-				} else if (res.id == position && res.active == 'NO') {
-					setOptSelected('NO')
-				} else {
-					setOptSelected('custom')
-				}
-			})
-		} else {
-			setSi(false)
-		}
-	}, [activeInside])
+		SetshowSubEl(false)
+		setOptSelected('custom')
+	}, [resetList])
 
 	return (
 		<>
@@ -71,20 +58,18 @@ const ValBoolDesc = ({ children, title, position }) => {
 							checked={optSelected === 'NO'}
 						/>
 					</label>
-					<label>
+					<label style={{ display: 'none' }}>
 						<input
 							type="radio"
 							name={'valtext_' + position}
 							value="custom"
 							onChange={getData}
-							// style={{ display: 'none' }}
 							checked={optSelected === 'custom'}
 						/>
 					</label>
 				</article>
 			</div>
-
-			{si && (
+			{showSubEl && (
 				<section className={'insidebool animate__animated ' + startAnimated()}> {children}</section>
 			)}
 		</>
