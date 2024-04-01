@@ -4,8 +4,9 @@ import CheckListContext from '../../../../context/ChecklistContext'
 
 const ValBoolDesc = ({ children, title, position }) => {
 	const { activeInside, updateActiveInside } = useContext(CheckListContext)
-	const [si, setSi] = useState(false)
-	const [no, setNo] = useState(false)
+
+	const [optSelected, setOptSelected] = useState('custom')
+	const [si, setSi] = useState(activeInside.filter(el => el.id == position))
 
 	const getData = e => {
 		if (e.target.nodeName == 'INPUT') {
@@ -24,16 +25,22 @@ const ValBoolDesc = ({ children, title, position }) => {
 	}
 
 	useEffect(() => {
+		console.log(activeInside.length)
 		if (activeInside.length > 0) {
 			activeInside.map(res => {
+				console.log(res.id)
+				console.log(position)
+				console.log(res.active)
 				if (res.id == position && res.active == 'SI') {
-					setSi(true)
-					setNo(false)
+					setOptSelected('SI')
 				} else if (res.id == position && res.active == 'NO') {
-					setSi(false)
-					setNo(true)
+					setOptSelected('NO')
+				} else {
+					setOptSelected('custom')
 				}
 			})
+		} else {
+			setSi(false)
 		}
 	}, [activeInside])
 
@@ -51,7 +58,7 @@ const ValBoolDesc = ({ children, title, position }) => {
 							name={'valtext_' + position}
 							value="SI"
 							onChange={getData}
-							checked={si}
+							checked={optSelected === 'SI'}
 						/>
 					</label>
 					<label className="label">
@@ -61,12 +68,23 @@ const ValBoolDesc = ({ children, title, position }) => {
 							name={'valtext_' + position}
 							value="NO"
 							onChange={getData}
-							checked={no}
+							checked={optSelected === 'NO'}
+						/>
+					</label>
+					<label>
+						<input
+							type="radio"
+							name={'valtext_' + position}
+							value="custom"
+							onChange={getData}
+							// style={{ display: 'none' }}
+							checked={optSelected === 'custom'}
 						/>
 					</label>
 				</article>
 			</div>
-			{activeInside.length > 0 && (
+
+			{si && (
 				<section className={'insidebool animate__animated ' + startAnimated()}> {children}</section>
 			)}
 		</>

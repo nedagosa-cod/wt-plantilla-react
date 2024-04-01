@@ -1,11 +1,11 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import IconArrowDown from '../../../../icons/IconArrowDown'
 import CheckListContext from '../../../../context/ChecklistContext'
 
 const ValListDesc = ({ children, position, list, title }) => {
+	const { activeInside, updateActiveInside, resetList } = useContext(CheckListContext)
 	const [showList, setShowList] = useState(false)
 	const [valueList, setValueList] = useState('')
-	const { activeInside, updateActiveInside } = useContext(CheckListContext)
 
 	const changeValueList = e => {
 		setValueList(e.target.textContent)
@@ -22,6 +22,11 @@ const ValListDesc = ({ children, position, list, title }) => {
 		})
 		return result
 	}
+
+	useEffect(() => {
+		setShowList(false)
+		setValueList('')
+	}, [resetList])
 
 	return (
 		<>
@@ -66,7 +71,7 @@ const ValListDesc = ({ children, position, list, title }) => {
 					)}
 				</div>
 			</div>
-			{activeInside && (
+			{valueList && (
 				<section className={'insidebool animate__animated ' + startAnimated()}>{children}</section>
 			)}
 		</>

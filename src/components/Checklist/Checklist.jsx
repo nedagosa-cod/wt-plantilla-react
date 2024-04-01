@@ -139,7 +139,7 @@ export default function Checklist({ dataCheckList }) {
 		fixDescriptions()
 	}, [dataCheckList])
 	return (
-		<article className={'Checklist ' + theme}>
+		<form className={'Checklist ' + theme}>
 			<section className="data">
 				<LeftSide title={dataCheckList.TITLE} data={dataCheckList.DESCRIPCIONES} />
 				<RightSide descripciones={descripciones} key="keyRightSide" />
@@ -155,7 +155,9 @@ export default function Checklist({ dataCheckList }) {
 				<button
 					type="button"
 					onClick={() => {
-						setShowPopNota(true)
+						if (activeInside.length > 0) {
+							setShowPopNota(true)
+						}
 						console.log(activeInside)
 					}}>
 					Obtener datos
@@ -164,6 +166,6 @@ export default function Checklist({ dataCheckList }) {
 			{showPopImage &&
 				createPortal(<PopImageDesc setPopShowImage={setPopShowImage} />, document.body)}
 			{showPopNota && createPortal(<PopNota activePopNota={activePopNota} />, document.body)}
-		</article>
+		</form>
 	)
 }

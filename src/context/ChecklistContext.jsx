@@ -44,6 +44,12 @@ const CheckListProvider = ({ children }) => {
 
 	const updateActiveInside = (id, active, title) => {
 		let resExist = activeInside.some(dataActive => dataActive.id == id)
+		if (!id) {
+			setPost(0)
+			setActiveInside([])
+			console.log('siii')
+			return
+		}
 		if (!resExist) {
 			setActiveInside([...activeInside, { id, active, title }])
 		} else {
@@ -68,6 +74,7 @@ const CheckListProvider = ({ children }) => {
 		setActiveInside([])
 		setCheckSelected('A')
 		setResetList(!resetList)
+		updateActiveInside()
 	}
 	const zoomChecklist = () => {
 		setZoom(true)

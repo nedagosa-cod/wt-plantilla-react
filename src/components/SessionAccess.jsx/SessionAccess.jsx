@@ -33,14 +33,11 @@ export const SessionAccess = ({ campana, segmento }) => {
 			allowEscapeKey: false,
 		})
 
-		fetch(
-			'http://colbogweb20:8081/Webservices_Simulador/api/main/insUpdTransaccion',
-			{
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify(dataSession),
-			}
-		)
+		fetch('http://colbogweb20:8081/Webservices_Simulador/api/main/insUpdTransaccion', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(dataSession),
+		})
 			.then(response => response.json())
 			.then(result => {
 				sessionStorage.setItem('session', true)
@@ -88,9 +85,7 @@ export const SessionAccess = ({ campana, segmento }) => {
 				<div className="sessionRec__form">
 					<form className="form animate__animated animate__fadeInUp">
 						<p className="title">Registro de acceso</p>
-						<p className="message">
-							Agrega tus datos, para llevar el registro obligatorio
-						</p>
+						<p className="message">Agrega tus datos, para llevar el registro obligatorio</p>
 						<label>
 							<input
 								className="input"

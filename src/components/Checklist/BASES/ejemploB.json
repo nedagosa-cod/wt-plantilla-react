@@ -6,21 +6,6 @@
 			"html": [
 				{ "TITULO": "Saludo inicial" },
 				{
-					"P": "Soy el ejemplo B amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
-				},
-				{
-					"P": "2. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
-				},
-				{
-					"P": "3. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
-				},
-				{
-					"LIST": ["DATO 1", "DATO 2", "DATO 3"]
-				},
-				{
-					"SCRIPT": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
-				},
-				{
 					"DATA_TEXT": "Nombre del cliente",
 					"POS": "A"
 				},
@@ -33,21 +18,16 @@
 					"POS": "C",
 					"SI": [
 						{
-							"P": "4. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro"
+							"DATA_TEXT": "Nombre del cliente",
+							"POS": "D"
 						},
 						{
-							"SCRIPT": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
-						},
-						{
-							"LIST": ["DATO 1", "DATO 2", "DATO 3"]
-						},
-						{
-							"IMPORTANT": "Mensaje importante para el checklist o la gestion del paso del checklist",
-							"TITLE": "IMPORTANTE!"
+							"DATA_DATE": "Fecha de gestión",
+							"POS": "E"
 						},
 						{
 							"DATA_BOOL": "Pregunta de respuesta booleana",
-							"POS": "E",
+							"POS": "F",
 							"SI": [
 								{
 									"P": "4. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro"
@@ -91,7 +71,7 @@
 				},
 				{
 					"DATA_LIST": "Pregunta de la lista",
-					"POS": "D",
+					"POS": "G",
 					"OPTIONS": [
 						{
 							"NAME": "HOGAR",
