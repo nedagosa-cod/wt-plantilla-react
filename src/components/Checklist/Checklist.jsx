@@ -29,7 +29,12 @@ export default function Checklist({ dataCheckList }) {
 		if (!element) {
 			return null
 		} else if (element.P) {
-			return <ParagraphDesc key={'def_' + index}>{element.P}</ParagraphDesc>
+			let textoFormateado = element.P.replace(/&bold(.*?)(&bold|$)/g, '<strong>$1</strong>')
+			return (
+				<ParagraphDesc key={'def_' + index}>
+					<p dangerouslySetInnerHTML={{ __html: textoFormateado }} />
+				</ParagraphDesc>
+			)
 		} else if (element.LINK) {
 			return <LinkDesc url={element.LINK} buttonName={element.NAME} key={'def_' + index} />
 		} else if (element.IMG) {

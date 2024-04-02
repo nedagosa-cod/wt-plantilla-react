@@ -6,7 +6,7 @@
 			"html": [
 				{ "TITULO": "Protocolo Bienvenida" },
 				{
-					"P": "1. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
+					"P": "1. Lorem ipsum &bolddolor sit amet consectetur&bold  adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
 				},
 				{
 					"P": "2. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"

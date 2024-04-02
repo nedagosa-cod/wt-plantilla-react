@@ -9,6 +9,7 @@ import Corrector from './components/Corrector/Corrector'
 import { SessionAccess } from './components/SessionAccess.jsx/SessionAccess'
 import { ContadorProvider } from './context/ContadorContext'
 import CheckListBase from './components/Checklist/CheckListBase'
+import Testeos from './components/Test/Testeos'
 
 const App = () => {
 	const style = {
@@ -31,6 +32,7 @@ const App = () => {
 					<Route path="/checklist/ejemploB" element={<CheckListBase checklist="ejemploB" />} />
 					<Route path="/checklist/ejemploC" element={<CheckListBase checklist="ejemploC" />} />
 					<Route path="/corrector" element={<Corrector />} />
+					<Route path="/testeos" element={<Testeos />} />
 				</Routes>
 			</div>
 		</ContadorProvider>
