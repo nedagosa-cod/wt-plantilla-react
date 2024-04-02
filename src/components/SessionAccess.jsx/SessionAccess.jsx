@@ -12,7 +12,7 @@ export const SessionAccess = ({ campana, segmento }) => {
 		segmento: '',
 		observaciones: '',
 	})
-	const [active, setActive] = useState(false)
+	const [active, setActive] = useState(true)
 	const updateData = (newData, key) => {
 		setDataSession(personaActual => ({
 			...personaActual,
