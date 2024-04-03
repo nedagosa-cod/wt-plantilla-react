@@ -9,7 +9,7 @@ const RightSide = ({ descripciones }) => {
 		setData(descripciones)
 	}, [descripciones])
 	return (
-		<div className="rightSide">
+		<div className="rightSide" id="rightSide">
 			{data.map(descripcion => {
 				return (
 					<div

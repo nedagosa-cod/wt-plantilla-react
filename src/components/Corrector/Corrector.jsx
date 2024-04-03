@@ -125,12 +125,12 @@ export default function Corrector() {
 					<div className={`button ${activeRecording ? 'active' : ''}`} onClick={toggleRecording}>
 						<div className="inner"></div>
 					</div>
-					<button class="Btn" onClick={copiarTexto}>
-						<svg viewBox="0 0 512 512" class="svgIcon" height="1em">
+					<button className="Btn" onClick={copiarTexto}>
+						<svg viewBox="0 0 512 512" className="svgIcon" height="1em">
 							<path d="M288 448H64V224h64V160H64c-35.3 0-64 28.7-64 64V448c0 35.3 28.7 64 64 64H288c35.3 0 64-28.7 64-64V384H288v64zm-64-96H448c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H224c-35.3 0-64 28.7-64 64V288c0 35.3 28.7 64 64 64z"></path>
 						</svg>
-						<p class="text">COPIAR TEXTO</p>
-						<span class="effect"></span>
+						<p className="text">COPIAR TEXTO</p>
+						<span className="effect"></span>
 					</button>
 				</div>
 			</section>
