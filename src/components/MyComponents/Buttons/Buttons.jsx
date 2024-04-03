@@ -16,10 +16,14 @@ export const BtnBorder = ({ className, onClick, children }) => {
 		</button>
 	)
 }
-export const BtnZum = ({ className, onClick, children }) => {
+export const BtnZum = ({ className, onClick, children, onMouseEnter, onMouseLeave }) => {
 	return (
-		<div className={'BtnZum ' + className} onClick={onClick}>
-			<button className="btn-content">
+		<div
+			className="BtnZum "
+			onClick={onClick}
+			onMouseEnter={onMouseEnter}
+			onMouseLeave={onMouseLeave}>
+			<button className={'btn-content ' + className}>
 				<span className="btn-title">{children}</span>
 				<span className="icon-arrow">
 					<svg

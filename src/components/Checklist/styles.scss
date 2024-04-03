@@ -181,6 +181,20 @@
 				box-shadow: inset 0px -14px 43px -11px rgba(112, 112, 112, 0.5);
 				color: rgba(0, 0, 0, 0.2);
 			}
+			&.hover {
+				background: rgba(0, 0, 0, 0.5);
+				transform: scale(1.05);
+				color: $p-color;
+				-webkit-transform: scale(1.05);
+				-moz-transform: scale(1.05);
+				-ms-transform: scale(1.05);
+				-o-transform: scale(1.05);
+			}
+			transition: 1s all;
+			-webkit-transition: 1s all;
+			-moz-transition: 1s all;
+			-ms-transition: 1s all;
+			-o-transition: 1s all;
 		}
 
 		&__title {
@@ -218,11 +232,25 @@
 		overflow-y: auto;
 		scrollbar-width: thin;
 		scrollbar-color: $p-color $p3-color;
-	}
-	& .rightSide__description {
-		display: none;
-		&.active {
-			display: flex;
+		&__description {
+			display: none;
+			&.active {
+				display: flex;
+			}
+		}
+		& .changeSteep {
+			gap: 1rem;
+			font-size: 2rem;
+			font-weight: 100;
+			cursor: pointer;
+			background: $s-color;
+			margin: 2rem 0;
+			& .icon-arrow {
+				left: -27px;
+				top: 0;
+			}
+			& svg {
+			}
 		}
 	}
 	&.light {

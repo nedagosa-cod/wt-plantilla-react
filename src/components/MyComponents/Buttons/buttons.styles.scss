@@ -1,3 +1,5 @@
+@use '../../../styles/variables' as *;
+
 .test-elements {
 	display: flex;
 	gap: 2rem;
@@ -181,22 +183,22 @@
 	display: flex;
 	justify-content: center;
 	--color-text: #ffffff;
-	--color-background: #ff135a;
+	--color-background: $p-color;
 	--color-outline: #ff145b80;
 	--color-shadow: #00000080;
 	& .btn-content {
 		display: flex;
+		flex-direction: row-reverse;
 		align-items: center;
 		padding: 5px 30px;
 		text-decoration: none;
-		font-family: 'Poppins', sans-serif;
 		font-weight: 600;
 		font-size: 30px;
 		color: var(--color-text);
-		background: var(--color-background);
+		background: $p-color;
 		transition: 1s;
 		border-radius: 100px;
-		box-shadow: 0 0 0.2em 0 var(--color-background);
+		box-shadow: 0 0 0.2em 0 $p-color;
 		&:hover .icon-arrow {
 			transition: 0.5s;
 			margin-right: 25px;
@@ -209,6 +211,7 @@
 			& svg {
 				width: 6rem;
 				height: 4rem;
+				transform: scaleX(-1);
 			}
 		}
 	}
@@ -219,7 +222,7 @@
 		animation: btn-content 1s;
 		outline: 0.1em solid transparent;
 		outline-offset: 0.2em;
-		box-shadow: 0 0 0.4em 0 var(--color-background);
+		box-shadow: 0 0 0.4em 0 $p-color;
 	}
 
 	& .icon-arrow {
@@ -259,7 +262,7 @@
 		}
 
 		50% {
-			fill: var(--color-background);
+			fill: $p-color;
 		}
 
 		100% {
@@ -270,14 +273,14 @@
 	/* Button animations */
 	@-webkit-keyframes btn-content {
 		0% {
-			outline: 0.2em solid var(--color-background);
+			outline: 0.2em solid $p-color;
 			outline-offset: 0;
 		}
 	}
 
 	@keyframes btn-content {
 		0% {
-			outline: 0.2em solid var(--color-background);
+			outline: 0.2em solid $p-color;
 			outline-offset: 0;
 		}
 	}

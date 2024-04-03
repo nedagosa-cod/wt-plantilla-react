@@ -1,8 +1,8 @@
-import { useContext, useEffect, useReducer, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import CheckListContext from '../../../context/ChecklistContext'
 
 const ListCheck = ({ check, title }) => {
-	const { checkSelected, changeDescription, relativePosition, resetList } =
+	const { checkSelected, changeDescription, relativePosition, resetList, hover, posHover } =
 		useContext(CheckListContext)
 	const [listChecked, setListChecked] = useState('')
 	const inputCheck = useRef()
@@ -13,13 +13,14 @@ const ListCheck = ({ check, title }) => {
 				setListChecked('checked')
 				return relativePosition[check][0]
 			} else {
+				e.target.parentNode.parentNode.parentNode.classList.remove('checked')
 				setListChecked('')
 				return relativePosition[check][1]
 			}
 		}
 
-		if (relativePosition[e.target.id].includes(checkSelected)) {
-			changeDescription(relativeDescription(), check)
+		if (relativePosition[check].includes(checkSelected)) {
+			changeDescription(relativeDescription())
 		} else {
 			e.target.checked = !e.target.checked
 		}
@@ -28,16 +29,17 @@ const ListCheck = ({ check, title }) => {
 	useEffect(() => {
 		setListChecked('')
 		inputCheck.current.checked = false
+		inputCheck.current.parentNode.parentNode.parentNode.classList.remove('checked')
 	}, [resetList])
 
 	return (
 		<li>
-			<label className={'ListCheck ' + listChecked}>
+			<label className={'ListCheck ' + listChecked + ' ' + (posHover == check ? hover : '')}>
 				<span>{check}</span>
 				<h2>{title}</h2>
 				<div className="checkbox-wrapper-44">
 					<label className="toggleButton">
-						<input ref={inputCheck} id={check} type="checkbox" onChange={showRelativeDescription} />
+						<input ref={inputCheck} type="checkbox" onChange={showRelativeDescription} id={check} />
 						<div className="svg">
 							<svg viewBox="0 0 44 44">
 								<path

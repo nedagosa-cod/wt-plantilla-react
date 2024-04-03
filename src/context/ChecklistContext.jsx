@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react'
+import { createContext, useRef, useState } from 'react'
 
 const CheckListContext = createContext()
 
@@ -7,9 +7,15 @@ const CheckListProvider = ({ children }) => {
 	const [checkSelected, setCheckSelected] = useState('A')
 	const [resetList, setResetList] = useState(true)
 
+	const [hover, setHover] = useState('')
+	const [posHover, setPosHover] = useState('')
+
 	const [theme, setTheme] = useState('dark')
-	const [listChecked, setListChecked] = useState('')
+	// const [listChecked, setListChecked] = useState('')
+
 	const [zoom, setZoom] = useState(false)
+
+	const refListCheck = useRef()
 
 	const relativePosition = {
 		A: ['B', 'A'],
@@ -41,6 +47,10 @@ const CheckListProvider = ({ children }) => {
 		Z: ['A', 'Z'],
 	}
 
+	const configHover = (value, pos) => {
+		setHover(value)
+		setPosHover(pos)
+	}
 	const updateActiveInside = (id, active, title) => {
 		let resExist = activeInside.some(dataActive => dataActive.id == id)
 		if (!id) {
@@ -84,12 +94,15 @@ const CheckListProvider = ({ children }) => {
 		changeTheme,
 		theme,
 		resetCheckList,
-		listChecked,
-		setListChecked,
+
 		zoomChecklist,
 		setResetList,
 		resetList,
 		zoom,
+		refListCheck,
+		hover,
+		configHover,
+		posHover,
 	}
 
 	return <CheckListContext.Provider value={data}>{children}</CheckListContext.Provider>

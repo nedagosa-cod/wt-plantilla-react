@@ -19,6 +19,7 @@ import CheckListContext from '../../context/ChecklistContext'
 import PopImageDesc from './RightSide/componentes/PopImageDesc'
 import { createPortal } from 'react-dom'
 import PopNota from './PopNota'
+import ChangeSteep from './RightSide/componentes/ChangeSteep'
 
 export default function Checklist({ dataCheckList }) {
 	const { theme, resetCheckList, activeInside } = useContext(CheckListContext)
@@ -32,7 +33,7 @@ export default function Checklist({ dataCheckList }) {
 			let textoFormateado = element.P.replace(/&bold(.*?)(&bold|$)/g, '<strong>$1</strong>')
 			return (
 				<ParagraphDesc key={'def_' + index}>
-					<p dangerouslySetInnerHTML={{ __html: textoFormateado }} />
+					<span dangerouslySetInnerHTML={{ __html: textoFormateado }} />
 				</ParagraphDesc>
 			)
 		} else if (element.LINK) {
@@ -101,6 +102,12 @@ export default function Checklist({ dataCheckList }) {
 						)
 					})}
 				</ValListDesc>
+			)
+		} else if (element.BTN_JUMP) {
+			return (
+				<ChangeSteep key={'change_' + index} to={element.TO}>
+					{element.BTN_JUMP}
+				</ChangeSteep>
 			)
 		}
 	}

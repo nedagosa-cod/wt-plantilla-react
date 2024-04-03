@@ -9,6 +9,10 @@
 					"P": "1. Lorem ipsum &bolddolor sit amet consectetur&bold  adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
 				},
 				{
+					"BTN_JUMP": "Continuar desde el paso 'C'",
+					"TO": "C"
+				},
+				{
 					"P": "2. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
 				},
 				{ "IMG": "test.png" },
@@ -177,6 +181,31 @@
 			"check": "C",
 			"html": [
 				{ "TITULO": "Gestiona" },
+				{
+					"P": "1. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
+				},
+				{
+					"P": "2. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
+				},
+				{
+					"P": "3. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
+				},
+				{ "LINK": "http://www.youtube.com", "NAME": "YouTube" },
+				{ "IMG": "test.png" },
+				{ "SUBTITLE": "Subtitulo de la pagina" },
+				{
+					"P": "4. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
+				},
+				{
+					"IMPORTANT": "Mensaje importante para el checklist o la gestion del paso del checklist",
+					"TITLE": "IMPORTANTE!"
+				}
+			]
+		},
+		{
+			"check": "D",
+			"html": [
+				{ "TITULO": "Cierra" },
 				{
 					"P": "1. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
 				},
