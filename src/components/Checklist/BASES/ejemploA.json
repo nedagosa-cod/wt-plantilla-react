@@ -6,7 +6,7 @@
 			"html": [
 				{ "TITULO": "Protocolo Bienvenida" },
 				{
-					"P": "1. El texto &bolddescriptivo&bold, en este caso un retrato de una persona, provoca en el &tip[significado de receptor]receptor&tip una imagen tal que la realidad descripta cobra forma, se materializa en su mente."
+					"P": "1. El &tip[tooltip texto informativos]texto&tip &bolddescriptivo&bold, en este caso un retrato de una persona, provoca en el &tip[significado de receptor]receptor&tip una imagen tal que la realidad &bolddescripta&bold cobra forma, se materializa en su mente."
 				},
 				{
 					"BTN_JUMP": "Continuar desde el paso 'C'",
@@ -15,7 +15,7 @@
 				{
 					"P": "2. Lorem ipsum dolor sit amet consectetur &tip[Puede ser una informacion mas extensa del significado de esto] adipisicing&tip elit. Ipsam porro, &boldquisquam consectetur provident&bold suscipit atque!"
 				},
-				{ "IMG": "test.png" },
+				{ "IMG": "logoSIn.png" },
 				{ "SUBTITLE": "Subtitulo de la pagina" },
 				{ "LINK": "http://www.youtube.com", "NAME": "YouTube" },
 				{
@@ -170,7 +170,7 @@
 					"P": "3. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
 				},
 				{ "LINK": "http://www.youtube.com", "NAME": "YouTube" },
-				{ "IMG": "test.png" },
+				{ "IMG": "logoSIn.png" },
 				{ "SUBTITLE": "Subtitulo de la pagina" },
 				{
 					"P": "4. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
@@ -191,7 +191,7 @@
 					"P": "3. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
 				},
 				{ "LINK": "http://www.youtube.com", "NAME": "YouTube" },
-				{ "IMG": "test.png" },
+				{ "IMG": "logoSIn.png" },
 				{ "SUBTITLE": "Subtitulo de la pagina" },
 				{
 					"P": "4. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
@@ -216,7 +216,7 @@
 					"P": "3. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
 				},
 				{ "LINK": "http://www.youtube.com", "NAME": "YouTube" },
-				{ "IMG": "test.png" },
+				{ "IMG": "logoSIn.png" },
 				{ "SUBTITLE": "Subtitulo de la pagina" },
 				{
 					"P": "4. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"

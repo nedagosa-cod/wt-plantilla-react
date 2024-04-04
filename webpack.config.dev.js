@@ -80,7 +80,7 @@ module.exports = {
 		},
 	},
 	devServer: {
-		port: 3001,
+		port: 3003,
 		open: true,
 		// historyApiFallBack: true
 	},

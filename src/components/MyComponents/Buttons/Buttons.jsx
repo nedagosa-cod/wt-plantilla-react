@@ -23,7 +23,7 @@ export const BtnZum = ({ className, onClick, children, onMouseEnter, onMouseLeav
 			onClick={onClick}
 			onMouseEnter={onMouseEnter}
 			onMouseLeave={onMouseLeave}>
-			<button className={'btn-content ' + className}>
+			<button className={'btn-content ' + className} type="button">
 				<span className="btn-title">{children}</span>
 				<span className="icon-arrow">
 					<svg

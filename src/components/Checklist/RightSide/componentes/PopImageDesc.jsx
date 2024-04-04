@@ -1,4 +1,4 @@
-const PopImageDesc = ({ setPopShowImage }) => {
+const PopImageDesc = ({ setPopShowImage, imagePop }) => {
 	return (
 		<div
 			className="PopImageDesc"
@@ -6,10 +6,7 @@ const PopImageDesc = ({ setPopShowImage }) => {
 				setPopShowImage(false)
 			}}>
 			<figure>
-				<img
-					src="./noTocar/imagenes/checklist/best taz.png"
-					alt="imagen de ayuda"
-				/>
+				<img src={'./noTocar/imagenes/checklist/' + imagePop} alt="imagen de ayuda" />
 			</figure>
 		</div>
 	)

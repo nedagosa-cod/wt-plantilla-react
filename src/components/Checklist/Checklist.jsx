@@ -24,29 +24,41 @@ import ChangeSteep from './RightSide/componentes/ChangeSteep'
 export default function Checklist({ dataCheckList }) {
 	const { theme, resetCheckList, activeInside } = useContext(CheckListContext)
 	const [showPopImage, setPopShowImage] = useState(false)
+	const [imagePop, setimagePop] = useState('#')
+
 	const [showPopNota, setShowPopNota] = useState(false)
 
 	const renderElement = (element, index) => {
 		if (!element) {
 			return null
 		} else if (element.P) {
-			let boldRegex = /&bold(.*?)&bold/
-			let tipRegex = /&tip\[(.*?)\](.*?)&tip/
+			let boldRegex = /&bold(.*?)&bold/g
+			let tipRegex = /&tip\[(.*?)\](.*?)&tip/g
 
-			let textFormated = element.P.replace(boldRegex, '<strong>$1</strong>').replace(
-				tipRegex,
-				'<span class="check-tip">$2<div class="check-tip__tip" id="tooltip">$1</div></span>'
-			)
+			let textBold = element.P.replace(boldRegex, (match, content) => {
+				return '<strong>' + content + '</strong>'
+			})
 
+			let textTip = textBold.replace(tipRegex, (match, content1, content2) => {
+				return (
+					'<span class="check-tip" id="parentTool">' +
+					content2 +
+					'<div class="check-tip__tip" id="toolTip">' +
+					content1 +
+					'</div></span>'
+				)
+			})
 			return (
 				<ParagraphDesc key={'def_' + index}>
-					<span dangerouslySetInnerHTML={{ __html: textFormated }} />
+					<span dangerouslySetInnerHTML={{ __html: textTip }} />
 				</ParagraphDesc>
 			)
 		} else if (element.LINK) {
 			return <LinkDesc url={element.LINK} buttonName={element.NAME} key={'def_' + index} />
 		} else if (element.IMG) {
-			return <ImageDesc activatePopImage={activatePopImage} key={'def_' + index} />
+			return (
+				<ImageDesc activatePopImage={activatePopImage} key={'def_' + index} img={element.IMG} />
+			)
 		} else if (element.SUBTITLE) {
 			return <SubtitleDesc key={'def_' + index}>{element.SUBTITLE}</SubtitleDesc>
 		} else if (element.LIST) {
@@ -120,8 +132,11 @@ export default function Checklist({ dataCheckList }) {
 	}
 
 	const [descripciones, setDescripciones] = useState([])
-	const activatePopImage = () => {
-		setPopShowImage(true)
+	const activatePopImage = nameImagen => {
+		if (nameImagen) {
+			setimagePop(nameImagen)
+		}
+		setPopShowImage(!showPopImage)
 	}
 	const activePopNota = () => {
 		setShowPopNota(!showPopNota)
@@ -152,6 +167,14 @@ export default function Checklist({ dataCheckList }) {
 		})
 		setDescripciones(result)
 	}
+
+	let pressed = false
+	document.addEventListener('keyup', e => {
+		if (!pressed && e.key == 'Escape') {
+			pressed = true
+			setPopShowImage(false)
+		}
+	})
 
 	useEffect(() => {
 		resetCheckList()
@@ -197,7 +220,10 @@ export default function Checklist({ dataCheckList }) {
 				</button>
 			</div>
 			{showPopImage &&
-				createPortal(<PopImageDesc setPopShowImage={setPopShowImage} />, document.body)}
+				createPortal(
+					<PopImageDesc setPopShowImage={setPopShowImage} imagePop={imagePop} />,
+					document.body
+				)}
 			{showPopNota && createPortal(<PopNota activePopNota={activePopNota} />, document.body)}
 		</form>
 	)

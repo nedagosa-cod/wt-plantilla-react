@@ -1,5 +1,6 @@
 /node_modules
 /Web Training
+/Web Training*
 # Logs
 logs
 *.log
