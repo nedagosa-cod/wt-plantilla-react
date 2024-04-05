@@ -20,11 +20,13 @@ import PopImageDesc from './RightSide/componentes/PopImageDesc'
 import { createPortal } from 'react-dom'
 import PopNota from './PopNota'
 import ChangeSteep from './RightSide/componentes/ChangeSteep'
+import Estructure from './BigIcons/Estructure'
 
 export default function Checklist({ dataCheckList }) {
 	const { theme, resetCheckList, activeInside } = useContext(CheckListContext)
 	const [showPopImage, setPopShowImage] = useState(false)
 	const [imagePop, setimagePop] = useState('#')
+	const [widthImg, setWidthImg] = useState('50%')
 
 	const [showPopNota, setShowPopNota] = useState(false)
 
@@ -61,7 +63,12 @@ export default function Checklist({ dataCheckList }) {
 			return <LinkDesc url={element.LINK} buttonName={element.NAME} key={'def_' + index} />
 		} else if (element.IMG) {
 			return (
-				<ImageDesc activatePopImage={activatePopImage} key={'def_' + index} img={element.IMG} />
+				<ImageDesc
+					activatePopImage={activatePopImage}
+					key={'def_' + index}
+					img={element.IMG}
+					width={element.SPACE}
+				/>
 			)
 		} else if (element.SUBTITLE) {
 			return <SubtitleDesc key={'def_' + index}>{element.SUBTITLE}</SubtitleDesc>
@@ -132,13 +139,24 @@ export default function Checklist({ dataCheckList }) {
 					{element.BTN_JUMP}
 				</ChangeSteep>
 			)
+		} else if (element.MARCO) {
+			return (
+				<div style={{ width: '26rem' }}>
+					<Estructure />
+				</div>
+			)
 		}
 	}
 
 	const [descripciones, setDescripciones] = useState([])
-	const activatePopImage = nameImagen => {
+	const activatePopImage = (nameImagen, width) => {
 		if (nameImagen) {
 			setimagePop(nameImagen)
+		}
+		if (widthImg) {
+			setWidthImg(width)
+		} else {
+			setWidthImg('50%')
 		}
 		setPopShowImage(!showPopImage)
 	}
@@ -225,7 +243,11 @@ export default function Checklist({ dataCheckList }) {
 			</div>
 			{showPopImage &&
 				createPortal(
-					<PopImageDesc setPopShowImage={setPopShowImage} imagePop={imagePop} />,
+					<PopImageDesc
+						setPopShowImage={setPopShowImage}
+						imagePop={imagePop}
+						widthImg={widthImg}
+					/>,
 					document.body
 				)}
 			{showPopNota && createPortal(<PopNota activePopNota={activePopNota} />, document.body)}

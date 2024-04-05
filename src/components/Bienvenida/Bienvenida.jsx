@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Estructure from '../Checklist/BigIcons/Estructure'
 // import img from '../../assets/images/index/favicon.jpg'
 
 export default function Bienvenida() {
@@ -7,10 +8,7 @@ export default function Bienvenida() {
 		<div className="welcome">
 			<span>Bienvenido a </span>
 			<span>Automatizaciones Formación</span>
-			<p>
-				Desarrollo de aplicativos web para la mejora de las gestiones diarias de
-				la producción.
-			</p>
+			<p>Desarrollo de aplicativos web para la mejora de las gestiones diarias de la producción.</p>
 			<div className="contador">
 				<button
 					onClick={() => {

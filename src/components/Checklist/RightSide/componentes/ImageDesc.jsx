@@ -1,9 +1,9 @@
-const ImageDesc = ({ activatePopImage, img }) => {
+const ImageDesc = ({ activatePopImage, img, width }) => {
 	return (
 		<i
 			className="description__pop-image"
 			onClick={() => {
-				activatePopImage(img)
+				activatePopImage(img, width)
 			}}></i>
 	)
 }

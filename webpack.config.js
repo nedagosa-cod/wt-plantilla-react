@@ -61,15 +61,15 @@ module.exports = {
 			// extrae el css del javascript para empaquetarlo como archivo aparte
 			filename: 'noTocar/styles.css',
 		}),
-		// new CopyPlugin({
-		//   patterns: [
-		//     {
-		//       from: path.join(__dirname, "/src/assets/images/"), //deja por separado las imagenes de las bases de datos
-		//       to: "noTocar/imagenes",
-		//       noErrorOnMissing: true
-		//     },
-		//   ],
-		// }),
+		new CopyPlugin({
+			patterns: [
+				{
+					from: path.join(__dirname, '/src/assets/images/'), //deja por separado las imagenes de las bases de datos
+					to: 'noTocar/imagenes',
+					noErrorOnMissing: true,
+				},
+			],
+		}),
 	],
 	optimization: {
 		// optimiza el codigo

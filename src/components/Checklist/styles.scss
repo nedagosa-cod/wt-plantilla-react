@@ -244,6 +244,9 @@
 				-ms-transform: scale(1.05);
 				-o-transform: scale(1.05);
 			}
+			& h2 {
+				text-align: center;
+			}
 			transition: 1s all;
 			-webkit-transition: 1s all;
 			-moz-transition: 1s all;
