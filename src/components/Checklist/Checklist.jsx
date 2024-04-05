@@ -33,13 +33,17 @@ export default function Checklist({ dataCheckList }) {
 			return null
 		} else if (element.P) {
 			let boldRegex = /&bold(.*?)&bold/g
+			let cursRegex = /&curs(.*?)&curs/g
 			let tipRegex = /&tip\[(.*?)\](.*?)&tip/g
 
 			let textBold = element.P.replace(boldRegex, (match, content) => {
 				return '<strong>' + content + '</strong>'
 			})
+			let textCurs = textBold.replace(cursRegex, (match, content) => {
+				return '<i>' + content + '</i>'
+			})
 
-			let textTip = textBold.replace(tipRegex, (match, content1, content2) => {
+			let textTip = textCurs.replace(tipRegex, (match, content1, content2) => {
 				return (
 					'<span class="check-tip" id="parentTool">' +
 					content2 +
@@ -63,7 +67,7 @@ export default function Checklist({ dataCheckList }) {
 			return <SubtitleDesc key={'def_' + index}>{element.SUBTITLE}</SubtitleDesc>
 		} else if (element.LIST) {
 			return (
-				<ListDesc key={'def_' + index}>
+				<ListDesc key={'def_' + index} type={element.TYPE}>
 					{element.LIST.map((list, j) => {
 						return <li key={j}>{list}</li>
 					})}

@@ -16,6 +16,7 @@ const CheckListProvider = ({ children }) => {
 	const [zoom, setZoom] = useState(false)
 
 	const refListCheck = useRef()
+	const refRightSide = useRef()
 
 	const relativePosition = {
 		A: ['B', 'A'],
@@ -103,6 +104,7 @@ const CheckListProvider = ({ children }) => {
 		hover,
 		configHover,
 		posHover,
+		refRightSide,
 	}
 
 	return <CheckListContext.Provider value={data}>{children}</CheckListContext.Provider>

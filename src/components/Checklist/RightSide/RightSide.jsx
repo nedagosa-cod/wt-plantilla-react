@@ -3,13 +3,13 @@ import './styles.scss'
 import CheckListContext from '../../../context/ChecklistContext'
 
 const RightSide = ({ descripciones }) => {
-	const { checkSelected } = useContext(CheckListContext)
+	const { checkSelected, refRightSide } = useContext(CheckListContext)
 	const [data, setData] = useState([])
 	useEffect(() => {
 		setData(descripciones)
 	}, [descripciones])
 	return (
-		<div className="rightSide" id="rightSide">
+		<div className="rightSide" id="rightSide" ref={refRightSide}>
 			{data.map(descripcion => {
 				return (
 					<div

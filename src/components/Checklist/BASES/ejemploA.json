@@ -1,158 +1,38 @@
 {
-	"TITLE": "TITULO CHECK A",
+	"TITLE": "COMO CREAR MATERIAL PARA CHECKLIST",
 	"DESCRIPCIONES": [
 		{
 			"check": "A",
 			"html": [
-				{ "TITULO": "Protocolo Bienvenida" },
+				{ "TITULO": "Tener en cuenta" },
 				{
-					"P": "1. El &tip[tooltip texto informativos]texto&tip &bolddescriptivo&bold, en este caso un retrato de una persona, provoca en el &tip[significado de receptor]receptor&tip una imagen tal que la realidad &bolddescripta&bold cobra forma, se materializa en su mente."
+					"P": "1. El material debe enviarse &bolden un archivo de Word por cada proceso&bold, por ejemplo si tenemos varios procesos a desarrollar debe haber un archivo de word por acada uno"
 				},
 				{
-					"BTN_JUMP": "Continuar desde el paso 'C'",
-					"TO": "C"
-				},
-				{
-					"P": "2. Lorem ipsum dolor sit amet consectetur &tip[Puede ser una informacion mas extensa del significado de esto] adipisicing&tip elit. Ipsam porro, &boldquisquam consectetur provident&bold suscipit atque!"
-				},
-				{ "IMG": "logoSIn.png" },
-				{ "SUBTITLE": "Subtitulo de la pagina" },
-				{ "LINK": "http://www.youtube.com", "NAME": "YouTube" },
-				{
-					"P": "4. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
-				},
-				{
-					"TITLE": "IMPORTANTE!",
-					"IMPORTANT": "Mensaje importante para el checklist o la gestion del paso del checklist"
-				},
-				{
-					"DATA_TEXT": "Nombre del cliente",
-					"POS": "A"
-				},
-				{
-					"DATA_DATE": "Fecha de gestión",
-					"POS": "B"
-				},
-				{
-					"DATA_LIST": "Pregunta de la lista",
-					"POS": "F",
-					"OPTIONS": [
-						{
-							"NAME": "HOGAR",
-							"HTML": [
-								{
-									"P": "1. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
-								},
-								{
-									"LIST": ["DATO 1", "DATO 2", "DATO 3"]
-								},
-								{
-									"IMPORTANT": "Mensaje importante para el checklist o la gestion del paso del checklist",
-									"TITLE": "IMPORTANTE!"
-								},
-								{
-									"SCRIPT": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
-								}
-							]
-						},
-						{
-							"NAME": "MOVIL",
-							"HTML": [
-								{
-									"P": "2. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
-								},
-								{
-									"LIST": ["DATO 1", "DATO 2", "DATO 3"]
-								},
-								{
-									"IMPORTANT": "Mensaje importante para el checklist o la gestion del paso del checklist",
-									"TITLE": "IMPORTANTE!"
-								},
-								{
-									"SCRIPT": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
-								}
-							]
-						},
-						{
-							"NAME": "DUO",
-							"HTML": [
-								{
-									"P": "3. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
-								},
-								{
-									"LIST": ["DATO 1", "DATO 2", "DATO 3"]
-								},
-								{
-									"IMPORTANT": "Mensaje importante para el checklist o la gestion del paso del checklist",
-									"TITLE": "IMPORTANTE!"
-								},
-								{
-									"SCRIPT": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
-								}
-							]
-						}
-					]
-				},
-				{
-					"DATA_BOOL": "Pregunta de respuesta booleana",
-					"POS": "C",
-					"SI": [
-						{
-							"P": "4. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro"
-						},
-						{
-							"SCRIPT": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
-						},
-						{
-							"LIST": ["DATO 1", "DATO 2", "DATO 3"]
-						},
-						{
-							"IMPORTANT": "Mensaje importante para el checklist o la gestion del paso del checklist",
-							"TITLE": "IMPORTANTE!"
-						},
-						{
-							"DATA_BOOL": "Pregunta de respuesta booleana",
-							"POS": "E",
-							"SI": [
-								{
-									"P": "4. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro"
-								},
-								{
-									"SCRIPT": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
-								},
-								{
-									"LIST": ["DATO 1", "DATO 2", "DATO 3"]
-								},
-								{
-									"IMPORTANT": "Mensaje importante para el checklist o la gestion del paso del checklist",
-									"TITLE": "IMPORTANTE!"
-								}
-							],
-							"NO": [
-								{
-									"P": "1. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
-								},
-								{
-									"LIST": ["DATO 1", "DATO 2", "DATO 3"]
-								},
-								{
-									"IMPORTANT": "Mensaje importante para el checklist o la gestion del paso del checklist",
-									"TITLE": "IMPORTANTE!"
-								},
-								{
-									"SCRIPT": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
-								}
-							]
-						}
+					"LIST": [
+						"Proceso de cancelacion",
+						"Proceso de registro",
+						"Proceso de ajustes",
+						"Proceso de creacion de tarjetas"
 					],
-					"NO": [
-						{
-							"P": "1. Soy La Rta de No dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
-						},
-						{
-							"LIST": ["DATO 1", "DATO 2", "DATO 3"]
-						}
-					]
+					"TYPE": "ul"
+				},
+				{
+					"P": "2. Se compartira un correo con la plantilla y cada uno de los instructivos para el envio del material de manera correcta"
+				},
+				{
+					"IMPORTANT": "De no enviar la información de manera correcta como se solicita en el material, se devolvera el correo para la corrección del material",
+					"TITLE": "IMPORTANTE!"
+				},
+				{
+					"P": "3. Revisar otográfia del material a enviar, los desarrolladores no tendran en cuenta la ortográfia ya que en las campañas existen terminologías que pueden relacionarse con el español o siglas que desconocen y son solo funcionales en operación"
+				},
+				{
+					"P": "4. Si en los textos del material se incluyen “&boldnegritas&bold &curscursivas&curs” así mismo se mostrarán en el desarrollo."
+				},
+				{
+					"BTN_JUMP": "PASO SIGUIENTE",
+					"TO": "B"
 				}
 			]
 		},

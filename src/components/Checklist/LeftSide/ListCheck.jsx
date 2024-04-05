@@ -2,13 +2,21 @@ import { useContext, useEffect, useRef, useState } from 'react'
 import CheckListContext from '../../../context/ChecklistContext'
 
 const ListCheck = ({ check, title }) => {
-	const { checkSelected, changeDescription, relativePosition, resetList, hover, posHover } =
-		useContext(CheckListContext)
+	const {
+		checkSelected,
+		changeDescription,
+		relativePosition,
+		resetList,
+		hover,
+		posHover,
+		refRightSide,
+	} = useContext(CheckListContext)
 	const [listChecked, setListChecked] = useState('')
 	const inputCheck = useRef()
 
 	const showRelativeDescription = e => {
 		const relativeDescription = () => {
+			refRightSide.current.scrollTo({ top: 0, behavior: 'smooth' })
 			if (e.target.checked) {
 				setListChecked('checked')
 				return relativePosition[check][0]

@@ -186,9 +186,13 @@
 	--color-background: $p-color;
 	--color-outline: #ff145b80;
 	--color-shadow: #00000080;
+	margin: 2rem 0;
+	cursor: pointer;
 	& .btn-content {
 		display: flex;
 		flex-direction: row-reverse;
+		user-select: none;
+		pointer-events: none;
 		align-items: center;
 		padding: 5px 30px;
 		text-decoration: none;
