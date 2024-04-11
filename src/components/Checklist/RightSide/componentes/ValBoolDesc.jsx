@@ -2,14 +2,41 @@ import { useContext, useEffect, useState } from 'react'
 import 'animate.css'
 import CheckListContext from '../../../../context/ChecklistContext'
 
-const ValBoolDesc = ({ children, title, position }) => {
-	const { activeInside, updateActiveInside, resetList } = useContext(CheckListContext)
+const ValBoolDesc = ({ children, title, position, finish, to }) => {
+	const {
+		activeInside,
+		updateActiveInside,
+		resetList,
+		refListCheck,
+		refRightSide,
+		changeDescription,
+	} = useContext(CheckListContext)
 
 	const [optSelected, setOptSelected] = useState('custom')
 	const [showSubEl, SetshowSubEl] = useState(false)
 
+	const validateFinish = respuesta => {
+		if (respuesta == finish) {
+			let ListCheck = refListCheck.current.querySelectorAll('input[type="checkbox"]')
+			let end = false
+			let letter = String.fromCharCode(65 + to)
+			ListCheck.forEach(element => {
+				if (element.id == letter) {
+					element.checked = false
+					end = true
+				} else if (element.id != letter && !end) {
+					element.parentNode.parentNode.parentNode.classList.add('checked')
+					element.checked = true
+					refRightSide.current.scrollTo({ top: 0, behavior: 'smooth' })
+				}
+			})
+			changeDescription(letter)
+		}
+	}
+
 	const getData = e => {
 		if (e.target.nodeName == 'INPUT') {
+			validateFinish(e.target.value)
 			setOptSelected(e.target.value)
 			SetshowSubEl(true)
 			updateActiveInside(position, e.target.value, title)

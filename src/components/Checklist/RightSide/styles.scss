@@ -3,19 +3,21 @@
 .description {
 	position: relative;
 	display: flex;
-	justify-content: center;
 	flex-direction: column;
 	align-items: center;
 	font-size: 1.6rem;
+	height: 100%;
 	gap: 0.8rem;
 	&__container {
 		width: 100%;
 		display: flex;
-		overflow-x: auto;
-		justify-content: center;
+		overflow-y: auto;
+		scrollbar-width: thin;
+		height: 100%;
 		flex-direction: column;
 		align-items: center;
 		font-size: 1.6rem;
+		font-weight: 400;
 		padding: 1rem 2rem;
 		gap: 0.8rem;
 	}
@@ -39,7 +41,6 @@
 	}
 	&__paragraph {
 		font-size: 1.8rem;
-		font-weight: 100;
 		&::first-letter {
 			font-size: 1.8rem;
 			font-weight: 600;
@@ -74,6 +75,9 @@
 		-ms-border-radius: 2rem;
 		-o-border-radius: 2rem;
 	}
+	&__list {
+		padding: 0 1rem 0 2rem;
+	}
 	&__script {
 		display: flex;
 		flex-direction: column;
@@ -81,13 +85,15 @@
 		align-items: center;
 		margin: 1rem 0;
 		background: rgba(255, 118, 118, 0.1);
+		font-size: 1.8rem;
+		font-style: italic;
+		font-weight: 400;
 		padding: 1rem;
 		cursor: pointer;
 		text-align: center;
 		width: 90%;
 		border: 1px solid $w-color;
 		box-shadow: -2px 2px 5px 4px rgba(0, 0, 0, 0.1);
-		font-style: italic;
 		border-radius: 0.8rem;
 		-webkit-border-radius: 0.8rem;
 		-moz-border-radius: 0.8rem;
@@ -96,6 +102,7 @@
 	}
 	&__pop-image {
 		width: 40px;
+		padding: 2rem;
 		height: 40px;
 		position: relative;
 		background: #fff;
@@ -146,6 +153,7 @@
 		padding: 1rem;
 		border: 1px solid $p3-color;
 		box-shadow: -2px 2px 5px 4px rgba(0, 0, 0, 0.1);
+		color: $w-color;
 		&--ask {
 			width: 60%;
 			border-right: 1px solid $p3-color;
@@ -159,6 +167,7 @@
 			& .label {
 				display: flex;
 				gap: 0.6rem;
+				font-weight: 800;
 			}
 		}
 		border-radius: 0.8rem;
@@ -238,6 +247,7 @@
 		background: $p-color;
 		padding: 1rem;
 		border: 1px solid $p3-color;
+		color: $w-color;
 		box-shadow: -2px 2px 5px 4px rgba(0, 0, 0, 0.1);
 		&--list {
 			position: relative;
@@ -311,11 +321,72 @@
 			color: $b-color;
 			cursor: pointer;
 		}
+		& span {
+			margin-bottom: 1rem;
+		}
 		border-radius: 0.8rem;
 		-webkit-border-radius: 0.8rem;
 		-moz-border-radius: 0.8rem;
 		-ms-border-radius: 0.8rem;
 		-o-border-radius: 0.8rem;
+	}
+	&__note {
+		display: flex;
+		width: 90%;
+		padding: 1rem;
+		&--icon {
+			margin-right: 1rem;
+			svg {
+				width: 2.4rem;
+			}
+		}
+		&.success {
+			border: 1px solid rgb(129, 255, 71);
+			background-color: rgba(180, 255, 146, 0.2);
+			& .description__note--icon svg {
+				fill: rgb(46, 145, 0);
+			}
+		}
+		&.error {
+			border: 1px solid rgb(255, 71, 71);
+			background-color: rgba(255, 146, 146, 0.2);
+			& .description__note--icon svg {
+				fill: rgb(145, 0, 0);
+			}
+		}
+		&.warning {
+			border: 1px solid rgb(255, 154, 71);
+			background-color: rgba(255, 199, 126, 0.2);
+			& .description__note--icon svg {
+				fill: rgb(145, 46, 0);
+			}
+		}
+		&.info {
+			border: 1px solid rgb(71, 243, 255);
+			background-color: rgba(126, 225, 255, 0.2);
+			& .description__note--icon svg {
+				fill: rgb(0, 145, 133);
+			}
+		}
+		&.question {
+			border: 1px solid rgb(71, 255, 184);
+			background-color: rgba(126, 255, 216, 0.2);
+			& .description__note--icon svg {
+				fill: rgb(0, 145, 89);
+			}
+		}
+		& span {
+			font-size: 1.8rem;
+			font-weight: 600;
+		}
+		& p {
+			text-wrap: balance;
+		}
+		border-radius: 0.6rem;
+		-webkit-border-radius: 0.6rem;
+		-moz-border-radius: 0.6rem;
+		-ms-border-radius: 0.6rem;
+		-o-border-radius: 0.6rem;
 	}
 	& .insidebool {
 		display: flex;
@@ -327,7 +398,7 @@
 		gap: 0.8rem;
 		width: 100%;
 		box-shadow: -2px 2px 5px 4px rgba(0, 0, 0, 0.1);
-		background: rgba(255, 255, 255, 0.1);
+		background: rgba(255, 182, 104, 0.1);
 		position: relative;
 		top: -0.8rem;
 		border-radius: 0.8rem;
@@ -348,7 +419,7 @@
 		background: $p-color;
 		color: white;
 		font-family: inherit;
-		padding: 0.2rem;
+		padding: 2.4rem;
 		padding-left: 1.2rem;
 		font-size: 17px;
 		font-weight: 500;

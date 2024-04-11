@@ -21,6 +21,7 @@ import { createPortal } from 'react-dom'
 import PopNota from './PopNota'
 import ChangeSteep from './RightSide/componentes/ChangeSteep'
 import Estructure from './BigIcons/Estructure'
+import Note from './RightSide/componentes/Note'
 
 export default function Checklist({ dataCheckList }) {
 	const { theme, resetCheckList, activeInside } = useContext(CheckListContext)
@@ -30,7 +31,7 @@ export default function Checklist({ dataCheckList }) {
 
 	const [showPopNota, setShowPopNota] = useState(false)
 
-	const renderElement = (element, index) => {
+	const renderElement = (element, index, desc) => {
 		if (!element) {
 			return null
 		} else if (element.P) {
@@ -44,7 +45,6 @@ export default function Checklist({ dataCheckList }) {
 			let textCurs = textBold.replace(cursRegex, (match, content) => {
 				return '<i>' + content + '</i>'
 			})
-
 			let textTip = textCurs.replace(tipRegex, (match, content1, content2) => {
 				return (
 					'<span class="check-tip" id="parentTool">' +
@@ -55,26 +55,32 @@ export default function Checklist({ dataCheckList }) {
 				)
 			})
 			return (
-				<ParagraphDesc key={'def_' + index}>
+				<ParagraphDesc key={desc.check + '_def_' + index}>
 					<span dangerouslySetInnerHTML={{ __html: textTip }} />
 				</ParagraphDesc>
 			)
 		} else if (element.LINK) {
-			return <LinkDesc url={element.LINK} buttonName={element.NAME} key={'def_' + index} />
+			return (
+				<LinkDesc
+					url={element.LINK}
+					buttonName={element.NAME}
+					key={desc.check + '_link_' + index}
+				/>
+			)
 		} else if (element.IMG) {
 			return (
 				<ImageDesc
 					activatePopImage={activatePopImage}
-					key={'def_' + index}
+					key={desc.check + '_img_' + index}
 					img={element.IMG}
 					width={element.SPACE}
 				/>
 			)
 		} else if (element.SUBTITLE) {
-			return <SubtitleDesc key={'def_' + index}>{element.SUBTITLE}</SubtitleDesc>
+			return <SubtitleDesc key={desc.check + '_sub_' + index}>{element.SUBTITLE}</SubtitleDesc>
 		} else if (element.LIST) {
 			return (
-				<ListDesc key={'def_' + index} type={element.TYPE}>
+				<ListDesc key={desc.check + '_list_' + index} type={element.TYPE}>
 					{element.LIST.map((list, j) => {
 						return <li key={j}>{list}</li>
 					})}
@@ -82,35 +88,40 @@ export default function Checklist({ dataCheckList }) {
 			)
 		} else if (element.IMPORTANT) {
 			return (
-				<ImportantDesc title={element.TITLE} key={'def_' + index}>
+				<ImportantDesc title={element.TITLE} key={desc.check + '_imp_' + index}>
 					{element.IMPORTANT}
 				</ImportantDesc>
 			)
 		} else if (element.SCRIPT) {
-			return <ScriptDesc key={'def_' + index}>{element.SCRIPT}</ScriptDesc>
+			return <ScriptDesc key={desc.check + '_scr_' + index}>{element.SCRIPT}</ScriptDesc>
 		} else if (element.DATA_TEXT) {
 			return (
-				<ValTextDesc position={element.POS} key={'data_' + index}>
+				<ValTextDesc position={element.POS} key={desc.check + '_dataT_' + index}>
 					{element.DATA_TEXT}
 				</ValTextDesc>
 			)
 		} else if (element.DATA_DATE) {
 			return (
-				<ValDateDesc position={element.POS} key={'data_' + index}>
+				<ValDateDesc position={element.POS} key={desc.check + '_dataD_' + index}>
 					{element.DATA_DATE}
 				</ValDateDesc>
 			)
 		} else if (element.DATA_BOOL) {
 			return (
-				<ValBoolDesc position={element.POS} title={element.DATA_BOOL} key={'data_' + index}>
+				<ValBoolDesc
+					position={element.POS}
+					title={element.DATA_BOOL}
+					key={'data_' + index}
+					finish={element.FINISH}
+					to={dataCheckList.DESCRIPCIONES.length}>
 					<InsideAnswer answer="SI" position={element.POS}>
 						{element.SI.map((subElement, j) => {
-							return renderElement(subElement, j)
+							return renderElement(subElement, j, desc)
 						})}
 					</InsideAnswer>
 					<InsideAnswer answer="NO" position={element.POS}>
 						{element.NO.map((subElement, j) => {
-							return renderElement(subElement, j)
+							return renderElement(subElement, j, desc)
 						})}
 					</InsideAnswer>
 				</ValBoolDesc>
@@ -121,12 +132,12 @@ export default function Checklist({ dataCheckList }) {
 					title={element.DATA_LIST}
 					position={element.POS}
 					list={element.OPTIONS.map(option => option.NAME)}
-					key={'data_' + index}>
+					key={desc.check + '_dataL_' + index}>
 					{element.OPTIONS.map((option, l) => {
 						return (
 							<InsideAnswer answer={option.NAME} position={element.POS} key={l}>
 								{option.HTML.map((subElement, j) => {
-									return renderElement(subElement, j)
+									return renderElement(subElement, j, desc)
 								})}
 							</InsideAnswer>
 						)
@@ -135,15 +146,37 @@ export default function Checklist({ dataCheckList }) {
 			)
 		} else if (element.BTN_JUMP) {
 			return (
-				<ChangeSteep key={'change_' + index} to={element.TO}>
+				<ChangeSteep key={desc.check + '_change_' + index} to={element.TO}>
 					{element.BTN_JUMP}
 				</ChangeSteep>
 			)
+		} else if (element.NOTA) {
+			return (
+				<Note
+					key={desc.check + '_note_' + index}
+					type={element.TYPE ? element.TYPE : 'info'}
+					title={element.TITLE ? element.TITLE : '[Sin Titulo]'}>
+					{element.NOTA}
+				</Note>
+			)
 		} else if (element.MARCO) {
 			return (
-				<div style={{ width: '26rem' }}>
+				<div style={{ width: '26rem' }} key={desc.check + '_change_' + index} to={element.TO}>
 					<Estructure />
 				</div>
+			)
+		} else if (element.BR) {
+			const size = {
+				1: '1rem',
+				2: '2rem',
+				3: '4rem',
+				4: '6rem',
+			}
+			return (
+				<div
+					style={{ height: size[element.BR], padding: size[element.HR] }}
+					key={desc.check + '_hr_' + index}
+				/>
 			)
 		}
 	}
@@ -173,12 +206,12 @@ export default function Checklist({ dataCheckList }) {
 						<>
 							{element.html.map((list, l) => {
 								if (list.TITULO) {
-									return <TitleDesc key={l}>{list.TITULO}</TitleDesc>
+									return <TitleDesc key={element.check + '_' + l}>{list.TITULO}</TitleDesc>
 								}
 							})}
 							<article className="description__container">
 								{element.html.map((list, j) => {
-									return renderElement(list, j)
+									return renderElement(list, j, element)
 								})}
 							</article>
 						</>

@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
 import CheckListContext from '../../../../context/ChecklistContext'
 
-const InsideAnswer = ({ children, position, answer }) => {
+const InsideAnswer = ({ children, position, answer, finish }) => {
 	const { activeInside } = useContext(CheckListContext)
 	const [active, setActive] = useState(false)
 

@@ -6,7 +6,7 @@ const ChangeSteep = ({ children, to }) => {
 	const { changeDescription, refListCheck, configHover, refRightSide } =
 		useContext(CheckListContext)
 
-	const jumpToListCheck = e => {
+	const jumpToListCheck = () => {
 		let ListCheck = refListCheck.current.querySelectorAll('input[type="checkbox"]')
 		let end = false
 		ListCheck.forEach(element => {

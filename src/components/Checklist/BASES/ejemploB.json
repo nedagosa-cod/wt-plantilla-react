@@ -10,12 +10,21 @@
 					"POS": "A"
 				},
 				{
+					"BR": 4
+				},
+				{
+					"NOTA": "Hola soy la nota que se va a mostrar",
+					"TITLE": "Importante",
+					"TYPE": "warning"
+				},
+				{
 					"DATA_DATE": "Fecha de gestión",
 					"POS": "B"
 				},
 				{
 					"DATA_BOOL": "Pregunta de respuesta booleana",
 					"POS": "C",
+					"FINISH": "SI",
 					"SI": [
 						{
 							"DATA_TEXT": "Nombre del cliente",
