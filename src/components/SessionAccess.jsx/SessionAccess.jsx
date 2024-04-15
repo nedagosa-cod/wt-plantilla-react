@@ -21,6 +21,14 @@ export const SessionAccess = ({ campana, segmento }) => {
 	}
 	const sendData = event => {
 		event.preventDefault()
+		if (dataSession.usuario.length < 5) {
+			return Swal.fire({
+				icon: 'error',
+				title: 'El usuario debe tener al menos 5 caracteres',
+				heightAuto: false,
+				allowOutsideClick: true,
+			})
+		}
 		setActive(false)
 		Swal.fire({
 			icon: 'info',
@@ -89,7 +97,7 @@ export const SessionAccess = ({ campana, segmento }) => {
 						<label>
 							<input
 								className="input"
-								type="text"
+								type="number"
 								name="usuario"
 								placeholder=""
 								required=""
@@ -97,7 +105,7 @@ export const SessionAccess = ({ campana, segmento }) => {
 									updateData(e.target.value, e.target.name)
 								}}
 							/>
-							<span>Usuario</span>
+							<span>Cédula</span>
 						</label>
 
 						<label>
