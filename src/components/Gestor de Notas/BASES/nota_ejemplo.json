@@ -1,0 +1,52 @@
+{
+	"TITLE": "Nota de ejemplo",
+	"FIELDS": [
+		{
+			"name": "nombre de campo A",
+			"props": {
+				"value": "Nota de ejemplo",
+				"id": "",
+				"type": "text",
+				"placeholder": "Escribe una nota...",
+				"className": "holis",
+				"tooltip": "Tooltip ejemplo",
+				"name": ""
+			},
+			"conditions": {
+				"minLength": 5,
+				"maxLength": 10,
+				"currency": "COL",
+				"required": true,
+				"startWith": "89",
+				"endWith": "00",
+				"contains": "a",
+				"active": "nombre de campo B"
+			},
+			"tools": {
+				"icon": {
+					"name": "user",
+					"color": "blue"
+				}
+			}
+		},
+		{
+			"name": "nombre de campo B",
+			"props": {
+				"placeholder": "Escribe una nota...",
+				"value": "Nota de ejemplo",
+				"type": "text",
+				"tooltip": "Tooltip ejemplo"
+			},
+			"conditions": {
+				"minLength": 5,
+				"maxLength": 10,
+				"currency": "COL",
+				"required": true,
+				"startWith": "89",
+				"endWith": "00",
+				"contains": "a",
+				"active": ""
+			}
+		}
+	]
+}
