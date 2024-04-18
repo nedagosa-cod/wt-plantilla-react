@@ -3,8 +3,8 @@
 	"FIELDS": [
 		{
 			"name": "nombre de campo A",
+			"value": "Nota de ejemplo",
 			"props": {
-				"value": "Nota de ejemplo",
 				"id": "",
 				"type": "text",
 				"placeholder": "Escribe una nota...",

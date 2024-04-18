@@ -6,11 +6,11 @@ import imgBackground from './assets/images/index/background.jpg'
 import Navbar from './components/Navbar/Navbar'
 import Bienvenida from './components/Bienvenida/Bienvenida'
 import Corrector from './components/Corrector/Corrector'
-import { SessionAccess } from './components/SessionAccess.jsx/SessionAccess'
+import { SessionAccess } from './components/SessionAccess/SessionAccess'
 import { ContadorProvider } from './context/ContadorContext'
 import CheckListBase from './components/Checklist/CheckListBase'
 import Testeos from './components/Test/Testeos'
-import Notas from './components/Gestor de Notas/Notas'
+import Notas from './components/Gestor_de_Notas/Notas'
 
 const App = () => {
 	const style = {
@@ -32,7 +32,6 @@ const App = () => {
 					<Route path="/checklist/ejemploA" element={<CheckListBase checklist="ejemploA" />} />
 					<Route path="/checklist/ejemploB" element={<CheckListBase checklist="ejemploB" />} />
 					<Route path="/checklist/ejemploC" element={<CheckListBase checklist="ejemploC" />} />
-
 					<Route path="/notas/nota_ejemplo" element={<Notas nameNote="nota_ejemplo" />} />
 					<Route path="/corrector" element={<Corrector />} />
 					<Route path="/testeos" element={<Testeos />} />

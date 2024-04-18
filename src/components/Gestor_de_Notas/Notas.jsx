@@ -5,9 +5,8 @@ const Notas = ({ nameNote }) => {
 	const [notas, setNotas] = useState({
 		nota_ejemplo,
 	})
-
 	return (
-		<div>
+		<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
 			<FormNote jsonNote={notas[nameNote]}></FormNote>
 		</div>
 	)

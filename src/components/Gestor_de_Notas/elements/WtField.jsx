@@ -1,19 +1,8 @@
 import { useState } from 'react'
-import { ids } from 'webpack'
 
-const WtField = ({ module }) => {
-	const [value, setValue] = useState(module.props.value || '')
+const WtField = ({ module, value, onChange }) => {
+	const [data, setData] = useState(value || '')
 	const [delta, setDelta] = useState({})
-	const validProps = Object.entries(module.props).reduce((acc, [key, value]) => {
-		if (value !== undefined && value !== null && value !== '') {
-			acc[key] = value
-		}
-		return acc
-	}, {})
-
-	const onChange = e => {
-		setValue(e.target.value)
-	}
 
 	return (
 		<div className="WtField">
@@ -29,8 +18,10 @@ const WtField = ({ module }) => {
 					(!module.tools?.icon ? ' iconFalse' : '') +
 					(module.props.className ? ' ' + module.props.className : '')
 				}
-				value={value}
-				onChange={onChange}
+				value={data}
+				onChange={() => {
+					onChange()
+				}}
 			/>
 		</div>
 	)
