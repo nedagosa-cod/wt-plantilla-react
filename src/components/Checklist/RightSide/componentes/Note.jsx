@@ -16,8 +16,8 @@ const Note = ({ children, title, type }) => {
 		<section className={'description__note ' + type}>
 			<div className="description__note--icon">{icons[type]}</div>
 			<div className="description__note--text">
-				<span>{title}</span>
-				<p>{children}</p>
+				<span className="description__note--title">{title}</span>
+				{children}
 			</div>
 		</section>
 	)

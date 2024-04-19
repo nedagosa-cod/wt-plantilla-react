@@ -9,6 +9,7 @@ const WtField = props => {
 		id,
 		placeholder,
 		name,
+		conditions,
 		minLength,
 		maxLength,
 		onBlur,
@@ -44,15 +45,41 @@ const WtField = props => {
 	const [data, setData] = useState(value || '')
 	const [errorMessge, setErrorMessage] = useState('')
 	const [styleError, setStyleError] = useState(false)
+	const [errors, setErros] = useState([])
 
 	const validateLength = fieldValue => {
-		if (fieldValue.length < minLength && fieldValue.length > 1) {
-			setStyleError(true)
-		} else if (fieldValue.length > maxLength) {
-			setStyleError(true)
-		} else {
-			setStyleError(false)
+		if (minLength || maxLength) {
+			if (fieldValue.length < minLength && fieldValue.length > 1) {
+				setStyleError(true)
+			} else if (fieldValue.length > maxLength) {
+				setStyleError(true)
+			} else {
+				setStyleError(false)
+			}
 		}
+		setErros([
+			...errors,
+			{
+				type: 'length',
+				value: fieldValue,
+				message: `El campo debe tener minimo ${minLength} caracteres y maximo ${maxLength} caracteres.`,
+			},
+		])
+	}
+	const validateStartWith = fieldValue => {
+		// if (conditions.startWith && !fieldValue.startsWith(conditions.startWith)) {
+		// 	setStyleError(true)
+		// } else {
+		// 	setStyleError(false)
+		// }
+		setErros([
+			...errors,
+			{
+				type: 'startWith',
+				value: fieldValue,
+				message: `El campo debe comenzar por ${conditions.startWith}.`,
+			},
+		])
 	}
 
 	return (
@@ -97,6 +124,7 @@ const WtField = props => {
 					}
 					if (type == 'just-text') {
 						if (/[a-zA-Z]/.test(fieldValue) && !/\d/.test(fieldValue)) {
+							// validateStartWith(fieldValue)
 							validateLength(fieldValue)
 							setData(fieldValue)
 						}

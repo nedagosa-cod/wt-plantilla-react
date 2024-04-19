@@ -10,7 +10,7 @@
 				},
 				{
 					"LIST": [
-						"Proceso de cancelacion",
+						"&boldProceso&bold de cancelacion",
 						"Proceso de registro",
 						"Proceso de ajustes",
 						"Proceso de creacion de tarjetas"
@@ -63,7 +63,10 @@
 				},
 				{ "IMG": "estructure.png", "SPACE": "30%" },
 				{
-					"SCRIPT": "La estructura del checklist debe contener PASOS, PUNTOS, PASOS, PUNTOS como se muestra en el ejemplo anterior"
+					"SCRIPT": "La estructura del checklist debe contener PASOS, PUNTOS, PASOS, PUNTOS como se muestra en el ejemplo anterior",
+					"SCRIPTS": [
+						"Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
+					]
 				},
 				{
 					"IMPORTANT": "DEBEN EXISTIR MINIMO 3 PASOS (A,B,C) delo contrario no funcionaria como lista de checkeo.",
@@ -200,8 +203,9 @@
 					"P": "4. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
 				},
 				{
-					"IMPORTANT": "Mensaje importante para el checklist o la gestion del paso del checklist",
-					"TITLE": "IMPORTANTE!"
+					"NOTA": "Mensaje importante para el &boldchecklist&bold o la gestion del paso del checklist",
+					"TITLE": "IMPORTANTE!",
+					"TYPE": "warning"
 				}
 			]
 		}

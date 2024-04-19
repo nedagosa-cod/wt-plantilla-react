@@ -32,14 +32,11 @@ export default function Checklist({ dataCheckList }) {
 	const [showPopNota, setShowPopNota] = useState(false)
 
 	const renderElement = (element, index, desc) => {
-		if (!element) {
-			return null
-		} else if (element.P) {
+		const setTextProperties = text => {
 			let boldRegex = /&bold(.*?)&bold/g
 			let cursRegex = /&curs(.*?)&curs/g
 			let tipRegex = /&tip\[(.*?)\](.*?)&tip/g
-
-			let textBold = element.P.replace(boldRegex, (match, content) => {
+			let textBold = text.replace(boldRegex, (match, content) => {
 				return '<strong>' + content + '</strong>'
 			})
 			let textCurs = textBold.replace(cursRegex, (match, content) => {
@@ -54,9 +51,15 @@ export default function Checklist({ dataCheckList }) {
 					'</div></span>'
 				)
 			})
+			return textTip
+		}
+
+		if (!element) {
+			return null
+		} else if (element.P) {
 			return (
 				<ParagraphDesc key={desc.check + '_def_' + index}>
-					<span dangerouslySetInnerHTML={{ __html: textTip }} />
+					<span dangerouslySetInnerHTML={{ __html: setTextProperties(element.P) }} />
 				</ParagraphDesc>
 			)
 		} else if (element.LINK) {
@@ -82,18 +85,25 @@ export default function Checklist({ dataCheckList }) {
 			return (
 				<ListDesc key={desc.check + '_list_' + index} type={element.TYPE}>
 					{element.LIST.map((list, j) => {
-						return <li key={j}>{list}</li>
+						return <li key={j} dangerouslySetInnerHTML={{ __html: setTextProperties(list) }} />
 					})}
 				</ListDesc>
 			)
 		} else if (element.IMPORTANT) {
 			return (
 				<ImportantDesc title={element.TITLE} key={desc.check + '_imp_' + index}>
-					{element.IMPORTANT}
+					<span dangerouslySetInnerHTML={{ __html: setTextProperties(element.IMPORTANT) }} />
 				</ImportantDesc>
 			)
 		} else if (element.SCRIPT) {
-			return <ScriptDesc key={desc.check + '_scr_' + index}>{element.SCRIPT}</ScriptDesc>
+			return (
+				<ScriptDesc
+					key={desc.check + '_scr_' + index}
+					scripts={element.SCRIPTS}
+					setTextProperties={setTextProperties}>
+					{element.SCRIPT}
+				</ScriptDesc>
+			)
 		} else if (element.DATA_TEXT) {
 			return (
 				<ValTextDesc position={element.POS} key={desc.check + '_dataT_' + index}>
@@ -156,7 +166,7 @@ export default function Checklist({ dataCheckList }) {
 					key={desc.check + '_note_' + index}
 					type={element.TYPE ? element.TYPE : 'info'}
 					title={element.TITLE ? element.TITLE : '[Sin Titulo]'}>
-					{element.NOTA}
+					<span dangerouslySetInnerHTML={{ __html: setTextProperties(element.NOTA) }} />
 				</Note>
 			)
 		} else if (element.MARCO) {
