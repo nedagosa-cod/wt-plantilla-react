@@ -12,7 +12,7 @@ export const SessionAccess = ({ campana, segmento }) => {
 		segmento: '',
 		observaciones: '',
 	})
-	const [active, setActive] = useState(false)
+	const [active, setActive] = useState(true)
 	const updateData = (newData, key) => {
 		setDataSession(personaActual => ({
 			...personaActual,
@@ -21,14 +21,66 @@ export const SessionAccess = ({ campana, segmento }) => {
 	}
 	const sendData = event => {
 		event.preventDefault()
-		if (dataSession.usuario.length < 5) {
-			return Swal.fire({
-				icon: 'error',
-				title: 'El usuario debe tener al menos 5 caracteres',
-				heightAuto: false,
-				allowOutsideClick: true,
-			})
+
+		// if (dataSession.usuario.length < 5) {
+		// 	return Swal.fire({
+		// 		icon: 'error',
+		// 		title: 'El usuario debe tener al menos 5 caracteres',
+		// 		heightAuto: false,
+		// 		allowOutsideClick: true,
+		// 	})
+		// }
+
+		const validarCedula = cedula => {
+			if (cedula.length < 6) {
+				Swal.fire({
+					icon: 'error',
+					title: 'Por favor, ingresa al menos 5 caracteres',
+					heightAuto: false,
+					allowOutsideClick: true,
+					allowEscapeKey: true,
+				})
+				return
+			} else if (cedula.length > 12) {
+				Swal.fire({
+					icon: 'error',
+					title: 'Por favor, ingresa menos de 12 caracteres',
+					heightAuto: false,
+					allowOutsideClick: true,
+					allowEscapeKey: true,
+				})
+				return
+			}
+			let nums = {}
+			for (let i = 0; i < cedula.length; i++) {
+				var num = cedula.charAt(i)
+				if (nums[num]) {
+					nums[num]++
+				} else {
+					nums[num] = 1
+				}
+			}
+			let count = 0
+			for (let num in nums) {
+				if (nums[num] > 0) count++
+			}
+			if (count < 4) return
+			let regex =
+				/^(?!.*(.)\1{4,})(?!12121|212121|100000|313131|123123)(?!0{4}|1{4}|2{4}|3{4}|4{4}|5{4}|6{4}|7{4}|8{4}|9{4})/
+			let result = regex.test(cedula)
+			return result
 		}
+
+		if (!validarCedula(dataSession.usuario)) {
+			Swal.fire({
+				icon: 'error',
+				title: 'Por favor, ingresa una cédula válida',
+				heightAuto: false,
+				allowEscapeKey: true,
+			})
+			return
+		}
+
 		setActive(false)
 		Swal.fire({
 			icon: 'info',
