@@ -1,0 +1,51 @@
+{
+	"nota_ejemplo": {
+		"DATA": [
+			{
+				"id": 1,
+				"name": "Nombres",
+				"type": "text",
+				"value": "",
+				"placeholder": "Escribe tus nombres...",
+				"unable": true,
+
+				"conditions": {
+					"required": true,
+					"minLength": 5,
+					"maxLength": 10,
+					"startWith": "hola",
+					"check": false,
+					"active": 3
+				}
+			},
+			{
+				"id": 2,
+				"name": "Cedula",
+				"type": "text",
+				"value": "",
+				"placeholder": "Escribe tus nombres...",
+				"conditions": {
+					"required": true,
+					"minLength": 5,
+					"maxLength": 10,
+					"startWith": "hola",
+					"check": false
+				}
+			},
+			{
+				"id": 3,
+				"name": "Cuenta",
+				"type": "text",
+				"value": "",
+				"placeholder": "Escribe tus nombres...",
+				"conditions": {
+					"required": true,
+					"minLength": 5,
+					"maxLength": 10,
+					"startWith": "hola",
+					"check": false
+				}
+			}
+		]
+	}
+}

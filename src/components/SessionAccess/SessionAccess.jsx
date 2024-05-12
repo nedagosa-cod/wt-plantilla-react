@@ -12,7 +12,7 @@ export const SessionAccess = ({ campana, segmento }) => {
 		segmento: '',
 		observaciones: '',
 	})
-	const [active, setActive] = useState(true)
+	const [active, setActive] = useState(false)
 	const updateData = (newData, key) => {
 		setDataSession(personaActual => ({
 			...personaActual,
@@ -21,15 +21,6 @@ export const SessionAccess = ({ campana, segmento }) => {
 	}
 	const sendData = event => {
 		event.preventDefault()
-
-		// if (dataSession.usuario.length < 5) {
-		// 	return Swal.fire({
-		// 		icon: 'error',
-		// 		title: 'El usuario debe tener al menos 5 caracteres',
-		// 		heightAuto: false,
-		// 		allowOutsideClick: true,
-		// 	})
-		// }
 
 		const validarCedula = cedula => {
 			if (cedula.length < 6) {
@@ -133,7 +124,6 @@ export const SessionAccess = ({ campana, segmento }) => {
 					<figure className="animate__animated animate__bounceIn">
 						<img src={ImgLogo} alt="Logo" />
 					</figure>
-
 					<div className="sessionRec__data--footer">
 						<span>
 							<strong>Automatizaciones</strong> Formación

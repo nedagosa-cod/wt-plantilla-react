@@ -71,7 +71,6 @@ const FormNote = ({ jsonNote }) => {
 
 	useEffect(() => {
 		console.log(errors)
-		// console.log(errors.apellido?.message)
 	})
 
 	return (

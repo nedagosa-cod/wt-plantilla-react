@@ -1,15 +1,18 @@
+@use './variables' as *;
 .app {
 	display: flex;
+	height: 100%;
+	background: $w-color;
+
 	& .welcome {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		font-size: 6rem;
-		font-weight: bold;
+		font-size: 8rem;
 		width: 100%;
 		height: 100vh;
-		color: #fff;
+		color: $b-color;
 		text-align: center;
 		& span {
 			display: block;
@@ -18,8 +21,21 @@
 		& p {
 			font-size: 2rem;
 			text-wrap: balance;
+			margin-top: 4rem;
 		}
-
+		& button {
+			background: $p-color;
+			padding: 1rem 2rem;
+			margin-top: 4rem;
+			color: $w-color;
+			font-size: 2rem;
+			cursor: pointer;
+			border-radius: 0.8rem;
+			-webkit-border-radius: 0.8rem;
+			-moz-border-radius: 0.8rem;
+			-ms-border-radius: 0.8rem;
+			-o-border-radius: 0.8rem;
+		}
 		& .contador {
 			display: flex;
 			gap: 1.2rem;
@@ -58,5 +74,20 @@
 		&.hide {
 			display: none;
 		}
+	}
+	& .myDoom {
+		width: 100%;
+		overflow: hidden;
+		margin: 1rem;
+		background: #fff;
+		border: 1px solid $p-color;
+		-webkit-box-shadow: inset 0px 0px 12px 0px rgba(66, 68, 90, 1);
+		-moz-box-shadow: inset 0px 0px 12px 0px rgba(66, 68, 90, 1);
+		box-shadow: inset 0px 0px 12px 0px rgba(66, 68, 90, 1);
+		border-radius: 0.8rem;
+		-webkit-border-radius: 0.8rem;
+		-moz-border-radius: 0.8rem;
+		-ms-border-radius: 0.8rem;
+		-o-border-radius: 0.8rem;
 	}
 }
