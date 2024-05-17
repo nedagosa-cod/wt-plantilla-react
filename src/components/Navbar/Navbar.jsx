@@ -16,9 +16,10 @@ export default function Navbar() {
 	}
 
 	const search = valueSearch => {
-		setDataSearch(valueSearch)
+		const lowerCase = valueSearch.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+		setDataSearch(lowerCase)
 		const allCards = document.querySelectorAll('.dato-buscado')
-		const mobileCards = Array.from(allCards).filter(card => card.textContent.includes(valueSearch))
+		const mobileCards = Array.from(allCards).filter(card => card.textContent.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(valueSearch))
 		Array.from(allCards).forEach(card => {
 			card.classList.add('hide')
 		})
