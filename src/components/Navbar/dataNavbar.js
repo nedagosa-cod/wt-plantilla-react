@@ -29,6 +29,11 @@ const projectNavbar = [
 		route: '/faq',
 		icon: 'question',
 	},
+	{
+		title: 'Calculadora',
+		route: 'portal',
+		icon: 'textSlash',
+	},
 ]
 
 export default projectNavbar

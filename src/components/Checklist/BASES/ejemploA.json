@@ -80,7 +80,7 @@
 			"html": [
 				{ "TITULO": "Creación de elementos para checklist básico" },
 				{
-					"P": "1. Como vimos anteriormente tenemos distintos elementos que se pueden crear en un checklist y que estan estructurados en word."
+					"P": "1. Como vimos anteriormente tenemos &tip[soy el significado]esternonclidomastide&tip elementos que se pueden crear en un checklist y que estan estructurados en word."
 				},
 				{
 					"SCRIPT": "A continuación se mostrara como crear cada elemento que necesite en word en el orden correspondiente y se mostraran ejemplo de como se va viendo la estructura en word"
