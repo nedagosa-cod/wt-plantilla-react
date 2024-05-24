@@ -15,12 +15,8 @@ export default function Navbar() {
 		if (openNav) return setOpenNav(!openNav)
 		return setOpenNav(!openNav)
 	}
-
 	const search = valueSearch => {
-		const lowerCase = valueSearch
-			.toLowerCase()
-			.normalize('NFD')
-			.replace(/[\u0300-\u036f]/g, '')
+		const lowerCase = valueSearch.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
 		setDataSearch(lowerCase)
 		const allCards = document.querySelectorAll('.dato-buscado')
 		const mobileCards = Array.from(allCards).filter(card =>
@@ -28,7 +24,7 @@ export default function Navbar() {
 				.toLowerCase()
 				.normalize('NFD')
 				.replace(/[\u0300-\u036f]/g, '')
-				.includes(valueSearch)
+				.includes(valueSearch.toLowerCase())
 		)
 		Array.from(allCards).forEach(card => {
 			card.classList.add('hide')
@@ -54,7 +50,7 @@ export default function Navbar() {
 		}
 	}, [])
 	return (
-		<div className={'sidebar ' + openNav}>
+		<header className={'sidebar ' + openNav}>
 			{/* {cabcera buscador logo} */}
 			<div className="sidebar__logobx">
 				<figure className="sidebar__logobx--imgbx" id="navBar_btn" onClick={openCloseNavBar}>
@@ -94,6 +90,6 @@ export default function Navbar() {
 			<div className="sidebar__versionbx" id="sideVersion">
 				v1.0.0
 			</div>
-		</div>
+		</header>
 	)
 }

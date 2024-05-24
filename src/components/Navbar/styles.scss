@@ -186,6 +186,7 @@
 	}
 
 	&__links {
+		padding: 0 2px;
 		color: $w-color;
 		overflow: auto;
 		width: 280px;
@@ -205,7 +206,7 @@
 			display: inline;
 			height: 6rem;
 			width: 5rem;
-			padding: 1.6rem;
+			padding: 1rem;
 			text-align: center;
 			transition: all 0.5s ease-in-out;
 			-webkit-transition: all 0.5s ease-in-out;
@@ -219,7 +220,12 @@
 		}
 
 		&:hover {
-			background: rgba(255, 255, 255, 0.3); //COLOR DE FONDO PRIMARIO BOTON
+			background: rgba(255, 255, 255, 0.3);
+			border-radius: 0.8rem;
+			-webkit-border-radius: 0.8rem;
+			-moz-border-radius: 0.8rem;
+			-ms-border-radius: 0.8rem;
+			-o-border-radius: 0.8rem;
 		}
 
 		&:hover i {

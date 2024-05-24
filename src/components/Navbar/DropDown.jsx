@@ -44,7 +44,7 @@ export default function DropDown({ link, pos, scroll }) {
 					<p className="sidebar__submenu--name sidebar__submenu--link">{link.title}</p>
 				</li>
 				{link.dropDown.map((el, i) => (
-					<li key={i}>
+					<li key={i} className="dato-buscado">
 						<Link className="sidebar__submenu--name dato-buscado" to={el.route}>
 							{el.title}
 						</Link>

@@ -2,11 +2,12 @@ import IconHome from '../../icons/IconHome'
 import IconCircleQuestion from '../../icons/IconCircleQuestion'
 import IconCheckList from '../../icons/IconCheckList'
 import IconTextSlash from '../../icons/IconTextSlash'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 export default function LinkRoute({ link, pos, scroll }) {
 	const [top, setTop] = useState(136)
+	const refLink = useRef()
 	const [selectIcon, setSelectIcon] = useState({
 		home: <IconHome />,
 		question: <IconCircleQuestion />,
@@ -20,8 +21,16 @@ export default function LinkRoute({ link, pos, scroll }) {
 			setTop(136 + pos * 60)
 		}
 	}
+
+	const activeLink = () => {
+		const linkRoute = refLink.current
+		const parent = Array.from(linkRoute.parentNode.children)
+		parent.forEach(el => {
+			console.log(el)
+		})
+	}
 	return (
-		<li className="sidebar__li" onMouseEnter={handleMaouseEnter}>
+		<li className="sidebar__li" onMouseEnter={handleMaouseEnter} onClick={activeLink} ref={refLink}>
 			<Link to={link.route}>
 				{selectIcon[link.icon]}
 				<span className="sidebar__li--name">{link.title}</span>
