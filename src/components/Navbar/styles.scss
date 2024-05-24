@@ -186,7 +186,6 @@
 	}
 
 	&__links {
-		padding: 0 2px;
 		color: $w-color;
 		overflow: auto;
 		width: 280px;
@@ -221,6 +220,7 @@
 
 		&:hover {
 			background: rgba(255, 255, 255, 0.3);
+			border: 1px solid rgba(255, 255, 255, 0.3);
 			border-radius: 0.8rem;
 			-webkit-border-radius: 0.8rem;
 			-moz-border-radius: 0.8rem;
