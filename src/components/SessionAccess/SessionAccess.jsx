@@ -5,14 +5,15 @@ import imgBackground from '../../assets/images/index/sessionBackground.jpg'
 import ImgLogo from '../../assets/images/index/logoSIn.png'
 import 'animate.css'
 
-export const SessionAccess = ({ campana, segmento }) => {
+export const SessionAccess = ({ campana, segmento, version }) => {
+	const [active, setActive] = useState(false)
 	const [dataSession, setDataSession] = useState({
 		usuario: '',
-		campana: '',
-		segmento: '',
+		campana: campana,
+		segmento: segmento,
 		observaciones: '',
 	})
-	const [active, setActive] = useState(true)
+	// escucha los eventos change de los input de cedula y observaciones
 	const updateData = (newData, key) => {
 		setDataSession(personaActual => ({
 			...personaActual,
@@ -21,66 +22,15 @@ export const SessionAccess = ({ campana, segmento }) => {
 	}
 	const sendData = event => {
 		event.preventDefault()
-
-		// if (dataSession.usuario.length < 5) {
-		// 	return Swal.fire({
-		// 		icon: 'error',
-		// 		title: 'El usuario debe tener al menos 5 caracteres',
-		// 		heightAuto: false,
-		// 		allowOutsideClick: true,
-		// 	})
-		// }
-
-		const validarCedula = cedula => {
-			if (cedula.length < 6) {
-				Swal.fire({
-					icon: 'error',
-					title: 'Por favor, ingresa al menos 5 caracteres',
-					heightAuto: false,
-					allowOutsideClick: true,
-					allowEscapeKey: true,
-				})
-				return
-			} else if (cedula.length > 12) {
-				Swal.fire({
-					icon: 'error',
-					title: 'Por favor, ingresa menos de 12 caracteres',
-					heightAuto: false,
-					allowOutsideClick: true,
-					allowEscapeKey: true,
-				})
-				return
-			}
-			let nums = {}
-			for (let i = 0; i < cedula.length; i++) {
-				var num = cedula.charAt(i)
-				if (nums[num]) {
-					nums[num]++
-				} else {
-					nums[num] = 1
-				}
-			}
-			let count = 0
-			for (let num in nums) {
-				if (nums[num] > 0) count++
-			}
-			if (count < 4) return
-			let regex =
-				/^(?!.*(.)\1{4,})(?!12121|212121|100000|313131|123123)(?!0{4}|1{4}|2{4}|3{4}|4{4}|5{4}|6{4}|7{4}|8{4}|9{4})/
-			let result = regex.test(cedula)
-			return result
-		}
-
-		if (!validarCedula(dataSession.usuario)) {
-			Swal.fire({
-				icon: 'error',
-				title: 'Por favor, ingresa una cédula válida',
+		let regex = /^(?!.*(\d)\1{5})\d{6,10}$/
+		let result = regex.test(dataSession.usuario)
+		if (!result)
+			return Swal.fire({
 				heightAuto: false,
-				allowEscapeKey: true,
+				icon: 'error',
+				title: 'Cédula invalida, por favor confirma que tu cédula sea correcta.',
+				allowOutsideClick: true,
 			})
-			return
-		}
-
 		setActive(false)
 		Swal.fire({
 			icon: 'info',
@@ -112,7 +62,8 @@ export const SessionAccess = ({ campana, segmento }) => {
 				sessionStorage.setItem('session', false)
 				Swal.fire({
 					icon: 'error',
-					title: 'Ocurrió un error durante el consumo del API',
+					title:
+						'No se pudo enviar el registro, porfavor intenta de nuevo o comunicate con el area de desarrollo formación para escalar el caso',
 					heightAuto: false,
 					text: error,
 					allowOutsideClick: true,
@@ -125,6 +76,7 @@ export const SessionAccess = ({ campana, segmento }) => {
 		backgroundRepeat: 'no-repeat',
 		backgroundPosition: 'center',
 	}
+
 	if (active) {
 		return (
 			<div className="sessionRec" style={style}>
@@ -138,10 +90,9 @@ export const SessionAccess = ({ campana, segmento }) => {
 						<span>
 							<strong>Automatizaciones</strong> Formación
 						</span>
-						<p>v1.0.0</p>
+						<p>v{version}</p>
 					</div>
 				</div>
-
 				<div className="sessionRec__form">
 					<form className="form animate__animated animate__fadeInUp">
 						<p className="title">Registro de acceso</p>

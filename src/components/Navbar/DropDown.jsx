@@ -6,7 +6,8 @@ import IconHome from '../../icons/IconHome'
 import IconCheckList from '../../icons/IconCheckList'
 import { Link } from 'react-router-dom'
 
-export default function DropDown({ link }) {
+export default function DropDown({ link, pos, scroll }) {
+	const [top, setTop] = useState(136)
 	const [dropDownActive, setDropDownActive] = useState(false)
 	const [selectIcon, setSelectIcon] = useState({
 		home: <IconHome />,
@@ -17,11 +18,18 @@ export default function DropDown({ link }) {
 		if (dropDownActive) return setDropDownActive(!dropDownActive)
 		return setDropDownActive(!dropDownActive)
 	}
-
+	const handleMaouseEnter = () => {
+		if (scroll > 0) {
+			setTop(136 + pos * 60 - scroll)
+		} else {
+			setTop(136 + pos * 60)
+		}
+	}
 	return (
 		<li
 			className={'sidebar__li ' + dropDownActive.toString()}
-			onClick={toggleDropDown}>
+			onClick={toggleDropDown}
+			onMouseEnter={handleMaouseEnter}>
 			<div className="sidebar__drop">
 				<p className="none">
 					{selectIcon[link.icon]}
@@ -31,11 +39,9 @@ export default function DropDown({ link }) {
 				{dropDownActive && <IconArrowUp />}
 			</div>
 
-			<ul className="sidebar__submenu">
+			<ul className="sidebar__submenu" style={{ top: top + 'px' }}>
 				<li>
-					<p className="sidebar__submenu--name sidebar__submenu--link">
-						{link.title}
-					</p>
+					<p className="sidebar__submenu--name sidebar__submenu--link">{link.title}</p>
 				</li>
 				{link.dropDown.map((el, i) => (
 					<li key={i}>

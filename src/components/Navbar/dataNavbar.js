@@ -10,6 +10,56 @@ const projectNavbar = [
 		icon: 'question',
 	},
 	{
+		title: 'Preguntas frecuentes',
+		route: '/checklist',
+		icon: 'question',
+	},
+	{
+		title: 'Preguntas frecuentes',
+		route: '/checklist',
+		icon: 'question',
+	},
+	{
+		title: 'Preguntas frecuentes',
+		route: '/checklist',
+		icon: 'question',
+	},
+	{
+		title: 'Preguntas frecuentes',
+		route: '/checklist',
+		icon: 'question',
+	},
+	{
+		title: 'Preguntas frecuentes',
+		route: '/checklist',
+		icon: 'question',
+	},
+	{
+		title: 'Preguntas frecuentes',
+		route: '/checklist',
+		icon: 'question',
+	},
+	{
+		title: 'Corrector Ortográfico',
+		route: '/corrector',
+		icon: 'textSlash',
+	},
+	{
+		title: 'Preguntas frecuentes',
+		route: '/checklist',
+		icon: 'question',
+	},
+	{
+		title: 'Preguntas frecuentes',
+		route: '/checklist',
+		icon: 'question',
+	},
+	{
+		title: 'Preguntas frecuentes',
+		route: '/checklist',
+		icon: 'question',
+	},
+	{
 		title: 'CheckList',
 		route: '/checklist',
 		icon: 'checklist',
@@ -25,9 +75,14 @@ const projectNavbar = [
 		],
 	},
 	{
-		title: 'Corrector Ortográfico',
-		route: '/corrector',
-		icon: 'textSlash',
+		title: 'Preguntas frecuentes',
+		route: '/checklist',
+		icon: 'question',
+	},
+	{
+		title: 'Preguntas frecuentes',
+		route: '/checklist',
+		icon: 'question',
 	},
 ]
 

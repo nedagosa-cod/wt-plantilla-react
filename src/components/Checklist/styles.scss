@@ -282,12 +282,12 @@
 			scrollbar-color: $p-color #e2e2e2;
 			align-items: center;
 			overflow-y: auto;
-			max-height: 100%;
+			height: 100%;
 			width: 100%;
 			gap: 2rem;
 			& li {
 				list-style: none;
-				width: 100%;
+				width: 95%;
 			}
 		}
 	}

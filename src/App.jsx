@@ -23,7 +23,7 @@ const App = () => {
 	return (
 		<ContadorProvider>
 			<div className="app" style={style}>
-				<SessionAccess campana="Nombre Campaña" segmento="Nombre Segmento" />
+				<SessionAccess campana="Nombre Campaña" segmento="Nombre Segmento" version="1.0.0" />
 				<Navbar />
 
 				<Routes>
