@@ -7,7 +7,7 @@ import Navbar from './components/Navbar/Navbar'
 import Bienvenida from './components/Bienvenida/Bienvenida'
 import Corrector from './components/Corrector/Corrector'
 import { SessionAccess } from './components/SessionAccess/SessionAccess'
-import { ContadorProvider } from './context/ContadorContext'
+import { GlobalProvider } from './context/GlobalContext'
 import CheckListBase from './components/Checklist/CheckListBase'
 import Testeos from './components/Test/Testeos'
 import Notas from './components/Gestor_de_Notas/Notas'
@@ -21,7 +21,7 @@ const App = () => {
 	}
 
 	return (
-		<ContadorProvider>
+		<GlobalProvider>
 			<div className="app" style={style}>
 				<SessionAccess campana="Nombre Campaña" segmento="Nombre Segmento" version="1.0.0" />
 				<Navbar />
@@ -37,7 +37,7 @@ const App = () => {
 					<Route path="/testeos" element={<Testeos />} />
 				</Routes>
 			</div>
-		</ContadorProvider>
+		</GlobalProvider>
 	)
 }
 

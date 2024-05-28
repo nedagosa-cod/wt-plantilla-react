@@ -1,16 +1,22 @@
 import './styles.scss'
 import projectNavbar from './dataNavbar'
-import { useEffect, useRef, useState } from 'react'
+import { createContext, useEffect, useRef, useState } from 'react'
 import DropDown from './DropDown'
 import LinkRoute from './LinkRoute'
 import imgLogo from '../../assets/images/index/logoMain.png'
 import IconSearch from '../../icons/IconSearch'
+import IconUpload from '../../icons/IconUpload'
+import IconTheme from '../../icons/IconTheme'
+import InconSpell from '../../icons/InconSpell'
+import GlobalContext from '../../context/GlobalContext'
 
 export default function Navbar() {
 	const [openNav, setOpenNav] = useState(false)
 	const [scrollPx, setScrollPx] = useState(0)
 	const [dataSearch, setDataSearch] = useState('')
 	const scrollContainerRef = useRef(null)
+	const { WTLocalbase } = createContext(GlobalContext)
+
 	const openCloseNavBar = () => {
 		if (openNav) return setOpenNav(!openNav)
 		return setOpenNav(!openNav)
@@ -32,6 +38,10 @@ export default function Navbar() {
 		mobileCards.forEach(card => {
 			card.classList.remove('hide')
 		})
+	}
+	const handleSubmit = e => {
+		e.preventDefault()
+		console.log(WTLocalbase)
 	}
 	useEffect(() => {
 		const handleScroll = () => {
@@ -87,6 +97,17 @@ export default function Navbar() {
 			</ul>
 
 			{/* {version} */}
+			<form className="sidebar__sets" onSubmit={handleSubmit}>
+				<button className="sidebar__sets--btn">
+					<IconUpload />
+				</button>
+				<button className="sidebar__sets--btn">
+					<InconSpell />
+				</button>
+				<button className="sidebar__sets--btn">
+					<IconTheme />
+				</button>
+			</form>
 			<div className="sidebar__versionbx" id="sideVersion">
 				v1.0.0
 			</div>
