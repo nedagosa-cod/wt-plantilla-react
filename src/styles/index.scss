@@ -10,6 +10,11 @@
 #root {
 	overflow: hidden;
 }
+#portal {
+	position: absolute;
+	top: 0;
+	z-index: 100;
+}
 /* Se establece 1rem como 10px*/
 html {
 	font-size: 62.5%;
