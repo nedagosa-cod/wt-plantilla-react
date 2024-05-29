@@ -7,29 +7,47 @@ const GlobalContext = createContext()
 const WTLocalbase = new Localbase('db_nombre_campana')
 
 const GlobalProvider = ({ children }) => {
-	const templatesDDBB = ['arbol']
+	const templatesDDBB = ['ejemplo']
 	const readExcelFile = async e => {
 		const maps = {
-			arbol: {
+			ejemplo: {
 				CODIGO: 'CODIGO',
 				DATOS: 'DATOS',
 				ESCALAMIENTO: 'ESCALAMIENTO',
 				AREA: 'AREA',
+				div: {
+					PROPIEDADES: {
+						T_ACTUAL: 'T_ACTUAL',
+						PLANTILLA: 'PLANTILLA',
+					},
+				},
 			},
 		}
+		// const map = {
+		// 	CODIGO: 'CODIGO',
+		// 	DATOS: 'DATOS',
+		// 	ESCALAMIENTO: 'ESCALAMIENTO',
+		// 	AREA: 'AREA',
+		// 	next: {
+		// 		PROPIEDADES: {
+		// 			T_ACTUAL: 'T_ACTUAL',
+		// 			PLANTILLA: 'PLANTILLA',
+		// 		},
+		// 	},
+		// }
 		// recorre los archivos cargados y valida si son bases correctas de la web training
 		const filesList = e.target.files
 		for (let i = 0; i < filesList.length; i++) {
 			const file = filesList[i]
 			const fileName = file.name.split('.')[0]
 			if (templatesDDBB.includes(fileName)) {
-				readXlsxFile(file, { map: maps[fileName] }, { trim: true })
+				readXlsxFile(file, { map: maps[fileName] })
 					.then(({ rows }) => {
-						rows.forEach((db, id) => {
+						rows.forEach((row, id) => {
 							WTLocalbase.collection(fileName).delete()
 							WTLocalbase.collection(fileName).add({
 								id,
-								...db,
+								...row,
 							})
 						})
 					})
