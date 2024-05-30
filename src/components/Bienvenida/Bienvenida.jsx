@@ -1,9 +1,8 @@
 import { useState } from 'react'
-import Estructure from '../Checklist/BigIcons/Estructure'
-// import img from '../../assets/images/index/favicon.jpg'
 
 export default function Bienvenida() {
 	const [contador, setContador] = useState(0)
+
 	return (
 		<div className="welcome">
 			<span>Bienvenido a </span>
@@ -14,7 +13,7 @@ export default function Bienvenida() {
 					onClick={() => {
 						setContador(contador + 1)
 					}}>
-					Count
+					Counter
 				</button>
 				<p>{contador}</p>
 			</div>

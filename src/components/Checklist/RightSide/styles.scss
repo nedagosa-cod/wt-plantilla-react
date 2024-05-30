@@ -226,10 +226,12 @@
 		&--ask {
 			width: fit-content;
 			text-align: start;
+			color: light-dark($w-color, $w-color);
 		}
 		&--date {
 			& input {
 				outline: none;
+				color: $w-color;
 			}
 		}
 		border-radius: 0.8rem;

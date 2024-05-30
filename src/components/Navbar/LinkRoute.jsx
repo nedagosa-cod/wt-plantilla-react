@@ -25,9 +25,9 @@ export default function LinkRoute({ link, pos, scroll }) {
 	const activeLink = () => {
 		const linkRoute = refLink.current
 		const parent = Array.from(linkRoute.parentNode.children)
-		parent.forEach(el => {
-			console.log(el)
-		})
+		// parent.forEach(el => {
+		// 	console.log(el)
+		// })
 	}
 	return (
 		<li className="sidebar__li" onMouseEnter={handleMaouseEnter} onClick={activeLink} ref={refLink}>

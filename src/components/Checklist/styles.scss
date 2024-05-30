@@ -122,9 +122,10 @@
 	width: 70%;
 	max-width: 100rem;
 	height: 60rem;
-	background: #3d3d3d;
-	color: $w-color;
-	box-shadow: 0px 0px 0px 24px rgba(189, 188, 255, 0.514);
+	background: light-dark($w-color, $b-color);
+	color: light-dark($b-color, $w-color);
+	box-shadow: 0px 0px 0px 24px light-dark(rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.2));
+	border: 1px solid light-dark(rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.2));
 	border-radius: 2rem;
 	-webkit-border-radius: 2rem;
 	-moz-border-radius: 2rem;
@@ -145,7 +146,7 @@
 		button {
 			font-family: inherit;
 			font-size: 1.8rem;
-			background: $s-color;
+			background: $t-color;
 			color: $w-color;
 			align-items: center;
 			fill: rgb(155, 153, 153);
@@ -248,14 +249,14 @@
 			& h2 {
 				text-align: center;
 			}
-			transition: 1s all;
-			-webkit-transition: 1s all;
-			-moz-transition: 1s all;
-			-ms-transition: 1s all;
-			-o-transition: 1s all;
+			& span {
+				font-size: 2rem;
+				font-weight: 800;
+				color: $s-color;
+			}
 		}
 		&__title {
-			font-size: 2.8rem;
+			font-size: 3rem;
 			text-align: center;
 			color: $p-color;
 
@@ -374,25 +375,6 @@
 			}
 		}
 	}
-	&.light {
-		background: #e2e2e2;
-		color: #000;
-		& .rightSide {
-			&__description {
-				& .check-tip {
-					background: rgba(0, 0, 0, 0.2);
-					&__tip {
-						background: $b-color;
-					}
-				}
-			}
-		}
-	}
-	transition: 1s ease-in-out;
-	-webkit-transition: 1s ease-in-out;
-	-moz-transition: 1s ease-in-out;
-	-ms-transition: 1s ease-in-out;
-	-o-transition: 1s ease-in-out;
 }
 
 .PopNota {
@@ -567,18 +549,18 @@
 	border: 3px solid rgba(0, 0, 0, 0.2);
 	border-radius: 50%;
 	position: relative;
-	width: 20px;
-	height: 20px;
+	width: 28px;
+	height: 28px;
 }
 
 .checkbox-wrapper-44 .toggleButton input + div svg {
 	fill: none;
 	stroke-width: 3.6;
-	stroke: $p-color;
+	stroke: light-dark($p-color, $p3-color);
 	stroke-linecap: round;
 	stroke-linejoin: round;
-	width: 20px;
-	height: 20px;
+	width: 28px;
+	height: 28px;
 	display: block;
 	position: absolute;
 	left: -3px;
@@ -596,7 +578,7 @@
 	content: '';
 	width: 3px;
 	height: 16px;
-	background: $p-color;
+	background: light-dark($p-color, $p3-color);
 	position: absolute;
 	left: 50%;
 	top: 50%;

@@ -1,4 +1,4 @@
-import { createContext } from 'react'
+import { createContext, useState } from 'react'
 import Localbase from 'localbase'
 import Swal from 'sweetalert2'
 import readXlsxFile from 'read-excel-file'
@@ -7,7 +7,8 @@ const GlobalContext = createContext()
 const WTLocalbase = new Localbase('db_nombre_campana')
 
 const GlobalProvider = ({ children }) => {
-	const templatesDDBB = ['ejemplo']
+	const [scheme, setScheme] = useState('light')
+	const templatesDDBB = ['ejemplo', 'otroEjemplo', 'noMas']
 	const readExcelFile = async e => {
 		const maps = {
 			ejemplo: {
@@ -23,18 +24,7 @@ const GlobalProvider = ({ children }) => {
 				},
 			},
 		}
-		// const map = {
-		// 	CODIGO: 'CODIGO',
-		// 	DATOS: 'DATOS',
-		// 	ESCALAMIENTO: 'ESCALAMIENTO',
-		// 	AREA: 'AREA',
-		// 	next: {
-		// 		PROPIEDADES: {
-		// 			T_ACTUAL: 'T_ACTUAL',
-		// 			PLANTILLA: 'PLANTILLA',
-		// 		},
-		// 	},
-		// }
+
 		// recorre los archivos cargados y valida si son bases correctas de la web training
 		const filesList = e.target.files
 		for (let i = 0; i < filesList.length; i++) {
@@ -70,13 +60,13 @@ const GlobalProvider = ({ children }) => {
 				Swal.fire({
 					icon: 'error',
 					title: 'Estas cargando una base de datos incorrecta',
-					text: 'La base de datos que estas cargando no es la correcta, verifica el nombre del archivo excel que estas cargando. valida si tiene el nombre corrector de la base o si las columnas estan completas.',
+					text: 'La base de datos que estas cargando no es la correcta, verifica el nombre del archivo excel que estas cargando. valida si tiene el nombre correcto de la base o si las columnas estan completas.',
 				})
 			}
 		}
 	}
 
-	const data = { WTLocalbase, readExcelFile }
+	const data = { templatesDDBB, WTLocalbase, readExcelFile, scheme, setScheme }
 	return <GlobalContext.Provider value={data}>{children}</GlobalContext.Provider>
 }
 
