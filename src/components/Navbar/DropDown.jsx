@@ -4,6 +4,10 @@ import IconArrowDown from '../../icons/IconArrowDown'
 import IconArrowUp from '../../icons/IconArrowUp'
 import IconHome from '../../icons/IconHome'
 import IconCheckList from '../../icons/IconCheckList'
+import IconNote from '../../icons/IconNote'
+import IconCalculator from '../../icons/IconCalculator'
+import IconTextSlash from '../../icons/IconTextSlash'
+import IconTipify from '../../icons/IconTipify'
 import { Link } from 'react-router-dom'
 
 export default function DropDown({ link, pos, scroll }) {
@@ -13,6 +17,10 @@ export default function DropDown({ link, pos, scroll }) {
 		home: <IconHome />,
 		question: <IconCircleQuestion />,
 		checklist: <IconCheckList />,
+		textSlash: <IconTextSlash />,
+		note: <IconNote />,
+		tipify: <IconTipify />,
+		calc: <IconCalculator />,
 	})
 	const toggleDropDown = () => {
 		if (dropDownActive) return setDropDownActive(!dropDownActive)

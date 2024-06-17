@@ -10,14 +10,19 @@ import IconTheme from '../../icons/IconTheme'
 import InconSpell from '../../icons/InconSpell'
 import GlobalContext from '../../context/GlobalContext'
 import { createPortal } from 'react-dom'
+import { useNavigate } from 'react-router-dom'
+import IconNotes from '../../icons/IconNotes'
+import MyNote from '../MyNote/MyNote'
 
 export default function Navbar() {
+	const navigate = useNavigate()
 	const [openNav, setOpenNav] = useState(false)
 	const [scrollPx, setScrollPx] = useState(0)
 	const [dataSearch, setDataSearch] = useState('')
 	const [windowDB, setWindowDB] = useState(false)
+	const [myNote, setMyNote] = useState(false)
 	const scrollContainerRef = useRef(null)
-	const { readExcelFile, templatesDDBB, setScheme, scheme } = useContext(GlobalContext)
+	const { readExcelFile, templatesDDBB, setScheme } = useContext(GlobalContext)
 
 	const openCloseNavBar = () => {
 		if (openNav) return setOpenNav(!openNav)
@@ -85,7 +90,7 @@ export default function Navbar() {
 						name="text"
 						value={dataSearch}
 						className="input"
-						placeholder="Search something..."
+						placeholder="Buscar..."
 						id="searcher"
 						autoComplete="off"
 						onChange={e => {
@@ -113,11 +118,24 @@ export default function Navbar() {
 				<button className="sidebar__sets--btn" name="upload" onClick={setsClick}>
 					<IconUpload />
 				</button>
-				<button className="sidebar__sets--btn" name="spellcheck">
+				<button
+					className="sidebar__sets--btn"
+					name="spellcheck"
+					onClick={() => {
+						navigate('/corrector')
+					}}>
 					<InconSpell />
 				</button>
 				<button className="sidebar__sets--btn" name="theme" onClick={setsClick}>
 					<IconTheme />
+				</button>
+				<button
+					className="sidebar__sets--btn"
+					name="theme"
+					onClick={() => {
+						setMyNote(true)
+					}}>
+					<IconNotes />
 				</button>
 			</div>
 			<div className="sidebar__versionbx" id="sideVersion">
@@ -187,6 +205,7 @@ export default function Navbar() {
 					</section>,
 					document.getElementById('portal')
 				)}
+			{myNote && createPortal(<MyNote />, document.body)}
 		</header>
 	)
 }

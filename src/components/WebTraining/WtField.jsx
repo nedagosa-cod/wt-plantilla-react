@@ -83,15 +83,10 @@ const WtField = props => {
 	}
 
 	return (
-		<div className="WtField" style={{ ...(width && { width: width }) }}>
+		<label className="WtField" style={{ ...(width && { width: width }) }}>
 			<div className="WtField__error">
 				<span>{errorMessge}</span>
 			</div>
-			{module?.tools?.icon && (
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-					<path d="M288 64c0 17.7-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32H256c17.7 0 32 14.3 32 32zm0 256c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H256c17.7 0 32 14.3 32 32zM0 192c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 448c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z" />
-				</svg>
-			)}
 			<input
 				{...(id && { id })}
 				{...(placeholder && { placeholder })}
@@ -102,7 +97,6 @@ const WtField = props => {
 				minLength={minLength}
 				className={
 					'WtField__input' +
-					(!module?.tools?.icon ? ' iconFalse' : '') +
 					(module?.props.className ? ' ' + module.props.className : '') +
 					(styleError ? ' styleError' : '')
 				}
@@ -111,7 +105,6 @@ const WtField = props => {
 					if (fieldValue.length == 1) {
 						setStyleError(false)
 					}
-
 					if (type == 'number') {
 						if (/\d/.test(fieldValue) && !/[a-zA-Z]/.test(fieldValue)) {
 							validateLength(fieldValue)
@@ -121,6 +114,7 @@ const WtField = props => {
 					if (type == 'text') {
 						validateLength(fieldValue)
 						setData(fieldValue)
+						console.log('viy')
 					}
 					if (type == 'just-text') {
 						if (/[a-zA-Z]/.test(fieldValue) && !/\d/.test(fieldValue)) {
@@ -129,8 +123,7 @@ const WtField = props => {
 							setData(fieldValue)
 						}
 					}
-
-					if (onChange) return onChange(e)
+					return onChange(e)
 				}}
 				onKeyDown={e => {
 					// ELEIMINA TODA LA SELECCION SI SE PRESIONA BACKSPACE
@@ -171,7 +164,7 @@ const WtField = props => {
 					if (onBlur) return onBlur(e)
 				}}
 			/>
-		</div>
+		</label>
 	)
 }
 

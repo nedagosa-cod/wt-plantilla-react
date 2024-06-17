@@ -1,26 +1,32 @@
 {
 	"TITLE": "Nota de ejemplo",
+	"SUBTITLE": "Subtitulo de la nota",
 	"FIELDS": [
 		{
-			"name": "nombre de campo A",
-			"value": "Nota de ejemplo",
+			"name": "cuenta",
+			"value": "",
 			"props": {
-				"id": "",
-				"type": "text",
-				"placeholder": "Escribe una nota...",
-				"className": "holis",
-				"tooltip": "Tooltip ejemplo",
-				"name": ""
+				"id": "field_a",
+				"type": "number",
+				"placeholder": "Número de cuenta...",
+				"className": "",
+				"tooltip": ""
 			},
 			"conditions": {
 				"minLength": 5,
 				"maxLength": 10,
-				"currency": "COL",
+				"currency": "",
 				"required": true,
-				"startWith": "89",
-				"endWith": "00",
-				"contains": "a",
-				"active": "nombre de campo B"
+				"startWith": 89,
+				"endWith": 0,
+				"contains": 1,
+				"active": "nombre de campo B",
+				"dateLess": "2020-01-01",
+				"dateGreater": "2020-01-01",
+				"dateEqual": "2020-01-01",
+				"minusc": true,
+				"mayusc": false,
+				"camelCase": false
 			},
 			"tools": {
 				"icon": {
@@ -30,7 +36,7 @@
 			}
 		},
 		{
-			"name": "nombre de campo B",
+			"name": "nombre",
 			"props": {
 				"placeholder": "Escribe una nota...",
 				"value": "Nota de ejemplo",

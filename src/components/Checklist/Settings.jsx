@@ -21,14 +21,6 @@ export const Settings = ({ zoomChecklist }) => {
 			<li
 				className="settings__list"
 				onClick={() => {
-					changeTheme()
-				}}>
-				<IconDarkLight />
-				<span>Modo Claro/Oscuro</span>
-			</li>
-			<li
-				className="settings__list"
-				onClick={() => {
 					zoomChecklist()
 				}}>
 				<IconWindowComplete />

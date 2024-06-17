@@ -1,3 +1,5 @@
+@use '../../styles/variables' as *;
+
 .WtField {
 	display: flex;
 	align-items: center;
@@ -9,16 +11,20 @@
 		width: 100%;
 		font-size: 1.4rem;
 		background: #fff;
-		padding: 0.8rem 0.8rem 0.8rem 3rem;
-		border: 2px solid transparent;
+		padding: 0.8rem;
+		border: 2px solid $g-color;
 		border-radius: 10px;
 		outline: none;
 		color: #0d0c22;
+		&::placeholder {
+			color: gray; /* Cambia este color al que prefieras */
+			opacity: 1; /* Necesario para algunos navegadores para que el color se vea correctamente */
+		}
 		&.iconFalse {
 			padding: 0.8rem;
 		}
 		&::placeholder {
-			color: #94a3b8;
+			color: rgba($p-color, 0.4);
 		}
 		&:focus,
 		input:hover {

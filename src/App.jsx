@@ -12,7 +12,9 @@ import GlobalContext, { GlobalProvider } from './context/GlobalContext'
 import CheckListBase from './components/Checklist/CheckListBase'
 import Testeos from './components/Test/Testeos'
 import Notas from './components/Gestor_de_Notas/Notas'
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
+import TimeLine from './components/TimeLine/TimeLine'
+import Tipificador from './components/Tipificador/Tipificador'
 
 const App = () => {
 	const { scheme } = useContext(GlobalContext)
@@ -23,9 +25,6 @@ const App = () => {
 		backgroundPosition: 'center',
 		colorScheme: scheme,
 	}
-	useEffect(() => {
-		console.log(scheme)
-	}, [scheme])
 	return (
 		<div className="app" style={style}>
 			<SessionAccess campana="Nombre Campaña" segmento="Nombre Segmento" version="1.0.0" />
@@ -38,6 +37,9 @@ const App = () => {
 				<Route path="/checklist/ejemploB" element={<CheckListBase checklist="ejemploB" />} />
 				<Route path="/checklist/ejemploC" element={<CheckListBase checklist="ejemploC" />} />
 				<Route path="/notas/nota_ejemplo" element={<Notas nameNote="nota_ejemplo" />} />
+				<Route path="/tipificador" element={<Tipificador />} />
+				<Route path="/calculadoras/estandar" element={<Tipificador />} />
+				<Route path="/timeline" element={<TimeLine />} />
 				<Route path="/corrector" element={<Corrector />} />
 				<Route path="/testeos" element={<Testeos />} />
 			</Routes>

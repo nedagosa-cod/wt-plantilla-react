@@ -8,23 +8,38 @@ const WTLocalbase = new Localbase('db_nombre_campana')
 
 const GlobalProvider = ({ children }) => {
 	const [scheme, setScheme] = useState('light')
-	const templatesDDBB = ['ejemplo', 'otroEjemplo', 'noMas']
-	const readExcelFile = async e => {
-		const maps = {
-			ejemplo: {
-				CODIGO: 'CODIGO',
-				DATOS: 'DATOS',
-				ESCALAMIENTO: 'ESCALAMIENTO',
-				AREA: 'AREA',
-				div: {
-					PROPIEDADES: {
-						T_ACTUAL: 'T_ACTUAL',
-						PLANTILLA: 'PLANTILLA',
-					},
+	const templatesDDBB = ['arbol']
+	const maps = {
+		test: {
+			CODIGO: 'codigo',
+			DATOS: 'DATOS',
+			ESCALAMIENTO: 'ESCALAMIENTO',
+			AREA: 'AREA',
+			div: {
+				WEB_TRAINING: {
+					T_ACTUAL: 'T_ACTUAL',
+					PLANTILLA: 'PLANTILLA',
+					DEFINICION: 'DEFINICION',
 				},
 			},
-		}
-
+		},
+		arbol: {
+			CODIGO: 'CODIGO',
+			DATOS: 'DATOS',
+			ESCALAMIENTO: 'ESCALAMIENTO',
+			AREA: 'AREA',
+			DEFINICION: 'DEFINICION',
+			EXCEPCION: 'EXCEPCION',
+			NOTAS: 'NOTAS',
+			T_ACTUAL: 'T_ACTUAL',
+			PLANTILLA: 'PLANTILLA',
+			ESCENARIO_2: 'ESCENARIO_2',
+			ESCENARIO_3: 'ESCENARIO_3',
+			ESCENARIO_4: 'ESCENARIO_4',
+			ESCENARIO_5: 'ESCENARIO_5',
+		},
+	}
+	const readExcelFile = async e => {
 		// recorre los archivos cargados y valida si son bases correctas de la web training
 		const filesList = e.target.files
 		for (let i = 0; i < filesList.length; i++) {

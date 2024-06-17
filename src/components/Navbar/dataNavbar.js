@@ -5,61 +5,6 @@ const projectNavbar = [
 		icon: 'home',
 	},
 	{
-		title: 'Preguntas frecuentes',
-		route: '/checklist',
-		icon: 'question',
-	},
-	{
-		title: 'Preguntas frecuentes',
-		route: '/checklist',
-		icon: 'question',
-	},
-	{
-		title: 'Preguntas frecuentes',
-		route: '/checklist',
-		icon: 'question',
-	},
-	{
-		title: 'Preguntas frecuentes',
-		route: '/checklist',
-		icon: 'question',
-	},
-	{
-		title: 'Preguntas frecuentes',
-		route: '/checklist',
-		icon: 'question',
-	},
-	{
-		title: 'Preguntas frecuentes',
-		route: '/checklist',
-		icon: 'question',
-	},
-	{
-		title: 'Preguntas frecuentes',
-		route: '/checklist',
-		icon: 'question',
-	},
-	{
-		title: 'Corrector Ortográfico',
-		route: '/corrector',
-		icon: 'textSlash',
-	},
-	{
-		title: 'Preguntas frecuentes',
-		route: '/checklist',
-		icon: 'question',
-	},
-	{
-		title: 'Preguntas frecuentes',
-		route: '/checklist',
-		icon: 'question',
-	},
-	{
-		title: 'Preguntas frecuentes',
-		route: '/checklist',
-		icon: 'question',
-	},
-	{
 		title: 'CheckList',
 		route: '/checklist',
 		icon: 'checklist',
@@ -75,12 +20,63 @@ const projectNavbar = [
 		],
 	},
 	{
-		title: 'Preguntas frecuentes',
+		title: 'Gestor de notas',
 		route: '/checklist',
-		icon: 'question',
+		icon: 'note',
 	},
 	{
-		title: 'Preguntas frecuentes',
+		title: 'Tipificador',
+		route: '/tipificador',
+		icon: 'tipify',
+	},
+	{
+		title: 'Calculadoras',
+		route: '/checklist',
+		icon: 'calc',
+		dropDown: [
+			{
+				title: 'Estandar',
+				route: '/calculadoras/estandar',
+			},
+		],
+	},
+	{
+		title: 'Aplicativos web',
+		route: '/checklist',
+		icon: 'web',
+	},
+	{
+		title: 'Corrector ortográfico',
+		route: '/checklist',
+		icon: 'textSlash',
+	},
+	{
+		title: 'Scripts',
+		route: '/checklist',
+		icon: 'comments',
+	},
+	{
+		title: 'Consulta de documentación',
+		route: '/checklist',
+		icon: 'library',
+	},
+	{
+		title: 'Consulta de información',
+		route: '/checklist',
+		icon: 'info',
+	},
+	{
+		title: 'Catálogo',
+		route: '/checklist',
+		icon: 'catalogue',
+	},
+	{
+		title: 'Linea de tiempo',
+		route: '/timeline',
+		icon: 'timeLine',
+	},
+	{
+		title: 'Preguntas Frecuentes',
 		route: '/checklist',
 		icon: 'question',
 	},

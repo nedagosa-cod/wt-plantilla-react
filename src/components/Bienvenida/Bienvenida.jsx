@@ -13,7 +13,7 @@ export default function Bienvenida() {
 					onClick={() => {
 						setContador(contador + 1)
 					}}>
-					Counter
+					contador
 				</button>
 				<p>{contador}</p>
 			</div>

@@ -22,6 +22,7 @@ import PopNota from './PopNota'
 import ChangeSteep from './RightSide/componentes/ChangeSteep'
 import Estructure from './BigIcons/Estructure'
 import Note from './RightSide/componentes/Note'
+import Split from 'react-split'
 
 export default function Checklist({ dataCheckList }) {
 	const { theme, resetCheckList, activeInside } = useContext(CheckListContext)
@@ -248,8 +249,10 @@ export default function Checklist({ dataCheckList }) {
 	return (
 		<form className={'Checklist ' + theme}>
 			<section className="data">
-				<LeftSide title={dataCheckList.TITLE} data={dataCheckList.DESCRIPCIONES} />
-				<RightSide descripciones={descripciones} key="keyRightSide" />
+				<Split className="split" minSize={400} dragInterval={10}>
+					<LeftSide title={dataCheckList.TITLE} data={dataCheckList.DESCRIPCIONES} />
+					<RightSide descripciones={descripciones} key="keyRightSide" />
+				</Split>
 			</section>
 			<div className="Checklist__buttons">
 				<button
