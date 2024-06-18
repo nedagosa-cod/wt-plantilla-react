@@ -7,6 +7,7 @@ import 'animate.css'
 
 export const SessionAccess = ({ campana, segmento, version }) => {
 	const [active, setActive] = useState(false)
+	const [sessionValue, setSessionValue] = useState(sessionStorage.getItem('session'));
 	const [dataSession, setDataSession] = useState({
 		usuario: '',
 		campana: campana,
@@ -77,7 +78,7 @@ export const SessionAccess = ({ campana, segmento, version }) => {
 		backgroundPosition: 'center',
 	}
 
-	if (active) {
+	if (active && !sessionValue) {
 		return (
 			<div className="sessionRec" style={style}>
 				<div className="sessionRec__data">
