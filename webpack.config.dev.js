@@ -61,6 +61,11 @@ module.exports = {
 					to: 'noTocar/imagenes',
 					noErrorOnMissing: true,
 				},
+				{
+					from: path.join(__dirname, '/src/assets/files/plantillas'),
+					to: 'noTocar/plantillas',
+					noErrorOnMissing: true,
+				},
 			],
 		}),
 	],
