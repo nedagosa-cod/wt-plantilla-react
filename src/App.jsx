@@ -7,7 +7,6 @@ import imgBackgroundD from './assets/images/index/background.jpg'
 import Navbar from './components/Navbar/Navbar'
 import Bienvenida from './components/Bienvenida/Bienvenida'
 import Corrector from './components/Corrector/Corrector'
-import { SessionAccess } from './components/SessionAccess/SessionAccess'
 import GlobalContext, { GlobalProvider } from './context/GlobalContext'
 import CheckListBase from './components/Checklist/CheckListBase'
 import Testeos from './components/Test/Testeos'
@@ -27,9 +26,7 @@ const App = () => {
 	}
 	return (
 		<div className="app" style={style}>
-			<SessionAccess campana="Nombre Campaña" segmento="Nombre Segmento" version="1.0.0" />
 			<Navbar />
-
 			<Routes>
 				<Route path="/" element={<Bienvenida />} />
 				<Route path="/checklist" element={<CheckListBase checklist="ejemploA" />} />

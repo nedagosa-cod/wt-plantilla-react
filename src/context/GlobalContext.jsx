@@ -8,9 +8,9 @@ const WTLocalbase = new Localbase('db_nombre_campana')
 
 const GlobalProvider = ({ children }) => {
 	const [scheme, setScheme] = useState('light')
-	const templatesDDBB = ['arbol']
+	const templatesDDBB = ['arbol', 'ejemplo']
 	const maps = {
-		test: {
+		ejemplo: {
 			CODIGO: 'codigo',
 			DATOS: 'DATOS',
 			ESCALAMIENTO: 'ESCALAMIENTO',
