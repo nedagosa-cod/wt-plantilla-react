@@ -54,7 +54,6 @@ module.exports = {
 		new CleanWebpackPlugin(),
 		new HTMLWebpackPlugin({
 			template: path.join(__dirname, '/public/index.html'),
-			// favicon: './public/favicon.png',
 			filename: 'Web Training.html', //solo en produccion
 		}),
 		new MiniCssExtractPlugin({
