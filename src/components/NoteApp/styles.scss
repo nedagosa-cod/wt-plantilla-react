@@ -1,0 +1,348 @@
+@use '@styles/variables' as *;
+
+.noteApp-container {
+	width: 450px;
+	max-height: 100vh;
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 25px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 18px;
+	background: light-dark(rgba($w-color, 0.6), rgba($b-color, 0.6));
+	border-left: 2px solid rgba(255, 255, 255, 0.541);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	border-radius: 10px 0 0 10px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.411);
+	transition: all 0.3s ease-in-out;
+	z-index: 50;
+	&__addNote {
+		padding: 4px 8px;
+		background-color: $p-color;
+		display: flex;
+		gap: 8px;
+		align-items: center;
+		border-radius: 15px;
+		box-shadow: 1px 1px 3px #242424;
+		color: rgba(255, 255, 255, 0.719);
+		font-size: 1.6rem;
+		cursor: pointer;
+		transform: scale(1);
+		transition: all 0.3s ease-in-out;
+		& svg {
+			width: 20px;
+		}
+		&:hover {
+			transform: scale(1.1);
+			color: white;
+		}
+	}
+	&__tip {
+		padding: 8px;
+		font-size: 2rem;
+		font-weight: 600;
+		background-image: linear-gradient(45deg, rgba(255, 0, 0, 0.795), rgba(238, 25, 25, 0.685));
+		text-decoration: underline;
+		border-radius: 8px;
+		color: white;
+		text-shadow: 1px 1px 1px #242424;
+		& strong {
+			font-size: 2.3rem;
+			font-weight: 800;
+		}
+	}
+	&__noteContainer {
+		width: 100%;
+		padding: 0 16px 0 0;
+		overflow-y: auto;
+		scrollbar-width: thin;
+		scrollbar-color: $p-color $g2-color;
+		&-note {
+			margin: 80px 0;
+			position: relative;
+			animation: apareciendo 0.3s ease-in-out 1 forwards;
+			& textarea {
+				width: 100%;
+				height: 200px;
+				padding: 16px 32px 8px 48px;
+				border-radius: 4px 4px 20px 4px;
+				overflow-y: auto;
+				background-color: #ffefd5;
+
+				font-size: 1.6rem;
+				line-height: 4rem;
+				font-weight: 800;
+
+				box-shadow: 1px 1px 3px #242424;
+
+				resize: none; // Deshabilita el redimensionamiento predeterminado
+				position: relative; // Posicionamiento relativo para el pseudo-elemento
+				scrollbar-width: none;
+
+				&::placeholder {
+					opacity: 0.5;
+				}
+			}
+			& > button {
+				position: absolute;
+				bottom: -40px;
+				padding: 8px 16px;
+				background-color: $s-color;
+				border-radius: 10px;
+				box-shadow: 1px 1px 5px #5c5b5b;
+				color: rgba(255, 255, 255, 0.89);
+				font-size: 1.4rem;
+				font-weight: 800;
+				cursor: pointer;
+				transform: scale(1);
+				transition: all 0.3s ease-in-out;
+				&:hover {
+					color: white;
+					background-color: $s2-color;
+				}
+			}
+		}
+		&-esquina {
+			width: 30px;
+			height: 30px;
+			background-color: papayawhip;
+			position: absolute;
+			bottom: 0px;
+			right: 1px;
+			border-radius: 3px 3px 20px 3px;
+			border-left: 1px solid #242424;
+			border-top: 1px solid #242424;
+			box-shadow: -2px 0px 3px black;
+		}
+		&-color {
+			padding: 0 4px;
+			position: absolute;
+			top: -30px;
+			right: 5px;
+			background-color: white;
+			border-radius: 5px;
+			& label {
+				font-size: 1.4rem;
+				font-weight: 800;
+			}
+			& input[type='text'] {
+				padding: 8px;
+				font-size: 1.6rem;
+				font-weight: 800;
+				text-align: center;
+				&::placeholder {
+					opacity: 0.5;
+					text-align: center;
+				}
+			}
+		}
+		&-resize {
+			background: linear-gradient(to bottom, #00253d46, #00253d);
+			width: 25px;
+			height: 25px;
+			position: absolute;
+			left: 5px;
+			bottom: 5px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-radius: 50%;
+			box-shadow: 1px 1px 1px #242424;
+			cursor: ns-resize;
+			transition: all 0.3s ease-in;
+			&:hover {
+				background: linear-gradient(to bottom, #00253dab, #035b96);
+			}
+			&::after {
+				content: '⇳';
+				color: white;
+				text-shadow: black;
+				font-size: 2rem;
+				font-weight: 800;
+				border-radius: 1px;
+			}
+		}
+		&-mesagge {
+			width: 100%;
+			height: 100%;
+			padding: 32px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			display: flex;
+			flex-wrap: wrap;
+			align-items: flex-start;
+			justify-content: space-around;
+			background: rgba(255, 255, 255, 0.473);
+			border-left: 2px solid rgba(255, 255, 255, 0.541);
+			backdrop-filter: blur(2px);
+			-webkit-backdrop-filter: blur(10px);
+			border-radius: 4px 4px 15px 4px;
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.411);
+			transition: all 0.3s ease-in-out;
+			& p {
+				padding: 8px;
+				background-color: rgba(29, 29, 29, 0.541);
+				border-radius: 10px;
+				color: white;
+				font-weight: 800;
+				text-shadow: 1px 1px 1px black;
+				width: 100%;
+				font-size: 2rem;
+			}
+			& button {
+				width: 110px;
+				height: 30px;
+				padding: 0 8px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 12px;
+				border-radius: 5px;
+				background-color: rgba(141, 133, 133, 0.842);
+				color: #242424;
+				font-weight: 800;
+				font-size: 1.6rem;
+				box-shadow: 1px 1px 3px #242424;
+				cursor: pointer;
+				transition: all 0.3s ease-in-out;
+				& svg {
+					width: 20px;
+					height: 20px;
+					transition: all 0.2s ease-in-out;
+				}
+				&:hover {
+					color: white;
+				}
+				&:hover:nth-child(2) {
+					background-color: red;
+				}
+				&:hover:nth-child(3) {
+					background-color: green;
+				}
+			}
+		}
+	}
+
+	//boton
+
+	&__button {
+		background: none;
+		border: none;
+		position: absolute;
+		top: 0;
+		left: -80px;
+		&-glass {
+			position: absolute;
+			inset: 0;
+			background: linear-gradient(
+				90deg,
+				rgba(255, 255, 255, 0) 0%,
+				rgba(255, 255, 255, 0.888) 100%
+			);
+			transform: translate(0%, 100%) rotate(0deg);
+			transform-origin: bottom center;
+			transition: all 0.5s ease-in-out;
+		}
+		&-container-main {
+			aspect-ratio: 1;
+			border-radius: 50%;
+			box-shadow: 1px 4px 2px #242424, -2px -4px 2px #242424;
+			overflow: hidden;
+			position: relative;
+			display: grid;
+			place-content: center;
+			border-right: 6px solid rgba(255, 255, 255, 0.568);
+			border-left: 6px solid rgba(128, 128, 128, 0.147);
+			transform: rotate(-45deg);
+			transition: all 0.5s ease-in-out;
+		}
+		&-inner {
+			height: 40px;
+			aspect-ratio: 1;
+			border-radius: 50%;
+			position: relative;
+			box-shadow: rgba(100, 100, 111, 0.5) -10px 5px 10px 0px;
+			transition: all 0.5s ease-in-out;
+		}
+	}
+	&__back {
+		position: absolute;
+		inset: 0;
+		border-radius: 50%;
+		background: linear-gradient(60deg, rgb(1, 85, 103) 0%, rgb(147, 245, 255) 100%);
+	}
+	&__front {
+		position: absolute;
+		inset: 5px;
+		border-radius: 50%;
+		background: linear-gradient(60deg, rgb(0, 103, 140) 0%, rgb(58, 209, 233) 100%);
+		display: grid;
+		place-content: center;
+	}
+	&__svg {
+		stroke: #ffffff;
+		color: white;
+		opacity: 0.6;
+		width: 30px;
+		aspect-ratio: 1;
+		transform: rotate(45deg);
+		transition: all 0.2s ease-in;
+		z-index: 50;
+	}
+	&__bloom {
+		height: 1px;
+		width: 1px;
+		position: absolute;
+		background: white;
+		&-container {
+			position: relative;
+			transition: all 0.2s ease-in-out;
+			border: none;
+			background: none;
+			&:hover {
+				transform: scale(1.1);
+			}
+			&:hover .noteApp-container__button-glass {
+				transform: translate(0%, 15%);
+			}
+			&:hover .noteApp-container__svg {
+				opacity: 1;
+				filter: drop-shadow(0 0 10px white);
+			}
+			&:active {
+				transform: scale(0.7);
+			}
+			&:active .noteApp-container__button-inner {
+				transform: scale(0.7);
+			}
+		}
+		&--bloom1 {
+			top: 5px;
+			right: 10px;
+			box-shadow: rgb(255, 255, 255) 0px 0px 1px 1px, rgb(255, 255, 255) 0px 0px 4px 4px;
+		}
+		&--bloom2 {
+			bottom: 5px;
+			left: 10px;
+			box-shadow: rgba(255, 255, 255, 0.685) 0px 0px 3px 3px,
+				rgba(255, 255, 255, 0.733) 0px 0px 11px 7px;
+		}
+	}
+
+	//////// fin boton
+}
+
+@keyframes apareciendo {
+	from {
+		transform: scale(0.5);
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}

@@ -57,7 +57,7 @@ sendForm.addEventListener('submit', e => {
 	})
 	// https://retoolapi.dev/luBbwU/data
 	// http://colbogweb20:8081/Webservices_Simulador/api/main/insUpdTransaccion
-	fetch('http://colbogweb20:8081/Webservices_Simulador/api/main/insUpdTransaccion', {
+	fetch('https://retoolapi.dev/luBbwU/data', {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify(data),

@@ -26,7 +26,7 @@ export default function Navbar() {
 	const [windowDB, setWindowDB] = useState(false)
 	const [myNote, setMyNote] = useState(false)
 	const scrollContainerRef = useRef(null)
-	const { readExcelFile, templatesDDBB, setScheme } = useContext(GlobalContext)
+	const { readExcelFile, templatesDDBB, setScheme, showApp } = useContext(GlobalContext)
 
 	const openCloseNavBar = () => {
 		if (openNav) return setOpenNav(!openNav)
@@ -206,9 +206,9 @@ export default function Navbar() {
 				</button>
 				<button
 					className="sidebar__sets--btn"
-					name="theme"
+					name="note"
 					onClick={() => {
-						setMyNote(true)
+						showApp()
 					}}>
 					<IconNotes />
 				</button>

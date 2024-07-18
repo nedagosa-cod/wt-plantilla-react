@@ -14,9 +14,10 @@ import Notas from './components/Gestor_de_Notas/Notas'
 import { useContext } from 'react'
 import TimeLine from './components/TimeLine/TimeLine'
 import Tipificador from './components/Tipificador/Tipificador'
+import { NoteApp } from './components/NoteApp/NoteApp.jsx'
 
 const App = () => {
-	const { scheme } = useContext(GlobalContext)
+	const { scheme, activeAppNote } = useContext(GlobalContext)
 	const style = {
 		backgroundImage: `url(${scheme === 'light' ? imgBackground : imgBackgroundD})`,
 		backgroundSize: '100% 100%',
@@ -27,6 +28,8 @@ const App = () => {
 	return (
 		<div className="app" style={style}>
 			<Navbar />
+			{activeAppNote && <NoteApp />}
+
 			<Routes>
 				<Route path="/" element={<Bienvenida />} />
 				<Route path="/checklist" element={<CheckListBase checklist="ejemploA" />} />

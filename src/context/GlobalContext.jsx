@@ -8,6 +8,7 @@ const WTLocalbase = new Localbase('db_nombre_campana')
 
 const GlobalProvider = ({ children }) => {
 	const [scheme, setScheme] = useState('light')
+	const [activeAppNote, SetActiveAppNote] = useState(false)
 	const templatesDDBB = ['arbol', 'ejemplo']
 	const maps = {
 		ejemplo: {
@@ -81,7 +82,20 @@ const GlobalProvider = ({ children }) => {
 		}
 	}
 
-	const data = { templatesDDBB, WTLocalbase, readExcelFile, scheme, setScheme }
+	const showApp = () => {
+		SetActiveAppNote(!activeAppNote)
+		localStorage.setItem('visible', !activeAppNote)
+	}
+
+	const data = {
+		templatesDDBB,
+		WTLocalbase,
+		readExcelFile,
+		scheme,
+		setScheme,
+		showApp,
+		activeAppNote,
+	}
 	return <GlobalContext.Provider value={data}>{children}</GlobalContext.Provider>
 }
 
