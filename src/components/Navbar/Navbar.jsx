@@ -61,6 +61,75 @@ export default function Navbar() {
 			default:
 		}
 	}
+	const startDrive = () => {
+		const driverObj = driver({
+			showProgress: true,
+			showButtons: ['next', 'previous', 'close'],
+			popoverClass: 'driverjs-theme',
+			steps: [
+				{
+					element: '.sidebar',
+					popover: {
+						title: 'Barra de navegación',
+						description:
+							'En la barra de navegación encontrarás todos los tipos de procesos que gestionan en la operación, adicional del buscador, cambio de tema, corrector, entre otros.',
+					},
+				},
+				{
+					element: '#searcher',
+					popover: {
+						title: 'Buscador',
+						description:
+							'Al dar click se abrirá el buscador de la web training para traer o filtrar el dato que necesites por medio de una palabra clave.',
+					},
+				},
+				{
+					element: '.sidebar__links',
+					popover: {
+						title: 'Procesos',
+						description:
+							'En este apartado encontrarás todos los desarrollos de procesos identificados hasta la fecha, en ellos pueden haber: checklist, gestores de notas, tipificadores, versus, matrices, consultas de documentación entre otras.',
+					},
+				},
+				{
+					element: '.sidebar__sets',
+					popover: {
+						title: 'Configuraciones',
+						description:
+							'En este segundo menú podráz encontrar diferentes configuraciones de la web training y otros apartados como, corrector ortográfico, cambio de tema, carga de bases de datos y la guia de uso de la web y desarrollos.',
+					},
+				},
+				{
+					element: '#sideVersion',
+					popover: {
+						title: 'Versionado',
+						description:
+							'En el ultimo apartado de la barra de navegacion encontrarás la versión actual en la que se encuentra la web training, debes confirmar con tu formador en que versión se encuentra actualmente la web training para evitar procesos desactualizados.',
+					},
+				},
+			],
+		})
+		driverObj.drive()
+		// driverObj.highlight({
+		// 	element: '#sideVersion',
+		// 	popover: {
+		// 		title: 'Title',
+		// 		description: 'Description',
+		// 	},
+		// })
+	}
+	const handleDragOver = event => {
+		event.preventDefault() // Necesario para permitir el evento de soltar
+	}
+
+	const handleDrop = event => {
+		event.preventDefault()
+		const files = event.dataTransfer.files // Accede a los archivos arrastrados
+		if (files && files.length) {
+			const fileEvent = { target: { files } } // Simula el evento onChange del input
+			readExcelFile(fileEvent)
+		}
+	}
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -75,34 +144,12 @@ export default function Navbar() {
 			}
 		})
 
-		const driverObj = driver()
-		driverObj.highlight({
-			element: '#sideVersion',
-			popover: {
-				title: 'Title',
-				description: 'Description',
-			},
-		})
-
 		return () => {
 			if (scrollContainerRef.current) {
 				scrollContainerRef.current.removeEventListener('scroll', handleScroll)
 			}
 		}
 	}, [])
-
-	const handleDragOver = event => {
-		event.preventDefault() // Necesario para permitir el evento de soltar
-	}
-
-	const handleDrop = event => {
-		event.preventDefault()
-		const files = event.dataTransfer.files // Accede a los archivos arrastrados
-		if (files && files.length) {
-			const fileEvent = { target: { files } } // Simula el evento onChange del input
-			readExcelFile(fileEvent)
-		}
-	}
 
 	return (
 		<header className={'sidebar ' + openNav}>
@@ -165,7 +212,7 @@ export default function Navbar() {
 					}}>
 					<IconNotes />
 				</button>
-				<button className="sidebar__sets--btn" name="theme" onClick={setsClick}>
+				<button className="sidebar__sets--btn" name="theme" onClick={startDrive}>
 					<IconGuide />
 				</button>
 			</div>

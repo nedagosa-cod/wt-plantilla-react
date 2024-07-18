@@ -646,3 +646,68 @@
 .swal2-popup {
 	font-size: 2rem;
 }
+
+.driver-popover.driverjs-theme {
+	background-color: $p2-color;
+	color: $w-color;
+}
+
+.driver-popover.driverjs-theme .driver-popover-title {
+	font-size: 2rem;
+}
+
+.driver-popover.driverjs-theme .driver-popover-title,
+.driver-popover.driverjs-theme .driver-popover-description,
+.driver-popover.driverjs-theme .driver-popover-progress-text {
+	color: $w-color;
+	margin-right: 1rem;
+}
+
+.driver-popover.driverjs-theme button {
+	flex: 1;
+	text-align: center;
+	background-color: $w-color;
+	color: #000;
+	border: 2px solid $w-color;
+	text-shadow: none;
+	font-size: 14px;
+	padding: 5px 8px;
+	border-radius: 6px;
+}
+
+.driver-popover.driverjs-theme button:hover {
+	background-color: $p-color;
+	color: $w-color;
+}
+
+.driver-popover.driverjs-theme .driver-popover-navigation-btns {
+	justify-content: space-between;
+	gap: 3px;
+}
+
+.driver-popover.driverjs-theme .driver-popover-close-btn {
+	color: #9b9b9b;
+	background: transparent;
+	border: none;
+}
+
+.driver-popover.driverjs-theme .driver-popover-close-btn:hover {
+	color: $w-color;
+	background: transparent;
+}
+
+.driver-popover.driverjs-theme .driver-popover-arrow-side-left.driver-popover-arrow {
+	border-left-color: $p2-color;
+}
+
+.driver-popover.driverjs-theme .driver-popover-arrow-side-right.driver-popover-arrow {
+	border-right-color: $p2-color;
+}
+
+.driver-popover.driverjs-theme .driver-popover-arrow-side-top.driver-popover-arrow {
+	border-top-color: $p2-color;
+}
+
+.driver-popover.driverjs-theme .driver-popover-arrow-side-bottom.driver-popover-arrow {
+	border-bottom-color: $p2-color;
+}
