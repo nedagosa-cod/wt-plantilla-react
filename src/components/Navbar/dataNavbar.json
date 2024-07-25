@@ -1,0 +1,113 @@
+{
+	"SEGMENTS": [
+		{
+			"segment": "Personas",
+			"icon": "home"
+		},
+		{
+			"segment": "Empresas",
+			"icon": "checklist"
+		},
+		{
+			"segment": "Cuentas",
+			"icon": "note"
+		},
+		{
+			"segment": "Fidelizacion",
+			"icon": "tipify"
+		}
+	],
+	"NAVBAR": [
+		{
+			"title": "Inicio",
+			"route": "/",
+			"icon": "home"
+		},
+		{
+			"title": "CheckList",
+			"route": "/checklist",
+			"icon": "checklist",
+			"segments": ["Personas"],
+			"dropDown": [
+				{
+					"title": "Ejemplo A",
+					"route": "/checklist/ejemploA"
+				},
+				{
+					"title": "Ejemplo B",
+					"route": "/checklist/ejemploB"
+				}
+			]
+		},
+		{
+			"title": "Gestor de notas",
+			"route": "/checklist",
+			"icon": "note",
+			"segments": ["Fidelizacion"]
+		},
+		{
+			"title": "Tipificador",
+			"route": "/tipificador",
+			"icon": "tipify",
+			"segments": ["Fidelizacion"]
+		},
+		{
+			"title": "Calculadoras",
+			"route": "/checklist",
+			"icon": "calc",
+			"segments": ["Personas"],
+			"dropDown": [
+				{
+					"title": "Estandar",
+					"route": "/calculadoras/estandar"
+				}
+			]
+		},
+		{
+			"title": "Aplicativos web",
+			"route": "/checklist",
+			"icon": "web",
+			"segments": ["Fidelizacion"]
+		},
+		{
+			"title": "Corrector ortográfico",
+			"route": "/checklist",
+			"icon": "textSlash",
+			"segments": ["Fidelizacion"]
+		},
+		{
+			"title": "Scripts",
+			"route": "/checklist",
+			"icon": "comments",
+			"segments": ["Fidelizacion"]
+		},
+		{
+			"title": "Consulta de documentación",
+			"route": "/checklist",
+			"icon": "library"
+		},
+		{
+			"title": "Consulta de información",
+			"route": "/checklist",
+			"icon": "info",
+			"segments": ["Fidelizacion"]
+		},
+		{
+			"title": "Catálogo",
+			"route": "/checklist",
+			"icon": "catalogue"
+		},
+		{
+			"title": "Linea de tiempo",
+			"route": "/timeline",
+			"icon": "timeLine",
+			"segments": ["Fidelizacion"]
+		},
+		{
+			"title": "Preguntas Frecuentes",
+			"route": "/checklist",
+			"icon": "question",
+			"segments": ["Fidelizacion"]
+		}
+	]
+}

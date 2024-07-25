@@ -1,6 +1,6 @@
-export default function IconArrowUp() {
+export default function IconArrowUp({ className }) {
 	return (
-		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className={className}>
 			<defs>
 				<linearGradient id="miGradiente" x1="0%" y1="0%" x2="100%" y2="100%">
 					<stop offset="0%" style={{ stopColor: 'rgb(115,44,100)', stopOpacity: 1 }} />

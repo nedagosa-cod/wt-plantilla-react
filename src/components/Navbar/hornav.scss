@@ -1,0 +1,234 @@
+@use '../../styles/variables' as *;
+
+.hornav {
+	width: 100%;
+	height: 110px;
+	background: $w-color;
+	border-bottom: 2px solid $p-color;
+	box-shadow: 0 2px 0 0 $s-color;
+	&__segments {
+		color: $w-color;
+		ul {
+			display: flex;
+			align-items: center;
+			padding: 0 2rem;
+			gap: 2rem;
+			font-size: 1.4rem;
+			list-style: none;
+			height: 3.5rem;
+			background: $p-color;
+		}
+		&--li {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 98%;
+			color: white;
+			text-align: center;
+			height: 98%;
+			cursor: pointer;
+			&:hover {
+				color: $w-color;
+				background: $w-color;
+				border-top: 2px solid $w-color;
+				border-left: 2px solid $w-color;
+				border-right: 2px solid $w-color;
+				box-shadow: 0px 5px 10px -8px #240046;
+				background: $p2-color;
+				& svg path {
+					fill: url('#gr-light');
+				}
+			}
+			&.active {
+				background: $w-color;
+				color: $p-color;
+				border-top: 2px solid $p2-color;
+				border-left: 2px solid $p2-color;
+				border-right: 2px solid $p2-color;
+				box-shadow: 0px 5px 10px -8px #240046;
+				& svg {
+					& path {
+						fill: url('#gr-light');
+					}
+				}
+			}
+			& button {
+				cursor: pointer;
+				width: 100%;
+				height: 100%;
+			}
+			& svg {
+				width: 1.4rem;
+				margin: 0 0.6rem;
+				& path {
+					fill: url('#gr-white');
+				}
+			}
+		}
+	}
+	&__links {
+		display: flex;
+		align-items: center;
+		height: 7.5rem;
+		width: 100%;
+		padding: 0 2rem;
+		& ul {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			font-size: 1.4rem;
+			width: 70%;
+			height: 5.6rem;
+			padding: 0 0 0 2rem;
+			background: $p-color;
+			gap: 2rem;
+			color: $w-color;
+			list-style: none;
+			overflow-y: hidden;
+			overflow-x: hidden;
+			scrollbar-width: thin;
+			white-space: nowrap;
+			border-radius: 6rem;
+			-webkit-border-radius: 6rem;
+			-moz-border-radius: 6rem;
+			-ms-border-radius: 6rem;
+			-o-border-radius: 6rem;
+		}
+		&--li {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			cursor: pointer;
+			height: 100%;
+			&:hover {
+				color: $p-color;
+				background: $w-color;
+				& svg path {
+					fill: url('#gr-light');
+				}
+			}
+			& svg {
+				margin: 0 0.6rem;
+				width: 1.6rem;
+				& path {
+					fill: url('#gr-white');
+				}
+			}
+			& a {
+				width: max-content;
+			}
+		}
+		.hornav__links--search {
+			position: relative;
+			background: linear-gradient(135deg, $p-color 0%, $p-color 100%);
+			border-radius: 1000px;
+			padding: 10px;
+			display: grid;
+			place-content: center;
+			z-index: 0;
+			min-width: 200px;
+		}
+
+		.search__container {
+			position: relative;
+			width: 100%;
+			border-radius: 50px;
+			background: linear-gradient(135deg, $p2-color 0%, $p-color 100%);
+			padding: 5px;
+			height: 3.6rem;
+			display: flex;
+			align-items: center;
+			&--input {
+				width: 100%;
+				background: linear-gradient(135deg, $p2-color 0%, $p-color 100%);
+				border: none;
+				color: $w-color;
+				font-size: 1.6rem;
+				border-radius: 50px;
+				padding-left: 1rem;
+				&:focus {
+					outline: none;
+					background: linear-gradient(135deg, $p2-color 0%, $p-color 100%);
+				}
+			}
+			&--icon {
+				width: 50px;
+				aspect-ratio: 1;
+				border-left: 2px solid white;
+				border-top: 3px solid transparent;
+				border-bottom: 3px solid transparent;
+				border-radius: 50%;
+				padding-left: 12px;
+				margin-right: 10px;
+				&:hover {
+					border-left: 3px solid white;
+				}
+			}
+			& path {
+				fill: white;
+			}
+		}
+
+		.search__container::after,
+		.search__container::before {
+			content: '';
+			width: 100%;
+			height: 100%;
+			border-radius: inherit;
+			position: absolute;
+		}
+
+		.search__container::before {
+			top: -1px;
+			left: -1px;
+			background: linear-gradient(0deg, $p2-color 0%, rgb(255, 255, 255) 100%);
+			z-index: -1;
+		}
+
+		.search__container::after {
+			bottom: -1px;
+			right: -1px;
+			background: linear-gradient(0deg, rgb(211, 163, 255) 0%, rgb(235, 211, 255) 100%);
+
+			z-index: -2;
+		}
+	}
+	&__logos {
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+		width: 30%;
+		height: 100%;
+		& figure {
+			width: 8rem;
+		}
+		&--title {
+			font-size: 5rem;
+			margin-left: 2rem;
+		}
+		&--version {
+			color: $w-color;
+			font-weight: 800;
+			border: 1px solid $p-color;
+			background: $s-color;
+			font-size: 1.6rem;
+			padding: 0 1rem;
+			border-radius: 2rem;
+			-webkit-border-radius: 2rem;
+			-moz-border-radius: 2rem;
+			-ms-border-radius: 2rem;
+			-o-border-radius: 2rem;
+		}
+	}
+}
+
+// antes de 1366px ejecuta estos estilos
+@media only screen and (max-width: 1366px) {
+	.hornav {
+		&__logos {
+			&--title {
+				font-size: 2rem;
+			}
+		}
+	}
+}

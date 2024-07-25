@@ -67,6 +67,36 @@
 			display: none;
 		}
 	}
+	&.h {
+		flex-direction: column;
+		// & .welcome {
+		// 	height: calc(100% - 110px);
+		// }
+		& .checklist-container {
+			height: 100%;
+		}
+		// & .tipificador-container {
+		// 	height: calc(100% - 110px);
+		// 	padding: 0;
+		// 	& .tipificador {
+		// 		height: auto;
+		// 	}
+		// }
+		// &.corrector-ortografico {
+		// 	height: calc(100% - 110px);
+		// }
+		& .app__body {
+			width: 98%;
+			background: $w-color;
+			height: calc(96% - 110px);
+			margin: auto;
+			border-radius: 1.8rem;
+			-webkit-border-radius: 1.8rem;
+			-moz-border-radius: 1.8rem;
+			-ms-border-radius: 1.8rem;
+			-o-border-radius: 1.8rem;
+		}
+	}
 	transition: all 0.5s ease-in-out;
 	-webkit-transition: all 0.5s ease-in-out;
 	-moz-transition: all 0.5s ease-in-out;
