@@ -80,18 +80,20 @@ const HorNav = () => {
 				</nav>
 			)}
 			<nav className="hornav__links">
-				<ul ref={scrollContainerRef} onWheel={handleScroll}>
-					{DATANAV.NAVBAR.map((link, i) => {
-						if (link.segments == undefined || link.segments.includes(navSegment)) {
-							return (
-								<li key={i} className="hornav__links--li">
-									{selectIcon[link.icon]}
-									<Link to={link.route}>{link.title}</Link>
-								</li>
-							)
-						}
-					})}
-					<li class="hornav__links--search">
+				<div className="hornav__links--container">
+					<ul ref={scrollContainerRef} onWheel={handleScroll}>
+						{DATANAV.NAVBAR.map((link, i) => {
+							if (link.segments == undefined || link.segments.includes(navSegment)) {
+								return (
+									<li key={i} className="hornav__links--li">
+										{selectIcon[link.icon]}
+										<Link to={link.route}>{link.title}</Link>
+									</li>
+								)
+							}
+						})}
+					</ul>
+					<div class="hornav__links--search">
 						<div class="search__container">
 							<input class="search__container--input" type="text" />
 							<svg viewBox="0 0 24 24" class="search__container--icon">
@@ -100,8 +102,8 @@ const HorNav = () => {
 								</g>
 							</svg>
 						</div>
-					</li>
-				</ul>
+					</div>
+				</div>
 				<div className="hornav__logos">
 					<figure>
 						<img src={imgLogo} alt="logo" />

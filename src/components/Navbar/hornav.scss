@@ -72,22 +72,34 @@
 		height: 7.5rem;
 		width: 100%;
 		padding: 0 2rem;
-		& ul {
+		&--container {
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
 			font-size: 1.4rem;
 			width: 70%;
-			height: 5.6rem;
-			padding: 0 0 0 2rem;
 			background: $p-color;
-			gap: 2rem;
 			color: $w-color;
-			list-style: none;
-			overflow-y: hidden;
-			overflow-x: hidden;
-			scrollbar-width: thin;
-			white-space: nowrap;
+			height: 5.6rem;
+			& ul {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				width: 75%;
+				height: 5.6rem;
+				background: $p2-color;
+				gap: 2rem;
+				list-style: none;
+				overflow-y: hidden;
+				overflow-x: hidden;
+				scrollbar-width: thin;
+				white-space: nowrap;
+				border-radius: 6rem;
+				-webkit-border-radius: 6rem;
+				-moz-border-radius: 6rem;
+				-ms-border-radius: 6rem;
+				-o-border-radius: 6rem;
+			}
 			border-radius: 6rem;
 			-webkit-border-radius: 6rem;
 			-moz-border-radius: 6rem;
@@ -100,6 +112,7 @@
 			align-items: center;
 			cursor: pointer;
 			height: 100%;
+			padding: 0 1rem;
 			&:hover {
 				color: $p-color;
 				background: $w-color;
@@ -228,6 +241,14 @@
 		&__logos {
 			&--title {
 				font-size: 2rem;
+			}
+		}
+		&__links {
+			& .hornav__links--search {
+				width: 25%;
+			}
+			& .search__container {
+				min-width: 90%;
 			}
 		}
 	}

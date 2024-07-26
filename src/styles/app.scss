@@ -3,11 +3,12 @@
 .app {
 	display: flex;
 	height: 100vh;
+	&__body {
+		width: 100%;
+	}
 	& .welcome {
 		display: flex;
-		flex-direction: column;
 		align-items: center;
-		justify-content: center;
 		font-weight: bold;
 		width: 100%;
 		height: 100vh;
@@ -15,44 +16,26 @@
 		color: light-dark($b-color, $w-color);
 		& span {
 			display: block;
-			font-size: 8rem;
+			font-size: 6rem;
+			color: $p-color;
+			&:nth-child(2) {
+				margin-bottom: 2rem;
+			}
 		}
 
 		& p {
-			font-size: 2.6rem;
+			font-size: 3rem;
 			text-wrap: balance;
+			color: $s-color;
 		}
 
-		& .contador {
+		&__content {
+			width: 40%;
 			display: flex;
-			gap: 1.2rem;
-			margin: 2rem 0;
+			flex-direction: column;
 			align-items: center;
-			& button {
-				cursor: pointer;
-				font-size: 4rem;
-				background: light-dark($p-color, $s-color);
-				color: light-dark($w-color, $w-color);
-				border-radius: 0.8rem;
-				-webkit-border-radius: 0.8rem;
-				-moz-border-radius: 0.8rem;
-				-ms-border-radius: 0.8rem;
-				-o-border-radius: 0.8rem;
-				padding: 0.8rem 1.2rem;
-				&:hover {
-					box-shadow: 0 4px 4px rgba(0, 0, 0, 0.5);
-				}
-			}
-
-			& p {
-				text-align: center;
-				font-size: 4rem;
-				width: 6rem;
-
-				&:focus {
-					outline: none;
-				}
-			}
+			justify-content: center;
+			padding-left: 2rem;
 		}
 	}
 
@@ -69,23 +52,24 @@
 	}
 	&.h {
 		flex-direction: column;
-		// & .welcome {
-		// 	height: calc(100% - 110px);
-		// }
+		& .welcome {
+			height: 100%;
+		}
 		& .checklist-container {
 			height: 100%;
 		}
-		// & .tipificador-container {
-		// 	height: calc(100% - 110px);
-		// 	padding: 0;
-		// 	& .tipificador {
-		// 		height: auto;
-		// 	}
-		// }
-		// &.corrector-ortografico {
-		// 	height: calc(100% - 110px);
-		// }
+		& .tipificador-container {
+			height: 100%;
+			padding: 0;
+			& .tipificador {
+				height: auto;
+			}
+		}
+		&.corrector-ortografico {
+			height: 100%;
+		}
 		& .app__body {
+			overflow: hidden;
 			width: 98%;
 			background: $w-color;
 			height: calc(96% - 110px);
@@ -102,4 +86,21 @@
 	-moz-transition: all 0.5s ease-in-out;
 	-ms-transition: all 0.5s ease-in-out;
 	-o-transition: all 0.5s ease-in-out;
+}
+
+// antes de 1366px ejecuta estos estilos
+@media only screen and (max-width: 1366px) {
+	.app {
+		& .welcome {
+			& span {
+				font-size: 4.8rem;
+			}
+			& p {
+				font-size: 1.8rem;
+			}
+			&__content {
+				width: 40%;
+			}
+		}
+	}
 }
