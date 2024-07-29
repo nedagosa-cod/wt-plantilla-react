@@ -27,6 +27,7 @@
 			text-align: center;
 			height: 98%;
 			cursor: pointer;
+			border: 2px solid transparent;
 			&:hover {
 				color: $w-color;
 				background: $w-color;
@@ -81,24 +82,27 @@
 			background: $p-color;
 			color: $w-color;
 			height: 5.6rem;
+			position: relative;
 			& ul {
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
-				width: 75%;
+				width: 100%;
 				height: 5.6rem;
-				background: $p2-color;
 				gap: 2rem;
 				list-style: none;
 				overflow-y: hidden;
-				overflow-x: hidden;
-				scrollbar-width: thin;
+				overflow-x: auto;
 				white-space: nowrap;
-				border-radius: 6rem;
-				-webkit-border-radius: 6rem;
-				-moz-border-radius: 6rem;
-				-ms-border-radius: 6rem;
-				-o-border-radius: 6rem;
+				scroll-behavior: smooth;
+
+				&::-webkit-scrollbar {
+					height: 4px;
+					background-color: $p-color; /* or add it to the track */
+				}
+				&::-webkit-scrollbar-thumb {
+					background: $s-color;
+				}
 			}
 			border-radius: 6rem;
 			-webkit-border-radius: 6rem;
@@ -120,16 +124,108 @@
 					fill: url('#gr-light');
 				}
 			}
+			&.active {
+				color: $p-color;
+				background: $w-color;
+				& svg path {
+					fill: url('#gr-light');
+				}
+			}
 			& svg {
 				margin: 0 0.6rem;
 				width: 1.6rem;
 				& path {
 					fill: url('#gr-white');
 				}
+				&:nth-child(2) {
+					width: 1.2rem;
+				}
 			}
 			& a {
-				width: max-content;
+				width: 100%;
+				display: flex;
+				align-items: center;
+				height: 100%;
 			}
+			& button {
+				width: 100%;
+				display: flex;
+				align-items: center;
+				height: 100%;
+			}
+			& .hornav-dropdown {
+				position: absolute;
+				display: none;
+				gap: 2rem;
+				top: 6.6rem;
+				left: 0;
+				width: 100%;
+				height: max-content;
+				background: $s-color;
+				z-index: 10;
+				-webkit-box-shadow: 8px 8px 20px -9px rgba(27, 27, 27, 1);
+				-moz-box-shadow: 8px 8px 20px -9px rgba(27, 27, 27, 1);
+				box-shadow: 8px 8px 20px -9px rgba(27, 27, 27, 1);
+				&.active {
+					display: flex;
+				}
+				&__li {
+					display: flex;
+					width: 100%;
+					text-align: center;
+					padding: 1rem;
+					padding: 3rem;
+
+					&.li-menu {
+						flex-direction: column;
+						justify-content: center;
+						align-items: center;
+						& svg {
+							width: 12rem;
+						}
+						& span {
+							font-size: 3.6rem;
+						}
+						& figure {
+							width: 200px;
+						}
+					}
+					&.li-submenu {
+						font-size: 1.6rem;
+						justify-content: center;
+						align-items: center;
+						flex-wrap: wrap;
+						gap: 1rem;
+					}
+					& a {
+						width: 45%;
+						height: 6rem;
+						display: flex;
+						justify-content: center;
+						background: $w-color;
+						color: $p-color;
+						padding: 1rem;
+						&:hover {
+							background: $p-color;
+							color: $w-color;
+							-webkit-box-shadow: 8px 8px 24px -17px rgba(66, 68, 90, 1);
+							-moz-box-shadow: 8px 8px 24px -17px rgba(66, 68, 90, 1);
+							box-shadow: 8px 8px 24px -17px rgba(66, 68, 90, 1);
+						}
+					}
+				}
+			}
+		}
+		&--boxul {
+			width: 75%;
+			height: 5.6rem;
+			padding: 0 2.4rem;
+			background: $p2-color;
+			border-radius: 6rem;
+			-webkit-border-radius: 6rem;
+			-moz-border-radius: 6rem;
+			-ms-border-radius: 6rem;
+			-o-border-radius: 6rem;
 		}
 		.hornav__links--search {
 			position: relative;
@@ -216,13 +312,13 @@
 			width: 8rem;
 		}
 		&--title {
-			font-size: 5rem;
+			font-size: 4rem;
 			margin-left: 2rem;
 		}
 		&--version {
 			color: $w-color;
 			font-weight: 800;
-			border: 1px solid $p-color;
+			border: 4px solid $p-color;
 			background: $s-color;
 			font-size: 1.6rem;
 			padding: 0 1rem;

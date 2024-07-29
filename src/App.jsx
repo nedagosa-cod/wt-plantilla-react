@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 
 import imgBackground from './assets/images/index/backgroundLight.jpg'
 import imgBackgroundD from './assets/images/index/background.jpg'
+import imgApp from './assets/images/index/backApp.jpg'
 
 import Navbar from './components/Navbar/Navbar'
 import Bienvenida from './components/Bienvenida/Bienvenida'
@@ -22,18 +23,21 @@ import HorNav from './components/Navbar/HorNav.jsx'
 const App = () => {
 	const { scheme, activeAppNote } = useContext(GlobalContext)
 	const style = {
-		backgroundImage: `url(${scheme === 'dark' ? imgBackground : imgBackgroundD})`,
-		backgroundSize: '100% 100%',
-		backgroundRepeat: 'no-repeat',
-		backgroundPosition: 'center',
-		colorScheme: scheme,
+		app: {
+			backgroundImage: `url(${scheme === 'dark' ? imgBackground : imgBackgroundD})`,
+			colorScheme: scheme,
+		},
+		body: {
+			backgroundImage: `url(${imgApp})`,
+			colorScheme: scheme,
+		},
 	}
 	return (
-		<div className="app h" style={style}>
+		<div className="app h" style={style.app}>
 			{/* <Navbar /> */}
 			<HorNav />
 			{activeAppNote && <NoteApp />}
-			<section className="app__body">
+			<section className="app__body" style={style.body}>
 				<Routes>
 					<Route path="/" element={<Bienvenida />} />
 					<Route path="/checklist" element={<CheckListBase checklist="ejemploA" />} />

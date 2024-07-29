@@ -30,8 +30,32 @@
 			"segments": ["Personas"],
 			"dropDown": [
 				{
-					"title": "Ejemplo A",
+					"title": "Creación de cuenta A",
 					"route": "/checklist/ejemploA"
+				},
+				{
+					"title": "Temporalidad B",
+					"route": "/checklist/ejemploB"
+				},
+				{
+					"title": "Cruce de cuentas B",
+					"route": "/checklist/ejemploB"
+				},
+				{
+					"title": "Reporte de facturación B",
+					"route": "/checklist/ejemploB"
+				},
+				{
+					"title": "Ejemplo B",
+					"route": "/checklist/ejemploB"
+				},
+				{
+					"title": "Ejemplo B",
+					"route": "/checklist/ejemploB"
+				},
+				{
+					"title": "Ejemplo B",
+					"route": "/checklist/ejemploB"
 				},
 				{
 					"title": "Ejemplo B",
@@ -49,13 +73,13 @@
 			"title": "Tipificador",
 			"route": "/tipificador",
 			"icon": "tipify",
-			"segments": ["Fidelizacion"]
+			"segments": ["Personas"]
 		},
 		{
 			"title": "Calculadoras",
 			"route": "/checklist",
 			"icon": "calc",
-			"segments": ["Personas"],
+			"segments": ["Fidelizacion"],
 			"dropDown": [
 				{
 					"title": "Estandar",
