@@ -148,6 +148,7 @@
 				height: 100%;
 			}
 			& button {
+				cursor: pointer;
 				width: 100%;
 				display: flex;
 				align-items: center;
@@ -155,19 +156,27 @@
 			}
 			& .hornav-dropdown {
 				position: absolute;
-				display: none;
+				// display: none;
 				gap: 2rem;
 				top: 6.6rem;
 				left: 0;
 				width: 100%;
 				height: max-content;
+				min-height: 400px;
 				background: $s-color;
+				background-image: url('../../assets/images/index/DropDownBoard.png');
+				background-repeat: no-repeat;
+				background-position: center;
+				background-size: 100% 100%;
+				border: 1px solid $s-color;
 				z-index: 10;
 				-webkit-box-shadow: 8px 8px 20px -9px rgba(27, 27, 27, 1);
 				-moz-box-shadow: 8px 8px 20px -9px rgba(27, 27, 27, 1);
 				box-shadow: 8px 8px 20px -9px rgba(27, 27, 27, 1);
 				&.active {
 					display: flex;
+				}
+				&.bacdrop {
 				}
 				&__li {
 					display: flex;

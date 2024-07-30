@@ -25,6 +25,8 @@ const HorNav = () => {
 	const scrollContainerRef = useRef(null)
 	const dropDownRef = useRef(null)
 	const [dropDown, setDropDown] = useState(false)
+	const [hidden, setHidden] = useState(true)
+	const [turnDropDown, setTurnDropDown] = useState('')
 	const [dataSearch, setDataSearch] = useState('')
 	const [navSegment, SetNavSegment] = useState(DATANAV.SEGMENTS[0].segment)
 	const [selectIcon, setSelectIcon] = useState({
@@ -71,9 +73,37 @@ const HorNav = () => {
 		}
 	}
 	const handleOutsideClick = event => {
-		if (dropDownRef.current && !dropDownRef.current.contains(event.target)) {
+		if (
+			dropDownRef.current &&
+			!dropDownRef.current.contains(event.target) &&
+			!dropDownRef.current.parentNode.contains(event.target)
+		) {
 			setDropDown(false)
 		}
+	}
+	const activeDropDown = drop => {
+		setHidden(!hidden)
+		setDropDown(!dropDown)
+		setTurnDropDown(drop)
+		// if (hidden) {
+		// 	setHidden(!hidden)
+		// 	if (!dropDown) {
+		// 		setDropDown(!dropDown)
+		// 		setTurnDropDown(drop)
+		// 	} else {
+		// 		setTimeout(() => {
+		// 			setDropDown(!dropDown)
+		// 			setTurnDropDown(drop)
+		// 		}, 300)
+		// 	}
+		// } else {
+		// 	console.log('no active')
+		// 	setHidden(true)
+		// 	setTimeout(() => {
+		// 		setDropDown(true)
+		// 		setTurnDropDown(drop)
+		// 	}, 300)
+		// }
 	}
 	document.addEventListener('mousedown', handleOutsideClick)
 	return (
@@ -101,18 +131,29 @@ const HorNav = () => {
 								if (link.segments == undefined || link.segments.includes(navSegment)) {
 									if (link.dropDown) {
 										return (
-											<li key={i} className={'hornav__links--li' + (dropDown ? ' active ' : '')}>
-												<button onClick={() => setDropDown(!dropDown)}>
+											<li key={i} className={'hornav__links--li'}>
+												<button
+													onClick={e => {
+														e.target.parentNode.classList.toggle('active')
+														e.target.nextElementSibling &&
+															e.target.nextElementSibling.classList.replace(
+																'animate__fadeInDown',
+																'animate__fadeOutUp'
+															)
+														activeDropDown(link.title)
+													}}>
 													{selectIcon[link.icon]}
 													{link.title}
 													<IconArrowDown />
 												</button>
+												{/* {turnDropDown === link.title && dropDown && (
+													)} */}
 												<ul
 													ref={dropDownRef}
 													className={
 														'hornav-dropdown' +
 														(dropDown
-															? ' active animate__animated animate__zoomInDown animate__fast'
+															? ' active animate__animated animate__fadeInDown animate__faster'
 															: '')
 													}>
 													<li className="hornav-dropdown__li li-menu">
@@ -124,7 +165,7 @@ const HorNav = () => {
 													<li className="hornav-dropdown__li li-submenu">
 														{link.dropDown.map((linkk, l) => {
 															return (
-																<Link to={linkk.route} key={l}>
+																<Link to={linkk.route} key={l} onClick={() => setDropDown(false)}>
 																	{selectIcon[linkk.icon]} {linkk.title}
 																</Link>
 															)

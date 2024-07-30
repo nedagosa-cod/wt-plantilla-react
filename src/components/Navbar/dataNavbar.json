@@ -79,7 +79,7 @@
 			"title": "Calculadoras",
 			"route": "/checklist",
 			"icon": "calc",
-			"segments": ["Fidelizacion"],
+			"segments": ["Personas"],
 			"dropDown": [
 				{
 					"title": "Estandar",
