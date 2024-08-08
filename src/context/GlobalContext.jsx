@@ -82,9 +82,14 @@ const GlobalProvider = ({ children }) => {
 		}
 	}
 
-	const showApp = () => {
-		SetActiveAppNote(!activeAppNote)
-		localStorage.setItem('visible', !activeAppNote)
+	const showApp = bool => {
+		if (bool == false || bool == true) {
+			SetActiveAppNote(bool)
+			localStorage.setItem('visible', bool)
+		} else {
+			SetActiveAppNote(!activeAppNote)
+			localStorage.setItem('visible', !activeAppNote)
+		}
 	}
 
 	const data = {

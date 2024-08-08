@@ -12,7 +12,7 @@ import GlobalContext, { GlobalProvider } from './context/GlobalContext'
 import CheckListBase from './components/Checklist/CheckListBase'
 import Testeos from './components/Test/Testeos'
 import Notas from './components/Gestor_de_Notas/Notas'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import TimeLine from './components/TimeLine/TimeLine'
 import Tipificador from './components/Tipificador/Tipificador'
 import { NoteApp } from './components/NoteApp/NoteApp.jsx'
@@ -21,7 +21,7 @@ import IconArrowUp from './icons/IconArrowUp.jsx'
 import HorNav from './components/Navbar/HorNav.jsx'
 
 const App = () => {
-	const { scheme, activeAppNote } = useContext(GlobalContext)
+	const { scheme, activeAppNote, showApp } = useContext(GlobalContext)
 	const style = {
 		app: {
 			backgroundImage: `url(${scheme === 'dark' ? imgBackground : imgBackgroundD})`,
@@ -32,6 +32,13 @@ const App = () => {
 			colorScheme: scheme,
 		},
 	}
+	useEffect(() => {
+		document.body.addEventListener('keydown', e => {
+			if (e.key == 'Escape') {
+				showApp(false)
+			}
+		})
+	})
 	return (
 		<div className="app h" style={style.app}>
 			{/* <Navbar /> */}

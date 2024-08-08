@@ -242,7 +242,6 @@ export default function Navbar() {
 						</div>
 						<div className="templates-xls--right">
 							<span>Plantillas</span>
-							{console.log(templatesDDBB.length)}
 							{templatesDDBB.length > 0 ? (
 								templatesDDBB.map((template, i) => {
 									return (

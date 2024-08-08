@@ -47,7 +47,7 @@ sendForm.addEventListener('submit', e => {
 		usuario: e.target.elements[0].value,
 		campana: e.target.elements[1].value,
 		modulo: e.target.elements[2].value,
-		observaciones: e.target.elements[3].value,
+		observaciones: 'v1.0.0',
 	}
 	e.target.parentNode.parentNode.remove()
 	showModal({
