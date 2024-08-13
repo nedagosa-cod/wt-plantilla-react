@@ -1,5 +1,5 @@
 import './styles.scss'
-import projectNavbar from './dataNavbar'
+import projectNavbar from './dataNavbar.json'
 import { useContext, useEffect, useRef, useState } from 'react'
 import DropDown from './DropDown'
 import LinkRoute from './LinkRoute'
@@ -179,7 +179,7 @@ export default function Navbar() {
 			{/* {contenido} */}
 			<ul className="sidebar__links" ref={scrollContainerRef}>
 				{projectNavbar &&
-					projectNavbar.map((link, i) => {
+					projectNavbar.NAVBAR.map((link, i) => {
 						if (link.dropDown) {
 							return <DropDown key={i} link={link} pos={i} scroll={scrollPx} />
 						} else {

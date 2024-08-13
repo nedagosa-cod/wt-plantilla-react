@@ -5,6 +5,7 @@ import imgBackground from './assets/images/index/backgroundLight.jpg'
 import imgBackgroundD from './assets/images/index/background.jpg'
 import imgApp from './assets/images/index/backApp.jpg'
 
+import dataNavbar from './components/Navbar/dataNavbar.json'
 import Navbar from './components/Navbar/Navbar'
 import Bienvenida from './components/Bienvenida/Bienvenida'
 import Corrector from './components/Corrector/Corrector'
@@ -46,6 +47,9 @@ const App = () => {
 			{activeAppNote && <NoteApp />}
 			<section className="app__body" style={style.body}>
 				<Routes>
+					{dataNavbar.SEGMENTS.map((segment, i) => {
+						return <Route key={i} path={'/' + segment.segment} element={<Bienvenida />} />
+					})}
 					<Route path="/" element={<Bienvenida />} />
 					<Route path="/checklist" element={<CheckListBase checklist="ejemploA" />} />
 					<Route path="/checklist/ejemploA" element={<CheckListBase checklist="ejemploA" />} />

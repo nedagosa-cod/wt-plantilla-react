@@ -1,7 +1,6 @@
 import './hornav.scss'
 import 'animate.css'
 import DATANAV from './dataNavbar.json'
-import { useContext, useEffect, useRef, useState } from 'react'
 import IconHome from '../../icons/IconHome'
 import IconCircleQuestion from '../../icons/IconCircleQuestion'
 import IconCheckList from '../../icons/IconCheckList'
@@ -9,7 +8,6 @@ import IconTextSlash from '../../icons/IconTextSlash'
 import IconNote from '../../icons/IconNote'
 import IconTipify from '../../icons/IconTipify'
 import IconCalculator from '../../icons/IconCalculator'
-import { Link, useNavigate } from 'react-router-dom'
 import IconTimeLine from '../../icons/IconTimeLine'
 import IconCatalog from '../../icons/IconCatalog'
 import IconInfo from '../../icons/IconInfo'
@@ -18,6 +16,8 @@ import IconCommets from '../../icons/IconCommets'
 import IconWeb from '../../icons/IconWeb'
 import imgLogo from '../../assets/images/index/logoSIn.png'
 import IconArrowDown from '../../icons/IconArrowDown'
+import { useContext, useEffect, useRef, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
 import realIconCheck from '../../assets/images/index/realIconCheck.png'
 import IconNotes from '../../icons/IconNotes'
@@ -27,6 +27,8 @@ import IconUpload from '../../icons/IconUpload'
 import InconSpell from '../../icons/InconSpell'
 import IconGuide from '../../icons/IconGuide'
 import { createPortal } from 'react-dom'
+import { driver } from 'driver.js'
+import 'driver.js/dist/driver.css'
 
 const HorNav = () => {
 	const navigate = useNavigate()
@@ -133,6 +135,63 @@ const HorNav = () => {
 			readExcelFile(fileEvent)
 		}
 	}
+	const startDrive = () => {
+		const driverObj = driver({
+			showProgress: true,
+			showButtons: ['next', 'previous', 'close'],
+			popoverClass: 'driverjs-theme',
+			steps: [
+				{
+					element: '.hornav',
+					popover: {
+						title: 'Barra de navegación',
+						description:
+							'En la barra de navegación encontrarás todos los tipos de procesos que gestionan en la operación, adicional del buscador, cambio de tema, corrector, entre otros.',
+					},
+				},
+				{
+					element: '.hornav__links--search',
+					popover: {
+						title: 'Buscador',
+						description:
+							'Al dar click se abrirá el buscador de la web training para traer o filtrar el dato que necesites por medio de una palabra clave.',
+					},
+				},
+				{
+					element: '.hornav__links',
+					popover: {
+						title: 'Procesos',
+						description:
+							'En este apartado encontrarás todos los desarrollos de procesos identificados hasta la fecha, en ellos pueden haber: checklist, gestores de notas, tipificadores, versus, matrices, consultas de documentación entre otras.',
+					},
+				},
+				{
+					element: '.settings',
+					popover: {
+						title: 'Configuraciones',
+						description:
+							'En este segundo menú podráz encontrar diferentes configuraciones de la web training y otros apartados como, corrector ortográfico, cambio de tema, carga de bases de datos y la guia de uso de la web y desarrollos.',
+					},
+				},
+				{
+					element: '.hornav__logos',
+					popover: {
+						title: 'Versionado',
+						description:
+							'En el ultimo apartado de la barra de navegacion encontrarás la versión actual en la que se encuentra la web training, debes confirmar con tu formador en que versión se encuentra actualmente la web training para evitar procesos desactualizados.',
+					},
+				},
+			],
+		})
+		driverObj.drive()
+		// driverObj.highlight({
+		// 	element: '#sideVersion',
+		// 	popover: {
+		// 		title: 'Title',
+		// 		description: 'Description',
+		// 	},
+		// })
+	}
 	useEffect(() => {
 		document.body.addEventListener('keydown', e => {
 			if (e.key == 'Escape') {
@@ -147,7 +206,10 @@ const HorNav = () => {
 					<ul>
 						{DATANAV.SEGMENTS.map((segment, i) => (
 							<li
-								onClick={() => SetNavSegment(segment.segment)}
+								onClick={() => {
+									SetNavSegment(segment.segment)
+									navigate('/' + segment.segment.toLowerCase())
+								}}
 								key={i}
 								className={
 									'hornav__segments--li' + (segment.segment === navSegment ? ' active' : '')
@@ -178,7 +240,7 @@ const HorNav = () => {
 								}}>
 								<IconNotes />
 							</button>
-							<button className="settings__btn" name="theme">
+							<button className="settings__btn" name="theme" onClick={() => startDrive()}>
 								<IconGuide />
 							</button>
 						</li>
