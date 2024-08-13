@@ -1,7 +1,10 @@
 import { useContext, useEffect, useRef, useState } from 'react'
 import CheckListContext from '../../../context/ChecklistContext'
+import IconEdit from '../../../icons/IconEdit'
+import GlobalContext from '../../../context/GlobalContext'
+import { bottom } from '@popperjs/core'
 
-const ListCheck = ({ check, title }) => {
+const ListCheck = ({ check, title, updateCheck, data }) => {
 	const {
 		checkSelected,
 		changeDescription,
@@ -10,14 +13,20 @@ const ListCheck = ({ check, title }) => {
 		hover,
 		posHover,
 		refRightSide,
+		refListCheck,
 	} = useContext(CheckListContext)
+	const { admin, setAdmin } = useContext(GlobalContext)
+
 	const [listChecked, setListChecked] = useState('')
+	const [edit, setEdit] = useState(title === 'XXXXX' ? true : false)
+
 	const inputCheck = useRef()
 
 	const showRelativeDescription = e => {
 		const relativeDescription = () => {
 			refRightSide.current.scrollTo({ top: 0, behavior: 'smooth' })
 			if (e.target.checked) {
+				console.log(e.target)
 				setListChecked('checked')
 				return relativePosition[check][0]
 			} else {
@@ -33,18 +42,55 @@ const ListCheck = ({ check, title }) => {
 			e.target.checked = !e.target.checked
 		}
 	}
-
+	const createStep = valor => {
+		updateCheck(prevState => ({
+			...prevState,
+			DESCRIPCIONES: prevState.DESCRIPCIONES.map(
+				(desc, index) =>
+					index === prevState.DESCRIPCIONES.length - 1 // Condición para encontrar el elemento a actualizar
+						? { ...desc, html: [{ TITULO: valor }] } // Actualiza el campo específico
+						: desc // Mantén el resto de los elementos sin cambios
+			),
+		}))
+	}
 	useEffect(() => {
 		setListChecked('')
 		inputCheck.current.checked = false
 		inputCheck.current.parentNode.parentNode.parentNode.classList.remove('checked')
+		const adminInputText = document.getElementById('inputText')
+		if (adminInputText && admin) {
+			adminInputText.focus()
+			refListCheck.current.scrollTo({ top: 100, behavior: 'smooth' })
+		}
 	}, [resetList])
 
 	return (
-		<li>
+		<li className="LeftSide__ul--li">
+			{admin && (
+				<button
+					onClick={() => {
+						setEdit(true)
+					}}>
+					<IconEdit className={admin ? 'admin svg-edit' : 'admin off'} />
+				</button>
+			)}
 			<label className={'ListCheck ' + listChecked + ' ' + (posHover == check ? hover : '')}>
 				<span>{check}</span>
-				<h2>{title}</h2>
+				{title === 'XXXXX' || edit ? (
+					<input
+						type="text"
+						placeholder="Asignar titulo del paso"
+						className={admin ? 'admin input-step' : 'admin off'}
+						id="inputText"
+						onBlur={e => {
+							setEdit(false)
+							createStep(e.target.value)
+						}}
+					/>
+				) : (
+					<h2>{title}</h2>
+				)}
+
 				<div className="checkbox-wrapper-44">
 					<label className="toggleButton">
 						<input ref={inputCheck} type="checkbox" onChange={showRelativeDescription} id={check} />

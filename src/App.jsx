@@ -20,6 +20,8 @@ import { NoteApp } from './components/NoteApp/NoteApp.jsx'
 import IconsTest from './components/WebTraining/IconsTest.jsx'
 import IconArrowUp from './icons/IconArrowUp.jsx'
 import HorNav from './components/Navbar/HorNav.jsx'
+import AdminCheck from './components/AdminCheckList/AdminCheck.jsx'
+import AdminCheckBase from './components/AdminCheckList/AdminCheckBase.jsx'
 
 const App = () => {
 	const { scheme, activeAppNote, showApp } = useContext(GlobalContext)
@@ -51,6 +53,7 @@ const App = () => {
 						return <Route key={i} path={'/' + segment.segment} element={<Bienvenida />} />
 					})}
 					<Route path="/" element={<Bienvenida />} />
+					<Route path="/admincheck" element={<AdminCheckBase />} />
 					<Route path="/checklist" element={<CheckListBase checklist="ejemploA" />} />
 					<Route path="/checklist/ejemploA" element={<CheckListBase checklist="ejemploA" />} />
 					<Route path="/checklist/ejemploB" element={<CheckListBase checklist="ejemploB" />} />

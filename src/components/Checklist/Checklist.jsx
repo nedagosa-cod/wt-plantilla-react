@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import LeftSide from './LeftSide/LeftSide'
 import RightSide from './RightSide/RightSide'
 import './styles.scss'
+import './admin.scss'
 import TitleDesc from './RightSide/componentes/TitleDesc'
 import ParagraphDesc from './RightSide/componentes/ParagraphDesc'
 import ListDesc from './RightSide/componentes/ListDesc'
@@ -29,6 +30,7 @@ export default function Checklist({ dataCheckList }) {
 	const [showPopImage, setPopShowImage] = useState(false)
 	const [imagePop, setimagePop] = useState('#')
 	const [widthImg, setWidthImg] = useState('50%')
+	const [checkListSelected, setCheckListSelected] = useState(dataCheckList)
 
 	const [showPopNota, setShowPopNota] = useState(false)
 
@@ -124,7 +126,7 @@ export default function Checklist({ dataCheckList }) {
 					title={element.DATA_BOOL}
 					key={'data_' + index}
 					finish={element.FINISH}
-					to={dataCheckList.DESCRIPCIONES.length}>
+					to={checkListSelected.DESCRIPCIONES.length}>
 					<InsideAnswer answer="SI" position={element.POS}>
 						{element.SI.map((subElement, j) => {
 							return renderElement(subElement, j, desc)
@@ -209,7 +211,7 @@ export default function Checklist({ dataCheckList }) {
 	}
 
 	const fixDescriptions = () => {
-		let result = dataCheckList.DESCRIPCIONES.map((element, i) => {
+		let result = checkListSelected.DESCRIPCIONES.map((element, i) => {
 			let data = {
 				check: element.check,
 				html: () => {
@@ -245,12 +247,16 @@ export default function Checklist({ dataCheckList }) {
 	useEffect(() => {
 		resetCheckList()
 		fixDescriptions()
-	}, [dataCheckList])
+	}, [checkListSelected])
 	return (
 		<form className={'Checklist ' + theme}>
 			<section className="data">
 				<Split className="split" minSize={400} dragInterval={10}>
-					<LeftSide title={dataCheckList.TITLE} data={dataCheckList.DESCRIPCIONES} />
+					<LeftSide
+						title={checkListSelected.TITLE}
+						data={checkListSelected.DESCRIPCIONES}
+						updateCheck={setCheckListSelected}
+					/>
 					<RightSide descripciones={descripciones} key="keyRightSide" />
 				</Split>
 			</section>
@@ -285,6 +291,9 @@ export default function Checklist({ dataCheckList }) {
 						</div>
 					</div>
 					<span>Obtener datos</span>
+				</button>
+				<button onClick={() => console.log(checkListSelected)} type="button">
+					Test
 				</button>
 			</div>
 			{showPopImage &&

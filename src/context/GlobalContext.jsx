@@ -8,6 +8,7 @@ const WTLocalbase = new Localbase('db_nombre_campana')
 
 const GlobalProvider = ({ children }) => {
 	const [scheme, setScheme] = useState('light')
+	const [admin, setAdmin] = useState(true)
 	const [activeAppNote, SetActiveAppNote] = useState(false)
 	const templatesDDBB = ['arbol', 'ejemplo']
 	const maps = {
@@ -100,6 +101,8 @@ const GlobalProvider = ({ children }) => {
 		setScheme,
 		showApp,
 		activeAppNote,
+		admin,
+		setAdmin,
 	}
 	return <GlobalContext.Provider value={data}>{children}</GlobalContext.Provider>
 }
