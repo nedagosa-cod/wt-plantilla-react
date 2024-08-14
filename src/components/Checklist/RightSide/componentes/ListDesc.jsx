@@ -1,8 +1,21 @@
+import { useContext } from 'react'
+import GlobalContext from '../../../../context/GlobalContext'
+import IconMenu from '../../../../icons/IconMenu'
+
 const ListDesc = ({ children, type }) => {
+	const { admin } = useContext(GlobalContext)
 	if (type == 'ol') {
-		return <ol className="description__list">{children}</ol>
+		return (
+			<div>
+				<ol className="description__list">{children}</ol>
+			</div>
+		)
 	}
-	return <ul className="description__list">{children}</ul>
+	return (
+		<div>
+			<ul className="description__list">{children}</ul>
+		</div>
+	)
 }
 
 export default ListDesc

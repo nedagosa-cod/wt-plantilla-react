@@ -29,6 +29,7 @@ import IconGuide from '../../icons/IconGuide'
 import { createPortal } from 'react-dom'
 import { driver } from 'driver.js'
 import 'driver.js/dist/driver.css'
+import IconUserTea from '../../icons/IconUserTea'
 
 const HorNav = () => {
 	const navigate = useNavigate()
@@ -52,8 +53,9 @@ const HorNav = () => {
 		info: <IconInfo />,
 		catalogue: <IconCatalog />,
 		timeLine: <IconTimeLine />,
+		admin: <IconUserTea />,
 	})
-	const { readExcelFile, templatesDDBB, setScheme, showApp } = useContext(GlobalContext)
+	const { readExcelFile, templatesDDBB, setScheme, showApp, admin } = useContext(GlobalContext)
 	const search = valueSearch => {
 		const lowerCase = valueSearch.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
 		const allCards = document.querySelectorAll('.dato-buscado')
@@ -204,19 +206,38 @@ const HorNav = () => {
 			{DATANAV.SEGMENTS && (
 				<nav className="hornav__segments">
 					<ul>
-						{DATANAV.SEGMENTS.map((segment, i) => (
-							<li
-								onClick={() => {
-									SetNavSegment(segment.segment)
-									navigate('/' + segment.segment.toLowerCase())
-								}}
-								key={i}
-								className={
-									'hornav__segments--li' + (segment.segment === navSegment ? ' active' : '')
-								}>
-								{selectIcon[segment.icon]} {segment.segment}
-							</li>
-						))}
+						{DATANAV.SEGMENTS.map((segment, i) => {
+							if (segment.segment === 'ADMIN') {
+								return (
+									<li
+										onClick={() => {
+											SetNavSegment(segment.segment)
+											navigate('/' + segment.segment.toLowerCase())
+										}}
+										key={i}
+										className={
+											'hornav__segments--li admin__segment' +
+											(segment.segment === navSegment ? ' active' : '')
+										}>
+										{selectIcon[segment.icon]} {segment.segment}
+									</li>
+								)
+							} else {
+								return (
+									<li
+										onClick={() => {
+											SetNavSegment(segment.segment)
+											navigate('/' + segment.segment.toLowerCase())
+										}}
+										key={i}
+										className={
+											'hornav__segments--li' + (segment.segment === navSegment ? ' active' : '')
+										}>
+										{selectIcon[segment.icon]} {segment.segment}
+									</li>
+								)
+							}
+						})}
 						<li className="settings">
 							<button className="settings__btn" name="upload" onClick={setsClick}>
 								<IconUpload />
@@ -252,57 +273,54 @@ const HorNav = () => {
 					<div className="hornav__links--boxul">
 						<ul ref={scrollContainerRef} onWheel={handleScroll}>
 							{DATANAV.NAVBAR.map((link, i) => {
-								if (link.segments == undefined || link.segments.includes(navSegment)) {
-									if (link.dropDown) {
-										return (
-											<li key={i} className={'hornav__links--li'}>
-												<button
-													onClick={e => {
-														activeDropDown(link.title, e.target)
-													}}>
-													{selectIcon[link.icon]}
-													{link.title}
-													<IconArrowDown />
-												</button>
-												<ul
-													ref={dropDownRef}
-													className={'hornav-dropdown animate__animated'}
-													name={link.title}>
-													<li className="hornav-dropdown__li li-menu">
-														{/* <figure>
-															<img src={iconReal[link.icon]} alt="checklist" />
-														</figure> */}
-														{/* <span>{link.title}</span> */}
-														<div className="title-container">
-															<a href="#" className="buttonul type--C">
-																<span className="buttonul__text">{link.title}</span>
-																<div className="buttonul__drow1"></div>
-																<div className="buttonul__drow2"></div>
-															</a>
-														</div>
-													</li>
-													<li className="hornav-dropdown__li li-submenu">
-														{link.dropDown.map((linkk, l) => {
-															return (
-																<Link to={linkk.route} key={l} onClick={() => setDropDown(false)}>
-																	{selectIcon[linkk.icon]} {linkk.title}
-																</Link>
-															)
-														})}
-													</li>
-												</ul>
-											</li>
-										)
-									} else {
-										return (
-											<li key={i} className="hornav__links--li">
-												<Link to={link.route}>
-													{selectIcon[link.icon]} {link.title}
+								const isAdmin = navSegment === 'ADMIN'
+								const hasSegment = link.segments && link.segments.includes(navSegment)
+								const shouldRenderLink = isAdmin ? hasSegment : !link.segments || hasSegment
+
+								if (!shouldRenderLink) return null
+
+								const renderDropDown = () => (
+									<ul
+										ref={dropDownRef}
+										className="hornav-dropdown animate__animated"
+										name={link.title}>
+										<li className="hornav-dropdown__li li-menu">
+											<div className="title-container">
+												<a href="#" className="buttonul type--C">
+													<span className="buttonul__text">{link.title}</span>
+													<div className="buttonul__drow1"></div>
+													<div className="buttonul__drow2"></div>
+												</a>
+											</div>
+										</li>
+										<li className="hornav-dropdown__li li-submenu">
+											{link.dropDown.map((linkk, l) => (
+												<Link to={linkk.route} key={l} onClick={() => setDropDown(false)}>
+													{selectIcon[linkk.icon]} {linkk.title}
 												</Link>
-											</li>
-										)
-									}
-								}
+											))}
+										</li>
+									</ul>
+								)
+
+								const renderLink = () => (
+									<li key={i} className="hornav__links--li">
+										{link.dropDown ? (
+											<>
+												<button onClick={e => activeDropDown(link.title, e.target)}>
+													{selectIcon[link.icon]} {link.title} <IconArrowDown />
+												</button>
+												{renderDropDown()}
+											</>
+										) : (
+											<Link to={link.route}>
+												{selectIcon[link.icon]} {link.title}
+											</Link>
+										)}
+									</li>
+								)
+
+								return renderLink()
 							})}
 						</ul>
 					</div>

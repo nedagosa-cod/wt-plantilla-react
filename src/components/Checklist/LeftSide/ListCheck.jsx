@@ -17,8 +17,9 @@ const ListCheck = ({ check, title, updateCheck, data }) => {
 	} = useContext(CheckListContext)
 	const { admin, setAdmin } = useContext(GlobalContext)
 
+	const [stepTitle, setStepTitle] = useState(title)
 	const [listChecked, setListChecked] = useState('')
-	const [edit, setEdit] = useState(title === 'XXXXX' ? true : false)
+	const [edit, setEdit] = useState(stepTitle === 'XXXXX' ? true : false)
 
 	const inputCheck = useRef()
 
@@ -45,12 +46,18 @@ const ListCheck = ({ check, title, updateCheck, data }) => {
 	const createStep = valor => {
 		updateCheck(prevState => ({
 			...prevState,
-			DESCRIPCIONES: prevState.DESCRIPCIONES.map(
-				(desc, index) =>
-					index === prevState.DESCRIPCIONES.length - 1 // Condición para encontrar el elemento a actualizar
-						? { ...desc, html: [{ TITULO: valor }] } // Actualiza el campo específico
-						: desc // Mantén el resto de los elementos sin cambios
-			),
+			DESCRIPCIONES: prevState.DESCRIPCIONES.map(desc => {
+				if (desc.check === check) {
+					return {
+						...desc,
+						html: desc.html.map(
+							item => (item.TITULO ? { ...item, TITULO: valor } : item) // Actualiza solo el objeto que tiene TITULO
+						),
+					}
+				} else {
+					return desc
+				}
+			}),
 		}))
 	}
 	useEffect(() => {
@@ -60,31 +67,40 @@ const ListCheck = ({ check, title, updateCheck, data }) => {
 		const adminInputText = document.getElementById('inputText')
 		if (adminInputText && admin) {
 			adminInputText.focus()
-			refListCheck.current.scrollTo({ top: 100, behavior: 'smooth' })
 		}
-	}, [resetList])
+	}, [resetList, edit])
 
 	return (
 		<li className="LeftSide__ul--li">
 			{admin && (
-				<button
+				<label
+					htmlFor="inputText"
 					onClick={() => {
 						setEdit(true)
 					}}>
 					<IconEdit className={admin ? 'admin svg-edit' : 'admin off'} />
-				</button>
+				</label>
 			)}
 			<label className={'ListCheck ' + listChecked + ' ' + (posHover == check ? hover : '')}>
 				<span>{check}</span>
-				{title === 'XXXXX' || edit ? (
+				{stepTitle === 'XXXXX' || edit ? (
 					<input
 						type="text"
 						placeholder="Asignar titulo del paso"
 						className={admin ? 'admin input-step' : 'admin off'}
 						id="inputText"
+						value={stepTitle}
+						onChange={e => setStepTitle(e.target.value)}
 						onBlur={e => {
 							setEdit(false)
 							createStep(e.target.value)
+						}}
+						onKeyUp={e => {
+							if (e.key === 'Enter') {
+								setEdit(false)
+								setStepTitle(e.target.value)
+								createStep(e.target.value)
+							}
 						}}
 					/>
 				) : (

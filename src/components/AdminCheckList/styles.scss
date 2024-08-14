@@ -106,12 +106,12 @@
 					&__paragraph {
 						font-size: 2rem;
 					}
-					&__valtext,
-					.description__valbool,
-					.description__valdate,
-					.description__vallist {
-						max-width: 40rem;
-					}
+					// &__valtext,
+					// .description__valbool,
+					// .description__valdate,
+					// .description__vallist {
+					// 	max-width: 40rem;
+					// }
 				}
 			}
 		}
@@ -582,10 +582,10 @@
 
 .checkbox-wrapper-44 .toggleButton input + div svg {
 	fill: none;
-	stroke-width: 3.6;
+	strokewidth: 3.6;
 	stroke: light-dark($p-color, $p3-color);
-	stroke-linecap: round;
-	stroke-linejoin: round;
+	strokelinecap: round;
+	strokelinejoin: round;
 	width: 28px;
 	height: 28px;
 	display: block;

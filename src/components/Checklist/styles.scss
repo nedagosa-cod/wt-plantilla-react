@@ -97,12 +97,12 @@
 					&__paragraph {
 						font-size: 2rem;
 					}
-					&__valtext,
-					.description__valbool,
-					.description__valdate,
-					.description__vallist {
-						max-width: 40rem;
-					}
+					// &__valtext,
+					// .description__valbool,
+					// .description__valdate,
+					// .description__vallist {
+					// 	max-width: 40rem;
+					// }
 				}
 			}
 		}
@@ -395,6 +395,51 @@
 		background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
 		cursor: col-resize;
 	}
+	& .container-element-ch {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		position: relative;
+		&.admin {
+			margin-left: 4rem;
+			width: 95%;
+		}
+		&:has(.task__btn:hover) {
+			background: #dbdbdb;
+			-webkit-box-shadow: -5px 0px 0px 8px rgba(221, 221, 221, 1);
+			-moz-box-shadow: -5px 0px 0px 8px rgba(221, 221, 221, 1);
+			box-shadow: -5px 0px 0px 8px rgba(221, 221, 221, 1);
+			border-radius: 0.8rem;
+			-webkit-border-radius: 0.8rem;
+			-moz-border-radius: 0.8rem;
+			-ms-border-radius: 0.8rem;
+			-o-border-radius: 0.8rem;
+		}
+		& .task__btn {
+			position: absolute;
+			opacity: 0.4;
+			left: -4rem;
+			top: 10%;
+			width: 34px;
+			max-width: 34px;
+			flex-grow: 1;
+			min-width: 34px;
+			color: #969696;
+			height: max-content;
+			background: #dbdbdb;
+			cursor: pointer;
+			padding: 1rem;
+			border-radius: 100%;
+			-webkit-border-radius: 100%;
+			-moz-border-radius: 100%;
+			-ms-border-radius: 100%;
+			-o-border-radius: 100%;
+			&:hover {
+				opacity: 1;
+			}
+		}
+	}
 }
 
 .PopNota {
@@ -575,10 +620,10 @@
 
 .checkbox-wrapper-44 .toggleButton input + div svg {
 	fill: none;
-	stroke-width: 3.6;
+	strokewidth: 3.6;
 	stroke: light-dark($p-color, $p3-color);
-	stroke-linecap: round;
-	stroke-linejoin: round;
+	strokelinecap: round;
+	strokelinejoin: round;
 	width: 28px;
 	height: 28px;
 	display: block;

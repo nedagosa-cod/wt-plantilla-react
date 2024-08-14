@@ -4,6 +4,7 @@
 		position: relative;
 		width: 100%;
 		background: green;
+		margin-bottom: 4rem;
 		& svg {
 			opacity: 0.4;
 			margin: auto;
@@ -62,6 +63,14 @@
 		font-size: 2rem;
 		background: #fffd9f;
 		margin: 0 0.4rem;
+	}
+	&__segment {
+		max-width: 100px;
+		padding-right: 10px;
+		position: relative;
+		right: -20px;
+		background: #9d4edd;
+		border: none !important;
 	}
 	&.off {
 		display: none;

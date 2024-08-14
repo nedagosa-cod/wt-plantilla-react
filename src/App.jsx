@@ -24,7 +24,7 @@ import AdminCheck from './components/AdminCheckList/AdminCheck.jsx'
 import AdminCheckBase from './components/AdminCheckList/AdminCheckBase.jsx'
 
 const App = () => {
-	const { scheme, activeAppNote, showApp } = useContext(GlobalContext)
+	const { scheme, activeAppNote, showApp, admin } = useContext(GlobalContext)
 	const style = {
 		app: {
 			backgroundImage: `url(${scheme === 'dark' ? imgBackground : imgBackgroundD})`,
@@ -49,6 +49,16 @@ const App = () => {
 			{activeAppNote && <NoteApp />}
 			<section className="app__body" style={style.body}>
 				<Routes>
+					{admin && (
+						<>
+							<Route path="/admin" element={<Bienvenida />} />
+							<Route path="/checkplantilla" element={<Bienvenida />} />
+							<Route
+								path="/checklist/plantilla"
+								element={<CheckListBase checklist="checkplantilla" />}
+							/>
+						</>
+					)}
 					{dataNavbar.SEGMENTS.map((segment, i) => {
 						return <Route key={i} path={'/' + segment.segment} element={<Bienvenida />} />
 					})}

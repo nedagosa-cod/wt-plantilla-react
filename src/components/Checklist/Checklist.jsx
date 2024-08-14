@@ -24,15 +24,94 @@ import ChangeSteep from './RightSide/componentes/ChangeSteep'
 import Estructure from './BigIcons/Estructure'
 import Note from './RightSide/componentes/Note'
 import Split from 'react-split'
+import MenuEdit from './RightSide/MenuEdit'
+import GlobalContext from '../../context/GlobalContext'
+import { IconPlus } from '../../icons/IconPlus'
+import IconParagraphOt from '../../icons/IconParagraphOt'
+import IconTitleOt from '../../icons/IconTitleOt'
+import IconListOt from '../../icons/IconListOt'
+import IconImageOt from '../../icons/IconImageOt'
+import IconScriptOt from '../../icons/IconScriptOt'
+import IconChatOt from '../../icons/IconChatOt'
+import IconHrOt from '../../icons/IconHrOt'
+import IconOtherOt from '../../icons/IconOtherOt'
+import IconBoxTextOt from '../../icons/IconBoxTextOt'
+import IconVlistOt from '../../icons/IconVlistOt'
+import IconVtextOt from '../../icons/IconVtextOt'
+import IconVboolOt from '../../icons/IconVboolOt'
+import IconDateOt from '../../icons/IconDateOt'
+import IconChangeStepOt from '../../icons/IconChangeStepOt'
 
 export default function Checklist({ dataCheckList }) {
 	const { theme, resetCheckList, activeInside } = useContext(CheckListContext)
+	const { admin } = useContext(GlobalContext)
+
+	const itemsElemets = [
+		{
+			name: 'Titulo',
+			icon: <IconTitleOt />,
+		},
+		{
+			name: 'Párrafo',
+			icon: <IconParagraphOt />,
+		},
+		{
+			name: 'Lista',
+			icon: <IconListOt />,
+		},
+		{
+			name: 'Imagen',
+			icon: <IconImageOt />,
+		},
+		{
+			name: 'Script/Guión',
+			icon: <IconScriptOt />,
+		},
+
+		{
+			name: 'Nota resaltada',
+			icon: <IconChatOt />,
+		},
+		{
+			name: 'Espacio',
+			icon: <IconHrOt />,
+		},
+		{
+			name: 'Botón URL',
+			icon: <IconOtherOt />,
+		},
+		{
+			name: 'Información resaltada',
+			icon: <IconBoxTextOt />,
+		},
+		{
+			name: 'Validación de texto',
+			icon: <IconVtextOt />,
+		},
+		{
+			name: 'Validación de fecha',
+			icon: <IconDateOt />,
+		},
+		{
+			name: 'Validación Si/No',
+			icon: <IconVboolOt />,
+		},
+		{
+			name: 'Validación de lista',
+			icon: <IconVlistOt />,
+		},
+		{
+			name: 'Boton salto de paso',
+			icon: <IconChangeStepOt />,
+		},
+	]
+
 	const [showPopImage, setPopShowImage] = useState(false)
 	const [imagePop, setimagePop] = useState('#')
 	const [widthImg, setWidthImg] = useState('50%')
-	const [checkListSelected, setCheckListSelected] = useState(dataCheckList)
-
 	const [showPopNota, setShowPopNota] = useState(false)
+
+	const [checkListSelected, setCheckListSelected] = useState(dataCheckList)
 
 	const renderElement = (element, index, desc) => {
 		const setTextProperties = text => {
@@ -56,142 +135,150 @@ export default function Checklist({ dataCheckList }) {
 			})
 			return textTip
 		}
-
-		if (!element) {
-			return null
-		} else if (element.P) {
-			return (
-				<ParagraphDesc key={desc.check + '_def_' + index}>
-					<span dangerouslySetInnerHTML={{ __html: setTextProperties(element.P) }} />
-				</ParagraphDesc>
-			)
-		} else if (element.LINK) {
-			return (
-				<LinkDesc
-					url={element.LINK}
-					buttonName={element.NAME}
-					key={desc.check + '_link_' + index}
-				/>
-			)
-		} else if (element.IMG) {
-			return (
-				<ImageDesc
-					activatePopImage={activatePopImage}
-					key={desc.check + '_img_' + index}
-					img={element.IMG}
-					width={element.SPACE}
-				/>
-			)
-		} else if (element.SUBTITLE) {
-			return <SubtitleDesc key={desc.check + '_sub_' + index}>{element.SUBTITLE}</SubtitleDesc>
-		} else if (element.LIST) {
-			return (
-				<ListDesc key={desc.check + '_list_' + index} type={element.TYPE}>
-					{element.LIST.map((list, j) => {
-						return <li key={j} dangerouslySetInnerHTML={{ __html: setTextProperties(list) }} />
-					})}
-				</ListDesc>
-			)
-		} else if (element.IMPORTANT) {
-			return (
-				<ImportantDesc title={element.TITLE} key={desc.check + '_imp_' + index}>
-					<span dangerouslySetInnerHTML={{ __html: setTextProperties(element.IMPORTANT) }} />
-				</ImportantDesc>
-			)
-		} else if (element.SCRIPT) {
-			return (
-				<ScriptDesc
-					key={desc.check + '_scr_' + index}
-					scripts={element.SCRIPTS}
-					setTextProperties={setTextProperties}>
-					{element.SCRIPT}
-				</ScriptDesc>
-			)
-		} else if (element.DATA_TEXT) {
-			return (
-				<ValTextDesc position={element.POS} key={desc.check + '_dataT_' + index}>
-					{element.DATA_TEXT}
-				</ValTextDesc>
-			)
-		} else if (element.DATA_DATE) {
-			return (
-				<ValDateDesc position={element.POS} key={desc.check + '_dataD_' + index}>
-					{element.DATA_DATE}
-				</ValDateDesc>
-			)
-		} else if (element.DATA_BOOL) {
-			return (
-				<ValBoolDesc
-					position={element.POS}
-					title={element.DATA_BOOL}
-					key={'data_' + index}
-					finish={element.FINISH}
-					to={checkListSelected.DESCRIPCIONES.length}>
-					<InsideAnswer answer="SI" position={element.POS}>
-						{element.SI.map((subElement, j) => {
-							return renderElement(subElement, j, desc)
+		const creatingElement = () => {
+			if (!element) {
+				return null
+			} else if (element.P) {
+				return (
+					<ParagraphDesc key={desc.check + '_def_' + index}>
+						<span dangerouslySetInnerHTML={{ __html: setTextProperties(element.P) }} />
+					</ParagraphDesc>
+				)
+			} else if (element.LINK) {
+				return (
+					<LinkDesc
+						url={element.LINK}
+						buttonName={element.NAME}
+						key={desc.check + '_link_' + index}
+					/>
+				)
+			} else if (element.IMG) {
+				return (
+					<ImageDesc
+						activatePopImage={activatePopImage}
+						key={desc.check + '_img_' + index}
+						img={element.IMG}
+						width={element.SPACE}
+					/>
+				)
+			} else if (element.SUBTITLE) {
+				return <SubtitleDesc key={desc.check + '_sub_' + index}>{element.SUBTITLE}</SubtitleDesc>
+			} else if (element.LIST) {
+				return (
+					<ListDesc key={desc.check + '_list_' + index} type={element.TYPE}>
+						{element.LIST.map((list, j) => {
+							return <li key={j} dangerouslySetInnerHTML={{ __html: setTextProperties(list) }} />
 						})}
-					</InsideAnswer>
-					<InsideAnswer answer="NO" position={element.POS}>
-						{element.NO.map((subElement, j) => {
-							return renderElement(subElement, j, desc)
+					</ListDesc>
+				)
+			} else if (element.IMPORTANT) {
+				return (
+					<ImportantDesc title={element.TITLE} key={desc.check + '_imp_' + index}>
+						<span dangerouslySetInnerHTML={{ __html: setTextProperties(element.IMPORTANT) }} />
+					</ImportantDesc>
+				)
+			} else if (element.SCRIPT) {
+				return (
+					<ScriptDesc
+						key={desc.check + '_scr_' + index}
+						scripts={element.SCRIPTS}
+						setTextProperties={setTextProperties}>
+						{element.SCRIPT}
+					</ScriptDesc>
+				)
+			} else if (element.DATA_TEXT) {
+				return (
+					<ValTextDesc position={element.POS} key={desc.check + '_dataT_' + index}>
+						{element.DATA_TEXT}
+					</ValTextDesc>
+				)
+			} else if (element.DATA_DATE) {
+				return (
+					<ValDateDesc position={element.POS} key={desc.check + '_dataD_' + index}>
+						{element.DATA_DATE}
+					</ValDateDesc>
+				)
+			} else if (element.DATA_BOOL) {
+				return (
+					<ValBoolDesc
+						position={element.POS}
+						title={element.DATA_BOOL}
+						key={'data_' + index}
+						finish={element.FINISH}
+						to={checkListSelected.DESCRIPCIONES.length}>
+						<InsideAnswer answer="SI" position={element.POS}>
+							{element.SI.map((subElement, j) => {
+								return renderElement(subElement, j, desc)
+							})}
+						</InsideAnswer>
+						<InsideAnswer answer="NO" position={element.POS}>
+							{element.NO.map((subElement, j) => {
+								return renderElement(subElement, j, desc)
+							})}
+						</InsideAnswer>
+					</ValBoolDesc>
+				)
+			} else if (element.DATA_LIST) {
+				return (
+					<ValListDesc
+						title={element.DATA_LIST}
+						position={element.POS}
+						list={element.OPTIONS.map(option => option.NAME)}
+						key={desc.check + '_dataL_' + index}>
+						{element.OPTIONS.map((option, l) => {
+							return (
+								<InsideAnswer answer={option.NAME} position={element.POS} key={l}>
+									{option.HTML.map((subElement, j) => {
+										return renderElement(subElement, j, desc)
+									})}
+								</InsideAnswer>
+							)
 						})}
-					</InsideAnswer>
-				</ValBoolDesc>
-			)
-		} else if (element.DATA_LIST) {
-			return (
-				<ValListDesc
-					title={element.DATA_LIST}
-					position={element.POS}
-					list={element.OPTIONS.map(option => option.NAME)}
-					key={desc.check + '_dataL_' + index}>
-					{element.OPTIONS.map((option, l) => {
-						return (
-							<InsideAnswer answer={option.NAME} position={element.POS} key={l}>
-								{option.HTML.map((subElement, j) => {
-									return renderElement(subElement, j, desc)
-								})}
-							</InsideAnswer>
-						)
-					})}
-				</ValListDesc>
-			)
-		} else if (element.BTN_JUMP) {
-			return (
-				<ChangeSteep key={desc.check + '_change_' + index} to={element.TO}>
-					{element.BTN_JUMP}
-				</ChangeSteep>
-			)
-		} else if (element.NOTA) {
-			return (
-				<Note
-					key={desc.check + '_note_' + index}
-					type={element.TYPE ? element.TYPE : 'info'}
-					title={element.TITLE ? element.TITLE : '[Sin Titulo]'}>
-					<span dangerouslySetInnerHTML={{ __html: setTextProperties(element.NOTA) }} />
-				</Note>
-			)
-		} else if (element.MARCO) {
-			return (
-				<div style={{ width: '26rem' }} key={desc.check + '_change_' + index} to={element.TO}>
-					<Estructure />
-				</div>
-			)
-		} else if (element.BR) {
-			const size = {
-				1: '1rem',
-				2: '2rem',
-				3: '4rem',
-				4: '6rem',
+					</ValListDesc>
+				)
+			} else if (element.BTN_JUMP) {
+				return (
+					<ChangeSteep key={desc.check + '_change_' + index} to={element.TO}>
+						{element.BTN_JUMP}
+					</ChangeSteep>
+				)
+			} else if (element.NOTA) {
+				return (
+					<Note
+						key={desc.check + '_note_' + index}
+						type={element.TYPE ? element.TYPE : 'info'}
+						title={element.TITLE ? element.TITLE : '[Sin Titulo]'}>
+						<span dangerouslySetInnerHTML={{ __html: setTextProperties(element.NOTA) }} />
+					</Note>
+				)
+			} else if (element.MARCO) {
+				return (
+					<div style={{ width: '26rem' }} key={desc.check + '_change_' + index} to={element.TO}>
+						<Estructure />
+					</div>
+				)
+			} else if (element.BR) {
+				const size = {
+					1: '1rem',
+					2: '2rem',
+					3: '4rem',
+					4: '6rem',
+				}
+				return (
+					<div>
+						<div
+							style={{ height: size[element.BR], padding: size[element.HR] }}
+							key={desc.check + '_hr_' + index}
+						/>
+					</div>
+				)
 			}
-			return (
-				<div
-					style={{ height: size[element.BR], padding: size[element.HR] }}
-					key={desc.check + '_hr_' + index}
-				/>
-			)
 		}
+
+		if (!element.BR) {
+			return <MenuEdit key={index}>{creatingElement()}</MenuEdit>
+		}
+		creatingElement()
 	}
 
 	const [descripciones, setDescripciones] = useState([])
@@ -210,6 +297,81 @@ export default function Checklist({ dataCheckList }) {
 		setShowPopNota(!showPopNota)
 	}
 
+	const createUserElement = (event, elName, check) => {
+		const objetElecment = () => {
+			switch (elName) {
+				case 'Titulo':
+					return { SUBTITLE: 'XXXXX' }
+				case 'Párrafo':
+					return { P: '- XXXXX' }
+				case 'Lista':
+					return { LIST: ['XXX', 'XXX', 'XXX'] }
+				case 'Imagen':
+					return { IMG: '#', SPACE: '50%' }
+				case 'Script/Guión':
+					return { SCRIPT: 'XXXXX', SCRIPTS: [] }
+				case 'Nota resaltada':
+					return { IMPORTANT: 'XXXXX', TITLE: 'XXXXX' }
+				case 'Espacio':
+					return { BR: '1' }
+				case 'Botón URL':
+					return { LINK: '#', NAME: 'XXXXX' }
+				case 'Información resaltada':
+					return {
+						NOTA: 'XXXXX',
+						TITLE: 'XXXXX',
+						TYPE: 'info',
+					}
+				case 'Validación de texto':
+					return { DATA_TEXT: 'XXXXX', POS: 'Z' }
+				case 'Validación de fecha':
+					return { DATA_DATE: 'XXXXX', POS: 'X' }
+				case 'Validación Si/No':
+					return {
+						DATA_BOOL: 'XXXXX',
+						POS: 'Y',
+						FINISH: '',
+						SI: [],
+						NO: [],
+					}
+				case 'Validación de lista':
+					return {
+						DATA_LIST: 'XXXXX',
+						POS: 'W',
+						OPTIONS: [
+							{
+								NAME: 'XXXXX',
+								HTML: [
+									{
+										P: 'XXXXX',
+									},
+								],
+							},
+						],
+					}
+				case 'Boton salto de paso':
+					return {
+						BTN_JUMP: 'XXXXX',
+						TO: 'A',
+					}
+			}
+		}
+
+		setCheckListSelected(prevState => ({
+			...prevState,
+			DESCRIPCIONES: prevState.DESCRIPCIONES.map(description => {
+				if (description.check === check) {
+					return {
+						...description,
+						html: [...description.html, objetElecment(elName)],
+					}
+				} else {
+					return description
+				}
+			}),
+		}))
+	}
+
 	const fixDescriptions = () => {
 		let result = checkListSelected.DESCRIPCIONES.map((element, i) => {
 			let data = {
@@ -226,6 +388,27 @@ export default function Checklist({ dataCheckList }) {
 								{element.html.map((list, j) => {
 									return renderElement(list, j, element)
 								})}
+								{admin && (
+									<>
+										<div className="box-buttons-elemets">
+											{itemsElemets.map((item, i) => {
+												return (
+													<button
+														type="button"
+														className="box-buttons-elemets__button"
+														onClick={e => createUserElement(e, item.name, element.check)}>
+														<div>{item.icon}</div> {item.name}
+													</button>
+												)
+											})}
+										</div>
+										<div
+											className={'admin ' + 'on' + ' add-check'}
+											onClick={() => console.log('hola')}>
+											<IconPlus />
+										</div>
+									</>
+								)}
 							</article>
 						</>
 					)
@@ -243,7 +426,21 @@ export default function Checklist({ dataCheckList }) {
 			setPopShowImage(false)
 		}
 	})
+	const saveFormat = () => {
+		// const JSONtext = JSON.stringify(checkListSelected)
+		// const blob = new Blob([JSONtext], { type: 'text/plain' })
+		// const enlace = document.createElement('a')
+		// enlace.href = URL.createObjectURL(blob)
+		// enlace.download = 'formatoChecklist-' + checkListSelected.TITLE + '.txt'
 
+		// // Simular un clic en el enlace
+		// enlace.click()
+
+		// // Liberar el objeto URL
+		// URL.revokeObjectURL(enlace.href)
+
+		console.log(checkListSelected)
+	}
 	useEffect(() => {
 		resetCheckList()
 		fixDescriptions()
@@ -257,7 +454,7 @@ export default function Checklist({ dataCheckList }) {
 						data={checkListSelected.DESCRIPCIONES}
 						updateCheck={setCheckListSelected}
 					/>
-					<RightSide descripciones={descripciones} key="keyRightSide" />
+					<RightSide descripciones={descripciones} updateCheck={setCheckListSelected} />
 				</Split>
 			</section>
 			<div className="Checklist__buttons">
@@ -292,8 +489,8 @@ export default function Checklist({ dataCheckList }) {
 					</div>
 					<span>Obtener datos</span>
 				</button>
-				<button onClick={() => console.log(checkListSelected)} type="button">
-					Test
+				<button onClick={() => saveFormat()} type="button">
+					GENERAR FORMATO
 				</button>
 			</div>
 			{showPopImage &&

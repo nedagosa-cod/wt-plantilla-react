@@ -305,9 +305,9 @@
 	.loader svg circle {
 		fill: none;
 		stroke: var(--path);
-		stroke-width: 10px;
-		stroke-linejoin: round;
-		stroke-linecap: round;
+		strokewidth: 10px;
+		strokelinejoin: round;
+		strokelinecap: round;
 	}
 
 	& .loader svg polygon {

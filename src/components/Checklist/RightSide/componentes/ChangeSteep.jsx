@@ -23,13 +23,15 @@ const ChangeSteep = ({ children, to }) => {
 	}
 
 	return (
-		<BtnZum
-			className="changeSteep"
-			onClick={jumpToListCheck}
-			onMouseEnter={() => configHover('hover', to)}
-			onMouseLeave={() => configHover('', '')}>
-			{children}
-		</BtnZum>
+		<div>
+			<BtnZum
+				className="changeSteep"
+				onClick={jumpToListCheck}
+				onMouseEnter={() => configHover('hover', to)}
+				onMouseLeave={() => configHover('', '')}>
+				{children}
+			</BtnZum>
+		</div>
 	)
 }
 

@@ -15,6 +15,10 @@
 		{
 			"segment": "Fidelizacion",
 			"icon": "tipify"
+		},
+		{
+			"segment": "ADMIN",
+			"icon": "admin"
 		}
 	],
 	"NAVBAR": [
@@ -128,10 +132,10 @@
 			"segments": ["Fidelizacion"]
 		},
 		{
-			"title": "Preguntas Frecuentes",
-			"route": "/checklist",
-			"icon": "question",
-			"segments": ["Fidelizacion"]
+			"title": "Plantilla Checklist",
+			"route": "/checklist/plantilla",
+			"icon": "checklist",
+			"segments": ["ADMIN"]
 		}
 	]
 }

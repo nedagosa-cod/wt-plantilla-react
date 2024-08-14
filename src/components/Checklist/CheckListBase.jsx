@@ -5,10 +5,12 @@ import { Settings } from './Settings'
 import ejemploA from './BASES/ejemploA.json'
 import ejemploB from './BASES/ejemploB.json'
 import ejemploC from './BASES/ejemploB.json'
+import checkplantilla from './BASES/plantillaCheck.json'
 
 const CheckListBase = ({ checklist }) => {
 	const [zoom, setZoom] = useState(false)
 	const [cheklists, setCheckList] = useState({
+		checkplantilla,
 		ejemploA,
 		ejemploB,
 		ejemploC,

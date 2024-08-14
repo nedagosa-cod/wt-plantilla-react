@@ -2,9 +2,11 @@ import { useContext, useState } from 'react'
 import ListCheck from './ListCheck'
 import CheckListContext from '../../../context/ChecklistContext'
 import { IconPlus } from '../../../icons/IconPlus'
+import GlobalContext from '../../../context/GlobalContext'
 
 const LeftSide = ({ title, data, updateCheck }) => {
 	const { refListCheck, relativePosition } = useContext(CheckListContext)
+	const { admin } = useContext(GlobalContext)
 
 	const createStep = () => {
 		updateCheck(prevState => ({
@@ -31,9 +33,11 @@ const LeftSide = ({ title, data, updateCheck }) => {
 						/>
 					)
 				})}
-				<li className={'admin ' + 'on' + ' add-check'} onClick={() => createStep()}>
-					<IconPlus />
-				</li>
+				{admin && (
+					<li className={'admin ' + 'on' + ' add-check'} onClick={() => createStep()}>
+						<IconPlus />
+					</li>
+				)}
 			</ul>
 		</div>
 	)
