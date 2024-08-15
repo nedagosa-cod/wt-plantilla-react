@@ -13,6 +13,9 @@ const CheckListProvider = ({ children }) => {
 	const [theme, setTheme] = useState('dark')
 	// const [listChecked, setListChecked] = useState('')
 
+	const [editChElement, setEditChElement] = useState(false)
+	const [locationEl, setLocationEl] = useState({})
+
 	const [zoom, setZoom] = useState(false)
 
 	const refListCheck = useRef()
@@ -47,7 +50,6 @@ const CheckListProvider = ({ children }) => {
 		Y: ['Z', 'Y'],
 		Z: ['A', 'Z'],
 	}
-
 	const configHover = (value, pos) => {
 		setHover(value)
 		setPosHover(pos)
@@ -105,6 +107,10 @@ const CheckListProvider = ({ children }) => {
 		configHover,
 		posHover,
 		refRightSide,
+		editChElement,
+		setEditChElement,
+		locationEl,
+		setLocationEl,
 	}
 
 	return <CheckListContext.Provider value={data}>{children}</CheckListContext.Provider>

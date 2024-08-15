@@ -55,7 +55,8 @@ const HorNav = () => {
 		timeLine: <IconTimeLine />,
 		admin: <IconUserTea />,
 	})
-	const { readExcelFile, templatesDDBB, setScheme, showApp, admin } = useContext(GlobalContext)
+	const { readExcelFile, templatesDDBB, setScheme, showApp, admin, setAdmin } =
+		useContext(GlobalContext)
 	const search = valueSearch => {
 		const lowerCase = valueSearch.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
 		const allCards = document.querySelectorAll('.dato-buscado')
@@ -213,13 +214,15 @@ const HorNav = () => {
 										onClick={() => {
 											SetNavSegment(segment.segment)
 											navigate('/' + segment.segment.toLowerCase())
+											setAdmin(!admin)
 										}}
 										key={i}
 										className={
 											'hornav__segments--li admin__segment' +
 											(segment.segment === navSegment ? ' active' : '')
 										}>
-										{selectIcon[segment.icon]} {segment.segment}
+										{selectIcon[segment.icon]}
+										{admin ? 'Cerrar Admin' : segment.segment}
 									</li>
 								)
 							} else {

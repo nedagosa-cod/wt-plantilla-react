@@ -1,4 +1,3 @@
-import map from 'read-excel-file/map'
 import './dropmenu.scss'
 const DropMenu = ({ items, handler }) => {
 	return (
@@ -6,7 +5,7 @@ const DropMenu = ({ items, handler }) => {
 			{items.map(item => (
 				<div
 					key={item.key}
-					onClick={handler}
+					onClick={() => handler(item.key)}
 					className={'dropmenu__handler' + (item.danger ? ' danger' : '')}>
 					{item.label}
 				</div>

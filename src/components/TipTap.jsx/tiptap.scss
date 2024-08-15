@@ -1,0 +1,49 @@
+.tiptap {
+	margin-top: 1rem;
+	outline: none;
+	& ul {
+		margin-left: 4rem;
+	}
+}
+
+.tiptap-container {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	border: 1px solid #ccc;
+	padding: 1rem;
+	border-radius: 1.2rem;
+	-webkit-border-radius: 1.2rem;
+	-moz-border-radius: 1.2rem;
+	-ms-border-radius: 1.2rem;
+	-o-border-radius: 1.2rem;
+	&__toolbar {
+		&--buttons {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 1rem;
+			background: #fff;
+			& span {
+				border-left: 1px solid #ccc;
+			}
+			& button {
+				cursor: pointer;
+				min-width: 3rem;
+
+				border: none;
+				padding: 0.6rem;
+				border-radius: 0.8rem;
+				-webkit-border-radius: 0.8rem;
+				-moz-border-radius: 0.8rem;
+				-ms-border-radius: 0.8rem;
+				-o-border-radius: 0.8rem;
+				& svg {
+					width: 1.6rem;
+				}
+				&:hover {
+					background: #e7e7e7;
+				}
+			}
+		}
+	}
+}

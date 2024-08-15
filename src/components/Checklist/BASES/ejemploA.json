@@ -6,7 +6,7 @@
 			"html": [
 				{ "TITULO": "Tener en cuenta" },
 				{
-					"P": "1. El material debe enviarse &bolden un archivo de Word por cada proceso&bold, por ejemplo si tenemos varios procesos a desarrollar debe haber un archivo de word por acada uno"
+					"P": "1. El material debe enviarse &bolden un archivo de Word por cada proceso&bold, por ejemplo si tenemos varios procesos a desarrollar debe haber un &cursarchivo de word por acada uno&curs"
 				},
 				{
 					"LIST": [

@@ -4,7 +4,7 @@ import CheckListContext from '../../../context/ChecklistContext'
 import GlobalContext from '../../../context/GlobalContext'
 import { IconPlus } from '../../../icons/IconPlus'
 
-const RightSide = ({ descripciones, updateCheck }) => {
+const RightSide = ({ descripciones }) => {
 	const { checkSelected, refRightSide } = useContext(CheckListContext)
 	const [data, setData] = useState([])
 
