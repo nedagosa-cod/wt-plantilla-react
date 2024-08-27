@@ -6,7 +6,7 @@ import GlobalContext from '../../context/GlobalContext'
 export default function Bienvenida() {
 	const { scheme } = useContext(GlobalContext)
 	const style = {
-		backgroundImage: `url(${scheme === 'dark' ? imgBack : imgBackD})`,
+		backgroundImage: `url(${scheme === 'light' ? imgBack : imgBackD})`,
 		colorScheme: scheme,
 	}
 	return (

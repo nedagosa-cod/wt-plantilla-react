@@ -26,9 +26,10 @@ import BasesNoti from './components/Test/BasesNoti.jsx'
 
 const App = () => {
 	const { scheme, activeAppNote, showApp, admin } = useContext(GlobalContext)
+	
 	const style = {
 		app: {
-			backgroundImage: `url(${scheme === 'dark' ? imgBackground : imgBackgroundD})`,
+			backgroundImage: `url(${scheme === 'light' ? imgBackground : imgBackgroundD})`,
 			colorScheme: scheme,
 		},
 		body: {

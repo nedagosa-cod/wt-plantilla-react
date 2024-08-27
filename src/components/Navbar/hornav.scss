@@ -112,7 +112,7 @@
 			& ul {
 				display: flex;
 				align-items: center;
-				justify-content: space-between;
+				justify-content: flex-start;
 				width: 100%;
 				height: 5.6rem;
 				gap: 2rem;
@@ -192,7 +192,6 @@
 				height: max-content;
 				min-height: 400px;
 				background: $s-color;
-				background-image: url('../../assets/images/index/DropDownBoard.png');
 				background-repeat: no-repeat;
 				background-position: center;
 				background-size: cover;
