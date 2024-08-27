@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import { useContext, useEffect, useRef, useState } from 'react'
 import CheckListContext from '../../../context/ChecklistContext'
 import IconEdit from '../../../icons/IconEdit'
@@ -22,8 +23,14 @@ const ListCheck = ({ check, title, updateCheck, data }) => {
 	const [edit, setEdit] = useState(stepTitle === 'XXXXX' ? true : false)
 
 	const inputCheck = useRef()
+=======
+import { useState } from 'react'
+>>>>>>> Stashed changes
 
+const ListCheck = ({ check, title }) => {
+	const [isChecked, setIsChecked] = useState(false)
 	const showRelativeDescription = e => {
+<<<<<<< Updated upstream
 		const relativeDescription = () => {
 			refRightSide.current.scrollTo({ top: 0, behavior: 'smooth' })
 			if (e.target.checked) {
@@ -82,6 +89,15 @@ const ListCheck = ({ check, title, updateCheck, data }) => {
 				</label>
 			)}
 			<label className={'ListCheck ' + listChecked + ' ' + (posHover == check ? hover : '')}>
+=======
+		console.log('hola')
+		setIsChecked(prevState => !prevState)
+	}
+
+	return (
+		<li>
+			<label className={'ListCheck '}>
+>>>>>>> Stashed changes
 				<span>{check}</span>
 				{stepTitle === 'XXXXX' || edit ? (
 					<input
@@ -108,8 +124,13 @@ const ListCheck = ({ check, title, updateCheck, data }) => {
 				)}
 
 				<div className="checkbox-wrapper-44">
+<<<<<<< Updated upstream
 					<label className="toggleButton">
 						<input ref={inputCheck} type="checkbox" onChange={showRelativeDescription} id={check} />
+=======
+					<label className="toggleButton" onClick={showRelativeDescription}>
+						<input id={check} type="checkbox" checked={isChecked} />
+>>>>>>> Stashed changes
 						<div className="svg">
 							<svg viewBox="0 0 44 44">
 								<path
