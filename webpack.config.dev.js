@@ -76,6 +76,11 @@ module.exports = {
 					to: 'noTocar/plantillas',
 					noErrorOnMissing: true,
 				},
+				{
+					from: path.join(__dirname, '/src/components/BASES_OPERACION'),
+					to: 'BASES',
+					noErrorOnMissing: true,
+				},
 			],
 		}),
 	],

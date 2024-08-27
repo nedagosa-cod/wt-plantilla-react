@@ -34,34 +34,39 @@ const TipTap = ({ content, onchange }) => {
 			<div className="tiptap-container__toolbar">
 				<div className="tiptap-container__toolbar--buttons">
 					<button
+						type="button"
 						onClick={() => editor.chain().focus().toggleBold().run()}
 						disabled={!editor.can().chain().focus().toggleBold().run()}
 						className={editor.isActive('bold') ? 'is-active' : ''}>
 						<IconBoldOt />
 					</button>
 					<button
+						type="button"
 						onClick={() => editor.chain().focus().toggleItalic().run()}
 						disabled={!editor.can().chain().focus().toggleItalic().run()}
 						className={editor.isActive('italic') ? 'is-active' : ''}>
 						<IconItalicOt />
 					</button>
 					<button
+						type="button"
 						onClick={() => editor.chain().focus().toggleStrike().run()}
 						disabled={!editor.can().chain().focus().toggleStrike().run()}
 						className={editor.isActive('strike') ? 'is-active' : ''}>
 						<IconItalicOt />
 					</button>
 					<span></span>
-					<button className={editor.isActive('italic') ? 'is-active' : ''}>
+					<button type="button" className={editor.isActive('italic') ? 'is-active' : ''}>
 						<IconTooltipOt />
 					</button>
 					<button
+						type="button"
 						onClick={() => editor.chain().focus().toggleBulletList().run()}
 						className={editor.isActive('bulletList') ? 'is-active' : ''}>
 						<IconTooltipOt />
 					</button>
 					<span></span>
 					<button
+						type="button"
 						onClick={() => {
 							onchange(editor.getHTML())
 						}}
@@ -70,6 +75,7 @@ const TipTap = ({ content, onchange }) => {
 					</button>
 
 					<button
+						type="button"
 						onClick={() => editor.chain().focus().undo().run()}
 						disabled={!editor.can().chain().focus().undo().run()}>
 						<IconError />

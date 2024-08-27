@@ -13,8 +13,6 @@ const MenuEdit = ({ children, check, location }) => {
 		setOpen(prev => !prev)
 	}
 	const handlerDropMenu = key => {
-		const getDataElement = () => {}
-
 		switch (key) {
 			case '1':
 				setOpen(false)
