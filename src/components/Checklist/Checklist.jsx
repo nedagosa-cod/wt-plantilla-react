@@ -126,9 +126,9 @@ export default function Checklist({ dataCheckList }) {
 			})
 			let textTip = textCurs.replace(tipRegex, (match, content1, content2) => {
 				return (
-					'<span class="check-tip" id="parentTool">' +
+					'<span className="check-tip" id="parentTool">' +
 					content2 +
-					'<div class="check-tip__tip" id="toolTip">' +
+					'<div className="check-tip__tip" id="toolTip">' +
 					content1 +
 					'</div></span>'
 				)
@@ -136,30 +136,21 @@ export default function Checklist({ dataCheckList }) {
 			return textTip
 		}
 		const renderParagraph = (element, key) => (
-			<ParagraphDesc
-				key={key}
-				check={desc.check}
-				location={index}
-				updateUserCheck={setCheckListSelected}>
+			<ParagraphDesc key={key} check={desc.check} location={index} updateUserCheck={setCheckListSelected}>
 				<span dangerouslySetInnerHTML={{ __html: setTextProperties(element.P) }} />
 			</ParagraphDesc>
 		)
 
-		const renderLink = (element, key) => (
-			<LinkDesc url={element.LINK} buttonName={element.NAME} key={key} />
-		)
+		const renderLink = (element, key) => <LinkDesc url={element.LINK} buttonName={element.NAME} key={key} />
 
 		const renderImage = (element, key) => (
-			<ImageDesc
-				activatePopImage={activatePopImage}
-				key={key}
-				img={element.IMG}
-				width={element.SPACE}
-			/>
+			<ImageDesc activatePopImage={activatePopImage} key={key} img={element.IMG} width={element.SPACE} />
 		)
 
 		const renderSubtitle = (element, key) => (
-			<SubtitleDesc key={key}>{element.SUBTITLE}</SubtitleDesc>
+			<SubtitleDesc key={key} check={desc.check} location={index} updateUserCheck={setCheckListSelected}>
+				{element.SUBTITLE}
+			</SubtitleDesc>
 		)
 
 		const renderList = (element, key) => (
@@ -177,9 +168,13 @@ export default function Checklist({ dataCheckList }) {
 		)
 
 		const renderScript = (element, key) => (
-			<ScriptDesc key={key} scripts={element.SCRIPTS} setTextProperties={setTextProperties}>
-				{element.SCRIPT}
-			</ScriptDesc>
+			<ScriptDesc
+				key={key}
+				scripts={element.SCRIPTS}
+				setTextProperties={setTextProperties}
+				check={desc.check}
+				location={index}
+				updateUserCheck={setCheckListSelected}></ScriptDesc>
 		)
 
 		const renderValText = (element, key) => (
@@ -272,7 +267,7 @@ export default function Checklist({ dataCheckList }) {
 					return renderList(element, key)
 				case !!element.IMPORTANT:
 					return renderImportant(element, key)
-				case !!element.SCRIPT:
+				case !!element.SCRIPTS:
 					return renderScript(element, key)
 				case !!element.DATA_TEXT:
 					return renderValText(element, key)
@@ -425,9 +420,7 @@ export default function Checklist({ dataCheckList }) {
 												)
 											})}
 										</div>
-										<div
-											className={'admin ' + 'on' + ' add-check'}
-											onClick={() => console.log('hola')}>
+										<div className={'admin ' + 'on' + ' add-check'} onClick={() => console.log('hola')}>
 											<IconPlus />
 										</div>
 									</>
@@ -530,11 +523,7 @@ export default function Checklist({ dataCheckList }) {
 			</div>
 			{showPopImage &&
 				createPortal(
-					<PopImageDesc
-						setPopShowImage={setPopShowImage}
-						imagePop={imagePop}
-						widthImg={widthImg}
-					/>,
+					<PopImageDesc setPopShowImage={setPopShowImage} imagePop={imagePop} widthImg={widthImg} />,
 					document.body
 				)}
 			{showPopNota && createPortal(<PopNota activePopNota={activePopNota} />, document.body)}

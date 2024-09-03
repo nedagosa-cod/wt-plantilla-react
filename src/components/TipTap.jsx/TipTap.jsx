@@ -1,10 +1,7 @@
-import { useEditor, EditorContent, FloatingMenu, BubbleMenu } from '@tiptap/react'
+import { EditorContent } from '@tiptap/react'
 import { Editor } from '@tiptap/core'
-import Document from '@tiptap/extension-document'
-import Paragraph from '@tiptap/extension-paragraph'
-import Text from '@tiptap/extension-text'
 import StarterKit from '@tiptap/starter-kit'
-import Heading from '@tiptap/extension-heading'
+import 'prosemirror-view/style/prosemirror.css'
 
 import './tiptap.scss'
 import IconBoldOt from '../../icons/IconBoldOt'
@@ -12,10 +9,12 @@ import IconItalicOt from '../../icons/IconItalicOt'
 import IconCorrectOt from '../../icons/IconCorrectOt'
 import IconError from '../../icons/IconError'
 import IconTooltipOt from '../../icons/IconTooltipOt'
+import IconTextSublineOt from '../../icons/IconTextSublineOt'
+import IconListOt from '../../icons/IconListOt'
 
 // define your extension array
 
-const TipTap = ({ content, onchange }) => {
+const TipTap = ({ content, getValueTipTap, script, index }) => {
 	const editor = new Editor({
 		extensions: [StarterKit],
 		content: content,
@@ -40,44 +39,42 @@ const TipTap = ({ content, onchange }) => {
 						className={editor.isActive('bold') ? 'is-active' : ''}>
 						<IconBoldOt />
 					</button>
-					<button
-						type="button"
-						onClick={() => editor.chain().focus().toggleItalic().run()}
-						disabled={!editor.can().chain().focus().toggleItalic().run()}
-						className={editor.isActive('italic') ? 'is-active' : ''}>
-						<IconItalicOt />
-					</button>
+					{!script && (
+						<button
+							type="button"
+							onClick={() => editor.chain().focus().toggleItalic().run()}
+							disabled={!editor.can().chain().focus().toggleItalic().run()}
+							className={editor.isActive('italic') ? 'is-active' : ''}>
+							<IconItalicOt />
+						</button>
+					)}
 					<button
 						type="button"
 						onClick={() => editor.chain().focus().toggleStrike().run()}
 						disabled={!editor.can().chain().focus().toggleStrike().run()}
 						className={editor.isActive('strike') ? 'is-active' : ''}>
-						<IconItalicOt />
+						<IconTextSublineOt />
 					</button>
 					<span></span>
-					<button type="button" className={editor.isActive('italic') ? 'is-active' : ''}>
-						<IconTooltipOt />
-					</button>
-					<button
-						type="button"
-						onClick={() => editor.chain().focus().toggleBulletList().run()}
-						className={editor.isActive('bulletList') ? 'is-active' : ''}>
-						<IconTooltipOt />
-					</button>
+					{!script && (
+						<button
+							type="button"
+							onClick={() => editor.chain().focus().toggleBulletList().run()}
+							className={editor.isActive('bulletList') ? 'is-active' : ''}>
+							<IconListOt />
+						</button>
+					)}
 					<span></span>
 					<button
 						type="button"
 						onClick={() => {
-							onchange(editor.getHTML())
+							getValueTipTap(editor.getHTML(), index)
 						}}
 						className={editor.isActive('paragraph') ? 'is-active' : ''}>
 						<IconCorrectOt />
 					</button>
 
-					<button
-						type="button"
-						onClick={() => editor.chain().focus().undo().run()}
-						disabled={!editor.can().chain().focus().undo().run()}>
+					<button type="button">
 						<IconError />
 					</button>
 				</div>

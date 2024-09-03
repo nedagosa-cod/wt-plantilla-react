@@ -88,6 +88,39 @@ const CheckListProvider = ({ children }) => {
 	const zoomChecklist = () => {
 		setZoom(true)
 	}
+
+	// CHECKLIST ADMIN
+
+	function areObjectsEqual(obj1, obj2) {
+		return obj1.check === obj2.check && obj1.location === obj2.location
+	}
+
+	const HandlerContent = properties => {
+		const { value, editValue, updateUserCheck, check, location, type } = properties
+
+		const userElement = {
+			P: { P: value },
+			SUBTITLE: { SUBTITLE: value },
+			TITLE: { TITLE: value },
+			SCRIPTS: { SCRIPTS: value },
+		}
+		userElement[type] == 'SCRIPTS' ? editValue(userElement[type]) : editValue(value)
+		updateUserCheck(prevState => ({
+			...prevState,
+			DESCRIPCIONES: prevState.DESCRIPCIONES.map(description => {
+				if (description.check === check) {
+					return {
+						...description,
+						html: description.html.map((htmlEl, ind) => (ind === location ? userElement[type] : htmlEl)),
+					}
+				} else {
+					return description
+				}
+			}),
+		}))
+		setEditChElement(false)
+	}
+
 	const data = {
 		activeInside,
 		updateActiveInside,
@@ -97,7 +130,6 @@ const CheckListProvider = ({ children }) => {
 		changeTheme,
 		theme,
 		resetCheckList,
-
 		zoomChecklist,
 		setResetList,
 		resetList,
@@ -111,6 +143,8 @@ const CheckListProvider = ({ children }) => {
 		setEditChElement,
 		locationEl,
 		setLocationEl,
+		areObjectsEqual,
+		HandlerContent,
 	}
 
 	return <CheckListContext.Provider value={data}>{children}</CheckListContext.Provider>

@@ -18,11 +18,10 @@
 					"TYPE": "ul"
 				},
 				{
-					"P": "2. Se compartira un correo con la plantilla y cada uno de los instructivos para el envio del material de manera correcta"
+					"SCRIPTS": ["Que pasa la prueba", "Script numero dos"]
 				},
 				{
-					"IMPORTANT": "De no enviar la información de manera correcta como se solicita en el material, se devolvera el correo para la corrección del material",
-					"TITLE": "IMPORTANTE!"
+					"P": "2. Se compartira un correo con la plantilla y cada uno de los instructivos para el envio del material de manera correcta"
 				},
 				{
 					"P": "3. Revisar &boldotográfia&bold del material a enviar, los desarrolladores no tendran en cuenta la ortográfia ya que en las campañas existen terminologías que pueden relacionarse con el español o siglas que desconocen y son solo funcionales en operación"
@@ -63,10 +62,7 @@
 				},
 				{ "IMG": "estructure.png", "SPACE": "30%" },
 				{
-					"SCRIPT": "La estructura del checklist debe contener PASOS, PUNTOS, PASOS, PUNTOS como se muestra en el ejemplo anterior",
-					"SCRIPTS": [
-						"Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
-					]
+					"SCRIPTS": ["Tercero script de otro paso"]
 				},
 				{
 					"IMPORTANT": "DEBEN EXISTIR MINIMO 3 PASOS (A,B,C) delo contrario no funcionaria como lista de checkeo.",
@@ -80,10 +76,12 @@
 			"html": [
 				{ "TITULO": "Creación de elementos para checklist básico" },
 				{
-					"P": "1. Como vimos anteriormente tenemos distintos elementos que se pueden crear en un checklist y que estan estructurados en word."
+					"P": "1. <bold>Como</bold> vimos anteriormente tenemos distintos elementos que se pueden crear en un checklist y que estan estructurados en word."
 				},
 				{
-					"SCRIPT": "A continuación se mostrara como crear cada elemento que necesite en word en el orden correspondiente y se mostraran ejemplo de como se va viendo la estructura en word"
+					"SCRIPTS": [
+						"A continuación se mostrara como crear cada elemento que necesite en word en el orden correspondiente y se mostraran ejemplo de como se va viendo la estructura en word"
+					]
 				},
 				{
 					"SUBTITLE": "TITULO"
@@ -102,7 +100,9 @@
 					"P": "◉ Todos los pasos deben estar identificados con el orden alfabetico ascendente 'A,B,C...' y su respectivo titulo identificador."
 				},
 				{
-					"SCRIPT": "En el checklist que estas viendo, en la parte izquierda se encuentra el flujo de pasos que debes seguir para saber como crea un checklist."
+					"SCRIPTS": [
+						"En el checklist que estas viendo, en la parte izquierda se encuentra el flujo de pasos que debes seguir para saber como crea un checklist."
+					]
 				},
 				{
 					"P": "◉ En el siguiente ejemplo veras como agregar un paso en el material del documento de word"
@@ -175,7 +175,9 @@
 					"SPACE": "70%"
 				},
 				{
-					"SCRIPT": "En el siguiente PUNTO se encuentran los elementos para la creación de checklist avanzado, como lo son elementos de validación de datos..."
+					"SCRIPTS": [
+						"En el siguiente PUNTO se encuentran los elementos para la creación de checklist avanzado, como lo son elementos de validación de datos..."
+					]
 				},
 				{
 					"BTN_JUMP": "IR AL PASO SIGUIENTE 'D'",

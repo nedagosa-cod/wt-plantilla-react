@@ -133,6 +133,13 @@
 		-moz-border-radius: 0.8rem;
 		-ms-border-radius: 0.8rem;
 		-o-border-radius: 0.8rem;
+		& svg {
+			width: 4rem;
+		}
+		& hr {
+			width: 90%;
+			margin: 4px auto;
+		}
 	}
 	&__pop-image {
 		width: 40px;
