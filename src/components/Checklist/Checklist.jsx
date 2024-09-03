@@ -315,7 +315,7 @@ export default function Checklist({ dataCheckList }) {
 		setShowPopNota(!showPopNota)
 	}
 
-	const createUserElement = (event, elName, check) => {
+	const createUserElement = (elName, check) => {
 		const objetElecment = () => {
 			switch (elName) {
 				case 'Titulo':
@@ -414,7 +414,7 @@ export default function Checklist({ dataCheckList }) {
 													<button
 														type="button"
 														className="box-buttons-elemets__button"
-														onClick={e => createUserElement(e, item.name, element.check)}>
+														onClick={e => createUserElement(item.name, element.check)}>
 														<div>{item.icon}</div> {item.name}
 													</button>
 												)
@@ -458,14 +458,18 @@ export default function Checklist({ dataCheckList }) {
 		console.log(checkListSelected)
 	}
 	useEffect(() => {
+		console.log('uno')
 		if (activeInside) {
 			setCheckListSelected(dataCheckList)
 		}
 	}, [dataCheckList])
+
 	useEffect(() => {
+		console.log('dos')
 		resetCheckList()
 		fixDescriptions()
 	}, [checkListSelected])
+
 	return (
 		<form className={'Checklist ' + theme}>
 			<section className="data">

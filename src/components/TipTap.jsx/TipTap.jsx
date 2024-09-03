@@ -74,7 +74,11 @@ const TipTap = ({ content, getValueTipTap, script, index }) => {
 						<IconCorrectOt />
 					</button>
 
-					<button type="button">
+					<button
+						type="button"
+						onClick={() => {
+							getValueTipTap(null, true)
+						}}>
 						<IconError />
 					</button>
 				</div>

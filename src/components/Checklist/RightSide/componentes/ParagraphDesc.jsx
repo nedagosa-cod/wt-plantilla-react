@@ -6,7 +6,7 @@ const ParagraphDesc = ({ children, check, location, updateUserCheck }) => {
 	const { editChElement, locationEl, areObjectsEqual, HandlerContent } = useContext(CheckListContext)
 	const [editedValue, setEditedValue] = useState(children.props.dangerouslySetInnerHTML.__html)
 
-	const getValueTipTap = value => {
+	const getValueTipTap = (value, closeEdit) => {
 		HandlerContent({
 			type: 'P',
 			value: value,
@@ -14,6 +14,7 @@ const ParagraphDesc = ({ children, check, location, updateUserCheck }) => {
 			updateUserCheck,
 			check,
 			location,
+			closeEdit,
 		})
 	}
 

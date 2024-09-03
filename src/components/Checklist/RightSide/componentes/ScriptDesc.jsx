@@ -12,6 +12,7 @@ const ScriptDesc = ({ scripts, setTextProperties, check, location, updateUserChe
 			newArray[id] = value
 			return newArray
 		}
+
 		HandlerContent({
 			type: 'SCRIPTS',
 			value: createValueArray(),
@@ -64,7 +65,7 @@ const ScriptDesc = ({ scripts, setTextProperties, check, location, updateUserChe
 				location,
 			})
 				? editedValue.map((script, i) => {
-						return <TipTap content={script} getValueTipTap={getValueTipTap} key={i} index={i} />
+						return <TipTap content={script} getValueTipTap={getValueTipTap} key={i} index={i} script />
 				  })
 				: editedValue.map((script, i) => {
 						return (
@@ -74,17 +75,6 @@ const ScriptDesc = ({ scripts, setTextProperties, check, location, updateUserChe
 							</>
 						)
 				  })}
-
-			{/* {scripts &&
-				scripts.map((script, i) => {
-					return (
-						<span
-							key={i}
-							dangerouslySetInnerHTML={{ __html: setTextProperties(script) }}
-							style={{ marginBottom: '4px' }}
-						/>
-					)
-				})} */}
 		</div>
 	)
 }

@@ -95,8 +95,15 @@ const CheckListProvider = ({ children }) => {
 		return obj1.check === obj2.check && obj1.location === obj2.location
 	}
 
+	// asigna los valores del contenido html y crea el elemnto correspondiente
 	const HandlerContent = properties => {
-		const { value, editValue, updateUserCheck, check, location, type } = properties
+		const { value, editValue, updateUserCheck, check, location, type, closeEdit } = properties
+
+		// cierra el editor sin hacer cambios
+		if (closeEdit) {
+			setEditChElement(false)
+			return
+		}
 
 		const userElement = {
 			P: { P: value },

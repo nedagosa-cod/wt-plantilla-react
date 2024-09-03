@@ -262,8 +262,7 @@
 			text-align: center;
 			color: $p-color;
 
-			text-shadow: -1px -1px 0 $w-color, 1px -1px 0 $w-color, -1px 1px 0 $w-color,
-				1px 1px 0 $w-color;
+			text-shadow: -1px -1px 0 $w-color, 1px -1px 0 $w-color, -1px 1px 0 $w-color, 1px 1px 0 $w-color;
 			letter-spacing: 1px;
 		}
 		&__btn-reiniciar {
@@ -377,6 +376,9 @@
 				left: -27px;
 				top: 0;
 			}
+		}
+		&.admin {
+			overflow-y: auto;
 		}
 	}
 	& .split {
