@@ -37,6 +37,7 @@ const HorNav = () => {
 	const dropDownRef = useRef(null)
 	const [dropDown, setDropDown] = useState(false)
 	const [windowDB, setWindowDB] = useState(false)
+	const [activeLink, setActiveLink] = useState('Inicio')
 	const [hidden, setHidden] = useState(true)
 	const [navSegment, SetNavSegment] = useState(DATANAV.SEGMENTS[0].segment)
 	const [selectIcon, setSelectIcon] = useState({
@@ -81,10 +82,16 @@ const HorNav = () => {
 			scrollContainerRef.current.scrollLeft += event.deltaY
 		}
 	}
-
-	const activeDropDown = (drop, button) => {
-		const $dropDown = button.nextElementSibling
-		const $liItems = [...button.parentNode.parentNode.children]
+	const handleLinkClick = linkTitle => {
+		setActiveLink(linkTitle)
+	}
+	const activeDropDown = button => {
+		const $dropDown =
+			button.type === 'button' ? button.nextElementSibling : button.parentNode.parentNode
+		const $liItems =
+			button.type === 'button'
+				? [...button.parentNode.parentNode.children]
+				: [...button.parentNode.parentNode.parentNode.parentNode.children]
 
 		if ($dropDown && $dropDown.classList.contains('active')) {
 			$dropDown.classList.remove('animate__fadeInDown')
@@ -115,7 +122,6 @@ const HorNav = () => {
 		setDropDown(!dropDown)
 	}
 	const setsClick = e => {
-		console.log('holis')
 		switch (e.target.name) {
 			case 'theme':
 				setScheme(prev => (prev === 'light' ? 'dark' : 'light'))
@@ -298,7 +304,12 @@ const HorNav = () => {
 										</li>
 										<li className="hornav-dropdown__li li-submenu">
 											{link.dropDown.map((linkk, l) => (
-												<Link to={linkk.route} key={l} onClick={() => setDropDown(false)}>
+												<Link
+													to={linkk.route}
+													key={l}
+													onClick={e => {
+														activeDropDown(e.target)
+													}}>
 													{selectIcon[linkk.icon]} {linkk.title}
 												</Link>
 											))}
@@ -307,16 +318,23 @@ const HorNav = () => {
 								)
 
 								const renderLink = () => (
-									<li key={i} className="hornav__links--li">
+									<li
+										key={i}
+										className={'hornav__links--li ' + (activeLink === link.title ? ' active' : '')}>
 										{link.dropDown ? (
 											<>
-												<button onClick={e => activeDropDown(link.title, e.target)}>
+												<button
+													type="button"
+													onClick={e => {
+														activeDropDown(e.target)
+														handleLinkClick(link.title)
+													}}>
 													{selectIcon[link.icon]} {link.title} <IconArrowDown />
 												</button>
 												{renderDropDown()}
 											</>
 										) : (
-											<Link to={link.route}>
+											<Link to={link.route} onClick={() => handleLinkClick(link.title)}>
 												{selectIcon[link.icon]} {link.title}
 											</Link>
 										)}

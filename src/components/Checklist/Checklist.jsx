@@ -465,6 +465,11 @@ export default function Checklist({ dataCheckList }) {
 		console.log(checkListSelected)
 	}
 	useEffect(() => {
+		if (activeInside) {
+			setCheckListSelected(dataCheckList)
+		}
+	}, [dataCheckList])
+	useEffect(() => {
 		resetCheckList()
 		fixDescriptions()
 	}, [checkListSelected])
