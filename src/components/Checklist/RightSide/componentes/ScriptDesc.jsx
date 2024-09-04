@@ -26,8 +26,8 @@ const ScriptDesc = ({ scripts, setTextProperties, check, location, updateUserChe
 	return (
 		<div className="description__script">
 			<svg viewBox="0 0 1024 1024" className="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000">
-				<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-				<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+				<g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+				<g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
 				<g id="SVGRepo_iconCarrier">
 					<path
 						d="M213.333333 554.666667m-85.333333 0a85.333333 85.333333 0 1 0 170.666667 0 85.333333 85.333333 0 1 0-170.666667 0Z"
@@ -65,14 +65,15 @@ const ScriptDesc = ({ scripts, setTextProperties, check, location, updateUserChe
 				location,
 			})
 				? editedValue.map((script, i) => {
-						return <TipTap content={script} getValueTipTap={getValueTipTap} key={i} index={i} script />
+						return <TipTap content={script} getValueTipTap={getValueTipTap} key={'titap_' + i} index={i} script />
 				  })
 				: editedValue.map((script, i) => {
 						return (
-							<>
-								<span key={i} dangerouslySetInnerHTML={{ __html: setTextProperties(script) }} />
-								<br />
-							</>
+							<span
+								key={'scr_' + i}
+								dangerouslySetInnerHTML={{ __html: setTextProperties(script) }}
+								style={{ marginBottom: '8px' }}
+							/>
 						)
 				  })}
 		</div>

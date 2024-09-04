@@ -12,12 +12,13 @@ const RightSide = ({ descripciones }) => {
 	useEffect(() => {
 		setData(descripciones)
 	}, [descripciones])
+
 	return (
 		<div className={'rightSide' + (admin ? ' admin' : '')} id="rightSide" ref={refRightSide}>
 			{data.map((descripcion, i) => {
 				return (
 					<div
-						key={i}
+						key={descripcion.check}
 						className={
 							'rightSide__description description ' + (checkSelected == descripcion.check || admin ? 'active' : '')
 						}>

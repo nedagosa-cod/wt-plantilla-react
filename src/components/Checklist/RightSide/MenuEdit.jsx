@@ -43,31 +43,35 @@ const MenuEdit = ({ children, check, location }) => {
 		},
 	]
 	return (
-		<div className={'container-element-ch ' + (admin ? 'admin' : '')}>
-			{admin && children && (
-				<button
-					className="task__btn"
-					type="button"
-					onClick={() => {
-						openDropMenu()
-					}}>
-					<IconEdit />
-				</button>
-			)}
-			{children}
-			{open && (
-				<div className="dropmenu">
-					{items.map(item => (
-						<div
-							key={item.key}
-							onClick={() => handlerDropMenu(item.key)}
-							className={'dropmenu__handler' + (item.danger ? ' danger' : '')}>
-							{item.label}
+		<>
+			{children && (
+				<div className={'container-element-ch ' + (admin ? 'admin' : '')}>
+					{admin && children && (
+						<button
+							className="task__btn"
+							type="button"
+							onClick={() => {
+								openDropMenu()
+							}}>
+							<IconEdit />
+						</button>
+					)}
+					{children}
+					{open && (
+						<div className="dropmenu">
+							{items.map(item => (
+								<div
+									key={item.key}
+									onClick={() => handlerDropMenu(item.key)}
+									className={'dropmenu__handler' + (item.danger ? ' danger' : '')}>
+									{item.label}
+								</div>
+							))}
 						</div>
-					))}
+					)}
 				</div>
 			)}
-		</div>
+		</>
 	)
 }
 

@@ -13,6 +13,7 @@ const SubtitleDesc = ({ children, check, location, updateUserCheck }) => {
 				location,
 			}) ? (
 				<input
+					className="description__subtitle edit"
 					type="text"
 					onBlur={e =>
 						HandlerContent({

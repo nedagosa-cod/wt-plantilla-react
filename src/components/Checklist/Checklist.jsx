@@ -251,8 +251,6 @@ export default function Checklist({ dataCheckList }) {
 		}
 
 		const creatingElement = () => {
-			if (!element) return null
-
 			const key = `${desc.check}_${index}`
 			switch (true) {
 				case !!element.P:
@@ -401,6 +399,7 @@ export default function Checklist({ dataCheckList }) {
 								if (list.TITULO) {
 									return <TitleDesc key={element.check + '_' + l}>{list.TITULO}</TitleDesc>
 								}
+								return null
 							})}
 							<article className="description__container">
 								{element.html.map((list, j) => {
@@ -412,6 +411,7 @@ export default function Checklist({ dataCheckList }) {
 											{itemsElemets.map((item, i) => {
 												return (
 													<button
+														key={i}
 														type="button"
 														className="box-buttons-elemets__button"
 														onClick={e => createUserElement(item.name, element.check)}>
@@ -420,7 +420,10 @@ export default function Checklist({ dataCheckList }) {
 												)
 											})}
 										</div>
-										<div className={'admin ' + 'on' + ' add-check'} onClick={() => console.log('hola')}>
+										<div
+											key={'admin_add_check' + i}
+											className={'admin ' + 'on' + ' add-check'}
+											onClick={() => console.log('hola')}>
 											<IconPlus />
 										</div>
 									</>
@@ -458,14 +461,12 @@ export default function Checklist({ dataCheckList }) {
 		console.log(checkListSelected)
 	}
 	useEffect(() => {
-		console.log('uno')
 		if (activeInside) {
 			setCheckListSelected(dataCheckList)
 		}
 	}, [dataCheckList])
 
 	useEffect(() => {
-		console.log('dos')
 		resetCheckList()
 		fixDescriptions()
 	}, [checkListSelected])

@@ -20,7 +20,9 @@
 		font-size: 1.6rem;
 		font-weight: 400;
 		padding: 1rem 2rem;
-		gap: 0.8rem;
+		gap: 1.8rem;
+		scrollbar-width: thin;
+		scrollbar-color: $p-color $p3-color;
 		& .box-buttons-elemets {
 			display: flex;
 			flex-wrap: wrap;
@@ -68,7 +70,16 @@
 		color: $s-color;
 		text-align: center;
 		font-size: 2rem;
-		margin-top: 2rem;
+		&.edit {
+			width: 100%;
+			border: 1px solid #dddcdc;
+			background: #eee;
+			border-radius: 4px;
+			-webkit-border-radius: 4px;
+			-moz-border-radius: 4px;
+			-ms-border-radius: 4px;
+			-o-border-radius: 4px;
+		}
 	}
 	&__paragraph {
 		font-size: 1.8rem;
@@ -117,7 +128,6 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		margin: 1rem 0;
 		background: rgba(255, 118, 118, 0.1);
 		font-size: 1.8rem;
 		font-style: italic;
