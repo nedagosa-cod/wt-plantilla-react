@@ -137,7 +137,8 @@ export default function Checklist({ dataCheckList }) {
 		}
 		const renderParagraph = (element, key) => (
 			<ParagraphDesc key={key} check={desc.check} location={index} updateUserCheck={setCheckListSelected}>
-				<span dangerouslySetInnerHTML={{ __html: setTextProperties(element.P) }} />
+				{/* <span dangerouslySetInnerHTML={{ __html: setTextProperties(element.P) }} /> */}
+				{setTextProperties(element.P)}
 			</ParagraphDesc>
 		)
 

@@ -92,8 +92,8 @@ const TipTap = ({ content, getValueTipTap, onScript, onList, onParagraph }) => {
 					<button
 						type="button"
 						onClick={() => {
-							console.log(editor.getHTML())
-							getValueTipTap(editor.getHTML(), false)
+							const valueGive = editor.getHTML()
+							getValueTipTap(valueGive, false)
 						}}
 						className={editor.isActive('paragraph') ? 'is-active' : ''}>
 						<IconCorrectOt />

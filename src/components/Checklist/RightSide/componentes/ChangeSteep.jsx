@@ -3,8 +3,7 @@ import CheckListContext from '../../../../context/ChecklistContext'
 import { BtnZum } from '../../../MyComponents/Buttons/Buttons'
 
 const ChangeSteep = ({ children, to }) => {
-	const { changeDescription, refListCheck, configHover, refRightSide } =
-		useContext(CheckListContext)
+	const { changeDescription, refListCheck, configHover, refRightSide } = useContext(CheckListContext)
 
 	const jumpToListCheck = () => {
 		let ListCheck = refListCheck.current.querySelectorAll('input[type="checkbox"]')
@@ -27,8 +26,9 @@ const ChangeSteep = ({ children, to }) => {
 			<BtnZum
 				className="changeSteep"
 				onClick={jumpToListCheck}
-				onMouseEnter={() => configHover('hover', to)}
-				onMouseLeave={() => configHover('', '')}>
+				// onMouseEnter={() => configHover('hover', to)}
+				// onMouseLeave={() => configHover('', '')}
+			>
 				{children}
 			</BtnZum>
 		</div>
