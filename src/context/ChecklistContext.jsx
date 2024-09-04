@@ -109,6 +109,7 @@ const CheckListProvider = ({ children }) => {
 			SUBTITLE: { SUBTITLE: value },
 			TITLE: { TITLE: value },
 			SCRIPTS: { SCRIPTS: value },
+			LIST: { LIST: value },
 		}
 		// userElement[type] == 'SCRIPTS' ? editValue(userElement[type]) : editValue(value)
 		editValue(value)

@@ -155,20 +155,21 @@ export default function Checklist({ dataCheckList }) {
 
 		const renderList = (element, key) => {
 			return (
-				<ListDesc key={key} check={desc.check} location={index} updateUserCheck={setCheckListSelected}>
-					{element.LIST.map((list, j) => (
-						<li key={j} dangerouslySetInnerHTML={{ __html: setTextProperties(list) }} />
-					))}
-				</ListDesc>
+				<>
+					{Array.isArray(element.LIST) ? (
+						<ListDesc key={key} check={desc.check} location={index} updateUserCheck={setCheckListSelected}>
+							{element.LIST.map((list, j) => (
+								<li key={j} dangerouslySetInnerHTML={{ __html: setTextProperties(list) }} />
+							))}
+						</ListDesc>
+					) : (
+						<ListDesc key={key} check={desc.check} location={index} updateUserCheck={setCheckListSelected}>
+							{element.LIST}
+						</ListDesc>
+					)}
+				</>
 			)
 		}
-
-		const renderImportant = (element, key) => (
-			<ImportantDesc title={element.TITLE} key={key}>
-				<span dangerouslySetInnerHTML={{ __html: setTextProperties(element.IMPORTANT) }} />
-			</ImportantDesc>
-		)
-
 		const renderScript = (element, key) => {
 			return (
 				<>
@@ -186,6 +187,11 @@ export default function Checklist({ dataCheckList }) {
 				</>
 			)
 		}
+		const renderImportant = (element, key) => (
+			<ImportantDesc title={element.TITLE} key={key}>
+				<span dangerouslySetInnerHTML={{ __html: setTextProperties(element.IMPORTANT) }} />
+			</ImportantDesc>
+		)
 
 		const renderValText = (element, key) => (
 			<ValTextDesc position={element.POS} key={key}>
@@ -335,7 +341,7 @@ export default function Checklist({ dataCheckList }) {
 				case 'Imagen':
 					return { IMG: '#', SPACE: '50%' }
 				case 'Script/Guión':
-					return { SCRIPT: 'XXXXX', SCRIPTS: [] }
+					return { SCRIPTS: '<p>XXX</p>' }
 				case 'Nota resaltada':
 					return { IMPORTANT: 'XXXXX', TITLE: 'XXXXX' }
 				case 'Espacio':

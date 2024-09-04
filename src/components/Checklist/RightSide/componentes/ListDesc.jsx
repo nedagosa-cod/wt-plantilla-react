@@ -3,6 +3,7 @@ import GlobalContext from '../../../../context/GlobalContext'
 import IconMenu from '../../../../icons/IconMenu'
 import CheckListContext from '../../../../context/ChecklistContext'
 import TipTap from '../../../TipTap.jsx/TipTap'
+import parse from 'html-react-parser'
 
 const ListDesc = ({ children, check, location, updateUserCheck }) => {
 	const { editChElement, locationEl, areObjectsEqual, HandlerContent } = useContext(CheckListContext)
@@ -10,7 +11,7 @@ const ListDesc = ({ children, check, location, updateUserCheck }) => {
 	const ulEdit = useRef(null)
 	const getValueTipTap = (value, closeEdit) => {
 		HandlerContent({
-			type: 'P',
+			type: 'LIST',
 			value: value,
 			editValue: setEditedValue,
 			updateUserCheck,
@@ -28,17 +29,19 @@ const ListDesc = ({ children, check, location, updateUserCheck }) => {
 			}) ? (
 				<TipTap content={ulEdit.current.innerHTML} getValueTipTap={getValueTipTap} onList />
 			) : (
-				<div>
-					<ul className="description__list" ref={ulEdit}>
-						{Array.isArray(editedValue) ? (
-							editedValue.map((item, i) => (
-								<li dangerouslySetInnerHTML={{ __html: item.props.dangerouslySetInnerHTML.__html }} key={i} />
-							))
-						) : (
-							<>{editedValue}</>
-						)}
-					</ul>
-				</div>
+				<ul className="description__list" ref={ulEdit}>
+					{Array.isArray(editedValue) ? (
+						editedValue.map((item, i) => (
+							<li
+								dangerouslySetInnerHTML={{ __html: item.props.dangerouslySetInnerHTML.__html }}
+								key={i}
+								className="arriba"
+							/>
+						))
+					) : (
+						<>{parse(editedValue.replace(/<\/?ul>/g, ''))}</>
+					)}
+				</ul>
 			)}
 		</>
 	)

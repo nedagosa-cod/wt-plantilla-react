@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef, useState } from 'react'
 import CheckListContext from '../../../../context/ChecklistContext'
 import TipTap from '../../../TipTap.jsx/TipTap'
-import { Span } from '@tiptap/pm/changeset'
+import parse from 'html-react-parser'
 
 const ScriptDesc = ({ children, check, location, updateUserCheck }) => {
 	const { editChElement, locationEl, areObjectsEqual, HandlerContent } = useContext(CheckListContext)
@@ -76,7 +76,7 @@ const ScriptDesc = ({ children, check, location, updateUserCheck }) => {
 							/>
 						))
 					) : (
-						<span dangerouslySetInnerHTML={{ __html: editedValue.replace(/<p><\/p>/g, '<br/>') }} />
+						<>{parse(editedValue.replace(/<p><\/p>/g, '<br/>'))}</>
 					)}
 				</div>
 			)}

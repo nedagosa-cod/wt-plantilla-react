@@ -25,7 +25,7 @@ const ParagraphDesc = ({ children, check, location, updateUserCheck }) => {
 				location,
 			}) ? (
 				<>
-					<TipTap content={editedValue} getValueTipTap={getValueTipTap} />
+					<TipTap content={editedValue} getValueTipTap={getValueTipTap} onParagraph />
 				</>
 			) : (
 				<p className="description__paragraph">{children}</p>
