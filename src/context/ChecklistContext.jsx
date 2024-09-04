@@ -98,7 +98,6 @@ const CheckListProvider = ({ children }) => {
 	// asigna los valores del contenido html y crea el elemnto correspondiente
 	const HandlerContent = properties => {
 		const { value, editValue, updateUserCheck, check, location, type, closeEdit } = properties
-
 		// cierra el editor sin hacer cambios
 		if (closeEdit) {
 			setEditChElement(false)
@@ -111,7 +110,8 @@ const CheckListProvider = ({ children }) => {
 			TITLE: { TITLE: value },
 			SCRIPTS: { SCRIPTS: value },
 		}
-		userElement[type] == 'SCRIPTS' ? editValue(userElement[type]) : editValue(value)
+		// userElement[type] == 'SCRIPTS' ? editValue(userElement[type]) : editValue(value)
+		editValue(value)
 		updateUserCheck(prevState => ({
 			...prevState,
 			DESCRIPCIONES: prevState.DESCRIPCIONES.map(description => {

@@ -153,13 +153,15 @@ export default function Checklist({ dataCheckList }) {
 			</SubtitleDesc>
 		)
 
-		const renderList = (element, key) => (
-			<ListDesc key={key} type={element.TYPE}>
-				{element.LIST.map((list, j) => (
-					<li key={j} dangerouslySetInnerHTML={{ __html: setTextProperties(list) }} />
-				))}
-			</ListDesc>
-		)
+		const renderList = (element, key) => {
+			return (
+				<ListDesc key={key} check={desc.check} location={index} updateUserCheck={setCheckListSelected}>
+					{element.LIST.map((list, j) => (
+						<li key={j} dangerouslySetInnerHTML={{ __html: setTextProperties(list) }} />
+					))}
+				</ListDesc>
+			)
+		}
 
 		const renderImportant = (element, key) => (
 			<ImportantDesc title={element.TITLE} key={key}>
@@ -167,15 +169,23 @@ export default function Checklist({ dataCheckList }) {
 			</ImportantDesc>
 		)
 
-		const renderScript = (element, key) => (
-			<ScriptDesc
-				key={key}
-				scripts={element.SCRIPTS}
-				setTextProperties={setTextProperties}
-				check={desc.check}
-				location={index}
-				updateUserCheck={setCheckListSelected}></ScriptDesc>
-		)
+		const renderScript = (element, key) => {
+			return (
+				<>
+					{Array.isArray(element.SCRIPTS) ? (
+						<ScriptDesc key={key} check={desc.check} location={index} updateUserCheck={setCheckListSelected}>
+							{element.SCRIPTS.map((script, j) => (
+								<span key={j} dangerouslySetInnerHTML={{ __html: setTextProperties(script) }} />
+							))}
+						</ScriptDesc>
+					) : (
+						<ScriptDesc key={key} check={desc.check} location={index} updateUserCheck={setCheckListSelected}>
+							{element.SCRIPTS}
+						</ScriptDesc>
+					)}
+				</>
+			)
+		}
 
 		const renderValText = (element, key) => (
 			<ValTextDesc position={element.POS} key={key}>
@@ -457,8 +467,6 @@ export default function Checklist({ dataCheckList }) {
 
 		// Liberar el objeto URL
 		URL.revokeObjectURL(enlace.href)
-
-		console.log(checkListSelected)
 	}
 	useEffect(() => {
 		if (activeInside) {
@@ -504,7 +512,6 @@ export default function Checklist({ dataCheckList }) {
 						if (activeInside.length > 0) {
 							setShowPopNota(true)
 						}
-						console.log(activeInside)
 					}}>
 					<div className="svg-wrapper-1">
 						<div className="svg-wrapper">

@@ -1,28 +1,23 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import CheckListContext from '../../../../context/ChecklistContext'
 import TipTap from '../../../TipTap.jsx/TipTap'
+import { Span } from '@tiptap/pm/changeset'
 
-const ScriptDesc = ({ scripts, setTextProperties, check, location, updateUserCheck }) => {
+const ScriptDesc = ({ children, check, location, updateUserCheck }) => {
 	const { editChElement, locationEl, areObjectsEqual, HandlerContent } = useContext(CheckListContext)
-	const [editedValue, setEditedValue] = useState(scripts)
-
-	const getValueTipTap = (value, id) => {
-		const createValueArray = () => {
-			const newArray = editedValue
-			newArray[id] = value
-			return newArray
-		}
-
+	const [editedValue, setEditedValue] = useState(children)
+	const scripEdit = useRef(null)
+	const getValueTipTap = (value, closeEdit) => {
 		HandlerContent({
 			type: 'SCRIPTS',
-			value: createValueArray(),
+			value: value,
 			editValue: setEditedValue,
 			updateUserCheck,
 			check,
 			location,
+			closeEdit,
 		})
 	}
-
 	return (
 		<div className="description__script">
 			<svg viewBox="0 0 1024 1024" className="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000">
@@ -63,19 +58,28 @@ const ScriptDesc = ({ scripts, setTextProperties, check, location, updateUserChe
 			areObjectsEqual(locationEl, {
 				check,
 				location,
-			})
-				? editedValue.map((script, i) => {
-						return <TipTap content={script} getValueTipTap={getValueTipTap} key={'titap_' + i} index={i} script />
-				  })
-				: editedValue.map((script, i) => {
-						return (
-							<span
-								key={'scr_' + i}
-								dangerouslySetInnerHTML={{ __html: setTextProperties(script) }}
-								style={{ marginBottom: '8px' }}
+			}) ? (
+				<TipTap
+					content={scripEdit.current.innerHTML.replace('<br>', '<p></p>')}
+					getValueTipTap={getValueTipTap}
+					onScript
+				/>
+			) : (
+				<div ref={scripEdit}>
+					{Array.isArray(editedValue) ? (
+						editedValue.map((text, i) => (
+							<p
+								key={i}
+								dangerouslySetInnerHTML={{
+									__html: text.props.dangerouslySetInnerHTML.__html.replace(/<p><\/p>/g, '<br/>'),
+								}}
 							/>
-						)
-				  })}
+						))
+					) : (
+						<span dangerouslySetInnerHTML={{ __html: editedValue.replace(/<p><\/p>/g, '<br/>') }} />
+					)}
+				</div>
+			)}
 		</div>
 	)
 }

@@ -114,7 +114,6 @@ const WtField = props => {
 					if (type == 'text') {
 						validateLength(fieldValue)
 						setData(fieldValue)
-						console.log('viy')
 					}
 					if (type == 'just-text') {
 						if (/[a-zA-Z]/.test(fieldValue) && !/\d/.test(fieldValue)) {

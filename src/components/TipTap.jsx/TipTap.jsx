@@ -1,6 +1,7 @@
 import { EditorContent } from '@tiptap/react'
 import { Editor } from '@tiptap/core'
 import StarterKit from '@tiptap/starter-kit'
+
 import 'prosemirror-view/style/prosemirror.css'
 
 import './tiptap.scss'
@@ -8,15 +9,22 @@ import IconBoldOt from '../../icons/IconBoldOt'
 import IconItalicOt from '../../icons/IconItalicOt'
 import IconCorrectOt from '../../icons/IconCorrectOt'
 import IconError from '../../icons/IconError'
-import IconTooltipOt from '../../icons/IconTooltipOt'
 import IconTextSublineOt from '../../icons/IconTextSublineOt'
 import IconListOt from '../../icons/IconListOt'
+import IconTooltipOt from '../../icons/IconTooltipOt'
 
 // define your extension array
 
-const TipTap = ({ content, getValueTipTap, script, index }) => {
+const TipTap = ({ content, getValueTipTap, onScript, onList }) => {
+	console.log(content)
 	const editor = new Editor({
-		extensions: [StarterKit],
+		extensions: [
+			StarterKit.configure({
+				bulletList: true,
+				orderedList: false,
+				listItem: true,
+			}),
+		],
 		content: content,
 		autofocus: 'end',
 		injectCSS: false,
@@ -39,7 +47,7 @@ const TipTap = ({ content, getValueTipTap, script, index }) => {
 						className={editor.isActive('bold') ? 'is-active' : ''}>
 						<IconBoldOt />
 					</button>
-					{!script && (
+					{!onScript && (
 						<button
 							type="button"
 							onClick={() => editor.chain().focus().toggleItalic().run()}
@@ -56,7 +64,7 @@ const TipTap = ({ content, getValueTipTap, script, index }) => {
 						<IconTextSublineOt />
 					</button>
 					<span></span>
-					{!script && (
+					{!onScript && !onList && (
 						<button
 							type="button"
 							onClick={() => editor.chain().focus().toggleBulletList().run()}
@@ -64,11 +72,15 @@ const TipTap = ({ content, getValueTipTap, script, index }) => {
 							<IconListOt />
 						</button>
 					)}
+					<button type="button">
+						<IconTooltipOt />
+					</button>
 					<span></span>
 					<button
 						type="button"
 						onClick={() => {
-							getValueTipTap(editor.getHTML(), index)
+							console.log(editor.getHTML())
+							getValueTipTap(editor.getHTML(), false)
 						}}
 						className={editor.isActive('paragraph') ? 'is-active' : ''}>
 						<IconCorrectOt />

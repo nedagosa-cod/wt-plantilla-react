@@ -5,7 +5,6 @@ import CheckListContext from '../../../../context/ChecklistContext'
 const ParagraphDesc = ({ children, check, location, updateUserCheck }) => {
 	const { editChElement, locationEl, areObjectsEqual, HandlerContent } = useContext(CheckListContext)
 	const [editedValue, setEditedValue] = useState(children.props.dangerouslySetInnerHTML.__html)
-
 	const getValueTipTap = (value, closeEdit) => {
 		HandlerContent({
 			type: 'P',
