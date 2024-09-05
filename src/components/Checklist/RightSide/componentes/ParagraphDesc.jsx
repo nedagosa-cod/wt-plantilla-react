@@ -5,7 +5,6 @@ import parse from 'html-react-parser'
 const ParagraphDesc = ({ children, check, location, updateUserCheck }) => {
 	const { editChElement, locationEl, areObjectsEqual, HandlerContent } = useContext(CheckListContext)
 	const [editedValue, setEditedValue] = useState(children)
-	console.log(children)
 	const getValueTipTap = (value, closeEdit) => {
 		HandlerContent({
 			type: 'P',

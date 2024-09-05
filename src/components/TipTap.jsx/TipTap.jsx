@@ -34,6 +34,9 @@ const TipTap = ({ content, getValueTipTap, onScript, onList, onParagraph }) => {
 			if (onList && textEditor == '') {
 				editor.chain().focus().toggleBulletList().run()
 			}
+			if (textEditor.includes('<p>')) {
+				console.log('si tiene')
+			}
 			// no permite escribir mas de 600 caracteres en parrafos
 			if ((onParagraph || onScript) && textEditor.length > 600) {
 				editor.commands.setContent(textEditor.substring(0, 600))

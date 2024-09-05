@@ -32,14 +32,10 @@ const ListDesc = ({ children, check, location, updateUserCheck }) => {
 				<ul className="description__list" ref={ulEdit}>
 					{Array.isArray(editedValue) ? (
 						editedValue.map((item, i) => (
-							<li
-								dangerouslySetInnerHTML={{ __html: item.props.dangerouslySetInnerHTML.__html }}
-								key={i}
-								className="arriba"
-							/>
+							<li dangerouslySetInnerHTML={{ __html: item.props.dangerouslySetInnerHTML.__html }} key={i} />
 						))
 					) : (
-						<>{parse(editedValue.replace(/<\/?ul>/g, ''))}</>
+						<>{parse(editedValue.replace(/<\/?ul>/g, '').replace(/<\/?p>/g, ''))}</>
 					)}
 				</ul>
 			)}
