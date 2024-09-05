@@ -97,7 +97,8 @@ const CheckListProvider = ({ children }) => {
 
 	// asigna los valores del contenido html y crea el elemnto correspondiente
 	const HandlerContent = properties => {
-		const { value, editValue, updateUserCheck, check, location, type, closeEdit } = properties
+		const { value, editValue, editSecondValues, updateUserCheck, check, location, type, closeEdit, secondValues } =
+			properties
 		// cierra el editor sin hacer cambios
 		if (closeEdit) {
 			setEditChElement(false)
@@ -110,23 +111,41 @@ const CheckListProvider = ({ children }) => {
 			TITLE: { TITLE: value },
 			SCRIPTS: { SCRIPTS: value },
 			LIST: { LIST: value },
+			IMG: { IMG: value, SPACE: secondValues ? secondValues.onImage : {} },
 		}
-		// userElement[type] == 'SCRIPTS' ? editValue(userElement[type]) : editValue(value)
+
+		// ACTUALIZA LOS VALORES DE LOS ELEMENTOS
 		editValue(value)
+		secondValues && editSecondValues(secondValues)
+
+		// ACTUALIZA LA BASE JSON
 		updateUserCheck(prevState => ({
 			...prevState,
 			DESCRIPCIONES: prevState.DESCRIPCIONES.map(description => {
 				if (description.check === check) {
 					return {
 						...description,
-						html: description.html.map((htmlEl, ind) => (ind === location ? userElement[type] : htmlEl)),
+						html: description.html.map((htmlEl, ind) => {
+							if (ind === location) {
+								return userElement[type]
+							} else {
+								return htmlEl
+							}
+						}),
 					}
 				} else {
 					return description
 				}
 			}),
 		}))
-		setEditChElement(false)
+
+		// cierra el editor
+		const closeEditor = () => {
+			if (type !== 'IMG') {
+				setEditChElement(false)
+			}
+		}
+		closeEditor()
 	}
 
 	const data = {

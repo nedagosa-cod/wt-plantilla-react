@@ -6,7 +6,11 @@ const PopImageDesc = ({ setPopShowImage, imagePop, widthImg }) => {
 				setPopShowImage(false)
 			}}>
 			<figure style={{ width: `${widthImg}` }}>
-				<img src={'./noTocar/imagenes/checklist/' + imagePop} alt="imagen de ayuda" />
+				{imagePop.includes('base64') ? (
+					<img src={imagePop} alt="imagen de ayuda" />
+				) : (
+					<img src={'./noTocar/imagenes/checklist/' + imagePop} alt="imagen de ayuda" />
+				)}
 			</figure>
 		</div>
 	)

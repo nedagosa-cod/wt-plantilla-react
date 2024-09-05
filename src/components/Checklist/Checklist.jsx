@@ -145,7 +145,15 @@ export default function Checklist({ dataCheckList }) {
 		const renderLink = (element, key) => <LinkDesc url={element.LINK} buttonName={element.NAME} key={key} />
 
 		const renderImage = (element, key) => (
-			<ImageDesc activatePopImage={activatePopImage} key={key} img={element.IMG} width={element.SPACE} />
+			<ImageDesc
+				key={key}
+				activatePopImage={activatePopImage}
+				img={element.IMG}
+				width={element.SPACE}
+				check={desc.check}
+				location={index}
+				updateUserCheck={setCheckListSelected}
+			/>
 		)
 
 		const renderSubtitle = (element, key) => (
