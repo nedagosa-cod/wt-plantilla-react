@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react'
 import CheckListContext from '../../../../context/ChecklistContext'
+import LZString from 'lz-string'
 
 const ImageDesc = ({ activatePopImage, img, width, check, location, updateUserCheck }) => {
 	const { editChElement, locationEl, areObjectsEqual, HandlerContent } = useContext(CheckListContext)
@@ -9,7 +10,6 @@ const ImageDesc = ({ activatePopImage, img, width, check, location, updateUserCh
 	const [secondValues, setSecondValues] = useState({
 		imgWidth: width,
 	})
-
 	const getValueTipTap = (event, value, closeEdit) => {
 		HandlerContent({
 			type: 'IMG',
@@ -32,9 +32,9 @@ const ImageDesc = ({ activatePopImage, img, width, check, location, updateUserCh
 			setNameImg(file.name)
 			const reader = new FileReader()
 			reader.onloadend = () => {
-				// Convert the result to base64 and set it in the state
-				setEditedValue(reader.result)
-				getValueTipTap(false, reader.result, false)
+				const base64String = reader.result.split(',')[1]
+				setEditedValue(base64String)
+				getValueTipTap(false, base64String, false)
 			}
 			// Read the file as a data URL (base64)
 			reader.readAsDataURL(file)

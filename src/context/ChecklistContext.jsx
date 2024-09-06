@@ -14,6 +14,7 @@ const CheckListProvider = ({ children }) => {
 	// const [listChecked, setListChecked] = useState('')
 
 	const [editChElement, setEditChElement] = useState(false)
+	const [deleteChElement, setDeleteChElement] = useState(false)
 	const [locationEl, setLocationEl] = useState({})
 
 	const [zoom, setZoom] = useState(false)
@@ -148,6 +149,23 @@ const CheckListProvider = ({ children }) => {
 		closeEditor()
 	}
 
+	const deleteCheckElement = (check, location, updateUserCheck) => {
+		updateUserCheck(prevState => ({
+			...prevState,
+			DESCRIPCIONES: prevState.DESCRIPCIONES.map(description => {
+				if (description.check === check) {
+					return {
+						...description,
+						html: description.html.filter((htmlEl, ind) => ind !== location),
+					}
+				} else {
+					return description
+				}
+			}),
+		}))
+		setDeleteChElement(false)
+	}
+
 	const data = {
 		activeInside,
 		updateActiveInside,
@@ -172,6 +190,9 @@ const CheckListProvider = ({ children }) => {
 		setLocationEl,
 		areObjectsEqual,
 		HandlerContent,
+		deleteChElement,
+		setDeleteChElement,
+		deleteCheckElement,
 	}
 
 	return <CheckListContext.Provider value={data}>{children}</CheckListContext.Provider>

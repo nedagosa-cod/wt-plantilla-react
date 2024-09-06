@@ -2,8 +2,10 @@ import { useContext, useState } from 'react'
 import TipTap from '../../../TipTap.jsx/TipTap'
 import CheckListContext from '../../../../context/ChecklistContext'
 import parse from 'html-react-parser'
+import Swal from 'sweetalert2'
 const ParagraphDesc = ({ children, check, location, updateUserCheck }) => {
-	const { editChElement, locationEl, areObjectsEqual, HandlerContent } = useContext(CheckListContext)
+	const { editChElement, locationEl, areObjectsEqual, HandlerContent, deleteChElement, deleteCheckElement } =
+		useContext(CheckListContext)
 	const [editedValue, setEditedValue] = useState(children)
 	const getValueTipTap = (value, closeEdit) => {
 		HandlerContent({
@@ -17,13 +19,10 @@ const ParagraphDesc = ({ children, check, location, updateUserCheck }) => {
 		})
 	}
 
+	const isEditable = editChElement && areObjectsEqual(locationEl, { check, location })
 	return (
 		<>
-			{editChElement &&
-			areObjectsEqual(locationEl, {
-				check,
-				location,
-			}) ? (
+			{isEditable ? (
 				<>
 					<TipTap content={editedValue} getValueTipTap={getValueTipTap} onParagraph />
 				</>
@@ -36,6 +35,19 @@ const ParagraphDesc = ({ children, check, location, updateUserCheck }) => {
 							.replace(/<p><\/p>/g, '<br/>') // se cambia el <p></p> por <br/> para crear salto de linea
 					)}
 				</p>
+			)}
+			{deleteChElement && areObjectsEqual(locationEl, { check, location }) && (
+				<dialog open>
+					<h2>¿Deseas eliminar este elemento?</h2>
+					<button
+						type="button"
+						onClick={e => {
+							e.target.parentNode.close()
+							deleteCheckElement(check, location, updateUserCheck)
+						}}>
+						Aceptar
+					</button>
+				</dialog>
 			)}
 		</>
 	)

@@ -5,7 +5,7 @@ import CheckListContext from '../../../context/ChecklistContext'
 
 const MenuEdit = ({ children, check, location }) => {
 	const { admin } = useContext(GlobalContext)
-	const { setEditChElement, setLocationEl } = useContext(CheckListContext)
+	const { setEditChElement, setLocationEl, deleteChElement, setDeleteChElement } = useContext(CheckListContext)
 
 	const [open, setOpen] = useState(false)
 
@@ -23,7 +23,9 @@ const MenuEdit = ({ children, check, location }) => {
 				console.log(key)
 				break
 			case '3':
-				console.log(key)
+				setOpen(false)
+				setDeleteChElement(true)
+				setLocationEl({ check, location })
 				break
 		}
 	}

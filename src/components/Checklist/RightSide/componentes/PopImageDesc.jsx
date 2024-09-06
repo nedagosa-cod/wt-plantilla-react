@@ -1,5 +1,5 @@
 const PopImageDesc = ({ setPopShowImage, imagePop, widthImg }) => {
-	console.log(widthImg)
+	console.log(imagePop.length)
 	return (
 		<div
 			className="PopImageDesc"
@@ -7,8 +7,8 @@ const PopImageDesc = ({ setPopShowImage, imagePop, widthImg }) => {
 				setPopShowImage(false)
 			}}>
 			<figure style={{ width: `${widthImg}` }}>
-				{imagePop.includes('base64') ? (
-					<img src={imagePop} alt="imagen de ayuda" />
+				{imagePop.length > 100 ? (
+					<img src={'data:image/png;base64,' + imagePop} alt="imagen de ayuda" />
 				) : (
 					<img src={'./noTocar/imagenes/checklist/' + imagePop} alt="imagen de ayuda" />
 				)}
