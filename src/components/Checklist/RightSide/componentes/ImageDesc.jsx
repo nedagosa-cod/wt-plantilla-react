@@ -21,7 +21,7 @@ const ImageDesc = ({ activatePopImage, img, width, check, location, updateUserCh
 			location,
 			closeEdit,
 			secondValues: {
-				imgWidht: event ? event.target.value : secondValues.imgWidth,
+				imgWidth: event ? event.target.value : secondValues.imgWidth,
 			},
 		})
 	}

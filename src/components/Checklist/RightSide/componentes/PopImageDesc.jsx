@@ -1,4 +1,5 @@
 const PopImageDesc = ({ setPopShowImage, imagePop, widthImg }) => {
+	console.log(widthImg)
 	return (
 		<div
 			className="PopImageDesc"

@@ -111,7 +111,7 @@ const CheckListProvider = ({ children }) => {
 			TITLE: { TITLE: value },
 			SCRIPTS: { SCRIPTS: value },
 			LIST: { LIST: value },
-			IMG: { IMG: value, SPACE: secondValues ? secondValues.onImage : {} },
+			IMG: { IMG: value, SPACE: secondValues ? secondValues.imgWidth : {} },
 		}
 
 		// ACTUALIZA LOS VALORES DE LOS ELEMENTOS
