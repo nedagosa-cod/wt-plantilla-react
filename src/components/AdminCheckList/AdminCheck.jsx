@@ -59,9 +59,9 @@ const AdminCheck = () => {
 			})
 			let textTip = textCurs.replace(tipRegex, (match, content1, content2) => {
 				return (
-					'<span class="check-tip" id="parentTool">' +
+					'<span className="check-tip" id="parentTool">' +
 					content2 +
-					'<div class="check-tip__tip" id="toolTip">' +
+					'<div className="check-tip__tip" id="toolTip">' +
 					content1 +
 					'</div></span>'
 				)
@@ -78,13 +78,7 @@ const AdminCheck = () => {
 				</ParagraphDesc>
 			)
 		} else if (element.LINK) {
-			return (
-				<LinkDesc
-					url={element.LINK}
-					buttonName={element.NAME}
-					key={desc.check + '_link_' + index}
-				/>
-			)
+			return <LinkDesc url={element.LINK} buttonName={element.NAME} key={desc.check + '_link_' + index} />
 		} else if (element.IMG) {
 			return (
 				<ImageDesc
@@ -112,10 +106,7 @@ const AdminCheck = () => {
 			)
 		} else if (element.SCRIPT) {
 			return (
-				<ScriptDesc
-					key={desc.check + '_scr_' + index}
-					scripts={element.SCRIPTS}
-					setTextProperties={setTextProperties}>
+				<ScriptDesc key={desc.check + '_scr_' + index} scripts={element.SCRIPTS} setTextProperties={setTextProperties}>
 					{element.SCRIPT}
 				</ScriptDesc>
 			)
@@ -197,12 +188,7 @@ const AdminCheck = () => {
 				3: '4rem',
 				4: '6rem',
 			}
-			return (
-				<div
-					style={{ height: size[element.BR], padding: size[element.HR] }}
-					key={desc.check + '_hr_' + index}
-				/>
-			)
+			return <div style={{ height: size[element.BR], padding: size[element.HR] }} key={desc.check + '_hr_' + index} />
 		}
 	}
 	const fixDescriptions = data => {
@@ -233,9 +219,7 @@ const AdminCheck = () => {
 	return (
 		<section className={'checklist-container '}>
 			<div className="checklist-container__select">
-				<select
-					className="checklist-container__select--select"
-					onChange={e => updateStructure(e.target.value)}>
+				<select className="checklist-container__select--select" onChange={e => updateStructure(e.target.value)}>
 					<option value="">Seleccionar</option>
 					{activeChecklist.map((check, i) => {
 						return (
@@ -264,8 +248,7 @@ const AdminCheck = () => {
 									<div
 										key={i}
 										className={
-											'rightSide__description description ' +
-											(checkSelected == descripcion.check ? 'active' : '')
+											'rightSide__description description ' + (checkSelected == descripcion.check ? 'active' : '')
 										}>
 										{descripcion.html()}
 									</div>

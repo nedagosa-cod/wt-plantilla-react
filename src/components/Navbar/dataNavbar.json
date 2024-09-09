@@ -28,6 +28,11 @@
 			"icon": "home"
 		},
 		{
+			"title": "Prueba bases",
+			"route": "/testbases",
+			"icon": "home"
+		},
+		{
 			"title": "CheckList",
 			"route": "/checklist",
 			"icon": "checklist",

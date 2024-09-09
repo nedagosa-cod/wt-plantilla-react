@@ -1,28 +1,51 @@
-import { useEditor, EditorContent, FloatingMenu, BubbleMenu } from '@tiptap/react'
+import { EditorContent } from '@tiptap/react'
 import { Editor } from '@tiptap/core'
-import Document from '@tiptap/extension-document'
-import Paragraph from '@tiptap/extension-paragraph'
-import Text from '@tiptap/extension-text'
 import StarterKit from '@tiptap/starter-kit'
-import Heading from '@tiptap/extension-heading'
+
+import 'prosemirror-view/style/prosemirror.css'
 
 import './tiptap.scss'
 import IconBoldOt from '../../icons/IconBoldOt'
 import IconItalicOt from '../../icons/IconItalicOt'
 import IconCorrectOt from '../../icons/IconCorrectOt'
 import IconError from '../../icons/IconError'
+import IconTextSublineOt from '../../icons/IconTextSublineOt'
+import IconListOt from '../../icons/IconListOt'
 import IconTooltipOt from '../../icons/IconTooltipOt'
+import Swal from 'sweetalert2'
 
 // define your extension array
 
-const TipTap = ({ content, onchange }) => {
+const TipTap = ({ content, getValueTipTap, onScript, onList, onParagraph }) => {
+	console.log(content)
 	const editor = new Editor({
-		extensions: [StarterKit],
+		extensions: [
+			StarterKit.configure({
+				bulletList: true,
+				orderedList: true,
+			}),
+		],
 		content: content,
 		autofocus: 'end',
 		injectCSS: false,
 		onUpdate: () => {
-			console.log(editor.getHTML())
+			const textEditor = editor.getText()
+			// si borran la lista del tiptap este se ajusta nuevamente a lista
+			if (onList && textEditor == '') {
+				editor.chain().focus().toggleBulletList().run()
+			}
+			if (textEditor.includes('<p>')) {
+				console.log('si tiene')
+			}
+			// no permite escribir mas de 600 caracteres en parrafos
+			if ((onParagraph || onScript) && textEditor.length > 600) {
+				editor.commands.setContent(textEditor.substring(0, 600))
+				Swal.fire({
+					icon: 'error',
+					title: 'Oops...',
+					text: 'Maximo de caracteres alcanzado solo se permiten maximo 600 caracteres por párrafo',
+				})
+			}
 		},
 	})
 
@@ -34,44 +57,56 @@ const TipTap = ({ content, onchange }) => {
 			<div className="tiptap-container__toolbar">
 				<div className="tiptap-container__toolbar--buttons">
 					<button
+						type="button"
 						onClick={() => editor.chain().focus().toggleBold().run()}
 						disabled={!editor.can().chain().focus().toggleBold().run()}
 						className={editor.isActive('bold') ? 'is-active' : ''}>
 						<IconBoldOt />
 					</button>
+					{!onScript && (
+						<button
+							type="button"
+							onClick={() => editor.chain().focus().toggleItalic().run()}
+							disabled={!editor.can().chain().focus().toggleItalic().run()}
+							className={editor.isActive('italic') ? 'is-active' : ''}>
+							<IconItalicOt />
+						</button>
+					)}
 					<button
-						onClick={() => editor.chain().focus().toggleItalic().run()}
-						disabled={!editor.can().chain().focus().toggleItalic().run()}
-						className={editor.isActive('italic') ? 'is-active' : ''}>
-						<IconItalicOt />
-					</button>
-					<button
+						type="button"
 						onClick={() => editor.chain().focus().toggleStrike().run()}
 						disabled={!editor.can().chain().focus().toggleStrike().run()}
 						className={editor.isActive('strike') ? 'is-active' : ''}>
-						<IconItalicOt />
+						<IconTextSublineOt />
 					</button>
 					<span></span>
-					<button className={editor.isActive('italic') ? 'is-active' : ''}>
-						<IconTooltipOt />
-					</button>
-					<button
-						onClick={() => editor.chain().focus().toggleBulletList().run()}
-						className={editor.isActive('bulletList') ? 'is-active' : ''}>
+					{!onScript && !onList && (
+						<button
+							type="button"
+							onClick={() => editor.chain().focus().toggleBulletList().run()}
+							className={editor.isActive('bulletList') ? 'is-active' : ''}>
+							<IconListOt />
+						</button>
+					)}
+					<button type="button">
 						<IconTooltipOt />
 					</button>
 					<span></span>
 					<button
+						type="button"
 						onClick={() => {
-							onchange(editor.getHTML())
+							const valueGive = editor.getHTML()
+							getValueTipTap(valueGive, false)
 						}}
 						className={editor.isActive('paragraph') ? 'is-active' : ''}>
 						<IconCorrectOt />
 					</button>
 
 					<button
-						onClick={() => editor.chain().focus().undo().run()}
-						disabled={!editor.can().chain().focus().undo().run()}>
+						type="button"
+						onClick={() => {
+							getValueTipTap(null, true)
+						}}>
 						<IconError />
 					</button>
 				</div>

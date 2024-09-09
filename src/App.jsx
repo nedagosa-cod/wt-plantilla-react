@@ -22,6 +22,7 @@ import IconArrowUp from './icons/IconArrowUp.jsx'
 import HorNav from './components/Navbar/HorNav.jsx'
 import AdminCheck from './components/AdminCheckList/AdminCheck.jsx'
 import AdminCheckBase from './components/AdminCheckList/AdminCheckBase.jsx'
+import BasesNoti from './components/Test/BasesNoti.jsx'
 
 const App = () => {
 	const { scheme, activeAppNote, showApp, admin } = useContext(GlobalContext)
@@ -75,6 +76,7 @@ const App = () => {
 					<Route path="/corrector" element={<Corrector />} />
 					<Route path="/testeos" element={<Testeos />} />
 					<Route path="/iconTest" element={<IconsTest />} />
+					<Route path="/testbases" element={<BasesNoti />} />
 				</Routes>
 			</section>
 		</div>

@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useContext } from 'react'
 import './styles.scss'
-import { IconNoteStycky } from '../../icons/IconNoteStycky.jsx'
-import { IconMinus } from '../../icons/IconMinus.jsx'
 import { IconPlus } from '../../icons/IconPlus.jsx'
 import { IconFaceSmile } from '../../icons/IconFaceSmile.jsx'
 import { IconFaceCrying } from '../../icons/IconFaceCrying.jsx'
+import GlobalContext from '../../context/GlobalContext.jsx'
 
 function NoteApp() {
+	const { showApp } = useContext(GlobalContext)
 	// variable que guarda las notas
 	const [notes, setNotes] = useState([])
 	//variables para cargar mensaje de confirmacion de eliminacion y no guardar la ide guardada en noteToDelete
@@ -114,6 +114,9 @@ function NoteApp() {
 
 	return (
 		<div className="noteApp-container show animate__animated animate__fadeInRight">
+			<button type="button" onClick={() => showApp()} className="noteApp-container__close">
+				<IconPlus />
+			</button>
 			<button onClick={addNote} className="noteApp-container__addNote">
 				<IconPlus />
 				Añadir Nota

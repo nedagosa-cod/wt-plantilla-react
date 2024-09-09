@@ -22,7 +22,6 @@ const FormNote = ({ jsonNote }) => {
 	} = useForm()
 
 	const formSubmit = data => {
-		console.log(data)
 		reset()
 	}
 

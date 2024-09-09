@@ -6,20 +6,21 @@ import { IconPlus } from '../../../icons/IconPlus'
 
 const RightSide = ({ descripciones }) => {
 	const { checkSelected, refRightSide } = useContext(CheckListContext)
+	const { admin } = useContext(GlobalContext)
 	const [data, setData] = useState([])
 
 	useEffect(() => {
 		setData(descripciones)
 	}, [descripciones])
+
 	return (
-		<div className="rightSide" id="rightSide" ref={refRightSide}>
+		<div className={'rightSide' + (admin ? ' admin' : '')} id="rightSide" ref={refRightSide}>
 			{data.map((descripcion, i) => {
 				return (
 					<div
-						key={i}
+						key={descripcion.check}
 						className={
-							'rightSide__description description ' +
-							(checkSelected == descripcion.check ? 'active' : '')
+							'rightSide__description description ' + (checkSelected == descripcion.check || admin ? 'active' : '')
 						}>
 						{descripcion.html()}
 					</div>

@@ -1,0 +1,33 @@
+.test {
+	width: 100%;
+	&__container {
+		text-align: center;
+		margin: auto;
+		font-size: 4rem;
+		& h1 {
+			background: yellow;
+			padding: 1rem;
+			margin: 2rem 0;
+		}
+		& p {
+			background: #fff;
+			width: 80%;
+		}
+		& .edit {
+			display: flex;
+			justify-content: center;
+			& svg {
+				width: 20px;
+			}
+			& button {
+				cursor: pointer;
+			}
+		}
+	}
+	&__download {
+		font-size: 6rem;
+		margin: 2rem auto;
+		background: red;
+		cursor: pointer;
+	}
+}

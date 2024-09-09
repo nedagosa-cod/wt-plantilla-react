@@ -14,6 +14,7 @@ const CheckListProvider = ({ children }) => {
 	// const [listChecked, setListChecked] = useState('')
 
 	const [editChElement, setEditChElement] = useState(false)
+	const [deleteChElement, setDeleteChElement] = useState(false)
 	const [locationEl, setLocationEl] = useState({})
 
 	const [zoom, setZoom] = useState(false)
@@ -88,6 +89,83 @@ const CheckListProvider = ({ children }) => {
 	const zoomChecklist = () => {
 		setZoom(true)
 	}
+
+	// CHECKLIST ADMIN
+
+	function areObjectsEqual(obj1, obj2) {
+		return obj1.check === obj2.check && obj1.location === obj2.location
+	}
+
+	// asigna los valores del contenido html y crea el elemnto correspondiente
+	const HandlerContent = properties => {
+		const { value, editValue, editSecondValues, updateUserCheck, check, location, type, closeEdit, secondValues } =
+			properties
+		// cierra el editor sin hacer cambios
+		if (closeEdit) {
+			setEditChElement(false)
+			return
+		}
+
+		const userElement = {
+			P: { P: value },
+			SUBTITLE: { SUBTITLE: value },
+			TITLE: { TITLE: value },
+			SCRIPTS: { SCRIPTS: value },
+			LIST: { LIST: value },
+			IMG: { IMG: value, SPACE: secondValues ? secondValues.imgWidth : {} },
+		}
+
+		// ACTUALIZA LOS VALORES DE LOS ELEMENTOS
+		editValue(value)
+		secondValues && editSecondValues(secondValues)
+
+		// ACTUALIZA LA BASE JSON
+		updateUserCheck(prevState => ({
+			...prevState,
+			DESCRIPCIONES: prevState.DESCRIPCIONES.map(description => {
+				if (description.check === check) {
+					return {
+						...description,
+						html: description.html.map((htmlEl, ind) => {
+							if (ind === location) {
+								return userElement[type]
+							} else {
+								return htmlEl
+							}
+						}),
+					}
+				} else {
+					return description
+				}
+			}),
+		}))
+
+		// cierra el editor
+		const closeEditor = () => {
+			if (type !== 'IMG') {
+				setEditChElement(false)
+			}
+		}
+		closeEditor()
+	}
+
+	const deleteCheckElement = (check, location, updateUserCheck) => {
+		updateUserCheck(prevState => ({
+			...prevState,
+			DESCRIPCIONES: prevState.DESCRIPCIONES.map(description => {
+				if (description.check === check) {
+					return {
+						...description,
+						html: description.html.filter((htmlEl, ind) => ind !== location),
+					}
+				} else {
+					return description
+				}
+			}),
+		}))
+		setDeleteChElement(false)
+	}
+
 	const data = {
 		activeInside,
 		updateActiveInside,
@@ -97,7 +175,6 @@ const CheckListProvider = ({ children }) => {
 		changeTheme,
 		theme,
 		resetCheckList,
-
 		zoomChecklist,
 		setResetList,
 		resetList,
@@ -111,6 +188,11 @@ const CheckListProvider = ({ children }) => {
 		setEditChElement,
 		locationEl,
 		setLocationEl,
+		areObjectsEqual,
+		HandlerContent,
+		deleteChElement,
+		setDeleteChElement,
+		deleteCheckElement,
 	}
 
 	return <CheckListContext.Provider value={data}>{children}</CheckListContext.Provider>

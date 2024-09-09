@@ -126,9 +126,9 @@ export default function Checklist({ dataCheckList }) {
 			})
 			let textTip = textCurs.replace(tipRegex, (match, content1, content2) => {
 				return (
-					'<span class="check-tip" id="parentTool">' +
+					'<span className="check-tip" id="parentTool">' +
 					content2 +
-					'<div class="check-tip__tip" id="toolTip">' +
+					'<div className="check-tip__tip" id="toolTip">' +
 					content1 +
 					'</div></span>'
 				)
@@ -136,50 +136,70 @@ export default function Checklist({ dataCheckList }) {
 			return textTip
 		}
 		const renderParagraph = (element, key) => (
-			<ParagraphDesc
-				key={key}
-				check={desc.check}
-				location={index}
-				updateUserCheck={setCheckListSelected}>
-				<span dangerouslySetInnerHTML={{ __html: setTextProperties(element.P) }} />
+			<ParagraphDesc key={key} check={desc.check} location={index} updateUserCheck={setCheckListSelected}>
+				{/* <span dangerouslySetInnerHTML={{ __html: setTextProperties(element.P) }} /> */}
+				{setTextProperties(element.P)}
 			</ParagraphDesc>
 		)
 
-		const renderLink = (element, key) => (
-			<LinkDesc url={element.LINK} buttonName={element.NAME} key={key} />
-		)
+		const renderLink = (element, key) => <LinkDesc url={element.LINK} buttonName={element.NAME} key={key} />
 
 		const renderImage = (element, key) => (
 			<ImageDesc
-				activatePopImage={activatePopImage}
 				key={key}
+				activatePopImage={activatePopImage}
 				img={element.IMG}
 				width={element.SPACE}
+				check={desc.check}
+				location={index}
+				updateUserCheck={setCheckListSelected}
 			/>
 		)
 
 		const renderSubtitle = (element, key) => (
-			<SubtitleDesc key={key}>{element.SUBTITLE}</SubtitleDesc>
+			<SubtitleDesc key={key} check={desc.check} location={index} updateUserCheck={setCheckListSelected}>
+				{element.SUBTITLE}
+			</SubtitleDesc>
 		)
 
-		const renderList = (element, key) => (
-			<ListDesc key={key} type={element.TYPE}>
-				{element.LIST.map((list, j) => (
-					<li key={j} dangerouslySetInnerHTML={{ __html: setTextProperties(list) }} />
-				))}
-			</ListDesc>
-		)
-
+		const renderList = (element, key) => {
+			return (
+				<>
+					{Array.isArray(element.LIST) ? (
+						<ListDesc key={key} check={desc.check} location={index} updateUserCheck={setCheckListSelected}>
+							{element.LIST.map((list, j) => (
+								<li key={j} dangerouslySetInnerHTML={{ __html: setTextProperties(list) }} />
+							))}
+						</ListDesc>
+					) : (
+						<ListDesc key={key} check={desc.check} location={index} updateUserCheck={setCheckListSelected}>
+							{element.LIST}
+						</ListDesc>
+					)}
+				</>
+			)
+		}
+		const renderScript = (element, key) => {
+			return (
+				<>
+					{Array.isArray(element.SCRIPTS) ? (
+						<ScriptDesc key={key} check={desc.check} location={index} updateUserCheck={setCheckListSelected}>
+							{element.SCRIPTS.map((script, j) => (
+								<span key={j} dangerouslySetInnerHTML={{ __html: setTextProperties(script) }} />
+							))}
+						</ScriptDesc>
+					) : (
+						<ScriptDesc key={key} check={desc.check} location={index} updateUserCheck={setCheckListSelected}>
+							{element.SCRIPTS}
+						</ScriptDesc>
+					)}
+				</>
+			)
+		}
 		const renderImportant = (element, key) => (
 			<ImportantDesc title={element.TITLE} key={key}>
 				<span dangerouslySetInnerHTML={{ __html: setTextProperties(element.IMPORTANT) }} />
 			</ImportantDesc>
-		)
-
-		const renderScript = (element, key) => (
-			<ScriptDesc key={key} scripts={element.SCRIPTS} setTextProperties={setTextProperties}>
-				{element.SCRIPT}
-			</ScriptDesc>
 		)
 
 		const renderValText = (element, key) => (
@@ -256,8 +276,6 @@ export default function Checklist({ dataCheckList }) {
 		}
 
 		const creatingElement = () => {
-			if (!element) return null
-
 			const key = `${desc.check}_${index}`
 			switch (true) {
 				case !!element.P:
@@ -272,7 +290,7 @@ export default function Checklist({ dataCheckList }) {
 					return renderList(element, key)
 				case !!element.IMPORTANT:
 					return renderImportant(element, key)
-				case !!element.SCRIPT:
+				case !!element.SCRIPTS:
 					return renderScript(element, key)
 				case !!element.DATA_TEXT:
 					return renderValText(element, key)
@@ -320,7 +338,7 @@ export default function Checklist({ dataCheckList }) {
 		setShowPopNota(!showPopNota)
 	}
 
-	const createUserElement = (event, elName, check) => {
+	const createUserElement = (elName, check) => {
 		const objetElecment = () => {
 			switch (elName) {
 				case 'Titulo':
@@ -332,7 +350,7 @@ export default function Checklist({ dataCheckList }) {
 				case 'Imagen':
 					return { IMG: '#', SPACE: '50%' }
 				case 'Script/Guión':
-					return { SCRIPT: 'XXXXX', SCRIPTS: [] }
+					return { SCRIPTS: '<p>XXX</p>' }
 				case 'Nota resaltada':
 					return { IMPORTANT: 'XXXXX', TITLE: 'XXXXX' }
 				case 'Espacio':
@@ -406,6 +424,7 @@ export default function Checklist({ dataCheckList }) {
 								if (list.TITULO) {
 									return <TitleDesc key={element.check + '_' + l}>{list.TITULO}</TitleDesc>
 								}
+								return null
 							})}
 							<article className="description__container">
 								{element.html.map((list, j) => {
@@ -417,15 +436,17 @@ export default function Checklist({ dataCheckList }) {
 											{itemsElemets.map((item, i) => {
 												return (
 													<button
+														key={i}
 														type="button"
 														className="box-buttons-elemets__button"
-														onClick={e => createUserElement(e, item.name, element.check)}>
+														onClick={e => createUserElement(item.name, element.check)}>
 														<div>{item.icon}</div> {item.name}
 													</button>
 												)
 											})}
 										</div>
 										<div
+											key={'admin_add_check' + i}
 											className={'admin ' + 'on' + ' add-check'}
 											onClick={() => console.log('hola')}>
 											<IconPlus />
@@ -461,13 +482,18 @@ export default function Checklist({ dataCheckList }) {
 
 		// Liberar el objeto URL
 		URL.revokeObjectURL(enlace.href)
-
-		console.log(checkListSelected)
 	}
+	useEffect(() => {
+		if (activeInside) {
+			setCheckListSelected(dataCheckList)
+		}
+	}, [dataCheckList])
+
 	useEffect(() => {
 		resetCheckList()
 		fixDescriptions()
 	}, [checkListSelected])
+
 	return (
 		<form className={'Checklist ' + theme}>
 			<section className="data">
@@ -501,7 +527,6 @@ export default function Checklist({ dataCheckList }) {
 						if (activeInside.length > 0) {
 							setShowPopNota(true)
 						}
-						console.log(activeInside)
 					}}>
 					<div className="svg-wrapper-1">
 						<div className="svg-wrapper">
@@ -525,11 +550,7 @@ export default function Checklist({ dataCheckList }) {
 			</div>
 			{showPopImage &&
 				createPortal(
-					<PopImageDesc
-						setPopShowImage={setPopShowImage}
-						imagePop={imagePop}
-						widthImg={widthImg}
-					/>,
+					<PopImageDesc setPopShowImage={setPopShowImage} imagePop={imagePop} widthImg={widthImg} />,
 					document.body
 				)}
 			{showPopNota && createPortal(<PopNota activePopNota={activePopNota} />, document.body)}

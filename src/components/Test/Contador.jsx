@@ -14,7 +14,7 @@ const Contador = () => {
 					{
 						regex: /&tip\[(.*?)\](.*?)&tip/g,
 						replacer: (content1, content2) =>
-							`<span class="check-tip" id="parentTool">${content2}<div class="check-tip__tip" id="toolTip">${content1}</div></span>`,
+							`<span className="check-tip" id="parentTool">${content2}<div className="check-tip__tip" id="toolTip">${content1}</div></span>`,
 					},
 				]
 
@@ -27,22 +27,13 @@ const Contador = () => {
 				</ParagraphDesc>
 			)
 
-			const renderLink = (element, key) => (
-				<LinkDesc url={element.LINK} buttonName={element.NAME} key={key} />
-			)
+			const renderLink = (element, key) => <LinkDesc url={element.LINK} buttonName={element.NAME} key={key} />
 
 			const renderImage = (element, key) => (
-				<ImageDesc
-					activatePopImage={activatePopImage}
-					key={key}
-					img={element.IMG}
-					width={element.SPACE}
-				/>
+				<ImageDesc activatePopImage={activatePopImage} key={key} img={element.IMG} width={element.SPACE} />
 			)
 
-			const renderSubtitle = (element, key) => (
-				<SubtitleDesc key={key}>{element.SUBTITLE}</SubtitleDesc>
-			)
+			const renderSubtitle = (element, key) => <SubtitleDesc key={key}>{element.SUBTITLE}</SubtitleDesc>
 
 			const renderList = (element, key) => (
 				<ListDesc key={key} type={element.TYPE}>

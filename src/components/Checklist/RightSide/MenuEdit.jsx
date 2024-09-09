@@ -5,7 +5,7 @@ import CheckListContext from '../../../context/ChecklistContext'
 
 const MenuEdit = ({ children, check, location }) => {
 	const { admin } = useContext(GlobalContext)
-	const { setEditChElement, setLocationEl } = useContext(CheckListContext)
+	const { setEditChElement, setLocationEl, deleteChElement, setDeleteChElement } = useContext(CheckListContext)
 
 	const [open, setOpen] = useState(false)
 
@@ -13,8 +13,6 @@ const MenuEdit = ({ children, check, location }) => {
 		setOpen(prev => !prev)
 	}
 	const handlerDropMenu = key => {
-		const getDataElement = () => {}
-
 		switch (key) {
 			case '1':
 				setOpen(false)
@@ -25,7 +23,9 @@ const MenuEdit = ({ children, check, location }) => {
 				console.log(key)
 				break
 			case '3':
-				console.log(key)
+				setOpen(false)
+				setDeleteChElement(true)
+				setLocationEl({ check, location })
 				break
 		}
 	}
@@ -45,31 +45,35 @@ const MenuEdit = ({ children, check, location }) => {
 		},
 	]
 	return (
-		<div className={'container-element-ch ' + (admin ? 'admin' : '')}>
-			{admin && children && (
-				<button
-					className="task__btn"
-					type="button"
-					onClick={() => {
-						openDropMenu()
-					}}>
-					<IconEdit />
-				</button>
-			)}
-			{children}
-			{open && (
-				<div className="dropmenu">
-					{items.map(item => (
-						<div
-							key={item.key}
-							onClick={() => handlerDropMenu(item.key)}
-							className={'dropmenu__handler' + (item.danger ? ' danger' : '')}>
-							{item.label}
+		<>
+			{children && (
+				<div className={'container-element-ch ' + (admin ? 'admin' : '')}>
+					{admin && children && (
+						<button
+							className="task__btn"
+							type="button"
+							onClick={() => {
+								openDropMenu()
+							}}>
+							<IconEdit />
+						</button>
+					)}
+					{children}
+					{open && (
+						<div className="dropmenu">
+							{items.map(item => (
+								<div
+									key={item.key}
+									onClick={() => handlerDropMenu(item.key)}
+									className={'dropmenu__handler' + (item.danger ? ' danger' : '')}>
+									{item.label}
+								</div>
+							))}
 						</div>
-					))}
+					)}
 				</div>
 			)}
-		</div>
+		</>
 	)
 }
 
