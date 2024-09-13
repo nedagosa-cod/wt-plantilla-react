@@ -30,6 +30,7 @@ import { createPortal } from 'react-dom'
 import { driver } from 'driver.js'
 import 'driver.js/dist/driver.css'
 import IconUserTea from '../../icons/IconUserTea'
+import dropImg from '../../assets/images/index/DropDownBoard.png'
 
 const HorNav = () => {
 	const navigate = useNavigate()
@@ -300,7 +301,11 @@ const HorNav = () => {
 								if (!shouldRenderLink) return null
 
 								const renderDropDown = () => (
-									<ul ref={dropDownRef} className="hornav-dropdown animate__animated" name={link.title}>
+									<ul
+										ref={dropDownRef}
+										className="hornav-dropdown animate__animated"
+										name={link.title}
+										style={{ backgroundImage: `url(${dropImg})` }}>
 										<li className="hornav-dropdown__li li-menu">
 											<div className="title-container">
 												<a href="#" className="buttonul type--C">
