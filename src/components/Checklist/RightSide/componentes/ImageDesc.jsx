@@ -3,7 +3,8 @@ import CheckListContext from '../../../../context/ChecklistContext'
 import LZString from 'lz-string'
 
 const ImageDesc = ({ activatePopImage, img, width, check, location, updateUserCheck }) => {
-	const { editChElement, locationEl, areObjectsEqual, HandlerContent } = useContext(CheckListContext)
+	const { editChElement, locationEl, areObjectsEqual, HandlerContent, deleteChElement, dialogDeleteElement } =
+		useContext(CheckListContext)
 
 	const [nameImg, setNameImg] = useState(img)
 	const [editedValue, setEditedValue] = useState(img)
@@ -40,7 +41,22 @@ const ImageDesc = ({ activatePopImage, img, width, check, location, updateUserCh
 			reader.readAsDataURL(file)
 		}
 	}
-
+	const showDialogDelete = () => {
+		if (deleteChElement && areObjectsEqual(locationEl, { check, location })) {
+			return (
+				<dialog className="dialog-delete" open>
+					<h2>¿Estas seguro que quieres eliminar este elemento?</h2>
+					<button type="button" onClick={e => dialogDeleteElement(check, location, updateUserCheck, e)}>
+						Aceptar
+					</button>
+					<button type="button" onClick={e => dialogDeleteElement(check, location, updateUserCheck, e)}>
+						Cancelar
+					</button>
+				</dialog>
+			)
+		}
+		return null
+	}
 	const renderEditor = () => (
 		<div className="description__pop-image-container">
 			<i
@@ -94,6 +110,7 @@ const ImageDesc = ({ activatePopImage, img, width, check, location, updateUserCh
 						activatePopImage(editedValue, secondValues.imgWidth)
 					}}></i>
 			)}
+			{showDialogDelete()}
 		</>
 	)
 }

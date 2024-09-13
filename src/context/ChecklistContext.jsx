@@ -149,7 +149,8 @@ const CheckListProvider = ({ children }) => {
 		closeEditor()
 	}
 
-	const deleteCheckElement = (check, location, updateUserCheck) => {
+	const deleteCheckElement = (check, location, updateUserCheck, event) => {
+		event.target.parentNode.close()
 		updateUserCheck(prevState => ({
 			...prevState,
 			DESCRIPCIONES: prevState.DESCRIPCIONES.map(description => {
@@ -166,6 +167,14 @@ const CheckListProvider = ({ children }) => {
 		setDeleteChElement(false)
 	}
 
+	const dialogDeleteElement = (check, location, updateUserCheck, e) => {
+		console.log(e.target)
+		if (e.target.innerText === 'Cancelar') {
+			setDeleteChElement(false)
+		} else {
+			deleteCheckElement(check, location, updateUserCheck, e)
+		}
+	}
 	const data = {
 		activeInside,
 		updateActiveInside,
@@ -193,6 +202,7 @@ const CheckListProvider = ({ children }) => {
 		deleteChElement,
 		setDeleteChElement,
 		deleteCheckElement,
+		dialogDeleteElement,
 	}
 
 	return <CheckListContext.Provider value={data}>{children}</CheckListContext.Provider>

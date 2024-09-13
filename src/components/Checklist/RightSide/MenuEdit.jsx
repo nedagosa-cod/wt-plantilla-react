@@ -5,7 +5,7 @@ import CheckListContext from '../../../context/ChecklistContext'
 
 const MenuEdit = ({ children, check, location }) => {
 	const { admin } = useContext(GlobalContext)
-	const { setEditChElement, setLocationEl, deleteChElement, setDeleteChElement } = useContext(CheckListContext)
+	const { setEditChElement, setLocationEl, setDeleteChElement } = useContext(CheckListContext)
 
 	const [open, setOpen] = useState(false)
 

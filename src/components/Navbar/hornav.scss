@@ -475,15 +475,54 @@
 			}
 		}
 		&--boxul {
+			display: flex;
+			align-items: center;
 			width: 75%;
 			height: 5.6rem;
-			padding: 0 2.4rem;
+			// padding: 0 2.4rem;
 			background: $p2-color;
+			overflow: hidden;
 			border-radius: 6rem;
 			-webkit-border-radius: 6rem;
 			-moz-border-radius: 6rem;
 			-ms-border-radius: 6rem;
 			-o-border-radius: 6rem;
+			& .btn-scroll {
+				&__left {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					cursor: pointer;
+					width: 60px;
+					background: $s-color;
+					height: 100%;
+					& svg {
+						width: 20px;
+						transform: rotate(90deg);
+						-webkit-transform: rotate(90deg);
+						-moz-transform: rotate(90deg);
+						-ms-transform: rotate(90deg);
+						-o-transform: rotate(90deg);
+					}
+				}
+				&__right {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					cursor: pointer;
+					width: 60px;
+					height: 100%;
+					background: $s-color;
+					svg {
+						width: 20px;
+						transform: rotate(270deg);
+						-webkit-transform: rotate(270deg);
+						-moz-transform: rotate(270deg);
+						-ms-transform: rotate(270deg);
+						-o-transform: rotate(270deg);
+					}
+				}
+			}
 		}
 		.hornav__links--search {
 			position: relative;

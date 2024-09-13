@@ -8,6 +8,7 @@
 	font-size: 1.6rem;
 	height: 100%;
 	gap: 0.8rem;
+
 	&__container {
 		width: 100%;
 		display: flex;
@@ -605,7 +606,35 @@
 		}
 	}
 }
-
+.dialog-delete {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 1rem;
+	background: #eee;
+	align-items: center;
+	padding: 0.4rem 1rem;
+	border-radius: 1rem;
+	-webkit-border-radius: 1rem;
+	-moz-border-radius: 1rem;
+	-ms-border-radius: 1rem;
+	-o-border-radius: 1rem;
+	box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+	& h2 {
+		width: 100%;
+	}
+	& button {
+		cursor: pointer;
+		background: #eee;
+		padding: 0.4rem 1rem;
+		&:nth-child(2) {
+			background: #86ff9a;
+		}
+		&:nth-child(3) {
+			background: #ff6868;
+		}
+	}
+}
 .dropmenu {
 	position: absolute;
 	background: #ffffff;
