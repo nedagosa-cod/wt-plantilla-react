@@ -109,10 +109,15 @@
 			color: $w-color;
 			height: 5.6rem;
 			position: relative;
+			border-radius: 6rem;
+			-webkit-border-radius: 6rem;
+			-moz-border-radius: 6rem;
+			-ms-border-radius: 6rem;
+			-o-border-radius: 6rem;
 			& ul {
 				display: flex;
 				align-items: center;
-				justify-content: space-between;
+				justify-content: flex-start;
 				width: 100%;
 				height: 5.6rem;
 				gap: 2rem;
@@ -130,11 +135,6 @@
 					background: $s-color;
 				}
 			}
-			border-radius: 6rem;
-			-webkit-border-radius: 6rem;
-			-moz-border-radius: 6rem;
-			-ms-border-radius: 6rem;
-			-o-border-radius: 6rem;
 		}
 		&--li {
 			display: flex;
@@ -173,6 +173,7 @@
 				display: flex;
 				align-items: center;
 				height: 100%;
+				user-select: none;
 			}
 			& button {
 				cursor: pointer;
@@ -192,7 +193,6 @@
 				height: max-content;
 				min-height: 400px;
 				background: $s-color;
-				background-image: url('../../assets/images/index/DropDownBoard.png');
 				background-repeat: no-repeat;
 				background-position: center;
 				background-size: cover;
@@ -237,6 +237,7 @@
 							flex-direction: column;
 							justify-content: center;
 							align-items: center;
+							cursor: default;
 							.type--A {
 								--line_color: #555555;
 								--back_color: transparent;
@@ -249,7 +250,7 @@
 								--line_color: #fff;
 								--back_color: #240046;
 							}
-							cursor: default;
+
 							.buttonul {
 								position: relative;
 								cursor: default;
@@ -609,7 +610,7 @@
 			width: 8rem;
 		}
 		&--title {
-			font-size: 4rem;
+			font-size: 3.4rem;
 			margin-left: 2rem;
 		}
 		&--version {

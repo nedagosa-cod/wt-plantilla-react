@@ -35,11 +35,16 @@
 	"dependencies": {
 		"@ant-design/icons": "^5.4.0",
 		"@popperjs/core": "2.11.8",
+		"@tiptap/extension-code": "^2.6.6",
 		"@tiptap/extension-document": "^2.6.4",
 		"@tiptap/extension-hard-break": "^2.6.6",
 		"@tiptap/extension-heading": "^2.6.4",
+		"@tiptap/extension-highlight": "^2.6.6",
 		"@tiptap/extension-paragraph": "^2.6.4",
 		"@tiptap/extension-text": "^2.6.4",
+		"@tiptap/extension-text-align": "^2.6.6",
+		"@tiptap/extension-text-style": "^2.6.6",
+		"@tiptap/extension-underline": "^2.6.6",
 		"@tiptap/pm": "^2.6.4",
 		"@tiptap/react": "^2.6.4",
 		"@tiptap/starter-kit": "^2.6.4",
@@ -59,6 +64,7 @@
 		"react-router-dom": "6.22.1",
 		"react-split": "2.0.14",
 		"read-excel-file": "5.8.1",
+		"remixicon": "^4.3.0",
 		"split.js": "1.6.5",
 		"sweetalert2": "11.10.5"
 	}
