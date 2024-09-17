@@ -26,7 +26,7 @@ import BasesNoti from './components/Test/BasesNoti.jsx'
 
 const App = () => {
 	const { scheme, activeAppNote, showApp, admin } = useContext(GlobalContext)
-	
+
 	const style = {
 		app: {
 			backgroundImage: `url(${scheme === 'light' ? imgBackground : imgBackgroundD})`,
@@ -55,10 +55,7 @@ const App = () => {
 						<>
 							<Route path="/admin" element={<Bienvenida />} />
 							<Route path="/checkplantilla" element={<Bienvenida />} />
-							<Route
-								path="/checklist/plantilla"
-								element={<CheckListBase checklist="checkplantilla" />}
-							/>
+							<Route path="/checklist/plantilla" element={<CheckListBase checklist="checkplantilla" />} />
 						</>
 					)}
 					{dataNavbar.SEGMENTS.map((segment, i) => {

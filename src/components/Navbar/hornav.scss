@@ -4,8 +4,8 @@
 	width: 100%;
 	height: 110px;
 	background: $w-color;
-	border-bottom: 2px solid $p-color;
-	box-shadow: 0 2px 0 0 $s-color;
+	border-bottom: 2px solid light-dark($t-color, $s-color);
+	box-shadow: 0 2px 0 0 light-dark($t-color, $s-color);
 	&__segments {
 		color: $w-color;
 		ul {
@@ -16,10 +16,10 @@
 			font-size: 1.4rem;
 			list-style: none;
 			height: 3.5rem;
-			background: $p-color;
+			background: light-dark($p2-color, $p-color);
 			& .settings {
 				min-width: 200px;
-				background: $p2-color;
+				background: light-dark($p2-color, $p-color);
 				height: 100%;
 				border-left: 2px dashed $w-color;
 			}
@@ -35,20 +35,20 @@
 			cursor: pointer;
 			border: 2px solid transparent;
 			&:hover {
-				color: $w-color;
+				color: light-dark($b-color, $p-color);
 				background: $w-color;
 				border-top: 2px solid $w-color;
 				border-left: 2px solid $w-color;
 				border-right: 2px solid $w-color;
 				box-shadow: 0px 5px 10px -8px #240046;
-				background: $p2-color;
+				background: $w-color;
 				& svg path {
 					fill: url('#gr-light');
 				}
 			}
 			&.active {
-				background: $w-color;
-				color: $p-color;
+				background: light-dark($t2-color, $s-color);
+				color: light-dark($w-color, $w-color);
 				border-top: 2px solid $p2-color;
 				border-left: 2px solid $p2-color;
 				border-right: 2px solid $p2-color;
@@ -99,13 +99,14 @@
 		height: 7.5rem;
 		width: 100%;
 		padding: 0 2rem;
+		background: light-dark($w-color, $b-color);
 		&--container {
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
 			font-size: 1.4rem;
 			width: 70%;
-			background: $p-color;
+			background: light-dark($p2-color, $p3-color);
 			color: $w-color;
 			height: 5.6rem;
 			position: relative;
@@ -129,10 +130,10 @@
 
 				&::-webkit-scrollbar {
 					height: 4px;
-					background-color: $p-color; /* or add it to the track */
+					background-color: light-dark($b-color, $p-color); /* or add it to the track */
 				}
 				&::-webkit-scrollbar-thumb {
-					background: $s-color;
+					background: light-dark($t-color, $s-color);
 				}
 			}
 		}
@@ -218,18 +219,6 @@
 						& svg {
 							width: 12rem;
 						}
-						// & span {
-						// 	font-size: 5.2rem;
-						// 	background: $p-color;
-						// 	color: $w-color;
-						// 	padding: 0 2rem;
-						// 	border: 1rem solid $s-color;
-						// 	border-radius: 4rem;
-						// 	-webkit-border-radius: 4rem;
-						// 	-moz-border-radius: 4rem;
-						// 	-ms-border-radius: 4rem;
-						// 	-o-border-radius: 4rem;
-						// }
 						.title-container {
 							width: 100%;
 							height: 300px;
@@ -481,7 +470,7 @@
 			width: 75%;
 			height: 5.6rem;
 			// padding: 0 2.4rem;
-			background: $p2-color;
+			background: light-dark($p-color, $p-color);
 			overflow: hidden;
 			border-radius: 6rem;
 			-webkit-border-radius: 6rem;
@@ -495,7 +484,7 @@
 					justify-content: center;
 					cursor: pointer;
 					width: 60px;
-					background: $s-color;
+					background: light-dark($t-color, $s-color);
 					height: 100%;
 					& svg {
 						width: 20px;
@@ -513,7 +502,7 @@
 					cursor: pointer;
 					width: 60px;
 					height: 100%;
-					background: $s-color;
+					background: light-dark($t-color, $s-color);
 					svg {
 						width: 20px;
 						transform: rotate(270deg);
@@ -612,14 +601,15 @@
 		&--title {
 			font-size: 3.4rem;
 			margin-left: 2rem;
+			color: light-dark($t-color, $p3-color);
 		}
 		&--version {
 			color: $w-color;
 			font-weight: 800;
-			border: 4px solid $p-color;
-			background: $s-color;
-			font-size: 1.6rem;
-			padding: 0 1rem;
+			border: 4px solid light-dark($t-color, $p3-color);
+			background: light-dark($p-color, $s-color);
+			font-size: 1.4rem;
+			padding: 0.2rem 1.2rem;
 			border-radius: 2rem;
 			-webkit-border-radius: 2rem;
 			-moz-border-radius: 2rem;

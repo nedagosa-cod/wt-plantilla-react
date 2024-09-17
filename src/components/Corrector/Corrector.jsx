@@ -40,33 +40,12 @@ export default function Corrector() {
 			}
 		},
 	})
-	const alignTranslate = {
-		center: 'Centrar',
-		left: 'Izquierda',
-		right: 'Derecha',
-		justify: 'Justificado',
-	}
-	const [listening, setListening] = useState(false) // Estado para saber si el micrófono está en uso
 
-	const [isHeadingDropdownOpen, setHeadingDropdownOpen] = useState(false)
-	const [isListDropdownOpen, setListDropdownOpen] = useState(false)
-	const [isJustifyDropdownOpen, setIsJustifyDropdownOpen] = useState(false)
-	const [isFontSizeDropdownOpen, setFontSizeDropdownOpen] = useState(false)
-	const [isFontFamilyDropdownOpen, setFontFamilyDropdownOpen] = useState(false)
-	const [nameFontFamily, setNameFontFamily] = useState('font-Ubuntu')
-	const [nameFontSize, setNameFontSize] = useState('14px')
-	const [nameTextAlign, setNameTextAlign] = useState('Izquierda')
-	const [nameHeading, setNameHeading] = useState('H')
 	const [selectedColor, setSelectedColor] = useState('#000000')
 	const [selectedHighlightColor, setSelectedHighlightColor] = useState('#FFFFFF')
 
-	const FontFamilyRef = useRef(null)
-	const headingDropdownRef = useRef(null)
-	const listDropdownRef = useRef(null)
-	const fontSizeDropdownRef = useRef(null)
 	const highlightInputRef = useRef(null)
 	const colorInputRef = useRef(null)
-	const justifyDropdownRef = useRef(null)
 
 	const handleOpenColorPicker = () => {
 		colorInputRef.current.click()
@@ -87,12 +66,6 @@ export default function Corrector() {
 	if (!editor) {
 		return null
 	}
-	// useEffect(() => {
-	// 	console.log('useEffect')
-	// 	document.addEventListener('mousedown', handleClickOutside)
-	// 	document.querySelector('.tiptap').parentNode.className = 'tiptap-parent'
-	// 	return () => document.removeEventListener('mousedown', handleClickOutside)
-	// }, [])
 	return (
 		<div className="corrector-container">
 			<h1 className="corrector-container__title">EDITOR DE TEXTOS</h1>

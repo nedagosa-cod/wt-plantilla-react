@@ -1,189 +1,5 @@
 @use '../../styles/variables' as *;
 
-.corrector-ortografico {
-	display: flex;
-	align-items: center;
-	flex-direction: column;
-	width: 100%;
-	height: 100vh;
-
-	&__title {
-		font-size: 6rem;
-		color: #fff;
-		text-align: center;
-		margin: 2rem auto;
-	}
-
-	&__box {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex-grow: 1;
-	}
-
-	&__quill {
-		width: 70%;
-		/* From https://css.glass */
-		background: rgba(255, 255, 255, 0.2);
-		border-radius: 1.6rem;
-		box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-		backdrop-filter: blur(5px);
-		-webkit-backdrop-filter: blur(5px);
-		border: 1px solid rgba(255, 255, 255, 0.3);
-	}
-
-	& .ql-container {
-		height: 40rem;
-	}
-
-	& .ql-snow {
-		border: none;
-		color: #fff;
-
-		& .ql-stroke {
-			stroke: #fff;
-		}
-
-		& .ql-fill {
-			fill: #fff;
-		}
-
-		& .ql-picker .ql-picker-label:before {
-			color: #fff;
-		}
-	}
-
-	& .button {
-		margin: 3rem;
-		width: 5rem;
-		height: 5rem;
-		border: 0.5rem solid #fff;
-		border-radius: 50%;
-		cursor: pointer;
-		&.active {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			& .inner {
-				width: 50%;
-				height: 50%;
-				border-radius: 0;
-				-webkit-border-radius: 0;
-				-moz-border-radius: 0;
-				-ms-border-radius: 0;
-				-o-border-radius: 0;
-			}
-		}
-	}
-
-	& .inner {
-		background-color: #9e1919;
-		width: 100%;
-		height: 100%;
-		border-radius: 50%;
-		transition: all 0.2s ease;
-		transform: scale(0.94);
-	}
-	&__buttons {
-		display: flex;
-		width: 50%;
-		justify-content: space-between;
-		align-items: center;
-	}
-	& .button.true .inner {
-		transform: scale(0.5);
-		border-radius: 12%;
-	}
-	& .Btn {
-		width: 20rem;
-		height: 45px;
-		background-color: rgb(65, 64, 64);
-		border: none;
-		box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.342);
-		border-radius: 5px;
-		cursor: pointer;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		gap: 7px;
-		position: relative;
-		overflow: hidden;
-		transition-duration: 0.5s;
-	}
-
-	.text {
-		color: $w-color;
-		font-weight: 800;
-		letter-spacing: 1.1px;
-		z-index: 2;
-		font-size: 1.6rem;
-	}
-
-	.svgIcon {
-		width: auto;
-		z-index: 2;
-	}
-
-	.svgIcon path {
-		fill: rgb(255, 255, 255);
-	}
-
-	.Btn:hover {
-		color: $p-color;
-	}
-
-	.effect {
-		position: absolute;
-		width: 10px;
-		height: 10px;
-		background-color: $p-color;
-		border-radius: 50%;
-		z-index: 1;
-		opacity: 0;
-		transition-duration: 0.5s;
-	}
-
-	.Btn:hover .effect {
-		transform: scale(22);
-		transform-origin: center;
-		opacity: 1;
-		transition-duration: 0.5s;
-		-webkit-transform: scale(22);
-		-moz-transform: scale(22);
-		-ms-transform: scale(22);
-		-o-transform: scale(22);
-	}
-
-	.Btn:hover {
-		box-shadow: 0px 0px 5px rgb(236, 104, 104), 0px 0px 10px rgb(236, 104, 104), 0px 0px 30px rgb(236, 104, 104);
-		transition-duration: 0.7s;
-	}
-
-	.Btn:hover .text {
-		color: rgb(65, 64, 64);
-	}
-
-	.Btn:hover .svgIcon path {
-		fill: rgb(65, 64, 64);
-	}
-}
-.tiptap-parent {
-	height: 60%;
-}
-.tiptap {
-	margin-top: 1rem;
-	border: 1px solid #ccc;
-	border-radius: 1.2rem;
-	height: max-content;
-	min-height: 100%;
-	padding: 1rem;
-	background: #fff;
-	& ul {
-		margin-left: 4rem;
-	}
-}
-
 .corrector-container {
 	display: flex;
 	flex-direction: column;
@@ -196,11 +12,12 @@
 	-moz-border-radius: 1.2rem;
 	-ms-border-radius: 1.2rem;
 	-o-border-radius: 1.2rem;
-	background: #f1f1f1;
+	background: light-dark($w-color, $b-color);
 	&__title {
-		font-size: 2.8rem;
+		font-size: 3.2rem;
 		text-align: center;
 		margin: 2rem 0;
+		color: light-dark($b-color, $w-color);
 	}
 	&__toolbar {
 		border: 1px solid #ccc;
@@ -209,7 +26,8 @@
 		-moz-border-radius: 1.2rem;
 		-ms-border-radius: 1.2rem;
 		-o-border-radius: 1.2rem;
-		background: #fff;
+		margin-bottom: 1rem;
+		background: light-dark($w-color, #111111);
 		font-size: 1.4rem;
 		display: flex;
 		padding: 1rem;
@@ -231,11 +49,12 @@
 				}
 			}
 			& .toolbar-active {
-				background: #a8a8a8;
+				background: light-dark(#bdbdbd, #1a1a1a);
 				box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.1);
 			}
 			& button {
-				background: #eee;
+				background: light-dark(#e0e0e0, #2e2e2e);
+				color: light-dark($g-color, $w-color);
 				cursor: pointer;
 				width: max-content;
 				min-width: 3rem;
@@ -257,6 +76,23 @@
 		&--dropdown {
 			display: none;
 		}
+	}
+}
+
+.tiptap-parent {
+	height: 60%;
+}
+.tiptap {
+	margin-top: 2rem;
+	border: 1px solid #ccc;
+	border-radius: 1.2rem;
+	height: max-content;
+	min-height: 100%;
+	padding: 1rem;
+	color: light-dark($b-color, $w-color);
+	background: light-dark($w-color, #111111);
+	& ul {
+		margin-left: 4rem;
 	}
 }
 
