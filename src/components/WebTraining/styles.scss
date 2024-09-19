@@ -20,13 +20,13 @@
 		border: 1px solid #000;
 		width: 10rem;
 		height: 8rem;
-		& svg {
-			width: 4rem;
-		}
 		border-radius: 0.8rem;
 		-webkit-border-radius: 0.8rem;
 		-moz-border-radius: 0.8rem;
 		-ms-border-radius: 0.8rem;
 		-o-border-radius: 0.8rem;
+		& svg {
+			width: 4rem;
+		}
 	}
 }

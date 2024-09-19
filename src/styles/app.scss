@@ -6,6 +6,7 @@
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	background-position: center;
+
 	&__body {
 		width: 100%;
 		height: 98%;
@@ -16,7 +17,11 @@
 		background-size: 100% 100%;
 		background-repeat: no-repeat;
 		background-position: center;
-
+		border-radius: 12px;
+		-webkit-border-radius: 12px;
+		-moz-border-radius: 12px;
+		-ms-border-radius: 12px;
+		-o-border-radius: 12px;
 		&::-webkit-scrollbar {
 			width: 4px;
 			background-color: $p-color; /* or add it to the track */
@@ -110,11 +115,6 @@
 			-o-border-radius: 1.8rem;
 		}
 	}
-	transition: all 0.5s ease-in-out;
-	-webkit-transition: all 0.5s ease-in-out;
-	-moz-transition: all 0.5s ease-in-out;
-	-ms-transition: all 0.5s ease-in-out;
-	-o-transition: all 0.5s ease-in-out;
 }
 
 // antes de 1366px ejecuta estos estilos

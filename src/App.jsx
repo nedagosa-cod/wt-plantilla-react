@@ -9,19 +9,15 @@ import dataNavbar from './components/Navbar/dataNavbar.json'
 import Navbar from './components/Navbar/Navbar'
 import Bienvenida from './components/Bienvenida/Bienvenida'
 import Corrector from './components/Corrector/Corrector'
-import GlobalContext, { GlobalProvider } from './context/GlobalContext'
+import GlobalContext from './context/GlobalContext'
 import CheckListBase from './components/Checklist/CheckListBase'
 import Testeos from './components/Test/Testeos'
-import Notas from './components/Gestor_de_Notas/Notas'
 import { useContext, useEffect } from 'react'
 import TimeLine from './components/TimeLine/TimeLine'
 import Tipificador from './components/Tipificador/Tipificador'
 import { NoteApp } from './components/NoteApp/NoteApp.jsx'
 import IconsTest from './components/WebTraining/IconsTest.jsx'
-import IconArrowUp from './icons/IconArrowUp.jsx'
 import HorNav from './components/Navbar/HorNav.jsx'
-import AdminCheck from './components/AdminCheckList/AdminCheck.jsx'
-import AdminCheckBase from './components/AdminCheckList/AdminCheckBase.jsx'
 import BasesNoti from './components/Test/BasesNoti.jsx'
 
 const App = () => {
@@ -62,7 +58,6 @@ const App = () => {
 						return <Route key={i} path={'/' + segment.segment} element={<Bienvenida />} />
 					})}
 					<Route path="/" element={<Bienvenida />} />
-					<Route path="/admincheck" element={<AdminCheckBase />} />
 					<Route path="/checklist" element={<CheckListBase checklist="ejemploA" />} />
 					<Route path="/checklist/ejemploA" element={<CheckListBase checklist="ejemploA" />} />
 					<Route path="/checklist/ejemploB" element={<CheckListBase checklist="ejemploB" />} />

@@ -7,6 +7,11 @@
 	justify-content: center;
 	align-items: center;
 	overflow: hidden;
+	transition: 1s ease-in-out;
+	-webkit-transition: 1s ease-in-out;
+	-moz-transition: 1s ease-in-out;
+	-ms-transition: 1s ease-in-out;
+	-o-transition: 1s ease-in-out;
 	&--settings {
 		position: relative;
 		display: flex;
@@ -29,6 +34,11 @@
 		-moz-border-radius: 0.8rem;
 		-ms-border-radius: 0.8rem;
 		-o-border-radius: 0.8rem;
+		transition: 1s ease-in-out;
+		-webkit-transition: 1s ease-in-out;
+		-moz-transition: 1s ease-in-out;
+		-ms-transition: 1s ease-in-out;
+		-o-transition: 1s ease-in-out;
 		&__list {
 			display: flex;
 			align-items: center;
@@ -36,6 +46,11 @@
 			padding: 1rem;
 			cursor: pointer;
 			color: $w-color;
+			border-radius: 0.8rem;
+			-webkit-border-radius: 0.8rem;
+			-moz-border-radius: 0.8rem;
+			-ms-border-radius: 0.8rem;
+			-o-border-radius: 0.8rem;
 			&:hover {
 				background: rgba(0, 0, 0, 0.1);
 			}
@@ -46,12 +61,6 @@
 				width: 2rem;
 				height: 2rem;
 			}
-
-			border-radius: 0.8rem;
-			-webkit-border-radius: 0.8rem;
-			-moz-border-radius: 0.8rem;
-			-ms-border-radius: 0.8rem;
-			-o-border-radius: 0.8rem;
 		}
 		&.true {
 			right: -14rem;
@@ -67,11 +76,6 @@
 				}
 			}
 		}
-		transition: 1s ease-in-out;
-		-webkit-transition: 1s ease-in-out;
-		-moz-transition: 1s ease-in-out;
-		-ms-transition: 1s ease-in-out;
-		-o-transition: 1s ease-in-out;
 	}
 	&.true {
 		width: 100%;
@@ -107,11 +111,6 @@
 			}
 		}
 	}
-	transition: 1s ease-in-out;
-	-webkit-transition: 1s ease-in-out;
-	-moz-transition: 1s ease-in-out;
-	-ms-transition: 1s ease-in-out;
-	-o-transition: 1s ease-in-out;
 }
 .Checklist {
 	position: relative;
@@ -312,6 +311,11 @@
 				font-style: italic;
 				cursor: default;
 				padding: 0 0.5rem;
+				border-radius: 0.8rem;
+				-webkit-border-radius: 0.8rem;
+				-moz-border-radius: 0.8rem;
+				-ms-border-radius: 0.8rem;
+				-o-border-radius: 0.8rem;
 				&__tip {
 					position: absolute;
 					top: 2rem;
@@ -325,9 +329,6 @@
 					color: $p-color;
 					background: $w-color;
 					padding: 0.5rem;
-					&:hover {
-						font-size: 1.6rem;
-					}
 					transition: 0.2s all;
 					border-radius: 0.8rem;
 					-webkit-border-radius: 0.8rem;
@@ -338,31 +339,15 @@
 					-moz-transition: 0.2s all;
 					-ms-transition: 0.2s all;
 					-o-transition: 0.2s all;
+					&:hover {
+						font-size: 1.6rem;
+					}
 				}
 				&:hover {
 					& .check-tip__tip {
 						display: block;
-						// &::after {
-						// 	content: '';
-						// 	position: absolute;
-						// 	bottom: 0;
-						// 	left: 0;
-						// 	background: $w-color;
-						// 	width: 10px;
-						// 	height: 10px;
-						// 	transform: rotate(50%);
-						// 	-webkit-transform: rotate(50%);
-						// 	-moz-transform: rotate(50%);
-						// 	-ms-transform: rotate(50%);
-						// 	-o-transform: rotate(50%);
-						// }
 					}
 				}
-				border-radius: 0.8rem;
-				-webkit-border-radius: 0.8rem;
-				-moz-border-radius: 0.8rem;
-				-ms-border-radius: 0.8rem;
-				-o-border-radius: 0.8rem;
 			}
 		}
 		& .changeSteep {

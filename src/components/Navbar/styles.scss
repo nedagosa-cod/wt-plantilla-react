@@ -193,6 +193,11 @@
 		overflow: auto;
 		flex-grow: 1;
 		margin: 0 4px 12px 4px;
+		border-radius: 0.8rem;
+		-webkit-border-radius: 0.8rem;
+		-moz-border-radius: 0.8rem;
+		-ms-border-radius: 0.8rem;
+		-o-border-radius: 0.8rem;
 		&::-webkit-scrollbar {
 			display: none;
 		}
@@ -201,11 +206,6 @@
 				fill: url('#gr-light');
 			}
 		}
-		border-radius: 0.8rem;
-		-webkit-border-radius: 0.8rem;
-		-moz-border-radius: 0.8rem;
-		-ms-border-radius: 0.8rem;
-		-o-border-radius: 0.8rem;
 	}
 
 	&__li {

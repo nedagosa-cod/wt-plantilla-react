@@ -17,6 +17,10 @@
 			"icon": "tipify"
 		},
 		{
+			"segment": "Test Solo",
+			"icon": "tipify"
+		},
+		{
 			"segment": "ADMIN",
 			"icon": "admin"
 		}
@@ -30,7 +34,8 @@
 		{
 			"title": "Prueba bases",
 			"route": "/testbases",
-			"icon": "home"
+			"icon": "home",
+			"segments": ["Test Solo"]
 		},
 		{
 			"title": "CheckList",

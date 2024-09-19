@@ -78,7 +78,6 @@ const HorNav = () => {
 
 	const handleScroll = event => {
 		if (scrollContainerRef.current) {
-			event.preventDefault()
 			scrollContainerRef.current.scrollLeft += event.deltaY
 		}
 	}

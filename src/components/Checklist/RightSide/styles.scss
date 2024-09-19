@@ -107,20 +107,16 @@
 		width: 90%;
 		border: 1px solid $w-color;
 		box-shadow: -2px 2px 5px 4px rgba(0, 0, 0, 0.1);
-		&--title {
-			font-size: 1.8rem;
-			font-weight: 800;
-			border-bottom: 1px solid $p3-color;
-		}
-		// & span {
-		// 	color: $w-color;
-		// 	font-size: 1.6rem;
-		// }
 		border-radius: 2rem;
 		-webkit-border-radius: 2rem;
 		-moz-border-radius: 2rem;
 		-ms-border-radius: 2rem;
 		-o-border-radius: 2rem;
+		&--title {
+			font-size: 1.8rem;
+			font-weight: 800;
+			border-bottom: 1px solid $p3-color;
+		}
 	}
 	&__list {
 		padding: 0 1rem 0 2rem;
@@ -257,6 +253,11 @@
 		border: 1px solid $p3-color;
 		box-shadow: -2px 2px 5px 4px rgba(0, 0, 0, 0.1);
 		color: $w-color;
+		border-radius: 0.8rem;
+		-webkit-border-radius: 0.8rem;
+		-moz-border-radius: 0.8rem;
+		-ms-border-radius: 0.8rem;
+		-o-border-radius: 0.8rem;
 		&--ask {
 			width: 60%;
 			border-right: 1px solid $p3-color;
@@ -273,11 +274,6 @@
 				font-weight: 800;
 			}
 		}
-		border-radius: 0.8rem;
-		-webkit-border-radius: 0.8rem;
-		-moz-border-radius: 0.8rem;
-		-ms-border-radius: 0.8rem;
-		-o-border-radius: 0.8rem;
 	}
 	&__valbool {
 		display: flex;
@@ -289,6 +285,11 @@
 		text-align: center;
 		border: 1px solid $p3-color;
 		box-shadow: -2px 2px 5px 4px rgba(0, 0, 0, 0.1);
+		border-radius: 0.8rem;
+		-webkit-border-radius: 0.8rem;
+		-moz-border-radius: 0.8rem;
+		-ms-border-radius: 0.8rem;
+		-o-border-radius: 0.8rem;
 		& .label {
 			width: 100%;
 			display: flex;
@@ -308,11 +309,6 @@
 				-o-border-radius: 0.8rem;
 			}
 		}
-		border-radius: 0.8rem;
-		-webkit-border-radius: 0.8rem;
-		-moz-border-radius: 0.8rem;
-		-ms-border-radius: 0.8rem;
-		-o-border-radius: 0.8rem;
 	}
 	&__valdate {
 		display: flex;
@@ -325,7 +321,11 @@
 		text-align: center;
 		border: 1px solid $p3-color;
 		box-shadow: -2px 2px 5px 4px rgba(0, 0, 0, 0.1);
-
+		border-radius: 0.8rem;
+		-webkit-border-radius: 0.8rem;
+		-moz-border-radius: 0.8rem;
+		-ms-border-radius: 0.8rem;
+		-o-border-radius: 0.8rem;
 		&--ask {
 			width: fit-content;
 			text-align: start;
@@ -337,11 +337,6 @@
 				color: $w-color;
 			}
 		}
-		border-radius: 0.8rem;
-		-webkit-border-radius: 0.8rem;
-		-moz-border-radius: 0.8rem;
-		-ms-border-radius: 0.8rem;
-		-o-border-radius: 0.8rem;
 	}
 	&__vallist {
 		display: flex;
@@ -354,6 +349,11 @@
 		border: 1px solid $p3-color;
 		color: $w-color;
 		box-shadow: -2px 2px 5px 4px rgba(0, 0, 0, 0.1);
+		border-radius: 0.8rem;
+		-webkit-border-radius: 0.8rem;
+		-moz-border-radius: 0.8rem;
+		-ms-border-radius: 0.8rem;
+		-o-border-radius: 0.8rem;
 		&--list {
 			position: relative;
 			width: 80%;
@@ -429,16 +429,16 @@
 		& span {
 			margin-bottom: 1rem;
 		}
-		border-radius: 0.8rem;
-		-webkit-border-radius: 0.8rem;
-		-moz-border-radius: 0.8rem;
-		-ms-border-radius: 0.8rem;
-		-o-border-radius: 0.8rem;
 	}
 	&__note {
 		display: flex;
 		width: 90%;
 		padding: 1rem;
+		border-radius: 0.6rem;
+		-webkit-border-radius: 0.6rem;
+		-moz-border-radius: 0.6rem;
+		-ms-border-radius: 0.6rem;
+		-o-border-radius: 0.6rem;
 		&--icon {
 			margin-right: 1rem;
 			svg {
@@ -487,14 +487,6 @@
 				fill: rgb(0, 145, 89);
 			}
 		}
-		// & span {
-		// 	text-wrap: balance;
-		// }
-		border-radius: 0.6rem;
-		-webkit-border-radius: 0.6rem;
-		-moz-border-radius: 0.6rem;
-		-ms-border-radius: 0.6rem;
-		-o-border-radius: 0.6rem;
 	}
 	& .insidebool {
 		display: flex;
