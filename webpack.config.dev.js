@@ -81,6 +81,11 @@ module.exports = {
 					to: 'BASES',
 					noErrorOnMissing: true,
 				},
+				{
+					from: path.join(__dirname, '/src/components/Corrector/assets'),
+					to: 'noTocar/noTocar/assets',
+					noErrorOnMissing: true,
+				},
 			],
 		}),
 	],
