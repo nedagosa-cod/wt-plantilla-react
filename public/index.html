@@ -14,46 +14,30 @@
 		<title>Web Training</title>
 	</head>
 	<body>
+		<!-- style="background-image: url('noTocar/imagenes/index/sessionBackground.png'); background-size: 100% 100%" -->
 		<div id="root"></div>
-		<div
-			class="sessionRec hide"
-			style="background-image: url('noTocar/imagenes/index/sessionBackground.jpg'); background-size: 100% 100%"
-		>
-			<div class="sessionRec__data">
-				<span class="sessionRec__data--title">Web Training</span>
-
-				<figure>
-					<img src="/src/assets/images/index/logoSIn.png" alt="Logo" />
-				</figure>
-
-				<div class="sessionRec__data--footer">
-					<span><strong>Automatizaciones</strong> Formación</span>
-					<p>v1.0.0</p>
-				</div>
-			</div>
+		<div class="sessionRec hide">
 			<div class="sessionRec__form">
 				<form class="form" id="sendForm">
-					<p class="title">Registro de acceso</p>
+					<h1 class="title-top">Web Training</h1>
+					<p class="title">Control de Accesos</p>
 					<p class="message">Agrega tus datos, para llevar el registro obligatorio</p>
 					<label>
-						<input class="input" type="number" id="minNumber" placeholder="" required="" />
+						<input class="input cc" type="number" id="minNumber" placeholder="" required="" />
 						<span>Cedula</span>
 					</label>
 
-					<label>
-						<input class="input" type="text" placeholder="" required="" readonly value="CAMPAÑA" />
-						<span>Camapaña</span>
-					</label>
+					<div class="inputs-block">
+						<label>
+							<input class="input" type="text" placeholder="" required="" readonly value="CAMPAÑA" />
+							<span>Camapaña</span>
+						</label>
 
-					<label>
-						<input class="input" type="text" placeholder="" required="" readonly value="SEGMENTO" />
-						<span>Segmento</span>
-					</label>
-					<!-- <label>
-						<input class="input" type="text" placeholder="" value="" />
-						<span>Observaciones</span>
-						<span></span>
-					</label> -->
+						<label>
+							<input class="input" type="text" placeholder="" required="" readonly value="SEGMENTO" />
+							<span>Segmento</span>
+						</label>
+					</div>
 					<button class="submit" type="submit">Enviar</button>
 				</form>
 			</div>

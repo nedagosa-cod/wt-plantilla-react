@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom'
 import imgBackground from './assets/images/index/backgroundLight.jpg'
 import imgBackgroundD from './assets/images/index/background.jpg'
 import imgApp from './assets/images/index/backApp.jpg'
+import imgCtrlAccesss from './assets/images/index/sessionBackground.jpg'
 
 import dataNavbar from './components/Navbar/dataNavbar.json'
 import Navbar from './components/Navbar/Navbar'
@@ -39,6 +40,13 @@ const App = () => {
 				showApp(false)
 			}
 		})
+		if (sessionStorage.getItem('session') != 'true') {
+			const sessionRec = document.querySelector('.sessionRec')
+			sessionRec.style.backgroundImage = `url(${imgCtrlAccesss})`
+			sessionRec.style.backgroundSize = 'cover'
+			sessionRec.style.backgroundRepeat = 'no-repeat'
+			sessionRec.style.backgroundPosition = 'center'
+		}
 	})
 	return (
 		<div className="app h" style={style.app}>

@@ -11,7 +11,7 @@
 	justify-content: center;
 	align-items: center;
 	padding: 6rem;
-	background-size: 100% 100%;
+	background-size: contain;
 	background-repeat: no-repeat;
 	background: white;
 	&.hide {
@@ -74,24 +74,38 @@
 	& .form {
 		display: flex;
 		flex-direction: column;
-		gap: 10px;
-		max-width: 350px;
+		gap: 4px;
+		max-width: 460px;
 		padding: 20px;
-		border-radius: 20px;
 		position: relative;
-		background-color: $w-color;
-		color: $b-color;
-		border: 1px solid $g-color;
+		text-align: center;
+		background: conic-gradient(from 90deg at 2px 2px, #0000 25%, #292c35 0) -1px -1px,
+			linear-gradient(-45deg, #292c35 15%, #2c2f38 0 28%, #0000 0 72%, #2c2f38 0 85%, #292c35 0),
+			linear-gradient(45deg, #292c35 15%, #2c2f38 0 28%, #0000 0 72%, #2c2f38 0 85%, #292c35 0),
+			conic-gradient(from 90deg at 40% 40%, #292c35 25%, #2c2f38 0) calc(47px / -5) calc(47px / -5);
+		background-size: 47px 47px;
 
+		color: $w-color;
+		border: 1px solid $g-color;
+		border-radius: 1.4rem;
+		-webkit-border-radius: 1.4rem;
+		-moz-border-radius: 1.4rem;
+		-ms-border-radius: 1.4rem;
+		-o-border-radius: 1.4rem;
+		box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+		& .title-top {
+			font-size: 4.4rem;
+			font-weight: 600;
+			letter-spacing: 2px;
+			position: relative;
+			color: $s-color;
+		}
 		& .title {
-			font-size: 28px;
+			font-size: 2rem;
 			font-weight: 600;
 			letter-spacing: -1px;
 			position: relative;
-			display: flex;
-			align-items: center;
-			padding-left: 30px;
-			color: $b-color;
+			color: $g-color;
 
 			&::before {
 				width: 18px;
@@ -105,21 +119,11 @@
 			}
 		}
 
-		& .title::before,
-		.title::after {
-			position: absolute;
-			content: '';
-			height: 16px;
-			width: 16px;
-			border-radius: 50%;
-			left: 0px;
-			background-color: $p-color;
-		}
-
 		& .message,
 		.signin {
-			font-size: 14.5px;
-			color: $p-color;
+			font-size: 12px;
+			color: $w-color;
+			margin-bottom: 1rem;
 		}
 
 		&.signin {
@@ -142,6 +146,10 @@
 
 		& .input {
 			font-size: medium;
+			text-align: center;
+			&.cc {
+				font-size: 4rem;
+			}
 		}
 		& input[type='number']::-webkit-outer-spin-button,
 		input[type='number']::-webkit-inner-spin-button {
@@ -158,10 +166,14 @@
 			font-size: 16px;
 			transform: 0.3s ease;
 			background-color: $p-color;
-
+			margin-top: 1rem;
 			&:hover {
 				background-color: $p3-color;
 			}
+		}
+		& .inputs-block {
+			display: flex;
+			gap: 1rem;
 		}
 	}
 
@@ -196,7 +208,7 @@
 
 	& .form label .input:focus + span,
 	.form label .input:valid + span {
-		color: $p-color;
+		color: $g-color;
 		top: 4px;
 		font-size: 1.2rem;
 		font-weight: 600;
