@@ -13,7 +13,7 @@ export default function Bienvenida() {
 	const { scheme } = useContext(GlobalContext)
 
 	const setBackground = () => {
-		const month = new Date().getMonth() + 2
+		const month = new Date().getMonth() + 1
 		switch (month) {
 			case 10:
 				return `url(${scheme === 'light' ? imgBgLightHalloween : imgBgDarkHalloween})`
