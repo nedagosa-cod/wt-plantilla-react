@@ -1,0 +1,105 @@
+@use '../../styles/variables' as *;
+.slider-container {
+	position: relative;
+	// top: -4rem;
+	right: -1rem;
+	width: 100%;
+	//height: 400px;
+	background: rgba($color: $p2-color, $alpha: 0.6);
+	box-shadow: -5px 4px 24px 4px rgba(0, 0, 0, 0.8);
+	overflow: hidden;
+	border-radius: 2rem;
+	-webkit-border-radius: 2rem;
+	-moz-border-radius: 2rem;
+	-ms-border-radius: 2rem;
+	-o-border-radius: 2rem;
+	&__title {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 2rem;
+		width: 100%;
+		font-size: 3rem;
+		text-align: center;
+		background: rgba(0, 0, 0, 0.2);
+		color: #fff;
+	}
+	&__footer {
+		display: flex;
+		text-align: center;
+		justify-content: space-between;
+		background: #efefef;
+		padding: 1.2rem;
+		width: 100%;
+		font-size: 1.8rem;
+		&--button {
+			height: 100%;
+			cursor: pointer;
+			color: #b8b8b8;
+		}
+	}
+	& .my-dots {
+		& li {
+			width: 60px;
+		}
+	}
+	& .slick-arrow {
+		background: rgb(119, 119, 119);
+		z-index: 10;
+		height: 100%;
+		opacity: 0.4;
+		&.slick-prev {
+			left: 0;
+			&::before {
+				content: '⇤';
+			}
+		}
+		&.slick-next {
+			right: 0;
+			&::before {
+				content: '⇥';
+			}
+		}
+
+		&:hover {
+			opacity: 1;
+		}
+	}
+	& .slick-list {
+		&:hover {
+			&::before {
+				content: 'Ampliar Noticias 🗔';
+				font-family: 'ubuntu';
+				color: $s2-color;
+				position: absolute;
+				font-size: 6rem;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: rgba($color: $g-color, $alpha: 0.4);
+				z-index: 20;
+				cursor: pointer;
+				text-shadow: -2px 2px 0px rgba(0, 0, 0, 0.6);
+			}
+		}
+	}
+	& svg {
+		width: 54px;
+		.st1 {
+			opacity: 0.2;
+		}
+		.st2 {
+			fill: #231f20;
+		}
+		.st3 {
+			fill: #e0e0d1;
+		}
+		.st4 {
+			fill: #4f5d73;
+		}
+	}
+}

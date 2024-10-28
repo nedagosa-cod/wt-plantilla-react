@@ -82,8 +82,20 @@ module.exports = {
 					noErrorOnMissing: true,
 				},
 				{
+					from: path.join(__dirname, '/src/assets/images/NOTICIAS'),
+					to: 'BASES/NOTICIAS',
+					noErrorOnMissing: true,
+				},
+				{
+					// carpeta para iconos de corrector
 					from: path.join(__dirname, '/src/components/Corrector/assets'),
 					to: 'noTocar/noTocar/assets',
+					noErrorOnMissing: true,
+				},
+				{
+					// crea carpeta biblioteca amiga
+					from: path.join(__dirname, '/src/components/Biblioteca/pdfs'),
+					to: 'BIBLIOTECA',
 					noErrorOnMissing: true,
 				},
 			],

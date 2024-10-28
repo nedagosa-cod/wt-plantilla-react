@@ -84,13 +84,26 @@ module.exports = {
 					noErrorOnMissing: true,
 				},
 				{
+					// bases excel
 					from: path.join(__dirname, '/src/components/BASES_OPERACION'),
 					to: 'BASES',
 					noErrorOnMissing: true,
 				},
 				{
+					//cargan los iconos del corrector
 					from: path.join(__dirname, '/src/components/Corrector/assets'),
 					to: 'noTocar/noTocar/assets',
+					noErrorOnMissing: true,
+				},
+				{
+					from: path.join(__dirname, '/src/assets/images/NOTICIAS'),
+					to: 'BASES/NOTICIAS',
+					noErrorOnMissing: true,
+				},
+				{
+					// crea carpeta biblioteca amiga
+					from: path.join(__dirname, '/src/components/Biblioteca/pdfs'),
+					to: 'BIBLIOTECA',
 					noErrorOnMissing: true,
 				},
 			],

@@ -20,6 +20,7 @@ import { NoteApp } from './components/NoteApp/NoteApp.jsx'
 import IconsTest from './components/WebTraining/IconsTest.jsx'
 import HorNav from './components/Navbar/HorNav.jsx'
 import BasesNoti from './components/Test/BasesNoti.jsx'
+import Biblioteca from './components/Biblioteca/Biblioteca.jsx'
 
 const App = () => {
 	const { scheme, activeAppNote, showApp, admin } = useContext(GlobalContext)
@@ -77,6 +78,7 @@ const App = () => {
 					<Route path="/testeos" element={<Testeos />} />
 					<Route path="/iconTest" element={<IconsTest />} />
 					<Route path="/testbases" element={<BasesNoti />} />
+					<Route path="/biblioteca" element={<Biblioteca />} />
 				</Routes>
 			</section>
 		</div>

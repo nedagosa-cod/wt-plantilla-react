@@ -8,7 +8,7 @@ const WTLocalbase = new Localbase('db_nombre_campana')
 
 const GlobalProvider = ({ children }) => {
 	const [scheme, setScheme] = useState('light')
-	const [admin, setAdmin] = useState(true)
+	const [admin, setAdmin] = useState(false)
 	const [activeAppNote, SetActiveAppNote] = useState(false)
 
 	const templatesDDBB = ['arbol', 'ejemplo']

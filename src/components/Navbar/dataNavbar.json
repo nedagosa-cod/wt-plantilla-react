@@ -32,6 +32,11 @@
 			"icon": "home"
 		},
 		{
+			"title": "Biblioteca",
+			"route": "/biblioteca",
+			"icon": "library"
+		},
+		{
 			"title": "Prueba bases",
 			"route": "/testbases",
 			"icon": "home",
