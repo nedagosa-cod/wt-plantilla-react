@@ -191,13 +191,6 @@ const HorNav = () => {
 			],
 		})
 		driverObj.drive()
-		// driverObj.highlight({
-		// 	element: '#sideVersion',
-		// 	popover: {
-		// 		title: 'Title',
-		// 		description: 'Description',
-		// 	},
-		// })
 	}
 
 	const scrollLeft = () => {

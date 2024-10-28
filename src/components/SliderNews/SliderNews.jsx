@@ -7,10 +7,11 @@ import IconColorNews from '../../icons/IconColorNews'
 
 function SliderNews() {
 	const [images, setImages] = useState([])
+	const [zoom, setZoom] = useState('')
 	let sliderRef = useRef(null)
 
 	const settings = {
-		dots: false,
+		dots: true,
 		infinite: true,
 		slidesToShow: 1,
 		slidesToScroll: 1,
@@ -47,7 +48,10 @@ function SliderNews() {
 			},
 		],
 	}
-
+	const handleZoom = element => {
+		element.target.classList.contains('slider-container') && setZoom('')
+		element.target.classList.contains('slick-list') && setZoom('zoom')
+	}
 	useEffect(() => {
 		const urls = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(i => `BASES/NOTICIAS/Diapositiva${i}.JPG`)
 		const validImages = []
@@ -67,11 +71,23 @@ function SliderNews() {
 			}
 			img.src = url
 		})
+
+		const handleEscape = event => {
+			if (event.key === 'Escape') {
+				setZoom('')
+			}
+		}
+
+		document.addEventListener('keydown', handleEscape)
+
+		return () => {
+			document.removeEventListener('keydown', handleEscape)
+		}
 	}, [])
 
 	return (
-		<div className="slider-container">
-			<div className="slider-container__title">
+		<div className={'slider-container ' + zoom} onClick={e => handleZoom(e)}>
+			<div className={'slider-container__title ' + zoom}>
 				<IconColorNews /> <h1>Noticias</h1> <IconColorNews />
 			</div>
 			<Slider
