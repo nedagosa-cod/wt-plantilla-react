@@ -77,11 +77,6 @@ module.exports = {
 					noErrorOnMissing: true,
 				},
 				{
-					from: path.join(__dirname, '/src/components/BASES_OPERACION'),
-					to: 'BASES',
-					noErrorOnMissing: true,
-				},
-				{
 					from: path.join(__dirname, '/src/assets/images/NOTICIAS'),
 					to: 'BASES/NOTICIAS',
 					noErrorOnMissing: true,

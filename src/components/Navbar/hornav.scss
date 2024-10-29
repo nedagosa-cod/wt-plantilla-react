@@ -517,14 +517,14 @@
 				}
 			}
 		}
-		.hornav__links--search {
+		&--search {
 			position: relative;
 			background: linear-gradient(135deg, $p-color 0%, $p-color 100%);
 			border-radius: 1000px;
 			padding: 10px;
 			display: grid;
 			place-content: center;
-			z-index: 0;
+			z-index: 10;
 			min-width: 200px;
 		}
 
@@ -632,7 +632,7 @@
 		}
 		&__links {
 			& .hornav__links--search {
-				width: 25%;
+				width: 100%;
 			}
 			& .search__container {
 				min-width: 90%;

@@ -32,8 +32,11 @@ import 'driver.js/dist/driver.css'
 import IconUserTea from '../../icons/IconUserTea'
 import dropImg from '../../assets/images/index/DropDownBoard.png'
 
+import SpotlightSearch from './components/SpotlightSearch'
+
 const HorNav = () => {
 	const navigate = useNavigate()
+
 	const scrollContainerRef = useRef(null)
 	const dropDownRef = useRef(null)
 	const [dropDown, setDropDown] = useState(false)
@@ -58,23 +61,6 @@ const HorNav = () => {
 		admin: <IconUserTea />,
 	})
 	const { readExcelFile, templatesDDBB, setScheme, showApp, admin, setAdmin } = useContext(GlobalContext)
-	const search = valueSearch => {
-		const lowerCase = valueSearch.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-		const allCards = document.querySelectorAll('.dato-buscado')
-		const mobileCards = Array.from(allCards).filter(card =>
-			card.textContent
-				.toLowerCase()
-				.normalize('NFD')
-				.replace(/[\u0300-\u036f]/g, '')
-				.includes(lowerCase.toLowerCase())
-		)
-		Array.from(allCards).forEach(card => {
-			card.classList.add('hide')
-		})
-		mobileCards.forEach(card => {
-			card.classList.remove('hide')
-		})
-	}
 
 	const handleScroll = event => {
 		if (scrollContainerRef.current) {
@@ -192,7 +178,6 @@ const HorNav = () => {
 		})
 		driverObj.drive()
 	}
-
 	const scrollLeft = () => {
 		if (scrollContainerRef.current) {
 			scrollContainerRef.current.scrollLeft -= 100 // Ajusta el valor según la cantidad que desees desplazar
@@ -351,16 +336,7 @@ const HorNav = () => {
 							<IconArrowDown />
 						</div>
 					</div>
-					<div className="hornav__links--search">
-						<div className="search__container">
-							<input className="search__container--input" type="text" onChange={e => search(e.target.value)} />
-							<svg viewBox="0 0 24 24" className="search__container--icon">
-								<g>
-									<path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
-								</g>
-							</svg>
-						</div>
-					</div>
+					<SpotlightSearch />
 				</div>
 				<div className="hornav__logos">
 					<figure>

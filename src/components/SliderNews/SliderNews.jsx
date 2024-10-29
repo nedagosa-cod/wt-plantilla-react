@@ -53,7 +53,7 @@ function SliderNews() {
 		element.target.classList.contains('slick-list') && setZoom('zoom')
 	}
 	useEffect(() => {
-		const urls = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(i => `BASES/NOTICIAS/Diapositiva${i}.JPG`)
+		const urls = [1, 2, 3].map(i => `BASES/NOTICIAS/Diapositiva${i}.JPG`)
 		const validImages = []
 
 		urls.forEach((url, index) => {
