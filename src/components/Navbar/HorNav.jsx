@@ -36,7 +36,6 @@ import SpotlightSearch from './components/SpotlightSearch'
 
 const HorNav = () => {
 	const navigate = useNavigate()
-
 	const scrollContainerRef = useRef(null)
 	const dropDownRef = useRef(null)
 	const [dropDown, setDropDown] = useState(false)
@@ -61,6 +60,48 @@ const HorNav = () => {
 		admin: <IconUserTea />,
 	})
 	const { readExcelFile, templatesDDBB, setScheme, showApp, admin, setAdmin } = useContext(GlobalContext)
+	const [showAdminModal, setShowAdminModal] = useState(false) // Estado para abrir el portal
+	const [portalKey, setPortalKey] = useState('') // Estado para la clave del portal
+	const [pendingAdminAccess, setPendingAdminAccess] = useState(false) // Estado que indica si se solicitó acceso a ADMIN
+
+	// Función para alternar la visibilidad del portal
+	const toggleAdminModal = segment => {
+		setShowAdminModal(!showAdminModal)
+	}
+	// Función que maneja el envío del formulario del portal
+	const handlePortalSubmit = e => {
+		e.preventDefault()
+
+		// Verificación de la clave
+		if (portalKey === 'AtentoWebTraining*') {
+			Swal.fire({
+				title: 'Clave correcta, Bienvenido!',
+				icon: 'success',
+				toast: true,
+				position: 'top-end',
+				showConfirmButton: false,
+				timer: 2000,
+				timerProgressBar: true,
+			})
+
+			// Si se estaba solicitando acceso a la sección ADMIN
+			if (pendingAdminAccess) {
+				setAdmin(true) // Establecer el estado de admin en true
+				SetNavSegment('ADMIN') // Cambiar el segmento de navegación a 'ADMIN'
+				navigate('/admin') // Navegar a la sección de 'ADMIN'
+				setPendingAdminAccess(false) // Resetear el estado de solicitud de acceso
+			}
+
+			toggleAdminModal() // Cerrar el modal
+		} else {
+			Swal.fire({
+				title: 'Error!',
+				text: 'Acceso denegado: La clave es incorrecta',
+				icon: 'error',
+				confirmButtonText: 'Reintentar'
+			})
+		}
+	}
 
 	const handleScroll = event => {
 		if (scrollContainerRef.current) {
@@ -128,56 +169,180 @@ const HorNav = () => {
 			readExcelFile(fileEvent)
 		}
 	}
+
+
 	const startDrive = () => {
+
+		const defaultSteps = [
+			{
+				element: '.hornav',
+				popover: {
+					title: 'Barra de navegación',
+					description:
+						'En la barra de navegación encontrarás todos los tipos de procesos que gestionan en la operación, adicional del buscador, cambio de tema, corrector, entre otros.',
+				},
+			},
+			{
+				element: '.hornav__segments',
+				popover: {
+					title: 'Segmentos',
+					description:
+						'Al dar click se abrirá el buscador de la web training para traer o filtrar el dato que necesites por medio de una palabra clave.',
+				},
+			},
+			{
+				element: '.admin__segment',
+				popover: {
+					title: 'Admin',
+					description:
+						'Al dar click se abrirá el buscador de la web training para traer o filtrar el dato que necesites por medio de una palabra clave.',
+				},
+			},
+			{
+				element: '.settings',
+				popover: {
+					title: 'Configuraciones',
+					description:
+						'En este segundo menú podrás encontrar diferentes configuraciones de la web training y otros apartados como corrector ortográfico, cambio de tema, carga de bases de datos y la guía de uso de la web y desarrollos.',
+				},
+			},
+			{
+				element: '.settings_btnA',
+				popover: {
+					title: 'Configuraciones 1',
+					description:
+						'En este segundo menú podrás encontrar diferentes configuraciones de la web training y otros apartados como corrector ortográfico, cambio de tema, carga de bases de datos y la guía de uso de la web y desarrollos.',
+				},
+			},
+			{
+				element: '.settings_btnB',
+				popover: {
+					title: 'Configuraciones 2',
+					description:
+						'En este segundo menú podrás encontrar diferentes configuraciones de la web training y otros apartados como corrector ortográfico, cambio de tema, carga de bases de datos y la guía de uso de la web y desarrollos.',
+				},
+			},
+			{
+				element: '.settings_btnC',
+				popover: {
+					title: 'Configuraciones 3',
+					description:
+						'En este segundo menú podrás encontrar diferentes configuraciones de la web training y otros apartados como corrector ortográfico, cambio de tema, carga de bases de datos y la guía de uso de la web y desarrollos.',
+				},
+			},
+			{
+				element: '.settings_btnD',
+				popover: {
+					title: 'Configuraciones 4',
+					description:
+						'En este segundo menú podrás encontrar diferentes configuraciones de la web training y otros apartados como corrector ortográfico, cambio de tema, carga de bases de datos y la guía de uso de la web y desarrollos.',
+				},
+			},
+			{
+				element: '.settings_btnE',
+				popover: {
+					title: 'Configuraciones 5',
+					description:
+						'En este segundo menú podrás encontrar diferentes configuraciones de la web training y otros apartados como corrector ortográfico, cambio de tema, carga de bases de datos y la guía de uso de la web y desarrollos.',
+				},
+			},
+
+			{
+				element: '.hornav__links--boxul',
+				popover: {
+					title: 'Procesos',
+					description:
+						'En este apartado encontrarás todos los desarrollos de procesos identificados hasta la fecha, en ellos pueden haber: checklist, gestores de notas, tipificadores, versus, matrices, consultas de documentación entre otras.',
+				},
+			},
+
+			{
+				element: '.hornav__links--search',
+				popover: {
+					title: 'Buscador',
+					description:
+						'Al dar click se abrirá el buscador de la web training para traer o filtrar el dato que necesites por medio de una palabra clave.',
+				},
+			},
+
+			{
+				element: '.hornav__logos',
+				popover: {
+					title: 'Versionado',
+					description:
+						'En el último apartado de la barra de navegación encontrarás la versión actual en la que se encuentra la web training. Confirma con tu formador en qué versión se encuentra actualmente para evitar procesos desactualizados.',
+				},
+			},
+		];
+
+		const currentHash = window.location.hash;
+		let steps;
+
+		if (currentHash.includes('#/checklist')) {
+			steps = [
+				{
+					element: '.checklist__item1',
+					popover: {
+						title: 'Checklist Item 1',
+						description: 'Descripción para el primer elemento del checklist.',
+					},
+				},
+				{
+					element: '.checklist__item2',
+					popover: {
+						title: 'Checklist Item 2',
+						description: 'Descripción para el segundo elemento del checklist.',
+					},
+				},
+			];
+		} else if (currentHash.includes('#configuracion')) {
+			steps = [
+				{
+					element: '.Checklist',
+					popover: {
+						title: 'Configuración 1',
+						description: 'Detalles sobre la primera configuración.',
+					},
+				},
+				{
+					element: '.settings__item2',
+					popover: {
+						title: 'Configuración 2',
+						description: 'Detalles sobre la segunda configuración.',
+					},
+				},
+			];
+		} else if (currentHash.includes('#procesos')) {
+			steps = [
+				{
+					element: '.procesos__item1',
+					popover: {
+						title: 'Proceso 1',
+						description: 'Descripción para el primer proceso.',
+					},
+				},
+				{
+					element: '.procesos__item2',
+					popover: {
+						title: 'Proceso 2',
+						description: 'Descripción para el segundo proceso.',
+					},
+				},
+			];
+		} else {
+			steps = defaultSteps;
+		}
+
 		const driverObj = driver({
 			showProgress: true,
 			showButtons: ['next', 'previous', 'close'],
 			popoverClass: 'driverjs-theme',
-			steps: [
-				{
-					element: '.hornav',
-					popover: {
-						title: 'Barra de navegación',
-						description:
-							'En la barra de navegación encontrarás todos los tipos de procesos que gestionan en la operación, adicional del buscador, cambio de tema, corrector, entre otros.',
-					},
-				},
-				{
-					element: '.hornav__links--search',
-					popover: {
-						title: 'Buscador',
-						description:
-							'Al dar click se abrirá el buscador de la web training para traer o filtrar el dato que necesites por medio de una palabra clave.',
-					},
-				},
-				{
-					element: '.hornav__links',
-					popover: {
-						title: 'Procesos',
-						description:
-							'En este apartado encontrarás todos los desarrollos de procesos identificados hasta la fecha, en ellos pueden haber: checklist, gestores de notas, tipificadores, versus, matrices, consultas de documentación entre otras.',
-					},
-				},
-				{
-					element: '.settings',
-					popover: {
-						title: 'Configuraciones',
-						description:
-							'En este segundo menú podráz encontrar diferentes configuraciones de la web training y otros apartados como, corrector ortográfico, cambio de tema, carga de bases de datos y la guia de uso de la web y desarrollos.',
-					},
-				},
-				{
-					element: '.hornav__logos',
-					popover: {
-						title: 'Versionado',
-						description:
-							'En el ultimo apartado de la barra de navegacion encontrarás la versión actual en la que se encuentra la web training, debes confirmar con tu formador en que versión se encuentra actualmente la web training para evitar procesos desactualizados.',
-					},
-				},
-			],
-		})
-		driverObj.drive()
-	}
+			steps: steps,
+		});
+
+		driverObj.drive();
+	};
+
 	const scrollLeft = () => {
 		if (scrollContainerRef.current) {
 			scrollContainerRef.current.scrollLeft -= 100 // Ajusta el valor según la cantidad que desees desplazar
@@ -199,27 +364,34 @@ const HorNav = () => {
 	})
 	return (
 		<header className="hornav">
-			{DATANAV.SEGMENTS && (
-				<nav className="hornav__segments">
-					<ul>
-						{DATANAV.SEGMENTS.map((segment, i) => {
-							if (segment.segment === 'ADMIN') {
-								return (
-									<li
-										onClick={() => {
-											SetNavSegment(segment.segment)
-											navigate('/' + segment.segment.toLowerCase())
-											setAdmin(!admin)
-										}}
-										key={i}
-										className={
-											'hornav__segments--li admin__segment' + (segment.segment === navSegment ? ' active' : '')
-										}>
-										{selectIcon[segment.icon]}
-										{admin ? 'Cerrar Admin' : segment.segment}
-									</li>
-								)
-							} else {
+		{DATANAV.SEGMENTS && (
+			<nav className="hornav__segments">
+				<ul>
+					{DATANAV.SEGMENTS.map((segment, i) => {
+						if (segment.segment === 'ADMIN') {
+							return (
+
+								<li
+									onClick={() => {
+										if (admin) {
+											// Si ya es admin, al hacer clic "cierra" el modo admin
+											setAdmin(false) // Cerrar el modo admin
+											SetNavSegment('') // Cambiar el segmento de navegación al que no sea admin
+											navigate('/#/') // Cambiar la ruta a una por defecto
+										} else {
+											// Si no es admin, mostrar el modal para ingresar la clave
+											setPendingAdminAccess(true) // Marcar que estamos solicitando acceso a ADMIN
+											toggleAdminModal() // Abrir el modal
+										}
+									}}
+									key={i}
+									className={'hornav__segments--li admin__segment' + (segment.segment === navSegment ? ' active' : '')}>
+									{selectIcon[segment.icon]}
+									{admin ? 'Cerrar Admin' : segment.segment}
+								</li>
+							)
+						} else {
+								
 								return (
 									<li
 										onClick={() => {
@@ -234,29 +406,29 @@ const HorNav = () => {
 							}
 						})}
 						<li className="settings">
-							<button className="settings__btn" name="upload" onClick={setsClick}>
+							<button className="settings__btn settings_btnA" name="upload" onClick={setsClick}>
 								<IconUpload />
 							</button>
 							<button
-								className="settings__btn"
+								className="settings__btn settings_btnB"
 								name="spellcheck"
 								onClick={() => {
 									navigate('/corrector')
 								}}>
 								<InconSpell />
 							</button>
-							<button className="settings__btn" name="theme" onClick={setsClick}>
+							<button className="settings__btn settings_btnC" name="theme" onClick={setsClick}>
 								<IconTheme />
 							</button>
 							<button
-								className="settings__btn"
+								className="settings__btn settings_btnD"
 								name="note"
 								onClick={() => {
 									showApp()
 								}}>
 								<IconNotes />
 							</button>
-							<button className="settings__btn" name="theme" onClick={() => startDrive()}>
+							<button className="settings__btn settings_btnE" name="theme" onClick={() => startDrive()}>
 								<IconGuide />
 							</button>
 						</li>
@@ -400,6 +572,34 @@ const HorNav = () => {
 							)}
 						</div>
 					</section>,
+					document.getElementById('portal')
+				)}
+				{showAdminModal &&
+				createPortal(
+					<div className="admin-modal">
+						<div className="sessionRec__form">
+							<form className="form" id="sendForm" onSubmit={handlePortalSubmit}>
+								<h1 className="title-top">Iniciar Sesión</h1>
+								<p className="title">Ingrese la contraseña de "Administrador"</p>
+								<label>
+									<input
+										className="input cc"
+										type="text"
+										onChange={e => setPortalKey(e.target.value)}
+										placeholder=""
+										required=""
+									/>
+									<span>Administrador</span>
+								</label>
+								<button className="submit" type="submit">
+									Enviar
+								</button>
+								<button className="submit" type="button" onClick={toggleAdminModal}>
+									Cerrar
+								</button>
+							</form>
+						</div>
+					</div>,
 					document.getElementById('portal')
 				)}
 		</header>
