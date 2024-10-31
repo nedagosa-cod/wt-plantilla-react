@@ -16,7 +16,7 @@ import IconCommets from '../../icons/IconCommets'
 import IconWeb from '../../icons/IconWeb'
 import imgLogo from '../../assets/images/index/logoSIn.png'
 import IconArrowDown from '../../icons/IconArrowDown'
-import { useContext, useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState, useReducer } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 import realIconCheck from '../../assets/images/index/realIconCheck.png'
@@ -190,6 +190,17 @@ const HorNav = () => {
 		}
 	}
 
+	const [task, dispatch] = useReducer((state = [], action) => {
+		switch (action.type) {
+			case 'nav_route':
+				return [...state, action.payload]
+			case 'remove':
+				return state.filter(item => item !== action.payload)
+			default:
+				return state
+		}
+	})
+
 	useEffect(() => {
 		document.body.addEventListener('keydown', e => {
 			if (e.key == 'Escape') {
@@ -263,6 +274,7 @@ const HorNav = () => {
 					</ul>
 				</nav>
 			)}
+
 			<nav className="hornav__links">
 				<div className="hornav__links--container">
 					<div className="hornav__links--boxul">
@@ -346,6 +358,7 @@ const HorNav = () => {
 					<span className="hornav__logos--version">V.1.0.0</span>
 				</div>
 			</nav>
+
 			{windowDB &&
 				createPortal(
 					<section className="templates-xls">
