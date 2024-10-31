@@ -13,6 +13,13 @@ import IconTipify from '../../../icons/IconTipify'
 import IconTextSlash from '../../../icons/IconTextSlash'
 import IconTextBubleC from '../../../icons/Color/IconTextBubleC'
 import { Link } from 'react-router-dom'
+import IconWeb from '../../../icons/IconWeb'
+import IconWindowComplete from '../../../icons/IconWindowComplete'
+import IconNote from '../../../icons/IconNote'
+import IconWindowFormC from '../../../icons/Color/IconWindowFormC'
+import IconTimeLine from '../../../icons/IconTimeLine'
+import IconTimeLineC from '../../../icons/Color/IconTimeLineC'
+import IconDeleteOt from '../../../icons/IconDeleteOt'
 
 const SpotlightSearch = () => {
 	const icons = {
@@ -22,13 +29,15 @@ const SpotlightSearch = () => {
 			library: <IconLibraryC />,
 			tipify: <IconTypifierC />,
 			textSlash: <IconTextBubleC />,
+			note: <IconWindowFormC />,
+			timeLine: <IconTimeLineC />,
 		},
 		develops: {
 			// home: <IconHome />,
 			// question: <IconCircleQuestion />,
 			checklist: <IconCheckList />,
 			textSlash: <IconTextSlash />,
-			// note: <IconNote />,
+			note: <IconNote />,
 			tipify: <IconTipify />,
 			calc: <IconCalculator />,
 			// web: <IconWeb />,
@@ -36,7 +45,7 @@ const SpotlightSearch = () => {
 			library: <IconLibrary />,
 			// info: <IconInfo />,
 			// catalogue: <IconCatalog />,
-			// timeLine: <IconTimeLine />,
+			timeLine: <IconTimeLine />,
 		},
 	}
 	const { search } = useSearch()
@@ -51,7 +60,6 @@ const SpotlightSearch = () => {
 		if (typeSearch == 'global') {
 			const searchResults = search(value)
 			setResults(searchResults)
-			console.log(searchResults)
 		} else {
 			const lowerCase = value.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
 			const allCards = document.querySelectorAll('.dato-buscado')
@@ -90,12 +98,16 @@ const SpotlightSearch = () => {
 		<section className="inputs-search">
 			<div className="hornav__links--search">
 				<div className="search__container">
+					<button className="search__container--delete" onClick={() => handleSearch('')}>
+						<IconDeleteOt />
+					</button>
 					<input
 						className="search__container--input"
 						type="text"
 						onChange={e => handleSearch(e.target.value)}
 						value={query}
 						onFocus={() => setSearchFocus(true)}
+						onBlur={() => setSearchFocus(false)}
 					/>
 					<svg viewBox="0 0 24 24" className="search__container--icon" onClick={handleSearch}>
 						<g>
@@ -106,13 +118,30 @@ const SpotlightSearch = () => {
 			</div>
 			{/* selectores de busqueda */}
 			<div className={'radio-inputs animate__animated' + (searchFocus ? 'animate__fadeInUp display' : '')}>
-				<label className="radio" onClick={() => setTypeSearch('vista')}>
+				<label
+					className="radio"
+					onClick={() => {
+						setQuery('')
+						setTypeSearch('vista')
+					}}>
 					<input type="radio" name="radio" className="radioInput radioInput--check" />
-					<span className="name">Vista</span>
+					<span className="name">
+						<IconWindowComplete />
+						Vista
+					</span>
 				</label>
-				<label className="radio" onClick={() => setTypeSearch('global')}>
+				<label
+					className="radio"
+					onClick={() => {
+						setQuery('')
+						setTypeSearch('global')
+					}}>
 					<input type="radio" name="radio" className="radioInput" />
-					<span className="name">Global</span>
+					<span className="name">
+						{' '}
+						<IconWeb />
+						Global
+					</span>
 				</label>
 			</div>
 			{/* elementos buscados globalmente */}
@@ -123,8 +152,12 @@ const SpotlightSearch = () => {
 							if (i > 0 && results[i - 1].type === curr.type && results[i - 1].title === curr.title) {
 								return [
 									...acc,
-									<div className="search-results__develops" key={i}>
-										{console.log(curr.path)}
+									<div
+										className="search-results__develops"
+										key={i}
+										onClick={() => {
+											handleSearch(curr.name)
+										}}>
 										<Link to={curr.path}>
 											<div className="search-results__develops--dev">
 												{icons.develops[curr.icon]}
@@ -144,11 +177,18 @@ const SpotlightSearch = () => {
 									</div>
 									<span className="search-results__segment--text">{curr.segment}</span>
 								</div>,
-								<div className="search-results__develops" key={i + 'dev'}>
-									<div className="search-results__develops--dev">
-										{icons.develops[curr.icon]}
-										<p>{curr.name}</p>
-									</div>
+								<div
+									className="search-results__develops"
+									key={i + 'dev'}
+									onClick={() => {
+										handleSearch(curr.name)
+									}}>
+									<Link to={curr.path}>
+										<div className="search-results__develops--dev">
+											{icons.develops[curr.icon]}
+											<p>{curr.name}</p>
+										</div>
+									</Link>
 								</div>,
 							]
 						}, [])}

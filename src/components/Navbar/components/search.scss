@@ -15,7 +15,7 @@
 	background-color: $p3-color;
 	box-sizing: border-box;
 	font-size: 1.2rem;
-	width: 50%;
+	width: 80%;
 	padding: 0.4rem 1rem 0 1rem;
 	transform: translateX(-50%);
 	-webkit-transform: translateX(-50%);
@@ -33,7 +33,17 @@
 	user-select: none;
 	display: none;
 }
-
+.radio-inputs .radio {
+	& span {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 1rem;
+	}
+	& svg {
+		width: 2rem;
+	}
+}
 .radio-inputs .radio .name {
 	display: flex;
 	cursor: pointer;
@@ -130,6 +140,7 @@
 			font-weight: 600;
 			& svg {
 				width: 32px;
+				height: auto;
 			}
 		}
 		&--text {

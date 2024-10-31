@@ -550,6 +550,9 @@
 					background: linear-gradient(135deg, $p2-color 0%, $p-color 100%);
 				}
 			}
+			&--del {
+				width: 3.4rem;
+			}
 			&--icon {
 				width: 50px;
 				aspect-ratio: 1;
@@ -563,8 +566,18 @@
 					border-left: 3px solid white;
 				}
 			}
+			&--delete {
+				cursor: pointer;
+				& svg {
+					width: 24px;
+				}
+			}
 			& path {
 				fill: white;
+			}
+			& .st0 {
+				fill: transparent;
+				stroke: white;
 			}
 		}
 

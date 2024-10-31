@@ -3,7 +3,7 @@
 		"id": 1,
 		"type": "corrector",
 		"segment": "Global",
-		"title": "Corrector Ortografico",
+		"title": "Corrector Ortográfico",
 		"name": "Corrector Ortografico",
 		"content": "Digita tu texto para corregir ortograficamente o redactar para transcribir a texto",
 		"keywords": ["transcribir", "corregir", "ortografia", "redactor"],
@@ -14,7 +14,7 @@
 		"id": 2,
 		"type": "corrector",
 		"segment": "Global",
-		"title": "Redactor de voz a texto",
+		"title": "Corrector Ortográfico",
 		"name": "Redactor de voz a texto",
 		"content": "Digita tu texto para corregir ortograficamente o redactar para transcribir a texto",
 		"keywords": ["transcribir", "corregir", "ortografia", "redactor"],
@@ -23,61 +23,6 @@
 	},
 	{
 		"id": 3,
-		"type": "checklist",
-		"segment": "Personas",
-		"title": "Checklist",
-		"name": "Creacion de cuenta A",
-		"content": "Instructivo de como crear material  para checklist",
-		"keywords": ["checklist", "Instructivo"],
-		"icon": "checklist",
-		"path": "/checklist/ejemploA"
-	},
-	{
-		"id": 4,
-		"type": "checklist",
-		"segment": "Personas",
-		"title": "Checklist",
-		"name": "Creacion de cuenta B",
-		"content": "Instructivo de como crear material  para checklist",
-		"keywords": ["checklist", "Instructivo"],
-		"icon": "checklist",
-		"path": "/checklist/ejemploB"
-	},
-	{
-		"id": 4,
-		"type": "tipificador",
-		"segment": "Personas",
-		"title": "Tipificador",
-		"name": "Tipificador de cancelación",
-		"content": "Pasos para la cancelación de servicios y manejo de datos...",
-		"keywords": ["cancelación", "tipificador", "tipificacion"],
-		"icon": "tipify",
-		"path": "/tipificador"
-	},
-	{
-		"id": 5,
-		"type": "calculadora",
-		"segment": "Empresas",
-		"title": "Calculadora",
-		"name": "Calculadora de Cancelación",
-		"content": "Herramienta para calcular cancelación de contratos...",
-		"keywords": ["cancelación", "contratos", "cálculo"],
-		"icon": "calc",
-		"path": "/main/calculadoras/cancelacion"
-	},
-	{
-		"id": 6,
-		"type": "calculadora",
-		"segment": "Empresas",
-		"title": "Calculadora",
-		"name": "Calculadora de Cancelación de creditos",
-		"content": "Herramienta para calcular cancelación de contratos...",
-		"keywords": ["cancelación", "contratos", "cálculo"],
-		"icon": "calc",
-		"path": "/main/calculadoras/cancelacion"
-	},
-	{
-		"id": 7,
 		"type": "Biblioteca",
 		"segment": "Personas",
 		"title": "Biblioteca",
@@ -88,7 +33,63 @@
 		"path": "/biblioteca"
 	},
 	{
+		"id": 4,
+		"type": "checklist",
+		"segment": "Personas",
+		"title": "Checklist",
+		"name": "Creacion de cuenta A",
+		"content": "Instructivo de como crear material  para checklist",
+		"keywords": ["checklist", "Instructivo"],
+		"icon": "checklist",
+		"path": "/checklist/ejemploA"
+	},
+	{
+		"id": 5,
+		"type": "checklist",
+		"segment": "Personas",
+		"title": "Checklist",
+		"name": "Creacion de cuenta B",
+		"content": "Instructivo de como crear material  para checklist",
+		"keywords": ["checklist", "Instructivo"],
+		"icon": "checklist",
+		"path": "/checklist/ejemploB"
+	},
+	{
+		"id": 6,
+		"type": "tipificador",
+		"segment": "Personas",
+		"title": "Tipificador",
+		"name": "Tipificador de cancelación",
+		"content": "Pasos para la cancelación de servicios y manejo de datos...",
+		"keywords": ["cancelación", "tipificador", "tipificacion"],
+		"icon": "tipify",
+		"path": "/tipificador"
+	},
+	{
+		"id": 7,
+		"type": "calculadora",
+		"segment": "Personas",
+		"title": "Calculadoras",
+		"name": "Estandar",
+		"content": "Herramienta para calcular cancelación de contratos...",
+		"keywords": ["cancelación", "contratos", "cálculo"],
+		"icon": "calc",
+		"path": "/calculadoras/estandar"
+	},
+	{
 		"id": 8,
+		"type": "calculadora",
+		"segment": "Empresas",
+		"title": "Calculadoras",
+		"name": "Calculadora de Cancelación de creditos",
+		"content": "Herramienta para calcular cancelación de contratos...",
+		"keywords": ["cancelación", "contratos", "cálculo"],
+		"icon": "calc",
+		"path": "/main/calculadoras/cancelacion"
+	},
+
+	{
+		"id": 9,
 		"type": "checklist",
 		"segment": "Personas",
 		"title": "Checklist",
@@ -97,5 +98,27 @@
 		"keywords": ["cuenta", "premiun", "creacion"],
 		"icon": "checklist",
 		"path": "/main/documentos/guia-cancelacion"
+	},
+	{
+		"id": 10,
+		"type": "timeline",
+		"segment": "Fidelización",
+		"title": "Linea de tiempo",
+		"name": "Historico ejemplo",
+		"content": "Aqui puedes explicar como crear una cuenta premiun...",
+		"keywords": ["cuenta", "premiun", "creacion"],
+		"icon": "timeLine",
+		"path": "/timeline"
+	},
+	{
+		"id": 10,
+		"type": "formNotes",
+		"segment": "Fidelización",
+		"title": "Gestores de notas",
+		"name": "Razones por quejas",
+		"content": "Lista de razon y motivos de quejas",
+		"keywords": ["quejas"],
+		"icon": "note",
+		"path": "/timeline"
 	}
 ]
