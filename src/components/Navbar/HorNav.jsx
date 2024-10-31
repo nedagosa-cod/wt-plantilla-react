@@ -33,6 +33,7 @@ import IconUserTea from '../../icons/IconUserTea'
 import dropImg from '../../assets/images/index/DropDownBoard.png'
 
 import SpotlightSearch from './components/SpotlightSearch'
+import Swal from 'sweetalert2'
 
 const HorNav = () => {
 	const navigate = useNavigate()
@@ -98,7 +99,7 @@ const HorNav = () => {
 				title: 'Error!',
 				text: 'Acceso denegado: La clave es incorrecta',
 				icon: 'error',
-				confirmButtonText: 'Reintentar'
+				confirmButtonText: 'Reintentar',
 			})
 		}
 	}
@@ -170,9 +171,7 @@ const HorNav = () => {
 		}
 	}
 
-
 	const startDrive = () => {
-
 		const defaultSteps = [
 			{
 				element: '.hornav',
@@ -273,10 +272,10 @@ const HorNav = () => {
 						'En el último apartado de la barra de navegación encontrarás la versión actual en la que se encuentra la web training. Confirma con tu formador en qué versión se encuentra actualmente para evitar procesos desactualizados.',
 				},
 			},
-		];
+		]
 
-		const currentHash = window.location.hash;
-		let steps;
+		const currentHash = window.location.hash
+		let steps
 
 		if (currentHash.includes('#/checklist')) {
 			steps = [
@@ -294,7 +293,7 @@ const HorNav = () => {
 						description: 'Descripción para el segundo elemento del checklist.',
 					},
 				},
-			];
+			]
 		} else if (currentHash.includes('#configuracion')) {
 			steps = [
 				{
@@ -311,7 +310,7 @@ const HorNav = () => {
 						description: 'Detalles sobre la segunda configuración.',
 					},
 				},
-			];
+			]
 		} else if (currentHash.includes('#procesos')) {
 			steps = [
 				{
@@ -328,9 +327,9 @@ const HorNav = () => {
 						description: 'Descripción para el segundo proceso.',
 					},
 				},
-			];
+			]
 		} else {
-			steps = defaultSteps;
+			steps = defaultSteps
 		}
 
 		const driverObj = driver({
@@ -338,10 +337,10 @@ const HorNav = () => {
 			showButtons: ['next', 'previous', 'close'],
 			popoverClass: 'driverjs-theme',
 			steps: steps,
-		});
+		})
 
-		driverObj.drive();
-	};
+		driverObj.drive()
+	}
 
 	const scrollLeft = () => {
 		if (scrollContainerRef.current) {
@@ -375,34 +374,34 @@ const HorNav = () => {
 	})
 	return (
 		<header className="hornav">
-		{DATANAV.SEGMENTS && (
-			<nav className="hornav__segments">
-				<ul>
-					{DATANAV.SEGMENTS.map((segment, i) => {
-						if (segment.segment === 'ADMIN') {
-							return (
-
-								<li
-									onClick={() => {
-										if (admin) {
-											// Si ya es admin, al hacer clic "cierra" el modo admin
-											setAdmin(false) // Cerrar el modo admin
-											SetNavSegment('') // Cambiar el segmento de navegación al que no sea admin
-											navigate('/#/') // Cambiar la ruta a una por defecto
-										} else {
-											// Si no es admin, mostrar el modal para ingresar la clave
-											setPendingAdminAccess(true) // Marcar que estamos solicitando acceso a ADMIN
-											toggleAdminModal() // Abrir el modal
-										}
-									}}
-									key={i}
-									className={'hornav__segments--li admin__segment' + (segment.segment === navSegment ? ' active' : '')}>
-									{selectIcon[segment.icon]}
-									{admin ? 'Cerrar Admin' : segment.segment}
-								</li>
-							)
-						} else {
-								
+			{DATANAV.SEGMENTS && (
+				<nav className="hornav__segments">
+					<ul>
+						{DATANAV.SEGMENTS.map((segment, i) => {
+							if (segment.segment === 'ADMIN') {
+								return (
+									<li
+										onClick={() => {
+											if (admin) {
+												// Si ya es admin, al hacer clic "cierra" el modo admin
+												setAdmin(false) // Cerrar el modo admin
+												SetNavSegment('') // Cambiar el segmento de navegación al que no sea admin
+												navigate('/#/') // Cambiar la ruta a una por defecto
+											} else {
+												// Si no es admin, mostrar el modal para ingresar la clave
+												setPendingAdminAccess(true) // Marcar que estamos solicitando acceso a ADMIN
+												toggleAdminModal() // Abrir el modal
+											}
+										}}
+										key={i}
+										className={
+											'hornav__segments--li admin__segment' + (segment.segment === navSegment ? ' active' : '')
+										}>
+										{selectIcon[segment.icon]}
+										{admin ? 'Cerrar Admin' : segment.segment}
+									</li>
+								)
+							} else {
 								return (
 									<li
 										onClick={() => {
@@ -587,7 +586,7 @@ const HorNav = () => {
 					</section>,
 					document.getElementById('portal')
 				)}
-				{showAdminModal &&
+			{showAdminModal &&
 				createPortal(
 					<div className="admin-modal">
 						<div className="sessionRec__form">
