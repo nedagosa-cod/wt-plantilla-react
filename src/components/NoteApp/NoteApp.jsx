@@ -7,13 +7,22 @@ import GlobalContext from '../../context/GlobalContext.jsx'
 
 function NoteApp() {
 	const { showApp } = useContext(GlobalContext)
-	// variable que guarda las notas
 	const [notes, setNotes] = useState([])
-	//variables para cargar mensaje de confirmacion de eliminacion y no guardar la ide guardada en noteToDelete
+	//estas 2 variable isdleting es para validar si aparece una nota y notetodelete es el id para que salga el mensaje en esa nota
 	const [isDeleting, setIsDeleting] = useState(false)
 	const [noteToDelete, setNoteToDelete] = useState(null)
-	//redimensionar text area
+	//se guarda en el objeto un id como key y el objeto text area segun el cliclo como un valor del ide ejemplo 123123: textarea
 	const refs = useRef({})
+
+
+	//busca el el local storage  la base notas y las guarda en la variable y si no simpremente guarda un array vacio en esa variable
+	// este useEffect es solo cuando se de f5  y acceder al local ya que carga una sola vez despues de renderizar todo
+	useEffect(() => {
+		const savedNotes = JSON.parse(localStorage.getItem('notes')) || []
+		setNotes(savedNotes)
+
+	}, [])
+
 
 	// funcion del text area para redimencionar custom
 	const handleResizeMouseDown = noteId => e => {
@@ -58,28 +67,26 @@ function NoteApp() {
 		localStorage.setItem('notes', JSON.stringify(updatedNotes))
 	}
 
-	//en el text area cada vez que escriba algo  en este caso hace un map de notes y compara si el id iterado es igual
-	//si lo es edita la nota osea (content) y esto pasa porque la sintaxis es {} y si no simplemente retorna el elemento
-	//tal cual e igual que lo demas actualizamos nuestra variable y el localStorage
-	const handleNoteChange = (content, id) => {
-		const updatedNotes = notes.map(note => {
-			if (note.id === id) {
-				return { ...note, content }
-			}
-			return note
-		})
-		setNotes(updatedNotes)
-		localStorage.setItem('notes', JSON.stringify(updatedNotes))
-	}
+	//funcion para agregar el contenido a la nota
+    const handleNoteChange = (content, id) => {
+        const updatedNotes = notes.map(note => {
+            if (note.id === id) {
+                return { ...note, content };
+            }
+            return note;
+        });
+        setNotes(updatedNotes);
+        localStorage.setItem('notes', JSON.stringify(updatedNotes));
+    };
 
 	//funcion para agregar nota al final y mantener las anteriores, despues actualiza la variable y el localStorage
 	const addNote = () => {
-		const newNote = { id: Date.now(), title: '', color: '#e6e6e6', content: '' }
-		//la funcion updatedNotes editar por si algun futuro añado cambuar de pocision
-		const updatedNotes = [...notes, newNote]
-		setNotes(updatedNotes)
-		localStorage.setItem('notes', updatedNotes)
-	}
+        const newNote = { id: Date.now(), title: '',  color: '#FFEFD5', content: '' };
+        //la funcion updatedNotes editar por si algun futuro añado cambiar de pocision
+        const updatedNotes = [...notes, newNote];
+        setNotes(updatedNotes);
+        localStorage.setItem('notes', JSON.stringify(updatedNotes));
+    };
 
 	//borrar la nota filtrando las que no tengan este id y actualizando  tanto las notas como el localStorage
 	const deleteNote = () => {
@@ -100,17 +107,7 @@ function NoteApp() {
 		setNoteToDelete(null)
 	}
 
-	//busca el el local storage  la base notas y las guarda en la variable y si no simpremente guarda un array vacio en esa variable
-	// este useEffect es solo cuando se de f5  y acceder al local ya que carga una sola vez despues de renderizar todo
-	// tambien sirve para validar si se deja abierto o cerrado el componente
-	useEffect(() => {
-		const savedNotes = JSON.parse(localStorage.getItem('notes')) || []
-		setNotes(savedNotes)
-
-		const showNotes = JSON.parse(localStorage.getItem('showNote')) || false
-		// setIsVisible(showNotes)
-		localStorage.setItem('showNote', JSON.stringify(showNotes))
-	}, [])
+	
 
 	return (
 		<div className="noteApp-container show animate__animated animate__fadeInRight">
