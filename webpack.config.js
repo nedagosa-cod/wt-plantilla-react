@@ -26,19 +26,15 @@ module.exports = {
 					loader: 'babel-loader',
 				},
 			},
-			{
-				test: /\.s[ac]ss$/i,
-				use: [
-					MiniCssExtractPlugin.loader,
-					// Translates CSS into CommonJS
-					'css-loader',
-					// Compiles Sass to CSS
-					'sass-loader',
-				],
-			},
+			// para archivos .css (como animate.css)
 			{
 				test: /\.css$/i,
-				use: [MiniCssExtractPlugin.loader, 'css-loader'],
+				use: ['style-loader', 'css-loader', 'postcss-loader'],
+			},
+			// para archivos .scss o .sass
+			{
+				test: /\.s[ac]ss$/i,
+				use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
 			},
 			{
 				test: /\.html$/i,

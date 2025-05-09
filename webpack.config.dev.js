@@ -29,9 +29,15 @@ module.exports = {
 					},
 				},
 			},
+			// para archivos .css (como animate.css)
 			{
-				test: /\.(s[ac]ss|css)$/i,
-				use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+				test: /\.css$/i,
+				use: ['style-loader', 'css-loader', 'postcss-loader'],
+			},
+			// para archivos .scss o .sass
+			{
+				test: /\.s[ac]ss$/i,
+				use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
 			},
 			{
 				test: /\.html$/i,

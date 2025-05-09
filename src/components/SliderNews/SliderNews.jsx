@@ -88,7 +88,7 @@ function SliderNews() {
 	return (
 		<div className={'slider-container ' + zoom} onClick={e => handleZoom(e)}>
 			<div className={'slider-container__title ' + zoom}>
-				<IconColorNews /> <h1>Noticias</h1> <IconColorNews />
+				<IconColorNews /> <h1 className="text-2xl text-red-500">Noticias</h1> <IconColorNews />
 			</div>
 			<Slider
 				ref={slider => {
