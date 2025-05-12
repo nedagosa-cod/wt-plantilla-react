@@ -1,5 +1,4 @@
 import '@styles/app.scss'
-import './index.css'
 import { Routes, Route } from 'react-router-dom'
 
 import imgBackground from './assets/images/index/backgroundLight.jpg'

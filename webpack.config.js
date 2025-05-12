@@ -38,7 +38,7 @@ module.exports = {
 			},
 			{
 				test: /\.css$/i,
-				use: [MiniCssExtractPlugin.loader, 'css-loader'],
+				use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
 			},
 			{
 				test: /\.html$/i,
@@ -119,7 +119,7 @@ module.exports = {
 		},
 	},
 	devServer: {
-		port: 9876,
+		port: 0,
 		open: true,
 		// historyApiFallBack: true
 	},

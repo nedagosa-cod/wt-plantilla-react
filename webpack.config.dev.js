@@ -30,8 +30,12 @@ module.exports = {
 				},
 			},
 			{
-				test: /\.(s[ac]ss|css)$/i,
-				use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+				test: /\.s[ac]ss$/i,
+				use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'],
+			},
+			{
+				test: /\.css$/i,
+				use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
 			},
 			{
 				test: /\.html$/i,
@@ -112,7 +116,7 @@ module.exports = {
 		},
 	},
 	devServer: {
-		port: 9876,
+		port: 0,
 		open: true,
 		// historyApiFallBack: true
 	},
