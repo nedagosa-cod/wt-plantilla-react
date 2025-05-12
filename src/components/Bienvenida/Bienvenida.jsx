@@ -9,6 +9,7 @@ import imgBgLightNavidad from '../../assets/images/index/bg-light-navidad.jpg'
 import imgBgDarkNavidad from '../../assets/images/index/bg-dark-navidad.jpg'
 import GlobalContext from '../../context/GlobalContext'
 import SliderNews from '../SliderNews/SliderNews'
+import { Button } from '../ui/button'
 
 export default function Bienvenida() {
 	const { scheme } = useContext(GlobalContext)
@@ -34,11 +35,11 @@ export default function Bienvenida() {
 		<div className="welcome" style={style}>
 			<section className="welcome__content news">
 				{/* <SliderNews /> */}
-				<span className="text-red-500">Bienvenido a </span>
+				<span className="">Bienvenido a </span>
 				<span className="">
 					Web Training <strong>Formación</strong>
 				</span>
-				<p>Desarrollo de aplicativos web para la mejora de las gestiones diarias de la producción.</p>
+				<Button>Holaaaa</Button>
 			</section>
 		</div>
 	)

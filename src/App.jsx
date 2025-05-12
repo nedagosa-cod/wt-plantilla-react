@@ -7,7 +7,6 @@ import imgApp from './assets/images/index/backApp.jpg'
 import imgCtrlAccesss from './assets/images/index/sessionBackground.jpg'
 
 import dataNavbar from './components/Navbar/dataNavbar.json'
-import Navbar from './components/Navbar/Navbar'
 import Bienvenida from './components/Bienvenida/Bienvenida'
 import Corrector from './components/Corrector/Corrector'
 import GlobalContext from './context/GlobalContext'
@@ -21,6 +20,7 @@ import IconsTest from './components/WebTraining/IconsTest.jsx'
 import HorNav from './components/Navbar/HorNav.jsx'
 import BasesNoti from './components/Test/BasesNoti.jsx'
 import Biblioteca from './components/Biblioteca/Biblioteca.jsx'
+// import Navbar from './components/WebTraining/navbar/Navbar.jsx'
 
 const App = () => {
 	const { scheme, activeAppNote, showApp, admin } = useContext(GlobalContext)
@@ -56,6 +56,7 @@ const App = () => {
 	})
 	return (
 		<div className="app h" style={style.app}>
+			{/* <Navbar /> */}
 			{/* <Navbar /> */}
 			<HorNav />
 			{activeAppNote && <NoteApp />}
