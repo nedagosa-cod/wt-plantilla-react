@@ -20,7 +20,7 @@ import IconsTest from './components/WebTraining/IconsTest.jsx'
 import HorNav from './components/Navbar/HorNav.jsx'
 import BasesNoti from './components/Test/BasesNoti.jsx'
 import Biblioteca from './components/Biblioteca/Biblioteca.jsx'
-// import Navbar from './components/WebTraining/navbar/Navbar.jsx'
+import Navbar from './components/WebTraining/navbar/Navbar.jsx'
 
 const App = () => {
 	const { scheme, activeAppNote, showApp, admin } = useContext(GlobalContext)
@@ -57,8 +57,8 @@ const App = () => {
 	return (
 		<div className="app h" style={style.app}>
 			{/* <Navbar /> */}
-			{/* <Navbar /> */}
-			<HorNav />
+			<Navbar />
+			{/* <HorNav /> */}
 			{activeAppNote && <NoteApp />}
 			<section className="app__body" style={style.body}>
 				<Routes>

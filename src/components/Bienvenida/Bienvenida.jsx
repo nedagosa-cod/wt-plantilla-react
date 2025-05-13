@@ -35,7 +35,7 @@ export default function Bienvenida() {
 		<div className="welcome" style={style}>
 			<section className="welcome__content news">
 				{/* <SliderNews /> */}
-				<span className="">Bienvenido a </span>
+				<span className="text-red-500">Bienvenido a </span>
 				<span className="">
 					Web Training <strong>Formación</strong>
 				</span>

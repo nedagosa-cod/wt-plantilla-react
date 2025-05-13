@@ -1,7 +1,5 @@
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const CssMinimiZerPlugin = require('css-minimizer-webpack-plugin')
-const TerserPlugin = require('terser-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
@@ -114,6 +112,7 @@ module.exports = {
 			'@styles': path.join(__dirname, '/src/styles/'),
 			'@icons': path.join(__dirname, '/src/icons/'),
 			'@/lib': path.join(__dirname, '/src/lib/'),
+			'@/components': path.join(__dirname, '/src/components/'),
 		},
 	},
 	devServer: {

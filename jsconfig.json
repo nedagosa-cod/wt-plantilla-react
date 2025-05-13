@@ -1,3 +1,4 @@
+// CONFIGURACION PARA SHADCN/UI
 {
 	"compilerOptions": {
 		"baseUrl": "src",
