@@ -12,36 +12,26 @@ import {
 	Lock,
 	Diamond,
 	Info,
+	User2,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
-import { Separator } from '@/components/ui/separator'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import imgLogo from '@images/index/logoSIn.png'
 import { SecondaryNavbar } from './components/SecondaryNav'
 import LEDLine from './components/LedLine'
+import dataNavbar from './dataNavbar.json'
+import ConfigMenu from './components/ConfigMenu'
+const icons = {
+	home: <Home className="h-4 w-4" />,
+	checklist: <Menu className="h-4 w-4" />,
+	note: <Info className="h-4 w-4" />,
+	tipify: <Diamond className="h-4 w-4" />,
+	admin: <User2 className="h-4 w-4" />,
+}
 
 export default function Navbar() {
-	const [activeDropdown, setActiveDropdown] = useState(null)
-
-	const toggleDropdown = name => {
-		if (activeDropdown === name) {
-			setActiveDropdown(null)
-		} else {
-			setActiveDropdown(name)
-		}
-	}
 	const [query, setQuery] = useState('')
 	const [isFocused, setIsFocused] = useState(false)
-	const topMenuItems = [
-		{ icon: <User className="h-4 w-4" />, label: 'Segmento 1', href: '#' },
-		{ icon: <Target className="h-4 w-4" />, label: 'Segmento 2', href: '#' },
-		{ icon: <Building2 className="h-4 w-4" />, label: 'Segmento 3', href: '#' },
-		{ icon: <User className="h-4 w-4" />, label: 'Segmento 4', href: '#' },
-		{ icon: <Target className="h-4 w-4" />, label: 'Segmento 5', href: '#' },
-		{ icon: <Building2 className="h-4 w-4" />, label: 'Segmento 6', href: '#' },
-	]
+	const [activeSegment, setActiveSegment] = useState('Personas')
 
 	const secondaryMenuItems = [
 		{ icon: <Home className="h-4 w-4" />, label: 'Inicio', href: '#' },
@@ -81,81 +71,32 @@ export default function Navbar() {
 				<div className="mx-auto">
 					<div className="flex items-center justify-between ">
 						<div className="hidden md:flex justify-around space-x-6 w-full ">
-							{topMenuItems.map((item, index) => (
+							{dataNavbar.SEGMENTS.map((item, index) => (
 								<Button
 									key={index}
 									variant="ghost"
 									asChild
-									className="text-background hover:bg-secondary hover:text-foreground h-8 px-2 w-full">
-									<a href={item.href} className="flex items-center text-sm font-medium">
-										<span className="mr-1">{item.icon}</span> {item.label}
+									className={
+										activeSegment == item.segment
+											? `cursor-pointer  bg-secondary text-foreground h-8 px-2 w-full`
+											: `cursor-pointer text-background hover:bg-secondary hover:text-foreground h-8 px-2 w-full`
+									}>
+									<a
+										onClick={() => setActiveSegment(item.segment)}
+										href={`#${item.segment.toLowerCase().replace(' ', '_')}`}
+										className="flex items-center text-sm font-medium">
+										<span className="mr-1">{icons[item.icon]}</span> {item.segment}
 									</a>
 								</Button>
 							))}
 						</div>
-						<div className="flex items-center space-x-4 bg-[hsl(var(--primary-dark))]">
-							<Button variant="ghost" asChild className="text-white hover:bg-secondary hover:text-white h-8 px-2">
+						<div className="flex items-center space-x-4 bg-[hsl(var(--primary-dark))] px-4">
+							<Button variant="ghost" asChild className="text-white hover:bg-secondary hover:text-black h-8 px-2">
 								<a href="#" className="flex items-center text-sm font-medium">
-									<User className="h-4 w-4 mr-1" /> ADMIN
+									<User className="h-4 w-4 mr-1" /> Administrador
 								</a>
 							</Button>
-							<div className="flex items-center space-x-2">
-								<Button variant="ghost" size="icon" className="text-white hover:bg-secondary h-8 w-8">
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										className="h-4 w-4"
-										fill="none"
-										viewBox="0 0 24 24"
-										stroke="currentColor">
-										<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-									</svg>
-								</Button>
-								<Button variant="ghost" size="icon" className="text-white hover:bg-secondary h-8 w-8">
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										className="h-4 w-4"
-										fill="none"
-										viewBox="0 0 24 24"
-										stroke="currentColor">
-										<path
-											strokeLinecap="round"
-											strokeLinejoin="round"
-											strokeWidth={2}
-											d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-										/>
-									</svg>
-								</Button>
-								<Button variant="ghost" size="icon" className="text-white hover:bg-secondary h-8 w-8">
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										className="h-4 w-4"
-										fill="none"
-										viewBox="0 0 24 24"
-										stroke="currentColor">
-										<path
-											strokeLinecap="round"
-											strokeLinejoin="round"
-											strokeWidth={2}
-											d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
-										/>
-									</svg>
-								</Button>
-								<Button variant="ghost" size="icon" className="text-white hover:bg-secondary h-8 w-8">
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										className="h-4 w-4"
-										fill="none"
-										viewBox="0 0 24 24"
-										stroke="currentColor">
-										<path
-											strokeLinecap="round"
-											strokeLinejoin="round"
-											strokeWidth={2}
-											d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-										/>
-									</svg>
-								</Button>
-							</div>
+							<ConfigMenu />
 						</div>
 					</div>
 				</div>
@@ -167,9 +108,10 @@ export default function Navbar() {
 					<div className="flex items-center justify-between h-16">
 						<div className="flex items-center w-full ">
 							<div className="hidden md:flex items-center space-x-1 px-6  w-full m-8">
-								<SecondaryNavbar />
+								<SecondaryNavbar data={dataNavbar.NAVBAR} activeSegment={activeSegment} />
 							</div>
 						</div>
+
 						<div className="flex items-center justify-center space-x-4 w-1/4 ">
 							<div className="flex items-center">
 								<div className="flex items-center">
@@ -178,7 +120,7 @@ export default function Navbar() {
 									</figure>
 
 									<div className="ml-4 relative">
-										<h2 className="text-primary text-4xl font-bold">Web Training</h2>
+										<h2 className="text-primary text-2xl font-bold text-center">Web Training</h2>
 									</div>
 								</div>
 							</div>

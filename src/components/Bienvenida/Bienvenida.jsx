@@ -8,8 +8,8 @@ import imgBgDarkNovember from '../../assets/images/index/bg-dark-november.jpg'
 import imgBgLightNavidad from '../../assets/images/index/bg-light-navidad.jpg'
 import imgBgDarkNavidad from '../../assets/images/index/bg-dark-navidad.jpg'
 import GlobalContext from '../../context/GlobalContext'
-import SliderNews from '../SliderNews/SliderNews'
-import { Button } from '../ui/button'
+import { ImageSlider } from '../WebTraining/noticias'
+import { imageSlides } from '../../data/slides'
 
 export default function Bienvenida() {
 	const { scheme } = useContext(GlobalContext)
@@ -32,14 +32,15 @@ export default function Bienvenida() {
 		colorScheme: scheme,
 	}
 	return (
-		<div className="welcome" style={style}>
-			<section className="welcome__content news">
-				{/* <SliderNews /> */}
-				<span className="text-red-500">Bienvenido a </span>
-				<span className="">
-					Web Training <strong>Formación</strong>
-				</span>
-				<Button>Holaaaa</Button>
+		<div className="flex text-center items-center h-full w-full text-foreground bg-cover bg-center " style={style}>
+			<section className="flex flex-col gap-4 ml-6">
+				<div className="mt-8 rounded-lg bg-muted p-4 text-sm text-muted-foreground">
+					<p>
+						<span className="font-medium">Noticias:</span> Presiona click en la imagen para ampliarla. Click en los
+						botones laterales para cambiar de noticia!.
+					</p>
+				</div>
+				<ImageSlider slides={imageSlides} autoPlayInterval={4000} className="shadow-xl" />
 			</section>
 		</div>
 	)

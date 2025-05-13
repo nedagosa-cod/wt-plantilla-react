@@ -1,32 +1,9 @@
-import * as React from 'react'
-
-import PropTypes from 'prop-types'
-
-import { cn } from '@/lib/utils'
-import {
-	Search,
-	ChevronDown,
-	Home,
-	Menu,
-	User,
-	Target,
-	Building2,
-	BarChart3,
-	Volume2,
-	Lock,
-	Diamond,
-	Info,
-} from 'lucide-react'
-import {
-	NavigationMenu,
-	NavigationMenuContent,
-	NavigationMenuItem,
-	NavigationMenuLink,
-	NavigationMenuList,
-	NavigationMenuTrigger,
-	navigationMenuTriggerStyle,
-} from '@/components/ui/navigation-menu'
+import { Home } from 'lucide-react'
+import { NavigationMenu, NavigationMenuList } from '@/components/ui/navigation-menu'
 import { Separator } from '@/components/ui/separator'
+import NavItemRegular from './NavItemRegular'
+import NavItemPortada from './NavItemPortada'
+import NavItemLista from './NavItemLista'
 
 const components = [
 	{
@@ -63,143 +40,68 @@ const components = [
 	},
 ]
 
-export function SecondaryNavbar() {
+export function SecondaryNavbar({ data, activeSegment }) {
 	return (
 		<NavigationMenu>
 			<NavigationMenuList>
-				<NavigationMenuItem>
-					<a href="/" legacyBehavior passHref>
-						<NavigationMenuLink className={navigationMenuTriggerStyle()}>
-							<Home className="h-4 w-4 mr-2 text-primary" />
-							Inicio
-						</NavigationMenuLink>
-					</a>
-				</NavigationMenuItem>
+				{data.map((item, i) => {
+					return item.segments ? (
+						item.segments.map((segment, index) => {
+							if (segment.includes(activeSegment)) {
+								if (item.dropDown && !item.portada) {
+									return (
+										<NavItemLista
+											key={`${i}-${index}`}
+											components={item.dropDown}
+											label={item.title}
+											icon={<Home className="h-4 w-4 mr-2 text-primary" />}
+										/>
+									)
+								} else if (item.dropDown && item.portada) {
+									return (
+										<NavItemPortada
+											key={`${i}-${index}`}
+											label={item.title}
+											href={`#${item.route}`}
+											icon={<Home className="h-4 w-4 mr-2 text-primary" />}
+										/>
+									)
+								}
+
+								return (
+									<NavItemRegular
+										key={`${i}-${index}`}
+										label={item.title}
+										href={`#${item.route}`}
+										icon={<Home className="h-4 w-4 mr-2 text-primary" />}
+									/>
+								)
+							}
+						})
+					) : item.dropDown ? (
+						<NavItemLista
+							key={`${i}-${item.title}`}
+							components={item.dropDown}
+							label={item.title}
+							icon={<Home className="h-4 w-4 mr-2 text-primary" />}
+						/>
+					) : (
+						<NavItemRegular
+							key={`${i}-${item.title}`}
+							label={item.title}
+							href={`#${item.route}`}
+							icon={<Home className="h-4 w-4 mr-2 text-primary" />}
+						/>
+					)
+				})}
+				{/* 
+				<NavItemRegular label="Inicio" href="/#" icon={<Home className="h-4 w-4 mr-2 text-primary" />} />
 				<Separator orientation="vertical" className="h-10" />
-				<NavigationMenuItem>
-					<NavigationMenuTrigger>
-						<Home className="h-4 w-4 mr-2 text-primary" />
-						Getting started
-					</NavigationMenuTrigger>
-					<NavigationMenuContent>
-						<ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-							<li className="row-span-3">
-								<NavigationMenuLink asChild>
-									<a
-										className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-										href="/">
-										<div className="mb-2 mt-4 text-lg font-medium">shadcn/ui</div>
-										<p className="text-sm leading-tight text-muted-foreground">
-											Beautifully designed components built with Radix UI and Tailwind CSS.
-										</p>
-									</a>
-								</NavigationMenuLink>
-							</li>
-							<ListItem href="/docs" title="Introduction">
-								Re-usable components built using Radix UI and Tailwind CSS.
-							</ListItem>
-							<ListItem href="/docs/installation" title="Installation">
-								How to install dependencies and structure your app.
-							</ListItem>
-							<ListItem href="/docs/primitives/typography" title="Typography">
-								Styles for headings, paragraphs, lists...etc
-							</ListItem>
-						</ul>
-					</NavigationMenuContent>
-				</NavigationMenuItem>
+				<NavItemPortada label="Checklist" href="/#" icon={<Home className="h-4 w-4 mr-2 text-primary" />} />
 				<Separator orientation="vertical" className="h-10" />
-				<NavigationMenuItem>
-					<NavigationMenuTrigger>
-						<Home className="h-4 w-4 mr-2 text-primary" />
-						Components
-					</NavigationMenuTrigger>
-					<NavigationMenuContent>
-						<ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-							{components.map(component => (
-								<ListItem key={component.title} title={component.title} href={component.href}>
-									{component.description}
-								</ListItem>
-							))}
-						</ul>
-					</NavigationMenuContent>
-				</NavigationMenuItem>
-				<Separator orientation="vertical" className="h-10" />
-				<NavigationMenuItem>
-					<NavigationMenuTrigger>
-						<Home className="h-4 w-4 mr-2 text-primary" />
-						Components
-					</NavigationMenuTrigger>
-					<NavigationMenuContent>
-						<ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-							{components.map(component => (
-								<ListItem key={component.title} title={component.title} href={component.href}>
-									{component.description}
-								</ListItem>
-							))}
-						</ul>
-					</NavigationMenuContent>
-				</NavigationMenuItem>
-				<Separator orientation="vertical" className="h-10" />
-				<NavigationMenuItem>
-					<NavigationMenuTrigger>
-						<Home className="h-4 w-4 mr-2 text-primary" />
-						Components
-					</NavigationMenuTrigger>
-					<NavigationMenuContent>
-						<ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-							{components.map(component => (
-								<ListItem key={component.title} title={component.title} href={component.href}>
-									{component.description}
-								</ListItem>
-							))}
-						</ul>
-					</NavigationMenuContent>
-				</NavigationMenuItem>
-				<Separator orientation="vertical" className="h-10" />
-				<NavigationMenuItem>
-					<NavigationMenuTrigger>
-						<Home className="h-4 w-4 mr-2 text-primary" />
-						Components
-					</NavigationMenuTrigger>
-					<NavigationMenuContent>
-						<ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-							{components.map(component => (
-								<ListItem key={component.title} title={component.title} href={component.href}>
-									{component.description}
-								</ListItem>
-							))}
-						</ul>
-					</NavigationMenuContent>
-				</NavigationMenuItem>
+				<NavItemLista components={components} label="Scripts" icon={<Home className="h-4 w-4 mr-2 text-primary" />} />
+				<Separator orientation="vertical" className="h-10" /> */}
 			</NavigationMenuList>
 		</NavigationMenu>
 	)
 }
-
-const ListItem = React.forwardRef(({ className, title, children, ...props }, ref) => {
-	return (
-		<li>
-			<NavigationMenuLink asChild>
-				<a
-					ref={ref}
-					className={cn(
-						'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
-						className
-					)}
-					{...props}>
-					<div className="text-sm font-medium leading-none">{title}</div>
-					<p className="line-clamp-2 text-sm leading-snug text-muted-foreground">{children}</p>
-				</a>
-			</NavigationMenuLink>
-		</li>
-	)
-})
-
-ListItem.propTypes = {
-	className: PropTypes.string,
-	title: PropTypes.string.isRequired,
-	children: PropTypes.node.isRequired,
-	href: PropTypes.string.isRequired,
-}
-
-ListItem.displayName = 'ListItem'
