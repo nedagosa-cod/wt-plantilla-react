@@ -141,7 +141,7 @@
 			"title": "Linea de tiempo",
 			"route": "/timeline",
 			"icon": "timeLine",
-			"segments": ["Fidelizacion"]
+			"segments": ["Personas"]
 		},
 		{
 			"title": "Plantilla Checklist",
