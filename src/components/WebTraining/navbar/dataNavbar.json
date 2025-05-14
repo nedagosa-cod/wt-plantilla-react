@@ -43,7 +43,7 @@
 			"route": "/checklist",
 			"icon": "checklist",
 			"portada": true,
-			"segments": ["Personas"],
+			"segments": ["Fidelizacion"],
 			"dropDown": [
 				{
 					"title": "Creación de cuenta A",
@@ -95,7 +95,7 @@
 			"title": "Calculadoras",
 			"route": "/checklist",
 			"icon": "calc",
-			"segments": ["Personas"],
+			"segments": ["Fidelizacion"],
 			"dropDown": [
 				{
 					"title": "Estandar",

@@ -40,10 +40,11 @@ const components = [
 	},
 ]
 
-export function SecondaryNavbar({ data, activeSegment }) {
+export function SecondaryNavbar({ data, activeSegment, className }) {
+	console.log(data)
 	return (
-		<NavigationMenu>
-			<NavigationMenuList>
+		<NavigationMenu className="w-full">
+			<NavigationMenuList className={`flex items-center w-full flex-wrap py-1 gap-1 ${className}`}>
 				{data.map((item, i) => {
 					return item.segments ? (
 						item.segments.map((segment, index) => {
@@ -54,7 +55,7 @@ export function SecondaryNavbar({ data, activeSegment }) {
 											key={`${i}-${index}`}
 											components={item.dropDown}
 											label={item.title}
-											icon={<Home className="h-4 w-4 mr-2 text-primary" />}
+											icon={<Home className="h-4 w-4 mr-2 text-white" />}
 										/>
 									)
 								} else if (item.dropDown && item.portada) {
@@ -63,7 +64,7 @@ export function SecondaryNavbar({ data, activeSegment }) {
 											key={`${i}-${index}`}
 											label={item.title}
 											href={`#${item.route}`}
-											icon={<Home className="h-4 w-4 mr-2 text-primary" />}
+											icon={<Home className="h-4 w-4 mr-2 text-white" />}
 										/>
 									)
 								}
@@ -73,7 +74,7 @@ export function SecondaryNavbar({ data, activeSegment }) {
 										key={`${i}-${index}`}
 										label={item.title}
 										href={`#${item.route}`}
-										icon={<Home className="h-4 w-4 mr-2 text-primary" />}
+										icon={<Home className="h-4 w-4 mr-2 text-white" />}
 									/>
 								)
 							}
@@ -83,14 +84,14 @@ export function SecondaryNavbar({ data, activeSegment }) {
 							key={`${i}-${item.title}`}
 							components={item.dropDown}
 							label={item.title}
-							icon={<Home className="h-4 w-4 mr-2 text-primary" />}
+							icon={<Home className="h-4 w-4 mr-2 text-white" />}
 						/>
 					) : (
 						<NavItemRegular
 							key={`${i}-${item.title}`}
 							label={item.title}
 							href={`#${item.route}`}
-							icon={<Home className="h-4 w-4 mr-2 text-primary" />}
+							icon={<Home className="h-4 w-4 mr-2 text-white" />}
 						/>
 					)
 				})}

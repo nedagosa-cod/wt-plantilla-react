@@ -11,7 +11,7 @@ import PropTypes from 'prop-types'
 export default function NavItemPortada({ label, href, icon }) {
 	return (
 		<NavigationMenuItem>
-			<NavigationMenuTrigger>
+			<NavigationMenuTrigger className="flex items-center justify-center bg-[hsl(var(--primary-dark))] py-2 px-4 text-white rounded-full shadow-md h-8">
 				{icon}
 				{label}
 			</NavigationMenuTrigger>

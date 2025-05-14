@@ -6,7 +6,7 @@ export default function BuscadorWT({ open }) {
 	const [isFocused, setIsFocused] = useState(false)
 	return (
 		<div
-			className={`absolute top-full mt-6 left-1/2 transform -translate-x-1/2 w-1/2 bg-white shadow-md rounded-b-3xl transition-all duration-300 overflow-hidden border-b-2 border-primary ${
+			className={`absolute top-full mt-4 left-1/2 transform -translate-x-1/2 w-1/2 bg-white shadow-md rounded-b-3xl transition-all duration-300 overflow-hidden border-b-2 border-primary ${
 				open ? 'max-h-20 opacity-100 mt-1' : 'max-h-0 opacity-0 ring-2 ring-primary '
 			}`}>
 			<div className={`relative flex items-center h-16 overflow-hidden transition-all duration-300`}>
