@@ -1,0 +1,32 @@
+import {
+	Diamond,
+	Home,
+	HomeIcon,
+	Info,
+	Menu,
+	User2,
+	Library,
+	Calculator,
+	Globe,
+	TextCursorInput,
+	MessageCircle,
+	Info as InfoIcon,
+	BookOpen,
+	Clock,
+} from 'lucide-react'
+
+export const icons = {
+	home: <HomeIcon className="h-4 w-4 mr-1" />,
+	checklist: <Menu className="h-4 w-4 mr-1" />,
+	note: <Info className="h-4 w-4 mr-1" />,
+	tipify: <Diamond className="h-4 w-4 mr-1" />,
+	admin: <User2 className="h-4 w-4 mr-1" />,
+	library: <Library className="h-4 w-4 mr-1" />,
+	calc: <Calculator className="h-4 w-4 mr-1" />,
+	web: <Globe className="h-4 w-4 mr-1" />,
+	textSlash: <TextCursorInput className="h-4 w-4 mr-1" />,
+	comments: <MessageCircle className="h-4 w-4 mr-1" />,
+	info: <InfoIcon className="h-4 w-4 mr-1" />,
+	catalogue: <BookOpen className="h-4 w-4 mr-1" />,
+	timeLine: <Clock className="h-4 w-4 mr-1" />,
+}

@@ -1,44 +1,11 @@
-import { Home } from 'lucide-react'
+import { Diamond, Home, HomeIcon, Info, Menu, User2 } from 'lucide-react'
 import { NavigationMenu, NavigationMenuList } from '@/components/ui/navigation-menu'
 import { Separator } from '@/components/ui/separator'
 import NavItemRegular from './NavItemRegular'
 import NavItemPortada from './NavItemPortada'
 import NavItemLista from './NavItemLista'
-
-const components = [
-	{
-		title: 'Alert Dialog',
-		href: '/docs/primitives/alert-dialog',
-		description: 'A modal dialog that interrupts the user with important content and expects a response.',
-	},
-	{
-		title: 'Hover Card',
-		href: '/docs/primitives/hover-card',
-		description: 'For sighted users to preview content available behind a link.',
-	},
-	{
-		title: 'Progress',
-		href: '/docs/primitives/progress',
-		description:
-			'Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.',
-	},
-	{
-		title: 'Scroll-area',
-		href: '/docs/primitives/scroll-area',
-		description: 'Visually or semantically separates content.',
-	},
-	{
-		title: 'Tabs',
-		href: '/docs/primitives/tabs',
-		description: 'A set of layered sections of content—known as tab panels—that are displayed one at a time.',
-	},
-	{
-		title: 'Tooltip',
-		href: '/docs/primitives/tooltip',
-		description:
-			'A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.',
-	},
-]
+import { icons } from '../../../../icons/icons-list'
+import NavItemAppsWeb from './NavItemAppsWeb'
 
 export function SecondaryNavbar({ data, activeSegment, className }) {
 	console.log(data)
@@ -46,52 +13,77 @@ export function SecondaryNavbar({ data, activeSegment, className }) {
 		<NavigationMenu className="w-full">
 			<NavigationMenuList className={`flex items-center w-full flex-wrap py-1 gap-1 ${className}`}>
 				{data.map((item, i) => {
-					return item.segments ? (
-						item.segments.map((segment, index) => {
-							if (segment.includes(activeSegment)) {
-								if (item.dropDown && !item.portada) {
-									return (
-										<NavItemLista
-											key={`${i}-${index}`}
-											components={item.dropDown}
-											label={item.title}
-											icon={<Home className="h-4 w-4 mr-2 text-white" />}
-										/>
-									)
-								} else if (item.dropDown && item.portada) {
-									return (
-										<NavItemPortada
-											key={`${i}-${index}`}
-											label={item.title}
-											href={`#${item.route}`}
-											icon={<Home className="h-4 w-4 mr-2 text-white" />}
-										/>
-									)
-								}
+					if (item.segments) {
+						return item.segments.map((segment, index) => {
+							if (!segment.includes(activeSegment)) return null
 
+							// Caso especial: Aplicativos web
+							if (item.title === 'Aplicativos web' && item.dropDown) {
+								console.log(item)
 								return (
-									<NavItemRegular
+									<NavItemAppsWeb
 										key={`${i}-${index}`}
 										label={item.title}
-										href={`#${item.route}`}
-										icon={<Home className="h-4 w-4 mr-2 text-white" />}
+										icon={icons[item.icon]}
+										submenu={item.dropDown}
 									/>
 								)
 							}
+
+							// Menú desplegable con portada
+							if (item.dropDown && item.portada) {
+								return (
+									<NavItemPortada
+										key={`${i}-${index}`}
+										label={item.title}
+										icon={icons[item.icon]}
+										submenu={item.dropDown}
+									/>
+								)
+							}
+
+							// Menú desplegable sin portada
+							if (item.dropDown) {
+								return (
+									<NavItemLista
+										key={`${i}-${index}`}
+										components={item.dropDown}
+										label={item.title}
+										icon={icons[item.icon]}
+									/>
+								)
+							}
+
+							// Menú regular
+							return (
+								<NavItemRegular
+									key={`${i}-${index}`}
+									label={item.title}
+									href={`#${item.route}`}
+									icon={icons[item.icon]}
+								/>
+							)
 						})
-					) : item.dropDown ? (
-						<NavItemLista
-							key={`${i}-${item.title}`}
-							components={item.dropDown}
-							label={item.title}
-							icon={<Home className="h-4 w-4 mr-2 text-white" />}
-						/>
-					) : (
+					}
+
+					// Si no hay segments
+					if (item.dropDown) {
+						return (
+							<NavItemLista
+								key={`${i}-${item.title}`}
+								components={item.dropDown}
+								label={item.title}
+								icon={icons[item.icon]}
+							/>
+						)
+					}
+
+					return (
 						<NavItemRegular
 							key={`${i}-${item.title}`}
 							label={item.title}
 							href={`#${item.route}`}
-							icon={<Home className="h-4 w-4 mr-2 text-white" />}
+							icon={icons[item.icon]}
 						/>
 					)
 				})}

@@ -121,4 +121,46 @@ p a {
 	body {
 		@apply bg-background text-foreground;
 	}
+	.circles li {
+		bottom: -150px;
+	}
+}
+
+/* Animation delay utilities */
+@layer utilities {
+	.animate-delay-0 {
+		animation-delay: 0s;
+	}
+	.animate-delay-2s {
+		animation-delay: 2s;
+	}
+	.animate-delay-3s {
+		animation-delay: 3s;
+	}
+	.animate-delay-4s {
+		animation-delay: 4s;
+	}
+	.animate-delay-7s {
+		animation-delay: 7s;
+	}
+	.animate-delay-15s {
+		animation-delay: 15s;
+	}
+
+	/* Animation duration utilities */
+	.animate-duration-11s {
+		animation-duration: 11s;
+	}
+	.animate-duration-12s {
+		animation-duration: 12s;
+	}
+	.animate-duration-18s {
+		animation-duration: 18s;
+	}
+	.animate-duration-35s {
+		animation-duration: 35s;
+	}
+	.animate-duration-45s {
+		animation-duration: 45s;
+	}
 }

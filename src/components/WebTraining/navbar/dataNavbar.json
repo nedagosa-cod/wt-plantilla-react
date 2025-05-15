@@ -43,7 +43,7 @@
 			"route": "/checklist",
 			"icon": "checklist",
 			"portada": true,
-			"segments": ["Fidelizacion"],
+			"segments": ["Personas"],
 			"dropDown": [
 				{
 					"title": "Creación de cuenta A",
@@ -95,8 +95,20 @@
 			"title": "Calculadoras",
 			"route": "/checklist",
 			"icon": "calc",
-			"segments": ["Fidelizacion"],
+			"segments": ["Personas"],
 			"dropDown": [
+				{
+					"title": "Estandar",
+					"route": "/calculadoras/estandar"
+				},
+				{
+					"title": "Estandar",
+					"route": "/calculadoras/estandar"
+				},
+				{
+					"title": "Estandar",
+					"route": "/calculadoras/estandar"
+				},
 				{
 					"title": "Estandar",
 					"route": "/calculadoras/estandar"
@@ -107,7 +119,39 @@
 			"title": "Aplicativos web",
 			"route": "/checklist",
 			"icon": "web",
-			"segments": ["Fidelizacion"]
+			"segments": ["Fidelizacion"],
+			"dropDown": [
+				{
+					"title": "Atento",
+					"route": "https://atento.com",
+					"image": "https://media.licdn.com/dms/image/v2/D4E0BAQEnK1_at9q3PA/company-logo_200_200/company-logo_200_200/0/1656675003147/atento_logo?e=2147483647&v=beta&t=cR0yrmi55BoJ7iqIvyR3fEV2eTexChOzi29zWvPlWhM"
+				},
+				{
+					"title": "GAP",
+					"route": "https://GAP.atento.com",
+					"image": "https://images.emojiterra.com/google/android-12l/512px/1f512.png"
+				},
+				{
+					"title": "En directo",
+					"route": "https://en-directo.atento.com",
+					"image": "https://www.citypng.com/public/uploads/preview/wifi-signal-round-blue-icon-701751694972785dgvtnar569.png"
+				},
+				{
+					"title": "Cafe Academia",
+					"route": "https://en-directo.atento.com",
+					"image": "https://cdn-icons-png.flaticon.com/512/3965/3965065.png"
+				},
+				{
+					"title": "Café Operaciones",
+					"route": "https://en-directo.atento.com",
+					"image": "https://images.icon-icons.com/3356/PNG/512/symbol_emoj_food_steaming_drink_beverage_hot_tea_coffee_icon_210598.png"
+				},
+				{
+					"title": "En directo",
+					"route": "https://en-directo.atento.com",
+					"image": "https://img.freepik.com/vector-premium/logotipo-mundo-tecnologia-digital-ilustracion-icono-identidad-marca_7109-615.jpg"
+				}
+			]
 		},
 		{
 			"title": "Corrector ortográfico",
