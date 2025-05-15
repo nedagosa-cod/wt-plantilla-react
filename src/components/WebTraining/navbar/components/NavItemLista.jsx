@@ -7,6 +7,7 @@ import {
 import React from 'react'
 import PropTypes from 'prop-types'
 import { cn } from '@/lib/utils'
+import { icons } from '@/icons/icons-list'
 
 export default function NavItemLista({ components, label, icon }) {
 	return (
@@ -14,14 +15,19 @@ export default function NavItemLista({ components, label, icon }) {
 			<NavigationMenuTrigger
 				title={label}
 				className="flex items-center justify-center bg-[hsl(var(--primary-dark))] py-2 px-4 text-white rounded-full shadow-md h-8 w-48 text-nowrap truncate">
-				{icon}
+				<span className="w-4 h-4 mr-2 flex items-center justify-center">{icon}</span>
 				<span className="truncate overflow-hidden whitespace-nowrap">{label}</span>
 			</NavigationMenuTrigger>
 			<NavigationMenuContent>
 				<ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
 					{components.map((component, index) => (
-						<ListItem key={`${index}-${component.title}`} title={component.title} href={`#${component.route}`}>
-							{component.title}
+						<ListItem
+							key={`${index}-${component.title}`}
+							title={component.title}
+							href={`#${component.route}`}
+							iconItem={component.icon}
+							parentIcon={icon}>
+							{component.description ? component.description : label}
 						</ListItem>
 					))}
 				</ul>
@@ -30,7 +36,7 @@ export default function NavItemLista({ components, label, icon }) {
 	)
 }
 
-const ListItem = React.forwardRef(({ className, title, children, ...props }, ref) => {
+const ListItem = React.forwardRef(({ className, title, children, iconItem, parentIcon, ...props }, ref) => {
 	return (
 		<li>
 			<NavigationMenuLink asChild>
@@ -42,8 +48,17 @@ const ListItem = React.forwardRef(({ className, title, children, ...props }, ref
 						className
 					)}
 					{...props}>
-					<div className="text-sm font-medium leading-none">{title}</div>
-					<p className="line-clamp-2 text-sm leading-snug text-muted-foreground">{children}</p>
+					<span className="flex items-center mr-2 text-primary">
+						{iconItem ? (
+							<span className="w-4 h-4 mr-2 flex items-center justify-center">{icons[iconItem]}</span>
+						) : (
+							parentIcon
+						)}
+						<div className="text-sm font-medium leading-none">{title}</div>
+					</span>
+					<div>
+						<p className="line-clamp-2 text-sm leading-snug text-muted-foreground">{children}</p>
+					</div>
 				</a>
 			</NavigationMenuLink>
 		</li>

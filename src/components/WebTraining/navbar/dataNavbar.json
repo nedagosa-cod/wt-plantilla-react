@@ -17,7 +17,7 @@
 			"icon": "tipify"
 		},
 		{
-			"segment": "Test Solo",
+			"segment": "Testeos",
 			"icon": "tipify"
 		}
 	],
@@ -33,10 +33,10 @@
 			"icon": "library"
 		},
 		{
-			"title": "Prueba bases",
-			"route": "/testbases",
+			"title": "Tets",
+			"route": "/testeos",
 			"icon": "home",
-			"segments": ["Test Solo"]
+			"segments": ["Testeos"]
 		},
 		{
 			"title": "CheckList",
@@ -47,35 +47,50 @@
 			"dropDown": [
 				{
 					"title": "Creación de cuenta A",
-					"route": "/checklist/ejemploA"
+					"route": "/checklist/ejemploA",
+					"description": "Manual para creacion de cuenta ",
+					"icon": "checklist"
 				},
 				{
 					"title": "Temporalidad B",
-					"route": "/checklist/ejemploB"
+					"route": "/checklist/ejemploB",
+					"description": "Suspende la cuenta por tiempos",
+					"icon": "checklist"
 				},
 				{
 					"title": "Cruce de cuentas B",
-					"route": "/checklist/ejemploB"
+					"route": "/checklist/ejemploB",
+					"description": "Manual para cruce de cuentas",
+					"icon": "checklist"
 				},
 				{
 					"title": "Reporte de facturación B",
-					"route": "/checklist/ejemploB"
+					"route": "/checklist/ejemploB",
+					"description": "Checklist para reporte de facturación",
+					"icon": "checklist"
 				},
 				{
-					"title": "Ejemplo B",
-					"route": "/checklist/ejemploB"
+					"title": "Cancelación de cuenta",
+					"route": "/checklist/ejemploB",
+					"description": "Checklist para cancelación de cuenta",
+					"icon": "checklist"
 				},
 				{
-					"title": "Ejemplo B",
-					"route": "/checklist/ejemploB"
+					"title": "Activación de equipo",
+					"route": "/checklist/ejemploB",
+					"description": "Checklist para activación de equipo",
+					"icon": "checklist"
 				},
 				{
-					"title": "Ejemplo B",
-					"route": "/checklist/ejemploB"
+					"title": "Reactivación de cuenta",
+					"route": "/checklist/ejemploB",
+					"description": "Checklist para reactivación de cuenta",
+					"icon": "checklist"
 				},
 				{
-					"title": "Ejemplo B",
-					"route": "/checklist/ejemploB"
+					"title": "Cambio de plan",
+					"route": "/checklist/ejemploB",
+					"description": "Checklist para cambio de plan"
 				}
 			]
 		},
@@ -99,25 +114,29 @@
 			"dropDown": [
 				{
 					"title": "Estandar",
-					"route": "/calculadoras/estandar"
+					"route": "/calculadoras/estandar",
+					"icon": "calc"
 				},
 				{
 					"title": "Estandar",
-					"route": "/calculadoras/estandar"
+					"route": "/calculadoras/estandar",
+					"icon": "calc"
 				},
 				{
 					"title": "Estandar",
-					"route": "/calculadoras/estandar"
+					"route": "/calculadoras/estandar",
+					"icon": "calc"
 				},
 				{
 					"title": "Estandar",
-					"route": "/calculadoras/estandar"
+					"route": "/calculadoras/estandar",
+					"icon": "calc"
 				}
 			]
 		},
 		{
 			"title": "Aplicativos web",
-			"route": "/checklist",
+			"route": "/apps-web",
 			"icon": "web",
 			"segments": ["Fidelizacion"],
 			"dropDown": [

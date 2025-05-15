@@ -17,7 +17,7 @@ export default function NavItemAppsWeb({ label, icon, submenu }) {
 			<NavigationMenuTrigger
 				title={label}
 				className="flex items-center justify-center bg-[hsl(var(--primary-dark))] py-2 px-4 text-white rounded-full shadow-md h-8 w-48 text-nowrap truncate">
-				{icon}
+				<span className="w-4 h-4 mr-2 flex items-center justify-center">{icon}</span>
 				<span className="truncate overflow-hidden whitespace-nowrap">{label}</span>
 			</NavigationMenuTrigger>
 			<NavigationMenuContent>

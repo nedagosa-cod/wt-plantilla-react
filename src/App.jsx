@@ -17,7 +17,6 @@ import TimeLine from './components/TimeLine/TimeLine'
 import Tipificador from './components/Tipificador/Tipificador'
 import { NoteApp } from './components/NoteApp/NoteApp.jsx'
 import IconsTest from './components/WebTraining/IconsTest.jsx'
-import HorNav from './components/Navbar/HorNav.jsx'
 import BasesNoti from './components/Test/BasesNoti.jsx'
 import Biblioteca from './components/Biblioteca/Biblioteca.jsx'
 import Navbar from './components/WebTraining/navbar/Navbar.jsx'
@@ -55,12 +54,11 @@ const App = () => {
 		}
 	})
 	return (
-		<div className="app h" style={style.app}>
-			{/* <Navbar /> */}
+		<div className="flex flex-col h-dvh bg-cover bg-center relative" style={style.app}>
 			<Navbar />
-			{/* <HorNav /> */}
-			{activeAppNote && <NoteApp />}
-			<section className="app__body" style={style.body}>
+			<section
+				className="w-[calc(100%-32px)] h-full rounded-xl mx-auto my-4 overflow-x-hidden overflow-y-auto bg-cover bg-center"
+				style={style.body}>
 				<Routes>
 					{admin && (
 						<>
@@ -87,6 +85,8 @@ const App = () => {
 					<Route path="/biblioteca" element={<Biblioteca />} />
 				</Routes>
 			</section>
+
+			{/* {activeAppNote && <NoteApp />} */}
 		</div>
 	)
 }

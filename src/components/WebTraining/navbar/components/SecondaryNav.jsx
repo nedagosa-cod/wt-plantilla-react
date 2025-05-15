@@ -8,7 +8,6 @@ import { icons } from '../../../../icons/icons-list'
 import NavItemAppsWeb from './NavItemAppsWeb'
 
 export function SecondaryNavbar({ data, activeSegment, className }) {
-	console.log(data)
 	return (
 		<NavigationMenu className="w-full">
 			<NavigationMenuList className={`flex items-center w-full flex-wrap py-1 gap-1 ${className}`}>
