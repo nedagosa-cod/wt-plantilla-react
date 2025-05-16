@@ -1,9 +1,6 @@
 import '@styles/app.scss'
 import { Routes, Route } from 'react-router-dom'
 
-import imgBackground from './assets/images/index/backgroundLight.jpg'
-import imgBackgroundD from './assets/images/index/background.jpg'
-import imgApp from './assets/images/index/backApp.jpg'
 import imgCtrlAccesss from './assets/images/index/sessionBackground.jpg'
 
 import dataNavbar from './components/Navbar/dataNavbar.json'
@@ -24,16 +21,6 @@ import Navbar from './components/WebTraining/navbar/Navbar.jsx'
 const App = () => {
 	const { scheme, activeAppNote, showApp, admin } = useContext(GlobalContext)
 
-	const style = {
-		app: {
-			backgroundImage: `url(${scheme === 'light' ? imgBackground : imgBackgroundD})`,
-			colorScheme: scheme,
-		},
-		body: {
-			backgroundImage: `url(${imgApp})`,
-			colorScheme: scheme,
-		},
-	}
 	useEffect(() => {
 		document.body.addEventListener('keydown', e => {
 			if (e.key == 'Escape') {
@@ -54,11 +41,12 @@ const App = () => {
 		}
 	})
 	return (
-		<div className="flex flex-col h-dvh bg-cover bg-center relative" style={style.app}>
-			<Navbar />
-			<section
-				className="w-[calc(100%-32px)] h-full rounded-xl mx-auto my-4 overflow-x-hidden overflow-y-auto bg-cover bg-center"
-				style={style.body}>
+		<div className="flex flex-col-reverse h-dvh bg-cover bg-center relative">
+			<div className="absolute inset-0 -z-10 h-full w-full bg-background bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:6rem_4rem]">
+				<div className="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_800px_at_100%_200px,#ffc5c5,transparent)]"></div>
+			</div>
+
+			<section className="w-[calc(100%-32px)] h-full rounded-xl border-2 border-red-500 shadow-xl shadow-foreground/50 mx-auto my-4 overflow-x-hidden overflow-y-auto bg-cover bg-center bg-white relative">
 				<Routes>
 					{admin && (
 						<>
@@ -85,8 +73,8 @@ const App = () => {
 					<Route path="/biblioteca" element={<Biblioteca />} />
 				</Routes>
 			</section>
-
-			{/* {activeAppNote && <NoteApp />} */}
+			{activeAppNote && <NoteApp />}
+			<Navbar />
 		</div>
 	)
 }

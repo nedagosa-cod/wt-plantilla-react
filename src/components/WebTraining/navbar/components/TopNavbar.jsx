@@ -12,6 +12,7 @@ import {
 } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { ThemeToggle } from './ThemeToggle'
 
 const icons = {
 	home: <Home className="h-4 w-4" />,
@@ -33,8 +34,8 @@ export default function TopNavbar({ segmentos, activeSegment, setActiveSegment }
 								asChild
 								className={
 									activeSegment == item.segment
-										? `cursor-pointer  bg-secondary text-foreground h-8 px-2 w-full`
-										: `cursor-pointer text-background hover:bg-secondary hover:text-foreground h-8 px-2 w-full`
+										? `cursor-pointer  bg-secondary text-dark dark:text-white h-8 px-2 w-full`
+										: `cursor-pointer text-white hover:bg-secondary hover:text-foreground h-8 px-2 w-full`
 								}>
 								<a
 									onClick={() => setActiveSegment(item.segment)}

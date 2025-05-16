@@ -87,7 +87,7 @@ p a {
 		--card-foreground: 0 0% 98%;
 		--popover: 0 0% 3.9%;
 		--popover-foreground: 0 0% 98%;
-		--primary: 0 72.2% 50.6%; /* Rojo base - Color primario */
+		--primary: 0 72.2% 35.6%; /* Rojo base - Color primario */
 		--primary-light: 0 72.2% 65.6%; /* Rojo claro - Versión más clara del primario */
 		--primary-dark: 0 72.2% 35.6%; /* Rojo oscuro - Versión más oscura del primario */
 		--primary-soft: 0 72.2% 50.6% / 0.8; /* Rojo suave - Versión con transparencia */
@@ -109,8 +109,8 @@ p a {
 		--chart-3: 30 80% 55%;
 		--chart-4: 280 65% 60%;
 		--chart-5: 340 75% 55%;
-		--primarywt: 31 100% 50%;
-		--secondarywt: 215 100% 40.7%;
+		--primarywt: 215 100% 40.7%;
+		--secondarywt: 31 100% 50%;
 	}
 }
 

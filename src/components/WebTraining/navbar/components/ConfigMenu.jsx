@@ -15,7 +15,12 @@ import {
 import { Button } from '@/components/ui/button'
 
 import { Book, BookOpenCheck, Database, LogOut, Palette, Settings, ShieldUser, SpellCheck, UserCog } from 'lucide-react'
+import { ThemeToggle } from './ThemeToggle'
+import { useContext } from 'react'
+import GlobalContext from '@/context/GlobalContext'
+import { Link } from 'react-router-dom'
 export default function ConfigMenu() {
+	const { SetActiveAppNote } = useContext(GlobalContext)
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
@@ -33,12 +38,7 @@ export default function ConfigMenu() {
 							<ShieldUser className="h-4 w-4 mr-2 text-primary" />
 						</DropdownMenuShortcut>
 					</DropdownMenuItem>
-					<DropdownMenuItem>
-						Cambio de tema
-						<DropdownMenuShortcut>
-							<Palette className="h-4 w-4 mr-2 text-primary" />
-						</DropdownMenuShortcut>
-					</DropdownMenuItem>
+					<ThemeToggle />
 					<DropdownMenuItem>
 						Guia para usuario
 						<DropdownMenuShortcut>
@@ -74,12 +74,12 @@ export default function ConfigMenu() {
 				</DropdownMenuGroup>
 				<DropdownMenuSeparator />
 				<DropdownMenuItem>
-					Corrector Ortografico
+					<Link to="/corrector">Corrector Ortografico</Link>
 					<DropdownMenuShortcut>
 						<SpellCheck className="h-4 w-4 mr-2 text-primary" />
 					</DropdownMenuShortcut>
 				</DropdownMenuItem>
-				<DropdownMenuItem>
+				<DropdownMenuItem onClick={() => SetActiveAppNote(true)}>
 					Mis Notas
 					<DropdownMenuShortcut>
 						<Book className="h-4 w-4 mr-2 text-primary" />

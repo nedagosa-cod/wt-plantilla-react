@@ -104,6 +104,7 @@ const GlobalProvider = ({ children }) => {
 		activeAppNote,
 		admin,
 		setAdmin,
+		SetActiveAppNote,
 	}
 	return <GlobalContext.Provider value={data}>{children}</GlobalContext.Provider>
 }

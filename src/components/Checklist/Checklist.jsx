@@ -495,7 +495,7 @@ export default function Checklist({ dataCheckList }) {
 	}, [checkListSelected])
 
 	return (
-		<form className={'Checklist ' + theme}>
+		<form className={'Checklist'}>
 			<section className="data">
 				<Split className="split" minSize={400} dragInterval={10}>
 					<LeftSide
