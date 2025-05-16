@@ -1,29 +1,22 @@
-import { useEffect, useState } from 'react'
 import { CheckListProvider } from '../../context/ChecklistContext'
 import Checklist from './Checklist'
-import { Settings } from './Settings'
 import ejemploA from './BASES/ejemploA.json'
 import ejemploB from './BASES/ejemploB.json'
 import ejemploC from './BASES/ejemploB.json'
 import checkplantilla from './BASES/plantillaCheck.json'
 
 const CheckListBase = ({ checklist }) => {
-	const [zoom, setZoom] = useState(false)
-	const [cheklists, setCheckList] = useState({
+	const cheklists = {
 		checkplantilla,
 		ejemploA,
 		ejemploB,
 		ejemploC,
-	})
-	const zoomChecklist = () => {
-		setZoom(!zoom)
 	}
-
 	return (
 		<>
 			<CheckListProvider>
-				<section className={'checklist-container ' + zoom}>
-					<Settings zoomChecklist={zoomChecklist} />
+				<section
+					className={'w-full h-full flex justify-center items-center overflow-hidden transition-all duration-300'}>
 					<Checklist dataCheckList={cheklists[checklist]} />
 				</section>
 			</CheckListProvider>

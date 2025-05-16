@@ -13,10 +13,10 @@ const data = [
 	{ id: 7, titulo: 'Card 7', descripcion: 'Descripción de la card 7' },
 	{ id: 8, titulo: 'Card 8', descripcion: 'Descripción de la card 8' },
 	{ id: 9, titulo: 'Card 9', descripcion: 'Cancelacion de la card 9' },
-	{ id: 10, titulo: 'Card 10', descripcion: 'Cancelación de la card 10' },
+	{ id: 10, titulo: 'Card 10', descripcion: 'zapato' },
 ]
 
-const CARDS_PER_PAGE = 4
+const CARDS_PER_PAGE = 2
 
 const Testeos = () => {
 	const { paginationValues } = useSearch()

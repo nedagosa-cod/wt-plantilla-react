@@ -14,14 +14,21 @@ const RightSide = ({ descripciones }) => {
 	}, [descripciones])
 
 	return (
-		<div className={'rightSide' + (admin ? ' admin' : '')} id="rightSide" ref={refRightSide}>
+		<div
+			style={{
+				display: !admin ? 'flex' : 'none',
+			}}
+			className={'rightSide relative w-1/2 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100'}
+			id="rightSide"
+			ref={refRightSide}>
 			{data.map((descripcion, i) => {
 				return (
 					<div
+						style={{
+							display: checkSelected == descripcion.check || admin ? 'flex' : 'none',
+						}}
 						key={descripcion.check}
-						className={
-							'rightSide__description description ' + (checkSelected == descripcion.check || admin ? 'active' : '')
-						}>
+						className={'rightSide__description description relative flex flex-col items-center h-full gap-2'}>
 						{descripcion.html()}
 					</div>
 				)

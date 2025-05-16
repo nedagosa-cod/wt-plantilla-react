@@ -44,7 +44,7 @@ const ParagraphDesc = ({ children, check, location, updateUserCheck }) => {
 					<TipTap content={editedValue} getValueTipTap={getEditorValue} onParagraph />
 				</>
 			) : (
-				<p className="description__paragraph">
+				<p className="text-lg">
 					{parse(
 						children
 							.replace(/^<p>/, '') // el tiptap me retorna el html con una <p> de contentedory daña estilos

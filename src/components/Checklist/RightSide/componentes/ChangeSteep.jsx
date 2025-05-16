@@ -24,7 +24,7 @@ const ChangeSteep = ({ children, to }) => {
 	return (
 		<div>
 			<BtnZum
-				className="changeSteep"
+				className="changeSteep gap-1 text-md font-bold cursor-pointer bg-primary text-white px-2 py-1 rounded"
 				onClick={jumpToListCheck}
 				// onMouseEnter={() => configHover('hover', to)}
 				// onMouseLeave={() => configHover('', '')}

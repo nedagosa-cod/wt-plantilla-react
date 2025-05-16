@@ -7,9 +7,11 @@ export default function PaginationWT({ pagina, totalPaginas, setPagina }) {
 			<Button onClick={() => setPagina(p => Math.max(p - 1, 1))} disabled={pagina === 1}>
 				Anterior
 			</Button>
+
 			<span>
 				Página {pagina} de {totalPaginas}
 			</span>
+
 			<Button onClick={() => setPagina(p => Math.min(p + 1, totalPaginas))} disabled={pagina === totalPaginas}>
 				Siguiente
 			</Button>

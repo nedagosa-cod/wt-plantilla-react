@@ -41,6 +41,8 @@ import IconVtextOt from '../../icons/IconVtextOt'
 import IconVboolOt from '../../icons/IconVboolOt'
 import IconDateOt from '../../icons/IconDateOt'
 import IconChangeStepOt from '../../icons/IconChangeStepOt'
+import { Button } from '../ui/button'
+import { Card, CardFooter } from '../ui/card'
 
 export default function Checklist({ dataCheckList }) {
 	const { theme, resetCheckList, activeInside, setEditChElement } = useContext(CheckListContext)
@@ -126,9 +128,9 @@ export default function Checklist({ dataCheckList }) {
 			})
 			let textTip = textCurs.replace(tipRegex, (match, content1, content2) => {
 				return (
-					'<span className="check-tip" id="parentTool">' +
+					'<span className="check-tip relative font-bold bg-white cursor-default px-1 rounded group" id="parentTool">' +
 					content2 +
-					'<div className="check-tip__tip" id="toolTip">' +
+					'<div className="check-tip__tip absolute top-5 left-0 cursor-default hidden w-24 text-wrap text-sm z-100 text-primary bg-white p-1 rounded group-hover:block" id="toolTip">' +
 					content1 +
 					'</div></span>'
 				)
@@ -426,7 +428,7 @@ export default function Checklist({ dataCheckList }) {
 								}
 								return null
 							})}
-							<article className="description__container">
+							<article className="description__container w-full flex overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100 h-full flex-col items-center py-2 px-4 gap-2">
 								{element.html.map((list, j) => {
 									return renderElement(list, j, element)
 								})}
@@ -495,9 +497,9 @@ export default function Checklist({ dataCheckList }) {
 	}, [checkListSelected])
 
 	return (
-		<form className={'Checklist'}>
-			<section className="data">
-				<Split className="split" minSize={400} dragInterval={10}>
+		<Card className="relative z-0 overflow-x-hidden flex flex-col w-8/12 max-w-6xl h-4/5 rounded-lg shadow-lg">
+			<section className="text-sm overflow-hidden w-full h-full flex">
+				<Split className="w-full flex flex-row " minSize={400} dragInterval={10}>
 					<LeftSide
 						title={checkListSelected.TITLE}
 						data={checkListSelected.DESCRIPCIONES}
@@ -506,54 +508,41 @@ export default function Checklist({ dataCheckList }) {
 					<RightSide descripciones={descripciones} updateCheck={setCheckListSelected} />
 				</Split>
 			</section>
-			<div className="Checklist__buttons">
-				<button
+			<section className="flex justify-around items-center h-20 gap-2 w-full">
+				<Button
+					className=""
 					type="reset"
 					onClick={() => {
 						resetCheckList()
 					}}>
-					<div className="svg-wrapper-1">
-						<div className="svg-wrapper">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="icon">
-								<path d="M105.1 202.6c7.7-21.8 20.2-42.3 37.8-59.8c62.5-62.5 163.8-62.5 226.3 0L386.3 160H352c-17.7 0-32 14.3-32 32s14.3 32 32 32H463.5c0 0 0 0 0 0h.4c17.7 0 32-14.3 32-32V80c0-17.7-14.3-32-32-32s-32 14.3-32 32v35.2L414.4 97.6c-87.5-87.5-229.3-87.5-316.8 0C73.2 122 55.6 150.7 44.8 181.4c-5.9 16.7 2.9 34.9 19.5 40.8s34.9-2.9 40.8-19.5zM39 289.3c-5 1.5-9.8 4.2-13.7 8.2c-4 4-6.7 8.8-8.1 14c-.3 1.2-.6 2.5-.8 3.8c-.3 1.7-.4 3.4-.4 5.1V432c0 17.7 14.3 32 32 32s32-14.3 32-32V396.9l17.6 17.5 0 0c87.5 87.4 229.3 87.4 316.7 0c24.4-24.4 42.1-53.1 52.9-83.7c5.9-16.7-2.9-34.9-19.5-40.8s-34.9 2.9-40.8 19.5c-7.7 21.8-20.2 42.3-37.8 59.8c-62.5 62.5-163.8 62.5-226.3 0l-.1-.1L125.6 352H160c17.7 0 32-14.3 32-32s-14.3-32-32-32H48.4c-1.6 0-3.2 .1-4.8 .3s-3.1 .5-4.6 1z" />
-							</svg>
-						</div>
-					</div>
-					<span>Reiniciar</span>
-				</button>
-				<button
+					<span className="">Reiniciar</span>
+				</Button>
+				<Button
 					type="button"
 					onClick={() => {
 						if (activeInside.length > 0) {
 							setShowPopNota(true)
 						}
 					}}>
-					<div className="svg-wrapper-1">
-						<div className="svg-wrapper">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" className="icon">
-								<path d="M64 464c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16H224v80c0 17.7 14.3 32 32 32h80V448c0 8.8-7.2 16-16 16H64zM64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V154.5c0-17-6.7-33.3-18.7-45.3L274.7 18.7C262.7 6.7 246.5 0 229.5 0H64zm56 256c-13.3 0-24 10.7-24 24s10.7 24 24 24H264c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24H264c13.3 0 24-10.7 24-24s-10.7-24-24-24H120z" />
-							</svg>
-						</div>
-					</div>
 					<span>Obtener datos</span>
-				</button>
-				<button onClick={() => saveFormat()} type="button">
+				</Button>
+				{/* <Button onClick={() => saveFormat()} type="button">
 					GENERAR FORMATO
-				</button>
-				<button
+				</Button>
+				<Button
 					onClick={() => {
 						saveFormat(true)
 					}}
 					type="button">
 					TEST
-				</button>
-			</div>
+				</Button> */}
+			</section>
 			{showPopImage &&
 				createPortal(
 					<PopImageDesc setPopShowImage={setPopShowImage} imagePop={imagePop} widthImg={widthImg} />,
 					document.body
 				)}
 			{showPopNota && createPortal(<PopNota activePopNota={activePopNota} />, document.body)}
-		</form>
+		</Card>
 	)
 }

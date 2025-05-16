@@ -5,16 +5,8 @@ import GlobalContext from '../../../context/GlobalContext'
 import { bottom } from '@popperjs/core'
 
 const ListCheck = ({ check, title, updateCheck, data }) => {
-	const {
-		checkSelected,
-		changeDescription,
-		relativePosition,
-		resetList,
-		hover,
-		posHover,
-		refRightSide,
-		refListCheck,
-	} = useContext(CheckListContext)
+	const { checkSelected, changeDescription, relativePosition, resetList, hover, posHover, refRightSide, refListCheck } =
+		useContext(CheckListContext)
 	const { admin, setAdmin } = useContext(GlobalContext)
 
 	const [stepTitle, setStepTitle] = useState(title)
@@ -71,7 +63,7 @@ const ListCheck = ({ check, title, updateCheck, data }) => {
 	}, [resetList, edit])
 
 	return (
-		<li className="LeftSide__ul--li">
+		<li className="relative none flex w-11/12 hover:scale-105 transition-all duration-300">
 			{admin && (
 				<label
 					htmlFor="inputText"
@@ -81,8 +73,14 @@ const ListCheck = ({ check, title, updateCheck, data }) => {
 					<IconEdit className={admin ? 'admin svg-edit' : 'admin off'} />
 				</label>
 			)}
-			<label className={'ListCheck ' + listChecked + ' ' + (posHover == check ? hover : '')}>
-				<span>{check}</span>
+			<label
+				style={{
+					boxShadow: listChecked ? 'inset 0px -14px 43px -11px rgba(112, 112, 112, 0.5)' : 'none',
+				}}
+				className={
+					'w-full font-sm border-b border-gray-200 justify-between items-center flex cursor-pointer px-2 py-1 rounded-md '
+				}>
+				<span className="text-3xl text-primary font-bold">{check}</span>
 				{stepTitle === 'XXXXX' || edit ? (
 					<input
 						type="text"
@@ -104,7 +102,7 @@ const ListCheck = ({ check, title, updateCheck, data }) => {
 						}}
 					/>
 				) : (
-					<h2>{title}</h2>
+					<h2 className="text-center text-lg">{title}</h2>
 				)}
 
 				<div className="checkbox-wrapper-44">

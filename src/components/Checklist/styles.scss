@@ -12,429 +12,57 @@
 	-moz-transition: 1s ease-in-out;
 	-ms-transition: 1s ease-in-out;
 	-o-transition: 1s ease-in-out;
-	&--settings {
-		position: relative;
-		display: flex;
-		justify-content: center;
-		width: 70%;
+}
+
+.container-element-ch {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	position: relative;
+	&.admin {
+		margin-left: 3rem;
+		width: 95%;
+		padding: 6px 10px;
 	}
-	& .settings {
-		position: absolute;
-		bottom: 2rem;
-		z-index: 100;
-		right: -25rem;
-		height: fit-content;
-		width: 30rem;
-		min-width: 30rem;
-		background: $b-color;
-		color: $w-color;
-		padding: 1rem;
+	&:has(.task__btn:hover) {
+		background: #dbdbdb;
+		padding: 6px 10px;
 		border-radius: 0.8rem;
 		-webkit-border-radius: 0.8rem;
 		-moz-border-radius: 0.8rem;
 		-ms-border-radius: 0.8rem;
 		-o-border-radius: 0.8rem;
-		transition: 1s ease-in-out;
-		-webkit-transition: 1s ease-in-out;
-		-moz-transition: 1s ease-in-out;
-		-ms-transition: 1s ease-in-out;
-		-o-transition: 1s ease-in-out;
-		&__list {
-			display: flex;
-			align-items: center;
-			gap: 1rem;
-			padding: 1rem;
-			cursor: pointer;
-			color: $w-color;
-			border-radius: 0.8rem;
-			-webkit-border-radius: 0.8rem;
-			-moz-border-radius: 0.8rem;
-			-ms-border-radius: 0.8rem;
-			-o-border-radius: 0.8rem;
-			&:hover {
-				background: rgba(0, 0, 0, 0.1);
-			}
-			& svg {
-				user-select: none;
-				pointer-events: none;
-				fill: $w-color;
-				width: 2rem;
-				height: 2rem;
-			}
-		}
-		&.true {
-			right: -14rem;
-		}
-		&.light {
-			background: $w-color;
-			color: $b-color;
-			&,
-			.settings__list {
-				color: $b-color;
-				& svg {
-					fill: $b-color;
-				}
-			}
-		}
 	}
-	&.true {
-		width: 100%;
+	& .task__btn {
 		position: absolute;
-		top: 0;
-		left: 0;
-		background: $w-color;
-		z-index: 100;
-		& .Checklist {
-			width: 90%;
-			height: 90%;
-			max-width: 200rem;
-			& .LeftSide {
-				&__title {
-					font-size: 3rem;
-				}
-			}
-			& .rightSide {
-				& .description {
-					&__title {
-						font-size: 3rem;
-					}
-					&__paragraph {
-						font-size: 2rem;
-					}
-					// &__valtext,
-					// .description__valbool,
-					// .description__valdate,
-					// .description__vallist {
-					// 	max-width: 40rem;
-					// }
-				}
-			}
+		opacity: 0.4;
+		left: -4rem;
+		top: 50%;
+		width: 2.8rem;
+		max-width: 2.8rem;
+		flex-grow: 1;
+		min-width: 2.8rem;
+		color: #969696;
+		height: max-content;
+		background: #dbdbdb;
+		cursor: pointer;
+		padding: 0.8rem;
+		border-radius: 100%;
+		-webkit-border-radius: 100%;
+		-moz-border-radius: 100%;
+		-ms-border-radius: 100%;
+		-o-border-radius: 100%;
+		transform: translateY(-50%);
+		-webkit-transform: translateY(-50%);
+		-moz-transform: translateY(-50%);
+		-ms-transform: translateY(-50%);
+		-o-transform: translateY(-50%);
+		&:hover {
+			opacity: 1;
 		}
 	}
 }
-.Checklist {
-	position: relative;
-	z-index: 0;
-	overflow-x: hidden;
-	display: flex;
-	flex-direction: column;
-	width: 70%;
-	max-width: 100rem;
-	height: 90%;
-	background: light-dark($w-color, $b-color);
-	color: light-dark($b-color, $w-color);
-	box-shadow: 0px 0px 0px 24px light-dark(rgba($w-color, 0.6), rgba($b-color, 0.6)),
-		0px 10px 29px 20px rgba(0, 0, 0, 0.2);
-	border: 1px solid light-dark(rgba($w-color, 1), rgba($b-color, 1));
-
-	border-radius: 2rem;
-	-webkit-border-radius: 2rem;
-	-moz-border-radius: 2rem;
-	-ms-border-radius: 2rem;
-	-o-border-radius: 2rem;
-	& .data {
-		font-size: 2rem;
-		overflow: hidden;
-		width: 100%;
-		height: 100%;
-		display: flex;
-	}
-	&__buttons {
-		display: flex;
-		justify-content: space-around;
-		gap: 2rem;
-		width: 100%;
-		button {
-			font-family: inherit;
-			font-size: 1.8rem;
-			background: $t-color;
-			color: $w-color;
-			align-items: center;
-			fill: rgb(155, 153, 153);
-			padding: 0.4em 1em;
-			margin: 1rem 0;
-			padding-left: 0.9em;
-			display: flex;
-			width: 20rem;
-			justify-content: center;
-			align-items: center;
-			cursor: pointer;
-			border: none;
-			border-radius: 15px;
-			font-weight: 1000;
-		}
-
-		button span {
-			display: block;
-			margin-left: 0.3em;
-			transition: all 0.3s ease-in-out;
-		}
-
-		button svg {
-			width: 2rem;
-			height: 2rem;
-			display: block;
-			transform-origin: center center;
-			transition: transform 0.3s ease-in-out;
-		}
-
-		button:hover {
-			background: $s2-color;
-		}
-
-		button:hover .svg-wrapper {
-			transform: scale(1.25);
-			transition: 0.5s linear;
-		}
-
-		button:hover svg {
-			transform: translateX(4rem) scale(1.1);
-			fill: $b-color;
-			-webkit-transform: translateX(4rem) scale(1.1);
-			-moz-transform: translateX(4rem) scale(1.1);
-			-ms-transform: translateX(4rem) scale(1.1);
-			-o-transform: translateX(4rem) scale(1.1);
-		}
-		button[type='button']:hover svg {
-			transform: translateX(6rem) scale(1.1);
-			fill: $b-color;
-			-webkit-transform: translateX(6rem) scale(1.1);
-			-moz-transform: translateX(6rem) scale(1.1);
-			-ms-transform: translateX(6rem) scale(1.1);
-			-o-transform: translateX(6rem) scale(1.1);
-		}
-		button:hover span {
-			opacity: 0;
-			transition: 0.5s linear;
-		}
-
-		button:active {
-			transform: scale(0.95);
-		}
-	}
-	& .LeftSide {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 3rem;
-		width: 50%;
-		border-right: 1px inset $g-color;
-		padding: 3rem 2rem;
-		& .ListCheck {
-			width: 100%;
-			font-size: 1.4rem;
-			border-bottom: 1px inset $g-color;
-			justify-content: space-between;
-			align-items: center;
-			display: flex;
-			cursor: pointer;
-			padding: 0.4rem 1rem;
-			border-radius: 1rem;
-			-webkit-border-radius: 1rem;
-			-moz-border-radius: 1rem;
-			-ms-border-radius: 1rem;
-			-o-border-radius: 1rem;
-			&.checked {
-				box-shadow: inset 0px -14px 43px -11px rgba(112, 112, 112, 0.5);
-				color: rgba(0, 0, 0, 0.2);
-			}
-			&.hover {
-				background: rgba(0, 0, 0, 0.5);
-				transform: scale(1.05);
-				color: $p-color;
-				-webkit-transform: scale(1.05);
-				-moz-transform: scale(1.05);
-				-ms-transform: scale(1.05);
-				-o-transform: scale(1.05);
-			}
-			& h2 {
-				text-align: center;
-			}
-			& span {
-				font-size: 2rem;
-				font-weight: 800;
-				color: $s-color;
-			}
-		}
-		&__title {
-			font-size: 3rem;
-			text-align: center;
-			color: $p-color;
-
-			text-shadow: -1px -1px 0 $w-color, 1px -1px 0 $w-color, -1px 1px 0 $w-color, 1px 1px 0 $w-color;
-			letter-spacing: 1px;
-		}
-		&__btn-reiniciar {
-			width: 30rem;
-			padding: 0.6rem;
-			background: $p-color;
-			font-size: 1.6rem;
-			border-radius: 0.8rem;
-			-webkit-border-radius: 0.8rem;
-			-moz-border-radius: 0.8rem;
-			-ms-border-radius: 0.8rem;
-			-o-border-radius: 0.8rem;
-		}
-		&__ul {
-			display: flex;
-			flex-direction: column;
-			// justify-content: center;
-			scrollbar-width: thin;
-			scrollbar-color: $p-color #e2e2e2;
-			align-items: center;
-			overflow-y: auto;
-			height: 100%;
-			width: 100%;
-			gap: 2rem;
-			&--li {
-				position: relative;
-				list-style: none;
-				display: flex;
-				width: 95%;
-			}
-		}
-	}
-	& .rightSide {
-		position: relative;
-		width: 50%;
-		scrollbar-color: $p-color $p3-color;
-		&__description {
-			display: none;
-			height: 100%;
-			&.active {
-				display: flex;
-			}
-			& .check-tip {
-				position: relative;
-				font-weight: 600;
-				background: rgba(255, 255, 255, 0.2);
-				font-style: italic;
-				cursor: default;
-				padding: 0 0.5rem;
-				border-radius: 0.8rem;
-				-webkit-border-radius: 0.8rem;
-				-moz-border-radius: 0.8rem;
-				-ms-border-radius: 0.8rem;
-				-o-border-radius: 0.8rem;
-				&__tip {
-					position: absolute;
-					top: 2rem;
-					left: 0;
-					cursor: default;
-					display: none;
-					width: 12rem;
-					text-wrap: pretty;
-					font-size: 1.2rem;
-					z-index: 100;
-					color: $p-color;
-					background: $w-color;
-					padding: 0.5rem;
-					transition: 0.2s all;
-					border-radius: 0.8rem;
-					-webkit-border-radius: 0.8rem;
-					-moz-border-radius: 0.8rem;
-					-ms-border-radius: 0.8rem;
-					-o-border-radius: 0.8rem;
-					-webkit-transition: 0.2s all;
-					-moz-transition: 0.2s all;
-					-ms-transition: 0.2s all;
-					-o-transition: 0.2s all;
-					&:hover {
-						font-size: 1.6rem;
-					}
-				}
-				&:hover {
-					& .check-tip__tip {
-						display: block;
-					}
-				}
-			}
-		}
-		& .changeSteep {
-			gap: 1rem;
-			font-size: 2rem;
-			font-weight: 100;
-			cursor: pointer;
-			background: $s-color;
-
-			& .icon-arrow {
-				left: -27px;
-				top: 0;
-			}
-		}
-		&.admin {
-			overflow-y: auto;
-			scrollbar-width: thin;
-			scrollbar-color: $p-color $s-color;
-		}
-	}
-	& .split {
-		width: 100%;
-		display: flex;
-		flex-direction: row;
-	}
-
-	& .gutter {
-		background-color: $p3-color;
-		background-repeat: no-repeat;
-		background-position: 50%;
-	}
-
-	& .gutter.gutter-horizontal {
-		background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
-		cursor: col-resize;
-	}
-	& .container-element-ch {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-		position: relative;
-		&.admin {
-			margin-left: 3rem;
-			width: 95%;
-			padding: 6px 10px;
-		}
-		&:has(.task__btn:hover) {
-			background: #dbdbdb;
-			padding: 6px 10px;
-			border-radius: 0.8rem;
-			-webkit-border-radius: 0.8rem;
-			-moz-border-radius: 0.8rem;
-			-ms-border-radius: 0.8rem;
-			-o-border-radius: 0.8rem;
-		}
-		& .task__btn {
-			position: absolute;
-			opacity: 0.4;
-			left: -4rem;
-			top: 50%;
-			width: 2.8rem;
-			max-width: 2.8rem;
-			flex-grow: 1;
-			min-width: 2.8rem;
-			color: #969696;
-			height: max-content;
-			background: #dbdbdb;
-			cursor: pointer;
-			padding: 0.8rem;
-			border-radius: 100%;
-			-webkit-border-radius: 100%;
-			-moz-border-radius: 100%;
-			-ms-border-radius: 100%;
-			-o-border-radius: 100%;
-			transform: translateY(-50%);
-			-webkit-transform: translateY(-50%);
-			-moz-transform: translateY(-50%);
-			-ms-transform: translateY(-50%);
-			-o-transform: translateY(-50%);
-			&:hover {
-				opacity: 1;
-			}
-		}
-	}
-}
-
 .PopNota {
 	position: absolute;
 	top: 0;

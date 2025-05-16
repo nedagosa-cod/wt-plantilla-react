@@ -13,7 +13,7 @@ export const SearchProvider = ({ children }) => {
 	// Crear instancia de Fuse.js
 	const fuse = new Fuse(searchSpotlight, {
 		keys: ['title', 'content', 'keywords', 'name'],
-		threshold: 0.2,
+		threshold: 0.3,
 	})
 
 	const filteredData = cards => {
