@@ -2,25 +2,12 @@ import { GlobeIcon, Search } from 'lucide-react'
 import { useEffect, useState, useRef } from 'react'
 import { useSearch } from '@/context/SearchProvider'
 import { Link } from 'react-router-dom'
-import {
-	Menu,
-	Calculator,
-	Library,
-	Diamond,
-	TextCursorInput,
-	MessageCircle,
-	FileText,
-	Clock,
-	Globe,
-	LayoutPanelTop,
-	X,
-} from 'lucide-react'
+import { Menu, Calculator, Library, Diamond, TextCursorInput, MessageCircle, FileText, Clock, X } from 'lucide-react'
 
 import {
 	Dialog,
 	DialogContent,
 	DialogDescription,
-	DialogFooter,
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
@@ -52,37 +39,22 @@ export default function BuscadorWT({ open }) {
 	const { handleSearchVista, handleSearchGlobal } = useSearch()
 	const [results, setResults] = useState([])
 	const [query, setQuery] = useState('')
-	const [activePagination, setActivePagination] = useState(() => {
-		return localStorage.getItem('activePagination') || false
-	})
-	const [activeSearch, setActiveSearch] = useState(() => {
-		return localStorage.getItem('activeSearch') || 'vista'
-	})
+
 	const inputRef = useRef(null)
 
 	const handleSearch = e => {
 		setQuery(e.target.value)
-		if (activeSearch === 'vista') {
-			if (!activePagination) {
-				// handleSearchPagination(e.target.value)
-			} else {
-				handleSearchVista(e.target.value)
-			}
-		} else if (activeSearch === 'global') {
+		handleSearchVista(e.target.value)
+		if (open) {
 			const searchResults = handleSearchGlobal(e.target.value)
 			setResults(searchResults)
 		}
 	}
-
 	const resetSearch = () => {
 		setQuery('')
 		setResults([])
+		handleSearchVista('')
 	}
-
-	useEffect(() => {
-		localStorage.setItem('activeSearch', activeSearch)
-		localStorage.setItem('activePagination', activePagination)
-	}, [activeSearch, activePagination])
 
 	useEffect(() => {
 		if (open && inputRef.current) {
@@ -118,7 +90,7 @@ export default function BuscadorWT({ open }) {
 							<GlobeIcon className="w-4 h-4 text-white delay-50 duration-200 group-hover/button:-translate-y-12" />
 						</div>
 					</DialogTrigger>
-					<DialogContent className="flex flex-col min-w-[700px] translate-y-0 top-[5%] h-[90%]">
+					<DialogContent className="flex flex-col min-w-[700px] translate-y-0 top-[5%] min-h-52 max-h-[90%]">
 						<DialogHeader className="text-black  flex flex-col" side="left">
 							<DialogTitle className="text-2xl font-bold mb-4">Buscador Global</DialogTitle>
 							<DialogDescription className="text-sm text-gray-500">
@@ -136,7 +108,7 @@ export default function BuscadorWT({ open }) {
 							</div>
 						</DialogHeader>
 						{results.length > 0 && (
-							<div className="text-black flex flex-col overflow-y-auto h-full ">
+							<div className="text-black flex flex-col overflow-y-auto h-full p-4">
 								{results.reduce((acc, curr, i) => {
 									if (i > 0 && results[i - 1].type === curr.type && results[i - 1].title === curr.title) {
 										return [
@@ -155,9 +127,6 @@ export default function BuscadorWT({ open }) {
 												</Link>
 											</div>,
 										]
-									}
-									{
-										console.log(...acc)
 									}
 									return [
 										...acc,
