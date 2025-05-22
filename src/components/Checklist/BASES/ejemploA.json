@@ -5,18 +5,118 @@
 			"check": "A",
 			"html": [
 				{ "TITULO": "Tener en cuenta" },
+				{ "SUBTITLE": "Subtitulo de la pagina" },
 				{ "IMG": "estructure.png", "SPACE": "30%" },
+				{ "LINK": "http://www.youtube.com", "NAME": "YouTube" },
 				{
 					"P": "- Lorem Ipsum is &tip[este es el significado]simply&tip dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
 				},
 				{
-					"P": "- Soy el parrafo dos y vengo a desmentir todo"
+					"DATA_TEXT": "Nombre del cliente",
+					"POS": "A"
 				},
 				{
-					"LIST": ["&boldProceso&bold de papa", "Proceso de mama", "Proceso de tio", "Proceso de hermano"],
-					"TYPE": "ul"
+					"DATA_DATE": "Fecha de gestión",
+					"POS": "B"
 				},
-				{ "SCRIPTS": ["Que pasa la prueba", "Script numero dos"] },
+				{
+					"DATA_BOOL": "Pregunta de respuesta booleana",
+					"POS": "C",
+					"SI": [
+						{
+							"DATA_TEXT": "Nombre del cliente",
+							"POS": "D"
+						},
+						{
+							"DATA_DATE": "Fecha de gestión",
+							"POS": "E"
+						},
+						{
+							"DATA_BOOL": "Pregunta de respuesta booleana",
+							"POS": "F",
+							"SI": [
+								{
+									"P": "4. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro"
+								},
+								{
+									"SCRIPT": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
+								},
+								{
+									"LIST": ["DATO 1", "DATO 2", "DATO 3"]
+								},
+								{
+									"IMPORTANT": "Mensaje importante para el checklist o la gestion del paso del checklist",
+									"TITLE": "IMPORTANTE!"
+								}
+							],
+							"NO": [
+								{
+									"P": "1. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
+								},
+								{
+									"LIST": ["DATO 1", "DATO 2", "DATO 3"]
+								},
+								{
+									"IMPORTANT": "Mensaje importante para el checklist o la gestion del paso del checklist",
+									"TITLE": "IMPORTANTE!"
+								},
+								{
+									"SCRIPT": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
+								}
+							]
+						}
+					],
+					"NO": [
+						{
+							"P": "1. Soy La Rta de No dolor sit amet consectetur adipisicing elit. Ipsam porro, quisquam consectetur provident suscipit atque!"
+						},
+						{
+							"LIST": ["DATO 1", "DATO 2", "DATO 3"]
+						}
+					]
+				},
+				{
+					"DATA_LIST": "Lista de opciones",
+					"POS": "D",
+					"OPTIONS": [
+						{
+							"NAME": "Opcion 1",
+							"HTML": [
+								{
+									"P": "- Lorem Ipsum is &tip[este es el significado]simply&tip dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+								},
+								{
+									"P": "- Lorem Ipsum is &tip[este es el significado]simply&tip dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+								}
+							]
+						},
+						{
+							"NAME": "Opcion 2",
+							"HTML": [
+								{
+									"P": "- Lorem Ipsum is &tip[este es el significado]simply&tip dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+								}
+							]
+						}
+					]
+				},
+				{
+					"TITLE": "Nota importante",
+					"NOTA": "Esta es una prueba de la nota importante que se puede agregar al checklist",
+					"TYPE": "question"
+				},
+				{
+					"IMPORTANT": "DEBEN EXISTIR MINIMO 3 PASOS (A,B,C) delo contrario no funcionaria como lista de checkeo.",
+					"TITLE": "Tener en cuenta!"
+				},
+				{
+					"SCRIPTS": [
+						"Si tengo un texto que es bastante largo que tanto espacio ocupo?, sera que salto de linea?",
+						"Que pasa la prueba",
+						"Script numero dos"
+					]
+				},
+				{ "SUBTITLE": "Subtitulo de la pagina" },
 				{
 					"P": "2. Se compartira un correo con la plantilla y cada uno de los instructivos para el envio del material de manera correcta"
 				},

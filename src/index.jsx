@@ -9,6 +9,7 @@ import { HashRouter } from 'react-router-dom'
 import { GlobalProvider } from './context/GlobalContext.jsx'
 import { SearchProvider } from './context/SearchProvider.jsx'
 import { ThemeProvider } from './context/ThemeContext'
+import { Toaster } from '@/components/ui/sonner'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 	<StrictMode>
@@ -17,6 +18,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 				<SearchProvider>
 					<ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
 						<App />
+						<Toaster richColors />
 					</ThemeProvider>
 				</SearchProvider>
 			</GlobalProvider>

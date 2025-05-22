@@ -13,14 +13,11 @@ const CheckListBase = ({ checklist }) => {
 		ejemploC,
 	}
 	return (
-		<>
-			<CheckListProvider>
-				<section
-					className={'w-full h-full flex justify-center items-center overflow-hidden transition-all duration-300'}>
-					<Checklist dataCheckList={cheklists[checklist]} />
-				</section>
-			</CheckListProvider>
-		</>
+		<CheckListProvider>
+			<section className={'w-full h-full flex justify-center items-center overflow-hidden transition-all duration-300'}>
+				<Checklist dataCheckList={cheklists[checklist]} />
+			</section>
+		</CheckListProvider>
 	)
 }
 

@@ -47,10 +47,16 @@ const MenuEdit = ({ children, check, location }) => {
 	return (
 		<>
 			{children && (
-				<div className={'container-element-ch ' + (admin ? 'admin' : '')}>
+				<div
+					className={'flex items-center justify-center w-full relative flex-col'}
+					style={{
+						marginLeft: !admin ? '' : '3rem',
+						width: !admin ? '' : '95%',
+						padding: !admin ? '' : '6px 10px',
+					}}>
 					{admin && children && (
 						<button
-							className="task__btn"
+							className="absolute opacity-40 -left-4 top-1/2 w-7 max-w-7 flex-grow min-w-7 color-primary h-max bg-primary rounded-full -translate-y-1/2 hover:opacity-100"
 							type="button"
 							onClick={() => {
 								openDropMenu()

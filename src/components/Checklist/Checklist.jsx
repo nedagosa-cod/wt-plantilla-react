@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
+import './admin.scss'
 import LeftSide from './LeftSide/LeftSide'
 import RightSide from './RightSide/RightSide'
-import './styles.scss'
-import './admin.scss'
 import TitleDesc from './RightSide/componentes/TitleDesc'
 import ParagraphDesc from './RightSide/componentes/ParagraphDesc'
 import ListDesc from './RightSide/componentes/ListDesc'
@@ -17,9 +16,7 @@ import ValDateDesc from './RightSide/componentes/ValDateDesc'
 import ValListDesc from './RightSide/componentes/ValListDesc'
 import InsideAnswer from './RightSide/componentes/InsideAnswer'
 import CheckListContext from '../../context/ChecklistContext'
-import PopImageDesc from './RightSide/componentes/PopImageDesc'
-import { createPortal } from 'react-dom'
-import PopNota from './PopNota'
+
 import ChangeSteep from './RightSide/componentes/ChangeSteep'
 import Estructure from './BigIcons/Estructure'
 import Note from './RightSide/componentes/Note'
@@ -42,12 +39,16 @@ import IconVboolOt from '../../icons/IconVboolOt'
 import IconDateOt from '../../icons/IconDateOt'
 import IconChangeStepOt from '../../icons/IconChangeStepOt'
 import { Button } from '../ui/button'
-import { Card, CardFooter } from '../ui/card'
+import { Card } from '../ui/card'
+
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
+import { Textarea } from '../ui/textarea'
+import { toast } from 'sonner'
 
 export default function Checklist({ dataCheckList }) {
-	const { theme, resetCheckList, activeInside, setEditChElement } = useContext(CheckListContext)
+	const { resetCheckList, activeInside } = useContext(CheckListContext)
 	const { admin } = useContext(GlobalContext)
-
+	const [textArea, setTextArea] = useState('')
 	const itemsElemets = [
 		{
 			name: 'Titulo',
@@ -108,11 +109,6 @@ export default function Checklist({ dataCheckList }) {
 		},
 	]
 
-	const [showPopImage, setPopShowImage] = useState(false)
-	const [imagePop, setimagePop] = useState('#')
-	const [widthImg, setWidthImg] = useState('50%')
-	const [showPopNota, setShowPopNota] = useState(false)
-
 	const [checkListSelected, setCheckListSelected] = useState(dataCheckList)
 
 	const renderElement = (element, index, desc) => {
@@ -128,9 +124,9 @@ export default function Checklist({ dataCheckList }) {
 			})
 			let textTip = textCurs.replace(tipRegex, (match, content1, content2) => {
 				return (
-					'<span className="check-tip relative font-bold bg-white cursor-default px-1 rounded group" id="parentTool">' +
+					'<span className="relative font-bold  cursor-default px-1 rounded group" id="parentTool">' +
 					content2 +
-					'<div className="check-tip__tip absolute top-5 left-0 cursor-default hidden w-24 text-wrap text-sm z-100 text-primary bg-white p-1 rounded group-hover:block" id="toolTip">' +
+					'<div className="absolute top-5 left-0 text-white cursor-default hidden w-24 text-wrap text-sm z-100 text-primary bg-primary p-1 rounded group-hover:block" id="toolTip">' +
 					content1 +
 					'</div></span>'
 				)
@@ -145,11 +141,10 @@ export default function Checklist({ dataCheckList }) {
 		)
 
 		const renderLink = (element, key) => <LinkDesc url={element.LINK} buttonName={element.NAME} key={key} />
-
+		// imagen en la descripcion
 		const renderImage = (element, key) => (
 			<ImageDesc
 				key={key}
-				activatePopImage={activatePopImage}
 				img={element.IMG}
 				width={element.SPACE}
 				check={desc.check}
@@ -325,20 +320,6 @@ export default function Checklist({ dataCheckList }) {
 	}
 
 	const [descripciones, setDescripciones] = useState([])
-	const activatePopImage = (nameImagen, width) => {
-		if (nameImagen) {
-			setimagePop(nameImagen)
-		}
-		if (widthImg) {
-			setWidthImg(width)
-		} else {
-			setWidthImg('50%')
-		}
-		setPopShowImage(!showPopImage)
-	}
-	const activePopNota = () => {
-		setShowPopNota(!showPopNota)
-	}
 
 	const createUserElement = (elName, check) => {
 		const objetElecment = () => {
@@ -428,19 +409,19 @@ export default function Checklist({ dataCheckList }) {
 								}
 								return null
 							})}
-							<article className="description__container w-full flex overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100 h-full flex-col items-center py-2 px-4 gap-2">
+							<article className="w-full flex overflow-y-auto overflow-x-hidden  h-full flex-col items-center py-2 px-4 gap-2 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700  dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500">
 								{element.html.map((list, j) => {
 									return renderElement(list, j, element)
 								})}
 								{admin && (
 									<>
-										<div className="box-buttons-elemets">
+										<div className="box-buttons-elemets flex flex-wrap mt-2 gap-2 w-full p-1 bg-gray-100 rounded-md">
 											{itemsElemets.map((item, i) => {
 												return (
 													<button
 														key={i}
 														type="button"
-														className="box-buttons-elemets__button"
+														className="box-buttons-elemets__button flex bg-white py-1 px-2 rounded-md cursor-pointer"
 														onClick={e => createUserElement(item.name, element.check)}>
 														<div>{item.icon}</div> {item.name}
 													</button>
@@ -465,13 +446,6 @@ export default function Checklist({ dataCheckList }) {
 		setDescripciones(result)
 	}
 
-	let pressed = false
-	document.addEventListener('keyup', e => {
-		if (!pressed && e.key == 'Escape') {
-			pressed = true
-			setPopShowImage(false)
-		}
-	})
 	const saveFormat = () => {
 		const JSONtext = JSON.stringify(checkListSelected)
 		const blob = new Blob([JSONtext], { type: 'text/plain' })
@@ -497,14 +471,15 @@ export default function Checklist({ dataCheckList }) {
 	}, [checkListSelected])
 
 	return (
-		<Card className="relative z-0 overflow-x-hidden flex flex-col w-8/12 max-w-6xl h-4/5 rounded-lg shadow-lg">
+		<Card className="relative z-0 overflow-x-hidden flex flex-col w-6xl min-w-6xl max-w-6xl h-4/5 rounded-2xl shadow-lg ring-8 ring-primary/20">
 			<section className="text-sm overflow-hidden w-full h-full flex">
-				<Split className="w-full flex flex-row " minSize={400} dragInterval={10}>
+				<Split className="w-full flex flex-row " minSize={400} dragInterval={10} sizes={[50, 50]}>
 					<LeftSide
 						title={checkListSelected.TITLE}
 						data={checkListSelected.DESCRIPCIONES}
 						updateCheck={setCheckListSelected}
 					/>
+					{/* <div class="gutter gutter-horizontal" style="width: 10px;"></div> */}
 					<RightSide descripciones={descripciones} updateCheck={setCheckListSelected} />
 				</Split>
 			</section>
@@ -517,15 +492,30 @@ export default function Checklist({ dataCheckList }) {
 					}}>
 					<span className="">Reiniciar</span>
 				</Button>
-				<Button
-					type="button"
-					onClick={() => {
-						if (activeInside.length > 0) {
-							setShowPopNota(true)
-						}
-					}}>
-					<span>Obtener datos</span>
-				</Button>
+				<Dialog>
+					<DialogTrigger>
+						<Button>Obtener datos</Button>
+					</DialogTrigger>
+					<DialogContent>
+						<DialogHeader>
+							<DialogTitle>Datos capturados de la validación de datos del checklist</DialogTitle>
+						</DialogHeader>
+						<Textarea
+							placeholder="Type your message here."
+							value={textArea}
+							onChange={e => setTextArea(e.target.value)}
+						/>
+						<Button
+							type="button"
+							onClick={() => {
+								navigator.clipboard.writeText(textArea)
+								toast.success('Copiado al portapapeles')
+							}}>
+							Copiar
+						</Button>
+					</DialogContent>
+				</Dialog>
+
 				{/* <Button onClick={() => saveFormat()} type="button">
 					GENERAR FORMATO
 				</Button>
@@ -537,12 +527,6 @@ export default function Checklist({ dataCheckList }) {
 					TEST
 				</Button> */}
 			</section>
-			{showPopImage &&
-				createPortal(
-					<PopImageDesc setPopShowImage={setPopShowImage} imagePop={imagePop} widthImg={widthImg} />,
-					document.body
-				)}
-			{showPopNota && createPortal(<PopNota activePopNota={activePopNota} />, document.body)}
 		</Card>
 	)
 }

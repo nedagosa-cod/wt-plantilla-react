@@ -6,8 +6,10 @@ import GlobalContext from '../../../context/GlobalContext'
 import { Separator } from '@/components/ui/separator'
 
 const LeftSide = ({ title, data, updateCheck }) => {
-	const { refListCheck, relativePosition } = useContext(CheckListContext)
+	const { refListCheck, relativePosition, posHover } = useContext(CheckListContext)
 	const { admin } = useContext(GlobalContext)
+
+	console.log(posHover)
 
 	const createStep = () => {
 		updateCheck(prevState => ({

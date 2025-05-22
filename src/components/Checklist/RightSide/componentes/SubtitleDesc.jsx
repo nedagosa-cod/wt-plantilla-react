@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react'
 import CheckListContext from '../../../../context/ChecklistContext'
+import { Separator } from '@/components/ui/separator'
 
 const SubtitleDesc = ({ children, check, location, updateUserCheck }) => {
 	const { editChElement, locationEl, areObjectsEqual, HandlerContent, deleteChElement, dialogDeleteElement } =
@@ -26,7 +27,7 @@ const SubtitleDesc = ({ children, check, location, updateUserCheck }) => {
 		<>
 			{isEditable ? (
 				<input
-					className="description__subtitle edit"
+					className="text-[hsl(var(--primary-dark))] text-center text-xl w-full rounded-md border-2 border-gray-300 bg-gray-100 p-2"
 					type="text"
 					onBlur={e =>
 						HandlerContent({
@@ -42,7 +43,10 @@ const SubtitleDesc = ({ children, check, location, updateUserCheck }) => {
 					onChange={e => setEditedValue(e.target.value)}
 				/>
 			) : (
-				<h2 className="description__subtitle">- {children} -</h2>
+				<div className="flex flex-col items-center justify-center mt-2">
+					<h2 className="text-center font-bold text-4xl text-primary ">- {children} -</h2>
+					<Separator className="my-2 h-[2px] w-1/2 bg-primary" />
+				</div>
 			)}
 			{showDialogDelete()}
 		</>

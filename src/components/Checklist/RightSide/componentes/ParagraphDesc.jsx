@@ -2,7 +2,6 @@ import { useContext, useState } from 'react'
 import TipTap from '../../../TipTap.jsx/TipTap'
 import CheckListContext from '../../../../context/ChecklistContext'
 import parse from 'html-react-parser'
-import Swal from 'sweetalert2'
 const ParagraphDesc = ({ children, check, location, updateUserCheck }) => {
 	const { editChElement, locationEl, areObjectsEqual, HandlerContent, deleteChElement, dialogDeleteElement } =
 		useContext(CheckListContext)
@@ -44,14 +43,14 @@ const ParagraphDesc = ({ children, check, location, updateUserCheck }) => {
 					<TipTap content={editedValue} getValueTipTap={getEditorValue} onParagraph />
 				</>
 			) : (
-				<p className="text-lg">
+				<span className="text-md w-full">
 					{parse(
 						children
 							.replace(/^<p>/, '') // el tiptap me retorna el html con una <p> de contentedory daña estilos
 							.replace(/<\/p>$/, '') // se cambia la <p></p> por ''
 							.replace(/<p><\/p>/g, '<br/>') // se cambia el <p></p> por <br/> para crear salto de linea
 					)}
-				</p>
+				</span>
 			)}
 			{showDialogDelete()}
 		</>

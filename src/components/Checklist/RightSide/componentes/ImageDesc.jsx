@@ -1,8 +1,17 @@
 import { useContext, useState } from 'react'
 import CheckListContext from '../../../../context/ChecklistContext'
 import LZString from 'lz-string'
+import { Button } from '@/components/ui/button'
+import {
+	Dialog,
+	DialogContent,
+	DialogDescription,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+} from '@/components/ui/dialog'
 
-const ImageDesc = ({ activatePopImage, img, width, check, location, updateUserCheck }) => {
+const ImageDesc = ({ img, width, check, location, updateUserCheck }) => {
 	const { editChElement, locationEl, areObjectsEqual, HandlerContent, deleteChElement, dialogDeleteElement } =
 		useContext(CheckListContext)
 
@@ -58,25 +67,23 @@ const ImageDesc = ({ activatePopImage, img, width, check, location, updateUserCh
 		return null
 	}
 	const renderEditor = () => (
-		<div className="description__pop-image-container">
-			<i
-				className="description__pop-image"
-				onClick={() => {
-					activatePopImage(editedValue, secondValues.imgWidth)
-				}}></i>
-			<span className="description__pop-image-name">{nameImg}</span>
-			<div className="description__pop-image-container--input">
+		<div className="description__pop-image-container flex flex-wrap items-center justify-center border border-gray-300 rounded-md p-4">
+			<i className="description__pop-image"></i>
+			<span className="ml-2">{nameImg}</span>
+			<div className="w-full">
 				<hr />
 				<input
+					className="w-full text-md"
 					type="file"
 					onChange={e => {
 						handleFileChange(e)
 					}}
 				/>
-				<hr />
-				<label htmlFor="selectImgSize">
+				<Separator className="my-2" />
+				<label htmlFor="selectImgSize" className="flex justify-between">
 					Tamaño de imagen
 					<select
+						className="border border-gray-300"
 						id="selectImgSize"
 						value={secondValues.imgWidth}
 						onChange={e => {
@@ -97,21 +104,26 @@ const ImageDesc = ({ activatePopImage, img, width, check, location, updateUserCh
 			</div>
 		</div>
 	)
-
 	const isEditable = editChElement && areObjectsEqual(locationEl, { check, location })
 	return (
-		<>
-			{isEditable ? (
-				renderEditor()
-			) : (
-				<i
-					className="description__pop-image"
-					onClick={() => {
-						activatePopImage(editedValue, secondValues.imgWidth)
-					}}></i>
-			)}
-			{showDialogDelete()}
-		</>
+		<Dialog>
+			<DialogTrigger asChild>
+				<Button className="pop-image w-10 h-10 p-5 relative bg-white rounded-md overflow-hidden shadow-md cursor-pointer my-2 border border-primary hover:scale-110 before:content-[''] before:absolute before:bottom-0 before:left-0 before:w-7 before:h-7 before:bg-red-500 before:transform before:rotate-45 before:translate-x-1/2 before:translate-y-1/2 before:box-shadow before:shadow-red-700 after:content-[''] after:absolute after:left-2 after:top-2 after:w-3 after:h-3 after:bg-red-500 after:rounded-full after:transform after:rotate-0 after:origin-[35px_145px] hover:bg-white"></Button>
+			</DialogTrigger>
+			<DialogContent>
+				<DialogHeader>
+					<DialogTitle>Imagen</DialogTitle>
+					<DialogDescription>Imagen de apoyo</DialogDescription>
+				</DialogHeader>
+				<div>
+					{editedValue.length > 100 ? (
+						<img src={'data:image/png;base64,' + editedValue} alt="imagen de ayuda" />
+					) : (
+						<img src={'./noTocar/imagenes/checklist/' + editedValue} alt="imagen de ayuda" />
+					)}
+				</div>
+			</DialogContent>
+		</Dialog>
 	)
 }
 

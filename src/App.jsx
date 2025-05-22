@@ -2,6 +2,7 @@ import '@styles/app.scss'
 import { Routes, Route } from 'react-router-dom'
 
 import imgCtrlAccesss from './assets/images/index/sessionBackground.jpg'
+import imgSectionPage from './assets/images/index/backApp.jpg'
 
 import dataNavbar from './components/Navbar/dataNavbar.json'
 import Bienvenida from './components/Bienvenida/Bienvenida'
@@ -19,7 +20,7 @@ import Biblioteca from './components/Biblioteca/Biblioteca.jsx'
 import Navbar from './components/WebTraining/navbar/Navbar.jsx'
 
 const App = () => {
-	const { scheme, activeAppNote, showApp, admin } = useContext(GlobalContext)
+	const { activeAppNote, showApp, admin } = useContext(GlobalContext)
 
 	useEffect(() => {
 		document.body.addEventListener('keydown', e => {
@@ -46,7 +47,9 @@ const App = () => {
 				<div className="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_800px_at_100%_200px,#ffc5c5,transparent)]"></div>
 			</div>
 
-			<section className="w-[calc(100%-32px)] h-full rounded-xl border-2 border-red-500 shadow-xl shadow-foreground/50 mx-auto my-4 overflow-x-hidden overflow-y-auto bg-cover bg-center bg-white relative">
+			<section
+				style={{ backgroundImage: `url(${imgSectionPage})` }}
+				className="w-[calc(100%-32px)] h-full rounded-xl border-2 border-red-500 shadow-xl shadow-foreground/50 mx-auto my-4 overflow-x-hidden overflow-y-auto bg-cover bg-center bg-white relative">
 				<Routes>
 					{admin && (
 						<>

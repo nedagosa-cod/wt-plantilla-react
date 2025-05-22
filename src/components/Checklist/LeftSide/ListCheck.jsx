@@ -12,7 +12,7 @@ const ListCheck = ({ check, title, updateCheck, data }) => {
 	const [stepTitle, setStepTitle] = useState(title)
 	const [listChecked, setListChecked] = useState('')
 	const [edit, setEdit] = useState(stepTitle === 'XXXXX' ? true : false)
-
+	console.log(listChecked)
 	const inputCheck = useRef()
 
 	const showRelativeDescription = e => {
@@ -63,7 +63,15 @@ const ListCheck = ({ check, title, updateCheck, data }) => {
 	}, [resetList, edit])
 
 	return (
-		<li className="relative none flex w-11/12 hover:scale-105 transition-all duration-300">
+		<li
+			className="relative none flex w-11/12 hover:scale-105 transition-all duration-300 rounded-lg"
+			style={{
+				backgroundColor: listChecked ? 'rgba(193, 193, 193, 1)' : 'transparent',
+				color: listChecked ? 'rgba(143, 143, 143, 1)' : 'rgba(0, 0, 0, 1)',
+				boxShadow: listChecked
+					? 'rgba(0, 0, 0, 1) 0px 0px 4px -2px inset, rgba(0, 0, 0, 0.3) 0px 0px 10px -2px inset'
+					: 'none',
+			}}>
 			{admin && (
 				<label
 					htmlFor="inputText"
@@ -75,12 +83,18 @@ const ListCheck = ({ check, title, updateCheck, data }) => {
 			)}
 			<label
 				style={{
-					boxShadow: listChecked ? 'inset 0px -14px 43px -11px rgba(112, 112, 112, 0.5)' : 'none',
+					backgroundColor: posHover === check ? 'rgba(187, 255, 187, 0.5)' : 'transparent',
+					transform: posHover === check ? 'scale(1.01)' : '',
 				}}
 				className={
-					'w-full font-sm border-b border-gray-200 justify-between items-center flex cursor-pointer px-2 py-1 rounded-md '
+					'w-full font-sm border-b border-gray-200 justify-between items-center flex cursor-pointer px-2 py-1 rounded-lg '
 				}>
-				<span className="text-3xl text-primary font-bold">{check}</span>
+				<span
+					className="text-3xl text-primary font-bold"
+					style={{ color: listChecked ? 'rgba(143, 143, 143, 1)' : '' }}>
+					{check}
+					{')'}
+				</span>
 				{stepTitle === 'XXXXX' || edit ? (
 					<input
 						type="text"
@@ -104,19 +118,17 @@ const ListCheck = ({ check, title, updateCheck, data }) => {
 				) : (
 					<h2 className="text-center text-lg">{title}</h2>
 				)}
-
-				<div className="checkbox-wrapper-44">
-					<label className="toggleButton">
-						<input ref={inputCheck} type="checkbox" onChange={showRelativeDescription} id={check} />
-						<div className="svg">
-							<svg viewBox="0 0 44 44">
-								<path
-									transform="translate(-2.000000, -2.000000)"
-									d="M14,24 L21,31 L39.7428882,11.5937758 C35.2809627,6.53125861 30.0333333,4 24,4 C12.95,4 4,12.95 4,24 C4,35.05 12.95,44 24,44 C35.05,44 44,35.05 44,24 C44,19.3 42.5809627,15.1645919 39.7428882,11.5937758"></path>
-							</svg>
-						</div>
-					</label>
-				</div>
+				<label class="relative inline-flex items-center cursor-pointer">
+					<input
+						type="checkbox"
+						value=""
+						class="sr-only peer"
+						ref={inputCheck}
+						onChange={showRelativeDescription}
+						id={check}
+					/>
+					<div class="peer ring-0 bg-rose-400  rounded-full outline-none duration-300 after:duration-500 w-8 h-8  shadow-md peer-checked:bg-emerald-500  peer-focus:outline-none  after:content-['✖️'] after:rounded-full after:absolute after:outline-none after:h-6 after:w-6 after:bg-gray-50 after:top-1 after:left-1 after:flex after:justify-center after:items-center  peer-hover:after:scale-75 peer-checked:after:content-['✔️'] after:-rotate-180 peer-checked:after:rotate-0"></div>
+				</label>
 			</label>
 		</li>
 	)

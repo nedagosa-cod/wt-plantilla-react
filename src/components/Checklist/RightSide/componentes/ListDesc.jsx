@@ -29,7 +29,7 @@ const ListDesc = ({ children, check, location, updateUserCheck }) => {
 			}) ? (
 				<TipTap content={ulEdit.current.innerHTML} getValueTipTap={getValueTipTap} onList />
 			) : (
-				<ul className="description__list" ref={ulEdit}>
+				<ul className="text-md list-disc w-1/2 m-auto flex flex-col mt-4" ref={ulEdit}>
 					{Array.isArray(editedValue) ? (
 						editedValue.map((item, i) => (
 							<li dangerouslySetInnerHTML={{ __html: item.props.dangerouslySetInnerHTML.__html }} key={i} />

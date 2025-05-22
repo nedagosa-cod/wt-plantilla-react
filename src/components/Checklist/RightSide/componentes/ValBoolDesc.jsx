@@ -1,16 +1,11 @@
 import { useContext, useEffect, useState } from 'react'
 import 'animate.css'
 import CheckListContext from '../../../../context/ChecklistContext'
+import { Card, CardContent } from '@/components/ui/card'
 
 const ValBoolDesc = ({ children, title, position, finish, to }) => {
-	const {
-		activeInside,
-		updateActiveInside,
-		resetList,
-		refListCheck,
-		refRightSide,
-		changeDescription,
-	} = useContext(CheckListContext)
+	const { activeInside, updateActiveInside, resetList, refListCheck, refRightSide, changeDescription } =
+		useContext(CheckListContext)
 
 	const [optSelected, setOptSelected] = useState('custom')
 	const [showSubEl, SetshowSubEl] = useState(false)
@@ -60,12 +55,16 @@ const ValBoolDesc = ({ children, title, position, finish, to }) => {
 
 	return (
 		<>
-			<div className="description__valtext ">
-				<span className="description__valtext--ask">
+			<Card className="flex w-full justify-between items-center bg-[hsl(var(--secondarywt))] p-2 rounded-xl text-center border border-primary-dark shadow-md relative">
+				<span class="absolute -top-1 -right-1 flex size-3">
+					<span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75"></span>
+					<span class="relative inline-flex size-3 rounded-full bg-primary"></span>
+				</span>
+				<span className="text-white text-lg">
 					<strong>{position}.</strong> {title}
 				</span>
-				<article className="description__valtext--radios">
-					<label className="label">
+				<div className="flex items-center justify-around w-2/5">
+					<label className="flex gap-2 font-bold text-white text-lg">
 						SI
 						<input
 							type="radio"
@@ -75,7 +74,7 @@ const ValBoolDesc = ({ children, title, position, finish, to }) => {
 							checked={optSelected === 'SI'}
 						/>
 					</label>
-					<label className="label">
+					<label className="flex gap-2 font-bold text-white text-lg">
 						NO
 						<input
 							type="radio"
@@ -94,10 +93,17 @@ const ValBoolDesc = ({ children, title, position, finish, to }) => {
 							checked={optSelected === 'custom'}
 						/>
 					</label>
-				</article>
-			</div>
+				</div>
+			</Card>
 			{showSubEl && (
-				<section className={'insidebool animate__animated ' + startAnimated()}> {children}</section>
+				<section
+					className={
+						'flex flex-col items-center justify-center text-lg p-2  gap-2 w-full shadow-md bg-sky-200 relative  rounded-lg animate__animated ' +
+						startAnimated()
+					}>
+					{' '}
+					{children}
+				</section>
 			)}
 		</>
 	)

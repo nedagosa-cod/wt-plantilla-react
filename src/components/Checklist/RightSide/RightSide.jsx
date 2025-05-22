@@ -18,7 +18,7 @@ const RightSide = ({ descripciones }) => {
 			style={{
 				display: !admin ? 'flex' : 'none',
 			}}
-			className={'rightSide relative w-1/2 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100'}
+			className={'relative w-1/2'}
 			id="rightSide"
 			ref={refRightSide}>
 			{data.map((descripcion, i) => {
@@ -28,7 +28,7 @@ const RightSide = ({ descripciones }) => {
 							display: checkSelected == descripcion.check || admin ? 'flex' : 'none',
 						}}
 						key={descripcion.check}
-						className={'rightSide__description description relative flex flex-col items-center h-full gap-2'}>
+						className={'relative flex flex-col items-center h-full gap-2'}>
 						{descripcion.html()}
 					</div>
 				)

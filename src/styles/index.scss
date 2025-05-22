@@ -47,7 +47,7 @@ em {
 	// font-style: inherit;
 	text-decoration: none;
 	color: inherit;
-	text-wrap: balance;
+	// text-wrap: balance;
 }
 /* Evitamos problemas con las imagenes */
 img,
@@ -87,6 +87,17 @@ q:after {
 ::selection {
 	background-color: $s-color;
 	color: $w-color;
+}
+
+.gutter {
+	background-color: gray;
+	background-repeat: no-repeat;
+	background-position: 50%;
+}
+
+.gutter.gutter-horizontal {
+	background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
+	cursor: col-resize;
 }
 
 /* Nivelamos problemas de tipografías y colocación de formularios */
