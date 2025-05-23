@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button'
 
-import { Book, BookOpenCheck, Database, LogOut, Palette, Settings, SpellCheck, UserCog } from 'lucide-react'
+import { Book, BookOpenCheck, Database, LogOut, Palette, Settings, SpellCheck, User, UserCog } from 'lucide-react'
 import { useContext } from 'react'
 import GlobalContext from '@/context/GlobalContext'
 import { Link } from 'react-router-dom'
@@ -16,12 +16,23 @@ import {
 	DrawerTrigger,
 } from '@/components/ui/drawer'
 
+import {
+	Dialog,
+	DialogContent,
+	DialogDescription,
+	DialogFooter,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+} from '@/components/ui/dialog'
+
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
 import ExcelDrawer from './DDBBDrawer'
 import { NotesSheet } from '../../notas/MisNotas'
+import AdminButton from './AdminButton'
 
 export default function ConfigMenu() {
 	const { SetActiveAppNote } = useContext(GlobalContext)
@@ -37,14 +48,11 @@ export default function ConfigMenu() {
 				<div className="grid gap-4">
 					<div className="space-y-2">
 						<h4 className="font-medium leading-none">Web Training Config</h4>
-						<p className="text-sm text-muted-foreground">Selecciona una opción</p>
+						<p className="text-sm text-muted-foreground">versión 1.0.0</p>
 					</div>
 					<Separator />
 					<div className="grid gap-2">
 						<div className="grid grid-cols-1 items-center">
-							<Button variant="ghost" className="flex w-full justify-between">
-								Administrador <Database className="h-4 w-4 ml-2 text-primary" />
-							</Button>
 							<Button
 								variant="ghost"
 								className="flex w-full justify-between"

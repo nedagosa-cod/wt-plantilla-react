@@ -41,7 +41,14 @@ import IconChangeStepOt from '../../icons/IconChangeStepOt'
 import { Button } from '../ui/button'
 import { Card } from '../ui/card'
 
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
+import {
+	Dialog,
+	DialogContent,
+	DialogDescription,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+} from '@/components/ui/dialog'
 import { Textarea } from '../ui/textarea'
 import { toast } from 'sonner'
 
@@ -471,7 +478,7 @@ export default function Checklist({ dataCheckList }) {
 	}, [checkListSelected])
 
 	return (
-		<Card className="relative z-0 overflow-x-hidden flex flex-col w-6xl min-w-6xl max-w-6xl h-4/5 rounded-2xl shadow-lg ring-8 ring-primary/20">
+		<Card className="relative z-0 overflow-x-hidden flex flex-col w-6xl max-w-6xl h-4/5 rounded-2xl shadow-lg ring-8 ring-primary/20">
 			<section className="text-sm overflow-hidden w-full h-full flex">
 				<Split className="w-full flex flex-row " minSize={400} dragInterval={10} sizes={[50, 50]}>
 					<LeftSide
@@ -479,7 +486,7 @@ export default function Checklist({ dataCheckList }) {
 						data={checkListSelected.DESCRIPCIONES}
 						updateCheck={setCheckListSelected}
 					/>
-					{/* <div class="gutter gutter-horizontal" style="width: 10px;"></div> */}
+					{/* <div className="gutter gutter-horizontal" style="width: 10px;"></div> */}
 					<RightSide descripciones={descripciones} updateCheck={setCheckListSelected} />
 				</Split>
 			</section>
@@ -493,12 +500,13 @@ export default function Checklist({ dataCheckList }) {
 					<span className="">Reiniciar</span>
 				</Button>
 				<Dialog>
-					<DialogTrigger>
+					<DialogTrigger asChild>
 						<Button>Obtener datos</Button>
 					</DialogTrigger>
 					<DialogContent>
 						<DialogHeader>
-							<DialogTitle>Datos capturados de la validación de datos del checklist</DialogTitle>
+							<DialogTitle>Validaciones</DialogTitle>
+							<DialogDescription>Los datos capturados de las validaciones de datos del checklist</DialogDescription>
 						</DialogHeader>
 						<Textarea
 							placeholder="Type your message here."

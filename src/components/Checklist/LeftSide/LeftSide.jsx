@@ -9,8 +9,6 @@ const LeftSide = ({ title, data, updateCheck }) => {
 	const { refListCheck, relativePosition, posHover } = useContext(CheckListContext)
 	const { admin } = useContext(GlobalContext)
 
-	console.log(posHover)
-
 	const createStep = () => {
 		updateCheck(prevState => ({
 			...prevState,

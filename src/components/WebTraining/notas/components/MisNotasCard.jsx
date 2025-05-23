@@ -8,7 +8,6 @@ export function NoteCard({ note, onEdit, onDelete }) {
 	const [isHovered, setIsHovered] = useState(false)
 
 	const textColor = getContrastColor(note.color)
-
 	return (
 		<Card
 			style={{ backgroundColor: note.color }}

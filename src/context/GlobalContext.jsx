@@ -2,6 +2,7 @@ import { createContext, useState } from 'react'
 import Localbase from 'localbase'
 import Swal from 'sweetalert2'
 import readXlsxFile from 'read-excel-file'
+import { toast } from 'sonner'
 
 const GlobalContext = createContext()
 const WTLocalbase = new Localbase('db_nombre_campana')
@@ -60,25 +61,18 @@ const GlobalProvider = ({ children }) => {
 						})
 					})
 					.then(() => {
-						Swal.fire({
-							icon: 'success',
-							title: 'Base de datos actualizada',
-							text: 'Por favor presiona F5 o actualiza la pagina para cargar la base.',
+						toast.success('Base de datos actualizada', {
+							description: 'Por favor presiona F5 o actualiza la pagina para cargar la base.',
 						})
 					})
 					.catch(error => {
-						Swal.fire({
-							icon: 'error',
-							title: 'Estas cargando una base de datos incorrecta',
-							text: 'Verifica que los datos en el excel esten correctamente insertados y las columnas tengan los nombres correspondientes.',
-							footer: 'Error: ' + error,
+						toast.error('Error al cargar la base de datos', {
+							description: 'Verifica que el archivo excel que estas cargando es una base de datos correcta.',
 						})
 					})
 			} else {
-				Swal.fire({
-					icon: 'error',
-					title: 'Estas cargando una base de datos incorrecta',
-					text: 'La base de datos que estas cargando no es la correcta, verifica el nombre del archivo excel que estas cargando. valida si tiene el nombre correcto de la base o si las columnas estan completas.',
+				toast.error('Error al cargar la base de datos', {
+					description: 'Verifica que el archivo excel que estas cargando es una base de datos correcta.',
 				})
 			}
 		}

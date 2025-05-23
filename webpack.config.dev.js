@@ -74,7 +74,7 @@ module.exports = {
 					noErrorOnMissing: true,
 				},
 				{
-					from: path.join(__dirname, '/src/assets/files/plantillas'),
+					from: path.join(__dirname, '/src/data/plantillas'),
 					to: 'noTocar/plantillas',
 					noErrorOnMissing: true,
 				},

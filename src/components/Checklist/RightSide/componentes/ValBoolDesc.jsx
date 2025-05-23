@@ -56,9 +56,9 @@ const ValBoolDesc = ({ children, title, position, finish, to }) => {
 	return (
 		<>
 			<Card className="flex w-full justify-between items-center bg-[hsl(var(--secondarywt))] p-2 rounded-xl text-center border border-primary-dark shadow-md relative">
-				<span class="absolute -top-1 -right-1 flex size-3">
-					<span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75"></span>
-					<span class="relative inline-flex size-3 rounded-full bg-primary"></span>
+				<span className="absolute -top-1 -right-1 flex size-3">
+					<span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75"></span>
+					<span className="relative inline-flex size-3 rounded-full bg-primary"></span>
 				</span>
 				<span className="text-white text-lg">
 					<strong>{position}.</strong> {title}

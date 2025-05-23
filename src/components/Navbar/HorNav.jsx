@@ -372,6 +372,7 @@ const HorNav = () => {
 			}
 		})
 	})
+
 	return (
 		<header className="hornav">
 			{DATANAV.SEGMENTS && (

@@ -20,41 +20,35 @@ export function NotesSheet() {
 	const { WTLocalbase: notesCollection } = useContext(GlobalContext)
 	const [notes, setNotes] = useState([])
 	const [isOpen, setIsOpen] = useState(false)
+	const [loaded, setLoaded] = useState(false)
 	const [editingNote, setEditingNote] = useState(null)
 	const [isCreating, setIsCreating] = useState(false)
 
 	// Crear una nueva nota y guardarla en Localbase
-	const handleCreateNote = async newNote => {
+	const handleCreateNote = newNote => {
 		const noteWithId = {
 			...newNote,
 			id: Date.now().toString(),
 			createdAt: new Date().toISOString(),
 		}
-		console.log(noteWithId)
-		notesCollection.add({
-			...newNote,
-			id: Date.now().toString(),
-			createdAt: new Date().toISOString(),
-		})
-		notesCollection.get().then(savedNotes => {
-			setNotes(savedNotes || [])
+		notesCollection.collection('MisNotas').add(noteWithId)
+		setNotes(prev => {
+			return [...prev, noteWithId]
 		})
 		setIsCreating(false)
 	}
 
 	// Actualizar una nota en Localbase
-	const handleUpdateNote = async updatedNote => {
-		await notesCollection.set(updatedNote, { id: updatedNote.id })
-		const updatedNotes = await notesCollection.get()
-		setNotes(updatedNotes)
+	const handleUpdateNote = updatedNote => {
+		console.log(updatedNote)
+		notesCollection.collection('MisNotas').doc({ id: updatedNote.id }).set(updatedNote)
 		setEditingNote(null)
 	}
 
 	// Eliminar una nota de Localbase
-	const handleDeleteNote = async id => {
-		await notesCollection.doc({ id }).delete()
-		const updatedNotes = await notesCollection.get()
-		setNotes(updatedNotes)
+	const handleDeleteNote = id => {
+		notesCollection.collection('MisNotas').doc({ id }).delete()
+		setNotes(prev => prev.filter(note => note.id !== id))
 	}
 
 	const startEditing = note => {
@@ -63,17 +57,14 @@ export function NotesSheet() {
 	}
 
 	// Cargar notas desde Localbase al iniciar
-	// useEffect(() => {
-	// 	console.log('Cargando notas')
-	// 	console.log(
-	// 		notesCollection
-	// 			.collection('MisNotas')
-	// 			.get()
-	// 			.then(users => {
-	// 				console.log(users)
-	// 			})
-	// 	)
-	// }, [])
+	useEffect(() => {
+		notesCollection
+			.collection('MisNotas')
+			.get()
+			.then(notes => {
+				setNotes(notes)
+			})
+	}, [])
 
 	return (
 		<Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -116,9 +107,11 @@ export function NotesSheet() {
 
 					{!isCreating && !editingNote && (
 						<div className="grid grid-cols-1 gap-4 mt-4">
-							{notes.map(note => (
-								<NoteCard key={note.id} note={note} onEdit={startEditing} onDelete={handleDeleteNote} />
-							))}
+							{notes &&
+								Array.isArray(notes) &&
+								notes.map(note => {
+									return <NoteCard key={note.id} note={note} onEdit={startEditing} onDelete={handleDeleteNote} />
+								})}
 						</div>
 					)}
 				</div>
