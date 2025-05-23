@@ -14,9 +14,9 @@ export default function NavItemLista({ components, label, icon }) {
 		<NavigationMenuItem>
 			<NavigationMenuTrigger
 				title={label}
-				className="flex items-center justify-center bg-[hsl(var(--primary-dark))] py-2 px-4 text-white rounded-full shadow-md h-8 w-48 text-nowrap truncate">
+				className="flex items-center justify-center bg-[hsl(var(--primary-dark))] py-2 px-4 text-white rounded-full shadow-md h-8 w-20 xl:w-40 text-nowrap truncate">
 				<span className="w-4 h-4 mr-2 flex items-center justify-center">{icon}</span>
-				<span className="truncate overflow-hidden whitespace-nowrap">{label}</span>
+				<span className="truncate overflow-hidden text-sm whitespace-nowrap hidden xl:block ">{label}</span>
 			</NavigationMenuTrigger>
 			<NavigationMenuContent>
 				<ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">

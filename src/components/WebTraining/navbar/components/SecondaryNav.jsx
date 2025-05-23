@@ -86,13 +86,6 @@ export function SecondaryNavbar({ data, activeSegment, className }) {
 						/>
 					)
 				})}
-				{/* 
-				<NavItemRegular label="Inicio" href="/#" icon={<Home className="h-4 w-4 mr-2 text-primary" />} />
-				<Separator orientation="vertical" className="h-10" />
-				<NavItemPortada label="Checklist" href="/#" icon={<Home className="h-4 w-4 mr-2 text-primary" />} />
-				<Separator orientation="vertical" className="h-10" />
-				<NavItemLista components={components} label="Scripts" icon={<Home className="h-4 w-4 mr-2 text-primary" />} />
-				<Separator orientation="vertical" className="h-10" /> */}
 			</NavigationMenuList>
 		</NavigationMenu>
 	)

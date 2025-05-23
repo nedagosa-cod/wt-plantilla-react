@@ -5,10 +5,10 @@ export default function NavItemRegular({ label, href, icon }) {
 		<NavigationMenuItem>
 			<NavigationMenuLink
 				title={label}
-				className="flex items-center justify-center bg-[hsl(var(--primary-dark))] py-1 px-4 text-white rounded-full shadow-md hover:bg-[hsl(var(--primary-light))] w-48"
+				className="flex items-center justify-center bg-[hsl(var(--primary-dark))] py-1 px-4 text-white rounded-full shadow-md hover:bg-[hsl(var(--primary-light))] w-24 xl:w-40"
 				href={href}>
-				<span className="w-4 h-4 mr-2 flex items-center justify-center">{icon}</span>
-				<span className="truncate overflow-hidden whitespace-nowrap">{label}</span>
+				<span className="w-4 h-4 mr-2 flex items-center justify-center ">{icon}</span>
+				<span className="truncate overflow-hidden whitespace-nowrap text-sm">{label}</span>
 			</NavigationMenuLink>
 		</NavigationMenuItem>
 	)
