@@ -40,13 +40,17 @@
 			"title": "Prueba bases",
 			"route": "/testbases",
 			"icon": "home",
-			"segments": ["Test Solo"]
+			"segments": [
+				"Test Solo"
+			]
 		},
 		{
 			"title": "CheckList",
 			"route": "/checklist",
 			"icon": "checklist",
-			"segments": ["Personas"],
+			"segments": [
+				"Personas"
+			],
 			"dropDown": [
 				{
 					"title": "Creación de cuenta A",
@@ -86,19 +90,25 @@
 			"title": "Gestor de notas",
 			"route": "/checklist",
 			"icon": "note",
-			"segments": ["Fidelizacion"]
+			"segments": [
+				"Fidelizacion"
+			]
 		},
 		{
 			"title": "Tipificador",
 			"route": "/tipificador",
 			"icon": "tipify",
-			"segments": ["Personas"]
+			"segments": [
+				"Personas"
+			]
 		},
 		{
 			"title": "Calculadoras",
 			"route": "/checklist",
 			"icon": "calc",
-			"segments": ["Personas"],
+			"segments": [
+				"Personas"
+			],
 			"dropDown": [
 				{
 					"title": "Estandar",
@@ -110,19 +120,25 @@
 			"title": "Aplicativos web",
 			"route": "/checklist",
 			"icon": "web",
-			"segments": ["Fidelizacion"]
+			"segments": [
+				"Fidelizacion"
+			]
 		},
 		{
 			"title": "Corrector ortográfico",
 			"route": "/checklist",
 			"icon": "textSlash",
-			"segments": ["Fidelizacion"]
+			"segments": [
+				"Fidelizacion"
+			]
 		},
 		{
 			"title": "Scripts",
 			"route": "/checklist",
 			"icon": "comments",
-			"segments": ["Fidelizacion"]
+			"segments": [
+				"Fidelizacion"
+			]
 		},
 		{
 			"title": "Consulta de documentación",
@@ -133,7 +149,9 @@
 			"title": "Consulta de información",
 			"route": "/checklist",
 			"icon": "info",
-			"segments": ["Fidelizacion"]
+			"segments": [
+				"Fidelizacion"
+			]
 		},
 		{
 			"title": "Catálogo",
@@ -144,13 +162,17 @@
 			"title": "Linea de tiempo",
 			"route": "/timeline",
 			"icon": "timeLine",
-			"segments": ["Fidelizacion"]
+			"segments": [
+				"Fidelizacion"
+			]
 		},
 		{
 			"title": "Plantilla Checklist",
 			"route": "/checklist/plantilla",
 			"icon": "checklist",
-			"segments": ["ADMIN"]
+			"segments": [
+				"ADMIN"
+			]
 		}
 	]
 }

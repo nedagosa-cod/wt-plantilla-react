@@ -43,14 +43,14 @@ const ExTextColor = Mark.create({
 		return {
 			setColor:
 				color =>
-				({ chain }) => {
-					return chain().setMark(this.name, { color }).run()
-				},
+					({ chain }) => {
+						return chain().setMark(this.name, { color }).run()
+					},
 			unsetColor:
 				() =>
-				({ chain }) => {
-					return chain().unsetMark(this.name).run()
-				},
+					({ chain }) => {
+						return chain().unsetMark(this.name).run()
+					},
 		}
 	},
 })

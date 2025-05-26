@@ -9,8 +9,8 @@ export default function MenuBar({ editor }) {
 		right: 'Derecha',
 		justify: 'Justificado',
 	}
-	const [listening, setListening] = useState(false) // Estado para saber si el micrófono está en uso
 
+	const [listening, setListening] = useState(false)
 	const [isHeadingDropdownOpen, setHeadingDropdownOpen] = useState(false)
 	const [isListDropdownOpen, setListDropdownOpen] = useState(false)
 	const [isJustifyDropdownOpen, setIsJustifyDropdownOpen] = useState(false)
@@ -19,26 +19,16 @@ export default function MenuBar({ editor }) {
 	const [nameFontFamily, setNameFontFamily] = useState('font-Ubuntu')
 	const [nameFontSize, setNameFontSize] = useState('14px')
 	const [nameTextAlign, setNameTextAlign] = useState('Izquierda')
-	const [nameHeading, setNameHeading] = useState('H')
 	const [selectedColor, setSelectedColor] = useState('#000000')
 	const [selectedHighlightColor, setSelectedHighlightColor] = useState('#FFFFFF')
 
 	const FontFamilyRef = useRef(null)
-	const headingDropdownRef = useRef(null)
-	const listDropdownRef = useRef(null)
 	const fontSizeDropdownRef = useRef(null)
 	const highlightInputRef = useRef(null)
 	const colorInputRef = useRef(null)
 	const justifyDropdownRef = useRef(null)
 
-	const toggleDropdown = setter => e => {
-		e.preventDefault()
-		console.log('toggleDropdown')
-		setter(prev => !prev)
-	}
-
 	const closeAllDropdowns = () => {
-		console.log('closeAllDropdowns')
 		setHeadingDropdownOpen(false)
 		setListDropdownOpen(false)
 		setFontSizeDropdownOpen(false)
@@ -48,325 +38,200 @@ export default function MenuBar({ editor }) {
 
 	const handleClickOutside = e => {
 		if (
-			headingDropdownRef.current &&
-			!headingDropdownRef.current.contains(e.target) &&
-			listDropdownRef.current &&
-			!listDropdownRef.current.contains(e.target) &&
-			fontSizeDropdownRef.current &&
-			!fontSizeDropdownRef.current.contains(e.target) &&
-			highlightInputRef.current &&
-			!highlightInputRef.current.contains(e.target) &&
-			colorInputRef.current &&
-			!colorInputRef.current.contains(e.target) &&
-			justifyDropdownRef.current &&
-			!justifyDropdownRef.current.contains(e.target) &&
-			FontFamilyRef.current &&
-			!FontFamilyRef.current.contains(e.target)
+			![FontFamilyRef.current, fontSizeDropdownRef.current, highlightInputRef.current, colorInputRef.current, justifyDropdownRef.current].some(
+				ref => ref?.contains(e.target)
+			)
 		) {
-			console.log('handleClickOutside')
 			closeAllDropdowns()
 		}
 	}
 
-	// Comando para cambiar el tamaño de la fuente
 	const setFontSize = size => {
 		editor.chain().focus().setFontSize(`${size}px`).run()
 		setNameFontSize(`${size}px`)
+		setFontSizeDropdownOpen(false)
 	}
+
 	const setFontFamily = family => {
 		editor.chain().focus().setFontFamily(family).run()
 		setNameFontFamily(family)
-	}
-	const handleOpenColorPicker = () => {
-		colorInputRef.current.click()
-	}
-	const handleColorChange = event => {
-		const color = event.target.value
-		setSelectedColor(color)
-		editor.chain().focus().setColor(color).run() // Aplica el color seleccionado
-	}
-	// Función que abre el selector de color cuando se hace clic en el div
-	const handleOpenHighlightPicker = () => {
-		highlightInputRef.current.click()
+		setFontFamilyDropdownOpen(false)
 	}
 
-	// Función que aplica el color de resaltado
-	const handleHighlightChange = event => {
-		const color = event.target.value
+	const handleColorChange = e => {
+		const color = e.target.value
+		setSelectedColor(color)
+		editor.chain().focus().setColor(color).run()
+	}
+
+	const handleHighlightChange = e => {
+		const color = e.target.value
 		setSelectedHighlightColor(color)
-		editor.chain().focus().setHighlight({ color }).run() // Aplica el color de highlight seleccionado
+		editor.chain().focus().setHighlight({ color }).run()
 	}
 
 	const setAlign = align => {
 		setNameTextAlign(alignTranslate[align])
-		console.log(align)
 		editor.chain().focus().setTextAlign(align).run()
+		setIsJustifyDropdownOpen(false)
 	}
+
 	const startRecognition = () => {
 		const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
-
 		if (!SpeechRecognition) {
 			alert('El reconocimiento de voz no es compatible con este navegador.')
 			return
 		}
 
-		const newRecognition = new SpeechRecognition()
-		newRecognition.lang = 'es-ES' // Puedes cambiar el idioma aquí
-		newRecognition.interimResults = false
-		newRecognition.maxAlternatives = 1
-
-		// Iniciar el reconocimiento
-		newRecognition.start()
+		const recognition = new SpeechRecognition()
+		recognition.lang = 'es-ES'
+		recognition.interimResults = false
+		recognition.maxAlternatives = 1
+		recognition.start()
 		setListening(true)
 
-		newRecognition.onresult = event => {
-			const speechResult = event.results[0][0].transcript
-			editor.chain().focus().insertContent(speechResult).run() // Inserta el texto en el editor
+		recognition.onresult = event => {
+			const text = event.results[0][0].transcript
+			editor.chain().focus().insertContent(text).run()
 		}
 
-		newRecognition.onend = () => {
-			setListening(false)
-		}
-
-		newRecognition.onerror = event => {
-			console.error('Error en el reconocimiento de voz:', event.error)
-			setListening(false)
-		}
+		recognition.onend = () => setListening(false)
+		recognition.onerror = () => setListening(false)
 	}
 
 	const handleCopy = () => {
-		navigator.clipboard
-			.writeText(editor.getText())
-			.then(() =>
-				Swal.fire({
-					title: 'Contenido copiado',
-					icon: 'success',
-					toast: true,
-					position: 'top-end',
-					showConfirmButton: false,
-					timer: 2000,
-					timerProgressBar: true,
-				})
-			)
-			.catch(err => console.error('Error al copiar:', err))
+		navigator.clipboard.writeText(editor.getText()).then(() =>
+			Swal.fire({
+				title: 'Contenido copiado',
+				icon: 'success',
+				toast: true,
+				position: 'top-end',
+				showConfirmButton: false,
+				timer: 2000,
+				timerProgressBar: true,
+			})
+		)
 	}
-	if (!editor) {
-		return null
-	}
+
 	useEffect(() => {
-		console.log('useEffect')
 		document.addEventListener('mousedown', handleClickOutside)
-		document.querySelector('.tiptap').parentNode.className = 'tiptap-parent'
 		return () => document.removeEventListener('mousedown', handleClickOutside)
 	}, [])
+
+	if (!editor) return null
+
+	const baseBtn = "p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700"
+	const activeBtn = "bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-white"
+
 	return (
-		<div className="corrector-container__toolbar">
-			<div className="corrector-container__toolbar--buttons">
-				{/* Botones de formato */}
+		<div className="flex flex-wrap justify-center gap-2 p-3 border-b border-gray-300 dark:border-gray-700 bg-background shadow-sm rounded-xl">
+			{/* Formatting Buttons */}
+			{[
+				{ cmd: 'toggleBold', icon: 'ri-bold', active: editor.isActive('bold') },
+				{ cmd: 'toggleItalic', icon: 'ri-italic', active: editor.isActive('italic') },
+				{ cmd: 'toggleStrike', icon: 'ri-strikethrough', active: editor.isActive('strike') },
+				{ cmd: 'toggleUnderline', icon: 'ri-underline', active: editor.isActive('underline') },
+			].map(({ cmd, icon, active }) => (
 				<button
-					onMouseDown={() => editor.chain().focus().toggleBold().run()}
-					className={editor.isActive('bold') ? 'toolbar-active' : ''}>
-					<i className="ri-bold"></i>
+					key={cmd}
+					onClick={() => editor.chain().focus()[cmd]().run()}
+					className={`p-2 rounded-md transition-all duration-200 ease-in-out transform hover:scale-105 hover:bg-gray-200 dark:hover:bg-gray-700 ${active ? 'bg-blue-100 text-blue-600 dark:bg-blue-800 dark:text-white' : 'text-gray-700 dark:text-gray-200'
+						}`}
+				>
+					<i className={`${icon} text-lg`}></i>
 				</button>
-				<button
-					onMouseDown={() => editor.chain().focus().toggleItalic().run()}
-					className={editor.isActive('italic') ? 'toolbar-active' : ''}>
-					<i className="ri-italic"></i>
-				</button>
-				<button
-					onMouseDown={() => editor.chain().focus().toggleStrike().run()}
-					className={editor.isActive('strike') ? 'toolbar-active' : ''}>
-					<i className="ri-strikethrough"></i>
-				</button>
-				<button
-					onClick={() => editor.chain().focus().toggleUnderline().run()}
-					className={editor.isActive('underline') ? 'toolbar-active' : ''}>
-					<i className="ri-underline"></i>
-				</button>
-				<span className="separator-dropdown"></span>
-				<div
-					className={editor.isActive('textColor') ? 'color-picker toolbar-active' : 'color-picker'}
-					style={{ marginRight: '8px' }}>
-					{/* Icono de paleta de colores */}
-					<div
-						onClick={handleOpenColorPicker} // Al hacer clic, abre el selector de color
-						style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center' }}
-						title="Seleccionar color">
-						<i className="ri-palette-line" style={{ fontSize: '16px' }}></i>
+			))}
+
+			{/* Color Picker */}
+			{[{ ref: colorInputRef, handler: handleColorChange, color: selectedColor, icon: 'ri-palette-line' },
+			{ ref: highlightInputRef, handler: handleHighlightChange, color: selectedHighlightColor, icon: 'ri-mark-pen-line' }]
+				.map(({ ref, handler, color, icon }, idx) => (
+					<div key={idx} className="relative">
+						<button
+							onClick={() => ref.current.click()}
+							className="p-2 rounded-md transition hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200"
+						>
+							<i className={`${icon} text-lg`}></i>
+						</button>
+						<input
+							type="color"
+							ref={ref}
+							value={color}
+							onChange={handler}
+							className="absolute top-0 left-0 w-0 h-0 opacity-0"
+						/>
 					</div>
+				))}
 
-					{/* Input de tipo color, está oculto */}
-					<input
-						type="color"
-						ref={colorInputRef}
-						value={selectedColor}
-						onChange={handleColorChange}
-						style={{ width: '20px', height: '20px' }} // Escondemos el input de color
-					/>
-				</div>
-				{/* texto resaltado */}
-				<div className={editor.isActive('highlight') ? 'highlight-color toolbar-active' : 'highlight-color'}>
-					<div
-						onClick={handleOpenHighlightPicker} // Al hacer clic, abre el selector de color
-						style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center' }}
-						title="Seleccionar color de resaltado">
-						<i className="ri-mark-pen-line" style={{ fontSize: '16px' }}></i>{' '}
-						{/* Puedes cambiar el icono si prefieres otro */}
-					</div>
-
-					<input
-						type="color"
-						ref={highlightInputRef}
-						value={selectedHighlightColor}
-						onChange={handleHighlightChange}
-						style={{ width: '20px', height: '20px' }}
-					/>
-				</div>
-				<span className="separator-dropdown"></span>
-				{/* Dropdown para Tipografía */}
-				<div className="dropdown-container" ref={FontFamilyRef}>
-					<button className="dropdown-button tipography" onMouseDown={toggleDropdown(setFontFamilyDropdownOpen)}>
-						<span>{nameFontFamily.split('-')[1]}</span> <span className="arrow-down">▼</span>
+			{/* Dropdowns */}
+			{[
+				{
+					name: nameFontFamily.split('-')[1],
+					isOpen: isFontFamilyDropdownOpen,
+					toggle: () => setFontFamilyDropdownOpen(prev => !prev),
+					ref: FontFamilyRef,
+					list: [
+						'font-Arial', 'font-Verdana', 'font-Helvetica', 'font-Tahoma',
+						'font-Georgia', 'font-TimesNewRoman', 'font-CourierNew',
+						'font-TrebuchetMS', 'font-ComicSansMS', 'font-Impact', 'font-Ubuntu'
+					],
+					onClick: setFontFamily
+				},
+				{
+					name: nameFontSize,
+					isOpen: isFontSizeDropdownOpen,
+					toggle: () => setFontSizeDropdownOpen(prev => !prev),
+					ref: fontSizeDropdownRef,
+					list: [12, 14, 16, 18, 24, 32, 48].map(size => `${size}px`),
+					onClick: size => setFontSize(parseInt(size))
+				},
+				{
+					name: nameTextAlign,
+					isOpen: isJustifyDropdownOpen,
+					toggle: () => setIsJustifyDropdownOpen(prev => !prev),
+					ref: justifyDropdownRef,
+					list: ['left', 'center', 'right', 'justify'],
+					onClick: setAlign,
+					translate: alignTranslate
+				},
+			].map(({ name, isOpen, toggle, ref, list, onClick, translate }, i) => (
+				<div key={i} className="relative" ref={ref}>
+					<button onClick={toggle} className="p-2 rounded-md flex items-center gap-1 transition hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200">
+						<span className="text-sm">{name}</span>
+						<i className="ri-arrow-down-s-line text-md"></i>
 					</button>
-					{isFontFamilyDropdownOpen && (
-						<div className="dropdown-content">
-							{[
-								'font-Arial',
-								'font-Verdana',
-								'font-Helvetica',
-								'font-Tahoma',
-								'font-Georgia',
-								'font-TimesNewRoman',
-								'font-CourierNew',
-								'font-TrebuchetMS',
-								'font-ComicSansMS',
-								'font-Impact',
-								'font-Ubuntu',
-							].map(fontClass => (
+					{isOpen && (
+						<div className="absolute z-20 mt-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md shadow-lg w-40 overflow-hidden animate-fade-in">
+							{list.map((item, idx) => (
 								<button
-									key={fontClass}
-									onMouseDown={() => {
-										setFontFamily(fontClass)
-										setFontFamilyDropdownOpen(false)
-									}}
-									className={
-										editor.isActive('textStyle', { fontFamily: fontClass }) ? 'toolbar-active' : '' + ' ' + fontClass
-									}>
-									{fontClass.split('-')[1]}
+									key={idx}
+									onClick={() => onClick(item)}
+									className="w-full px-4 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition"
+								>
+									{translate ? translate[item] : item.split('-')[1] || item}
 								</button>
 							))}
 						</div>
 					)}
 				</div>
-				{/* Dropdown para Tamaño de Fuente */}
-				<div className="dropdown-container" ref={fontSizeDropdownRef}>
-					<button className="dropdown-button" onMouseDown={toggleDropdown(setFontSizeDropdownOpen)}>
-						<span>{nameFontSize}</span> <span className="arrow-down">▼</span>
-					</button>
-					{isFontSizeDropdownOpen && (
-						<div className="dropdown-content">
-							{[12, 14, 16, 18, 20, 24, 32].map(size => (
-								<button
-									key={size}
-									onMouseDown={() => {
-										setFontSize(size) // Aplicar tamaño de fuente
-										closeAllDropdowns()
-									}}
-									className={editor.isActive('textStyle', { fontSize: `${size}px` }) ? 'toolbar-active' : ''}>
-									{size}px
-								</button>
-							))}
-						</div>
-					)}
-				</div>
-				{/* Dropdown para Encabezados */}
-				<div className="dropdown-container" ref={headingDropdownRef}>
-					<button className="dropdown-button" onMouseDown={toggleDropdown(setHeadingDropdownOpen)}>
-						<span>{nameHeading}</span> <span className="arrow-down">▼</span>
-					</button>
-					{isHeadingDropdownOpen && (
-						<div className="dropdown-content">
-							{[1, 2, 3, 4, 5, 6].map(level => (
-								<button
-									key={level}
-									onMouseDown={() => {
-										editor.chain().focus().toggleHeading({ level }).run()
-										setNameHeading(<i className={'ri-h-' + level}></i>)
-										closeAllDropdowns()
-									}}
-									className={editor.isActive('heading', { level }) ? 'toolbar-active' : ''}>
-									<i className={'ri-h-' + level}></i>
-								</button>
-							))}
-						</div>
-					)}
-				</div>
+			))}
 
-				{/* Dropdown para Listas */}
-				<div className="dropdown-container" ref={listDropdownRef}>
-					<button className="dropdown-button" onMouseDown={toggleDropdown(setListDropdownOpen)}>
-						<span>Listas</span> <span className="arrow-down">▼</span>
-					</button>
-					{isListDropdownOpen && (
-						<div className="dropdown-content">
-							<button
-								onMouseDown={() => {
-									editor.chain().focus().toggleBulletList().run()
-									closeAllDropdowns()
-								}}
-								className={editor.isActive('bulletList') ? 'toolbar-active' : ''}>
-								<i className="ri-list-check"></i> Lista desordenada
-							</button>
-							<button
-								onMouseDown={() => {
-									editor.chain().focus().toggleOrderedList().run()
-									closeAllDropdowns()
-								}}
-								className={editor.isActive('orderedList') ? 'toolbar-active' : ''}>
-								<i className="ri-list-ordered-2"></i> Lista ordenada
-							</button>
-						</div>
-					)}
-				</div>
-				<span className="separator-dropdown"></span>
+			{/* Mic */}
+			<button
+				onClick={startRecognition}
+				className={`p-2 rounded-md transition hover:bg-gray-200 dark:hover:bg-gray-700 ${listening ? 'text-red-500' : 'text-gray-700 dark:text-gray-200'}`}
+			>
+				<i className="ri-mic-line text-lg"></i>
+			</button>
 
-				<span className="separator-dropdown"></span>
-				{/* Justificacion de textos */}
-				<div className="dropdown-container" ref={justifyDropdownRef}>
-					<button className="dropdown-button" onMouseDown={toggleDropdown(setIsJustifyDropdownOpen)}>
-						<span>Alineción: {nameTextAlign}</span> <span className="arrow-down">▼</span>
-					</button>
-					{isJustifyDropdownOpen && (
-						<div className="dropdown-content">
-							{['left', 'center', 'right', 'justify'].map(align => (
-								<button
-									key={align}
-									onMouseDown={() => {
-										setAlign(align)
-										closeAllDropdowns()
-									}}
-									style={{ cursor: 'pointer' }}>
-									<i className={'ri-align-' + align}></i>&nbsp;
-									<span>{alignTranslate[align]} </span>
-								</button>
-							))}
-						</div>
-					)}
-				</div>
-				{/* Botón para activar el reconocimiento de voz */}
-				<button
-					onClick={startRecognition}
-					disabled={listening} // Desactiva el botón mientras se escucha
-					title="Reconocimiento de voz"
-					style={{ cursor: 'pointer' }}>
-					{listening ? <i className="ri-mic-fill"></i> : <i className="ri-mic-line"></i>}
-					{listening ? ' Escuchando...' : ' Voz a texto'}
-				</button>
-				{/* Botón para Copiar contenido */}
-				<button onClick={handleCopy}>
-					<i className="ri-file-copy-line"></i>
-				</button>
-			</div>
+			{/* Copy */}
+			<button
+				onClick={handleCopy}
+				className="p-2 rounded-md transition hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200"
+			>
+				<i className="ri-file-copy-line text-lg"></i>
+			</button>
 		</div>
+
 	)
 }

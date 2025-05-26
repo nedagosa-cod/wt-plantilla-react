@@ -37,9 +37,9 @@ const ExFontFamily = Extension.create({
 		return {
 			setFontFamily:
 				family =>
-				({ chain }) => {
-					return chain().setMark('textStyle', { fontFamily: family }).run()
-				},
+					({ chain }) => {
+						return chain().setMark('textStyle', { fontFamily: family }).run()
+					},
 		}
 	},
 })

@@ -14,6 +14,7 @@
 	background-size: contain;
 	background-repeat: no-repeat;
 	background: white;
+
 	&.hide {
 		display: none;
 	}
@@ -69,14 +70,18 @@
 		justify-content: center;
 		align-items: center;
 		width: 50%;
+		width: 50%;
+		max-width: 600px;
+		height: 40%;
+		max-height: 450px;
 	}
 
 	& .form {
 		display: flex;
 		flex-direction: column;
 		gap: 4px;
-		max-width: 460px;
-		padding: 20px;
+
+		padding: 15px;
 		position: relative;
 		text-align: center;
 		background: conic-gradient(from 90deg at 2px 2px, #0000 25%, #292c35 0) -1px -1px,
@@ -84,7 +89,6 @@
 			linear-gradient(45deg, #292c35 15%, #2c2f38 0 28%, #0000 0 72%, #2c2f38 0 85%, #292c35 0),
 			conic-gradient(from 90deg at 40% 40%, #292c35 25%, #2c2f38 0) calc(47px / -5) calc(47px / -5);
 		background-size: 47px 47px;
-
 		color: $w-color;
 		border: 1px solid $g-color;
 		border-radius: 1.4rem;
@@ -93,13 +97,16 @@
 		-ms-border-radius: 1.4rem;
 		-o-border-radius: 1.4rem;
 		box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+
+
 		& .title-top {
-			font-size: 4.4rem;
+			font-size: 3.1rem;
 			font-weight: 600;
 			letter-spacing: 2px;
 			position: relative;
-			color: $s-color;
+			color: #ff6d00;
 		}
+
 		& .title {
 			font-size: 2rem;
 			font-weight: 600;
@@ -121,7 +128,7 @@
 
 		& .message,
 		.signin {
-			font-size: 12px;
+			font-size: 13px;
 			color: $w-color;
 			margin-bottom: 1rem;
 		}
@@ -147,10 +154,12 @@
 		& .input {
 			font-size: medium;
 			text-align: center;
+
 			&.cc {
-				font-size: 4rem;
+				font-size: 2rem;
 			}
 		}
+
 		& input[type='number']::-webkit-outer-spin-button,
 		input[type='number']::-webkit-inner-spin-button {
 			-webkit-appearance: none;
@@ -167,12 +176,16 @@
 			transform: 0.3s ease;
 			background-color: $p-color;
 			margin-top: 1rem;
+
 			&:hover {
 				background-color: $p3-color;
 			}
 		}
+
 		& .inputs-block {
 			display: flex;
+			justify-content: center;
+			align-items: center;
 			gap: 1rem;
 		}
 	}
@@ -189,7 +202,7 @@
 			border: 1px solid rgba(105, 105, 105, 0.397);
 			border-radius: 10px;
 
-			& + span {
+			&+span {
 				color: $g-color;
 				position: absolute;
 				left: 10px;
@@ -199,15 +212,15 @@
 				transition: 0.3s ease;
 			}
 
-			&:placeholder-shown + span {
+			&:placeholder-shown+span {
 				top: 17.5px;
 				font-size: 0.9em;
 			}
 		}
 	}
 
-	& .form label .input:focus + span,
-	.form label .input:valid + span {
+	& .form label .input:focus+span,
+	.form label .input:valid+span {
 		color: $g-color;
 		top: 4px;
 		font-size: 1.2rem;
@@ -219,75 +232,87 @@
 	justify-content: center;
 	flex-direction: column;
 	align-items: center;
-	gap: 2rem;
+	gap: 1rem;
 	position: fixed;
 	top: 0;
 	left: 0;
 	width: 50%;
 	max-width: 600px;
+	height: 45%;
+	max-height: 5000px;
 	margin: auto;
 	border: none;
 	z-index: 1000;
-	font-size: 2rem;
 	color: black;
 	text-align: center;
-	padding: 2rem 3rem;
+	padding: 1rem 1rem;
 	border-radius: 0.8rem;
 	-webkit-border-radius: 0.8rem;
 	-moz-border-radius: 0.8rem;
 	-ms-border-radius: 0.8rem;
 	-o-border-radius: 0.8rem;
+
 	&[open] {
 		display: flex;
 	}
+
 	&::backdrop {
 		background-color: rgba(0, 0, 0, 0.5);
 	}
+
 	&--icons {
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		width: 100%;
+
 		& svg {
 			display: none;
-			width: 80px;
+			width: 50px;
+
 			&.show {
 				display: block;
 			}
 		}
 	}
+
 	&--title {
-		font-size: 3.8rem;
+		font-size: 2.5rem;
 		font-weight: 600;
 		color: #161616;
 	}
+
 	&--text {
-		font-size: 1.8rem;
+		font-size: 1.4rem;
 		font-weight: 400;
 		color: #161616;
 	}
+
 	&--buttons {
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		width: 100%;
+
 		&.hide {
 			display: none;
 		}
+
 		& .aceptar {
 			cursor: pointer;
 			background-color: #0044ff;
 			border: none;
 			color: white;
-			padding: 1rem 2rem;
+			padding: 0.5rem 2rem;
 			text-align: center;
 			text-decoration: none;
 			display: inline-block;
-			font-size: 1.6rem;
+			font-size: 1.4rem;
 			border-radius: 0.8rem;
 			-webkit-border-radius: 0.8rem;
 		}
 	}
+
 	& .loader {
 		--path: #2f3545;
 		--dot: #5628ee;
@@ -430,6 +455,7 @@
 	& .loader {
 		display: inline-block;
 		margin: 0 16px;
+
 		&.hide {
 			display: none;
 		}

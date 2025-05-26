@@ -1,9 +1,7 @@
 import '@styles/app.scss'
 import { Routes, Route } from 'react-router-dom'
-
 import imgCtrlAccesss from './assets/images/index/sessionBackground.jpg'
 import imgSectionPage from './assets/images/index/backApp.jpg'
-
 import dataNavbar from './components/Navbar/dataNavbar.json'
 import Bienvenida from './components/Bienvenida/Bienvenida'
 import Corrector from './components/Corrector/Corrector'
@@ -41,6 +39,7 @@ const App = () => {
 			}
 		}
 	})
+
 	return (
 		<div className="flex flex-col-reverse h-dvh bg-cover bg-center relative">
 			<div className="absolute inset-0 -z-10 h-full w-full bg-background bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:6rem_4rem]">
