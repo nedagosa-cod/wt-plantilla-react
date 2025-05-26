@@ -40,8 +40,15 @@ export function NotesSheet() {
 
 	// Actualizar una nota en Localbase
 	const handleUpdateNote = updatedNote => {
-		console.log(updatedNote)
 		notesCollection.collection('MisNotas').doc({ id: updatedNote.id }).set(updatedNote)
+		setNotes(prev => {
+			return prev.map(note => {
+				if (note.id === updatedNote.id) {
+					return updatedNote
+				}
+				return note
+			})
+		})
 		setEditingNote(null)
 	}
 
