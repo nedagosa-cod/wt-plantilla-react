@@ -49,9 +49,9 @@ export default function Bienvenida() {
 	}
 	return (
 		<div className="flex items-center h-full w-full text-foreground bg-cover bg-center" style={style}>
-			<section className="flex flex-col gap-1 ml-6 w-[40.333%] bg-red p-1 rounded-lg">
-				<div className="text-sm text-muted-foreground w-full shadow-[2px_2px_4px_rgba(0,0,0,0.6)]">
-					<p className="flex items-center justify-center p-2 shadow-[2px_2px_4px_rgba(0,0,0,0.6)] bg-background">
+			<section className="flex flex-col gap-1 ml-6 w-2/5 bg-red p-1 rounded-lg">
+				<div className="text-sm text-muted-foreground w-full shadow-md">
+					<p className="flex items-center justify-center p-2 shadow- bg-background">
 						<div className="relative w-16 h-12 bg-white dark:bg-neutral-900 rounded-md shadow-lg overflow-hidden border border-gray-300 dark:border-neutral-700">
 							{/* Cubierta izquierda (simula contenido del libro) */}
 							<div className="absolute inset-0 px-1 py-1 flex flex-col justify-between z-0">
@@ -71,11 +71,9 @@ export default function Bienvenida() {
 							</div>
 						</div>
 
-
 						<span className="font-black text-2xl md:text-3xl px-2 py-1 rounded tracking-widest text-soft">
 							Noticias
 						</span>
-
 					</p>
 				</div>
 				<ImageSlider slides={imageSlides} autoPlayInterval={4000} className="shadow-xl" />
