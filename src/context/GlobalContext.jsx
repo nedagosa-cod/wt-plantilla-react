@@ -12,7 +12,7 @@ const GlobalProvider = ({ children }) => {
 	const [admin, setAdmin] = useState(false)
 	const [activeAppNote, SetActiveAppNote] = useState(false)
 
-	const templatesDDBB = ['arbol', 'ejemplo']
+	const templatesDDBB = ['arbol', 'ejemplo', 'notas']
 	const maps = {
 		ejemplo: {
 			CODIGO: 'codigo',
