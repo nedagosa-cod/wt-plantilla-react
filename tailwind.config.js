@@ -68,7 +68,7 @@ module.exports = {
 						height: '0',
 					},
 				},
-				animate: {
+				'fly-out': {
 					'0%': {
 						transform: 'translateY(0) rotate(0deg)',
 						opacity: '1',
@@ -80,13 +80,18 @@ module.exports = {
 						borderRadius: '50%',
 					},
 				},
+				'bounce-soft': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-4px)' },
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				floating: 'animate 25s linear infinite',
-				'floating-slow': 'animate 35s linear infinite',
-				'floating-slower': 'animate 45s linear infinite',
+				'flying': 'fly-out 25s linear infinite',
+				'flying-slow': 'fly-out 35s linear infinite',
+				'flying-slower': 'fly-out 45s linear infinite',
+				'bounce-soft': 'bounce-soft 2s ease-in-out infinite',
 			},
 		},
 	},

@@ -1,4 +1,5 @@
 @use '../../styles/variables' as *;
+
 .slider-container {
 	position: relative;
 	// right: -1rem;
@@ -23,10 +24,12 @@
 		text-align: center;
 		background: rgba(0, 0, 0, 0.2);
 		color: #fff;
+
 		&.zoom {
 			display: none;
 		}
 	}
+
 	&__footer {
 		display: flex;
 		text-align: center;
@@ -35,30 +38,37 @@
 		padding: 1.2rem;
 		width: 100%;
 		font-size: 1.8rem;
+
 		&--button {
 			height: 100%;
 			cursor: pointer;
 			color: #b8b8b8;
 		}
 	}
+
 	& .my-dots {
 		& li {
 			width: 60px;
 		}
 	}
+
 	& .slick-arrow {
 		background: rgb(119, 119, 119);
 		z-index: 8;
 		height: 100%;
 		opacity: 0.4;
+
 		&.slick-prev {
 			left: 0;
+
 			&::before {
 				content: '⇤';
 			}
 		}
+
 		&.slick-next {
 			right: 0;
+
 			&::before {
 				content: '⇥';
 			}
@@ -68,6 +78,7 @@
 			opacity: 1;
 		}
 	}
+
 	& .slick-list {
 		&:hover {
 			&::before {
@@ -90,6 +101,7 @@
 			}
 		}
 	}
+
 	&.zoom {
 		position: absolute;
 		top: 0;
@@ -100,10 +112,12 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+
 		& .slick-slider {
 			max-width: 1366px;
 			width: 95%;
 		}
+
 		& .slick-list {
 			&:hover {
 				&::before {
@@ -112,19 +126,66 @@
 			}
 		}
 	}
+
 	& svg {
 		width: 54px;
+
 		.st1 {
 			opacity: 0.2;
 		}
+
 		.st2 {
 			fill: #231f20;
 		}
+
 		.st3 {
 			fill: #e0e0d1;
 		}
+
 		.st4 {
 			fill: #4f5d73;
+		}
+	}
+}
+
+.slider-container__title {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 20px;
+
+	// Estilos para el SVG del título de noticias
+	.news-title-svg {
+		width: 80px; // Ajusta el tamaño según necesites
+		height: 20px; // Ajusta el tamaño según necesites
+
+		text {
+			font-size: 14px; // Ajusta el tamaño del texto según necesites
+			font-weight: bold;
+			// Aquí aplicaremos la animación
+			animation: pulse 2s infinite ease-in-out;
+		}
+	}
+
+	// Definición de la animación de pulsación
+	@keyframes pulse {
+
+		0%,
+		100% {
+			opacity: 1;
+		}
+
+		50% {
+			opacity: 0.5;
+		}
+	}
+}
+
+// antes de 1366px ejecuta estos estilos
+@media only screen and (max-width: 1366px) {
+	.app {
+		& .welcome {
+			// ... existing code ...
 		}
 	}
 }

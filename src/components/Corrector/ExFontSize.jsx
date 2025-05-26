@@ -37,9 +37,9 @@ const ExFontSize = Extension.create({
 		return {
 			setFontSize:
 				size =>
-				({ chain }) => {
-					return chain().setMark('textStyle', { fontSize: size }).run()
-				},
+					({ chain }) => {
+						return chain().setMark('textStyle', { fontSize: size }).run()
+					},
 		}
 	},
 })

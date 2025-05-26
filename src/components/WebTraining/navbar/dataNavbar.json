@@ -36,14 +36,18 @@
 			"title": "Tets",
 			"route": "/testeos",
 			"icon": "home",
-			"segments": ["Testeos"]
+			"segments": [
+				"Testeos"
+			]
 		},
 		{
 			"title": "CheckList",
 			"route": "/checklist",
 			"icon": "checklist",
 			"portada": true,
-			"segments": ["Personas"],
+			"segments": [
+				"Personas"
+			],
 			"dropDown": [
 				{
 					"title": "Creación de cuenta A",
@@ -98,19 +102,25 @@
 			"title": "Gestor de notas",
 			"route": "/checklist",
 			"icon": "note",
-			"segments": ["Fidelizacion"]
+			"segments": [
+				"Fidelizacion"
+			]
 		},
 		{
 			"title": "Tipificador",
 			"route": "/tipificador",
 			"icon": "tipify",
-			"segments": ["Personas"]
+			"segments": [
+				"Personas"
+			]
 		},
 		{
 			"title": "Calculadoras",
 			"route": "/checklist",
 			"icon": "calc",
-			"segments": ["Personas"],
+			"segments": [
+				"Personas"
+			],
 			"dropDown": [
 				{
 					"title": "Estandar",
@@ -138,7 +148,9 @@
 			"title": "Aplicativos web",
 			"route": "/apps-web",
 			"icon": "web",
-			"segments": ["Fidelizacion"],
+			"segments": [
+				"Fidelizacion"
+			],
 			"dropDown": [
 				{
 					"title": "Atento",
@@ -176,13 +188,17 @@
 			"title": "Corrector ortográfico",
 			"route": "/checklist",
 			"icon": "textSlash",
-			"segments": ["Fidelizacion"]
+			"segments": [
+				"Fidelizacion"
+			]
 		},
 		{
 			"title": "Scripts",
 			"route": "/checklist",
 			"icon": "comments",
-			"segments": ["Fidelizacion"]
+			"segments": [
+				"Fidelizacion"
+			]
 		},
 		{
 			"title": "Consulta de documentación",
@@ -193,7 +209,9 @@
 			"title": "Consulta de información",
 			"route": "/checklist",
 			"icon": "info",
-			"segments": ["Fidelizacion"]
+			"segments": [
+				"Fidelizacion"
+			]
 		},
 		{
 			"title": "Catálogo",
@@ -204,13 +222,17 @@
 			"title": "Linea de tiempo",
 			"route": "/timeline",
 			"icon": "timeLine",
-			"segments": ["Personas"]
+			"segments": [
+				"Personas"
+			]
 		},
 		{
 			"title": "Plantilla Checklist",
 			"route": "/checklist/plantilla",
 			"icon": "checklist",
-			"segments": ["ADMIN"]
+			"segments": [
+				"ADMIN"
+			]
 		}
 	]
 }

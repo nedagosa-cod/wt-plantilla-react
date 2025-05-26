@@ -22,14 +22,18 @@
 		-moz-border-radius: 12px;
 		-ms-border-radius: 12px;
 		-o-border-radius: 12px;
+
 		&::-webkit-scrollbar {
 			width: 4px;
-			background-color: $p-color; /* or add it to the track */
+			background-color: $p-color;
+			/* or add it to the track */
 		}
+
 		&::-webkit-scrollbar-thumb {
 			background: $s-color;
 		}
 	}
+
 	& .welcome {
 		display: flex;
 		align-items: center;
@@ -41,14 +45,17 @@
 		background-size: cover;
 		background-repeat: no-repeat;
 		background-position: center;
+
 		& span {
 			display: block;
 			font-size: 6rem;
 			color: $p-color;
+
 			& strong {
 				font-size: 8rem;
 				color: $p2-color;
 			}
+
 			&:nth-child(2) {
 				margin-bottom: 2rem;
 			}
@@ -69,6 +76,7 @@
 			align-items: center;
 			justify-content: center;
 			padding-left: 2rem;
+
 			&.news {
 				position: static;
 				bottom: 0;
@@ -85,29 +93,37 @@
 			font-size: 1rem;
 		}
 	}
+
 	& .dato-buscado {
 		&.hide {
 			display: none;
 		}
 	}
+
 	&.h {
 		flex-direction: column;
+
 		& .welcome {
 			height: 100%;
 		}
+
 		& .checklist-container {
 			height: 100%;
 		}
+
 		& .tipificador-container {
 			height: 100%;
 			padding: 0;
+
 			& .tipificador {
 				height: auto;
 			}
 		}
+
 		&.corrector-ortografico {
 			height: 100%;
 		}
+
 		& .app__body {
 			overflow: hidden;
 			width: 98%;
@@ -129,14 +145,18 @@
 	.app {
 		& .welcome {
 			background-size: auto 100%;
+
 			& span {
 				font-size: 4.8rem;
 			}
+
 			& p {
 				font-size: 1.8rem;
 			}
+
 			&__content {
 				width: 40%;
+
 				&.news {
 					width: 50%;
 				}
@@ -144,6 +164,7 @@
 		}
 	}
 }
+
 @media only screen and (max-width: 920px) {
 	.app {
 		& .welcome {
@@ -152,4 +173,39 @@
 			}
 		}
 	}
+}
+
+@keyframes page-flip {
+
+	0%,
+	100% {
+		transform: rotateY(0deg);
+		z-index: 10;
+	}
+
+	50% {
+		transform: rotateY(-160deg);
+		z-index: 20;
+	}
+}
+
+.animate-page-flip {
+	animation: page-flip 2.5s infinite ease-in-out;
+	backface-visibility: hidden;
+}
+
+@keyframes bounce {
+
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+
+	50% {
+		transform: translateY(-5px);
+	}
+}
+
+.animate-bounce {
+	animation: bounce 1s infinite;
 }
