@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import './styles.scss'
 import CheckListContext from '../../../context/ChecklistContext'
 import GlobalContext from '../../../context/GlobalContext'
@@ -8,11 +8,18 @@ const RightSide = ({ descripciones }) => {
 	const { checkSelected, refRightSide } = useContext(CheckListContext)
 	const { admin } = useContext(GlobalContext)
 	const [data, setData] = useState([])
-
+	const divInternoRef = useRef(null)
 	useEffect(() => {
 		setData(descripciones)
 	}, [descripciones])
 
+	useEffect(() => {
+		if (divInternoRef?.current) {
+			requestAnimationFrame(() => {
+				divInternoRef.current.children[1].scrollTop = 0
+			})
+		}
+	}, [checkSelected])
 	return (
 		<div
 			style={{
@@ -24,6 +31,7 @@ const RightSide = ({ descripciones }) => {
 			{data.map((descripcion, i) => {
 				return (
 					<div
+						ref={checkSelected == descripcion.check ? divInternoRef : null}
 						style={{
 							display: checkSelected == descripcion.check || admin ? 'flex' : 'none',
 						}}

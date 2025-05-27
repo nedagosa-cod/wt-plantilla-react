@@ -18,6 +18,7 @@ const CheckListProvider = ({ children }) => {
 	const [locationEl, setLocationEl] = useState({})
 
 	const [zoom, setZoom] = useState(false)
+	const [isJumping, setIsJumping] = useState([]) // estado para saber qué pasos fueron activados vía salto
 
 	const refListCheck = useRef()
 	const refRightSide = useRef()
@@ -203,6 +204,8 @@ const CheckListProvider = ({ children }) => {
 		setDeleteChElement,
 		deleteCheckElement,
 		dialogDeleteElement,
+		isJumping,
+		setIsJumping,
 	}
 
 	return <CheckListContext.Provider value={data}>{children}</CheckListContext.Provider>
