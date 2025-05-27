@@ -105,7 +105,7 @@ export default function Navbar() {
 					</div>
 
 					{/* Barra de búsqueda que aparece debajo del navbar */}
-					<BuscadorWT open={searchOpen} />
+					{searchOpen && <BuscadorWT open={searchOpen} />}
 
 					{/* Segmento logo y nombre */}
 					<div className="flex items-center justify-end space-x-4 w-1/4 h-full bg-gradient-to-r from-background via-background to-[hsl(var(--primary-dark))] dark:bg-gradient-to-r dark:from-background dark:via-background dark:to-[hsl(var(--primary-light))]">

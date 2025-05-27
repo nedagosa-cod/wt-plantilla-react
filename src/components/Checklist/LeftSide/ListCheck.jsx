@@ -5,8 +5,18 @@ import GlobalContext from '../../../context/GlobalContext'
 import { bottom } from '@popperjs/core'
 
 const ListCheck = ({ check, title, updateCheck, data }) => {
-	const { checkSelected, changeDescription, relativePosition, resetList, hover, posHover, refRightSide, refListCheck } =
-		useContext(CheckListContext)
+	const {
+		checkSelected,
+		changeDescription,
+		relativePosition,
+		resetList,
+		hover,
+		posHover,
+		refRightSide,
+		refListCheck,
+		isJumping,
+		setIsJumping,
+	} = useContext(CheckListContext)
 	const { admin, setAdmin } = useContext(GlobalContext)
 
 	const [stepTitle, setStepTitle] = useState(title)
@@ -52,6 +62,7 @@ const ListCheck = ({ check, title, updateCheck, data }) => {
 	}
 	useEffect(() => {
 		setListChecked('')
+		setIsJumping([])
 		inputCheck.current.checked = false
 		inputCheck.current.parentNode.parentNode.parentNode.classList.remove('checked')
 		const adminInputText = document.getElementById('inputText')
@@ -59,7 +70,12 @@ const ListCheck = ({ check, title, updateCheck, data }) => {
 			adminInputText.focus()
 		}
 	}, [resetList, edit])
-
+	// Cuando un paso (check) se encuentra dentro de isJumping, se marca visualmente como "checked"
+	useEffect(() => {
+		if (isJumping.includes(check)) {
+			setListChecked('checked')
+		}
+	}, [isJumping, check])
 	return (
 		<li
 			className="relative none flex w-11/12 hover:scale-105 transition-all duration-300 rounded-lg"
@@ -125,7 +141,11 @@ const ListCheck = ({ check, title, updateCheck, data }) => {
 						onChange={showRelativeDescription}
 						id={check}
 					/>
-					<div className="peer ring-0 bg-rose-400  rounded-full outline-none duration-300 after:duration-500 w-8 h-8  shadow-md peer-checked:bg-emerald-500  peer-focus:outline-none  after:content-['✖️'] after:rounded-full after:absolute after:outline-none after:h-6 after:w-6 after:bg-gray-50 after:top-1 after:left-1 after:flex after:justify-center after:items-center  peer-hover:after:scale-75 peer-checked:after:content-['✔️'] after:-rotate-180 peer-checked:after:rotate-0"></div>
+					{/* <div className="peer ring-0 bg-rose-400  rounded-full outline-none duration-300 after:duration-500 w-8 h-8  shadow-md peer-checked:bg-emerald-500  peer-focus:outline-none  after:content-['✖️'] after:rounded-full after:absolute after:outline-none after:h-6 after:w-6 after:bg-gray-50 after:top-1 after:left-1 after:flex after:justify-center after:items-center  peer-hover:after:scale-75 peer-checked:after:content-['✔️'] after:-rotate-180 peer-checked:after:rotate-0"></div> */}
+					<div
+						className={`peer ring-0 bg-rose-400 rounded-full outline-none duration-300 after:duration-500 w-8 h-8 shadow-md peer-checked:bg-emerald-500 peer-focus:outline-none after:content-['✖️'] after:rounded-full after:absolute after:outline-none after:h-6 after:w-6 after:bg-gray-50 after:top-1 after:left-1 after:flex after:justify-center after:items-center  peer-hover:after:scale-75 peer-checked:after:content-['✔️'] after:-rotate-180 peer-checked:after:rotate-0
+		${listChecked === 'checked' ? 'bg-emerald-500 after:content-["✔"] after:rotate-0' : ''}
+	`}></div>
 				</label>
 			</label>
 		</li>
