@@ -1,6 +1,14 @@
 import { useContext, useState } from 'react'
 import { FileUp, Download, X, Database } from 'lucide-react'
-import { Drawer, DrawerClose, DrawerContent, DrawerTrigger } from '@/components/ui/drawer'
+import {
+	Drawer,
+	DrawerClose,
+	DrawerContent,
+	DrawerDescription,
+	DrawerHeader,
+	DrawerTitle,
+	DrawerTrigger,
+} from '@/components/ui/drawer'
 import { Button } from '@/components/ui/button'
 import GlobalContext from '@/context/GlobalContext'
 import { toast } from 'sonner'
@@ -79,7 +87,12 @@ export default function ExcelDrawer() {
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 						{/* Zona de carga de archivos */}
 						<div className="flex flex-col items-center">
-							<h3 className="text-xl font-bold mb-4 text-primary">Cargar Archivo Excel</h3>
+							<DrawerHeader className="text-center">
+								<DrawerTitle className="text-xl font-bold text-center text-primary">Cargar Archivo Excel</DrawerTitle>
+								<DrawerDescription>
+									Sube tu archivo Excel para crear una base de datos en la web training.
+								</DrawerDescription>
+							</DrawerHeader>
 							<div
 								className={`relative w-full border-2 border-dashed rounded-xl p-8 flex flex-col items-center justify-center min-h-[250px] transition-all
                   ${isDragging ? 'border-primary bg-red-50' : 'border-blue-400 hover:border-primary hover:bg-red-50'}`}

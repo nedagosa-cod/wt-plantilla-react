@@ -55,15 +55,39 @@
 		"path": "/checklist/ejemploB"
 	},
 	{
+		"id": 100,
+		"type": "checklist",
+		"segment": "Empresas",
+		"title": "Checklist",
+		"name": "Creacion de cuenta Empresas",
+		"content": "Instructivo de como crear material  para checklist",
+		"keywords": ["checklist", "Instructivo"],
+		"icon": "checklist",
+		"path": "/checklist/ejemploB"
+	},
+	{
 		"id": 6,
-		"type": "tipificador",
+		"type": "Tipificador",
 		"segment": "Personas",
 		"title": "Tipificador",
 		"name": "Tipificador de cancelación",
 		"content": "Pasos para la cancelación de servicios y manejo de datos...",
 		"keywords": ["cancelación", "tipificador", "tipificacion"],
 		"icon": "tipify",
-		"path": "/tipificador"
+		"path": "https://www.youtube.com/",
+		"action": "redirect"
+	},
+	{
+		"id": 13,
+		"type": "Tipificador",
+		"segment": "Personas",
+		"title": "Tipificador",
+		"name": "Plantillas de respuesta 001",
+		"content": "Lista de razon y motivos de quejas",
+		"keywords": ["plantilla", "001"],
+		"icon": "download",
+		"path": "BASES/PLANTILLAS/001",
+		"action": "download"
 	},
 	{
 		"id": 7,
@@ -74,7 +98,8 @@
 		"content": "Herramienta para calcular cancelación de contratos...",
 		"keywords": ["cancelación", "contratos", "cálculo"],
 		"icon": "calc",
-		"path": "/calculadoras/estandar"
+		"path": "/calculadoras/estandar",
+		"action": "dialog"
 	},
 	{
 		"id": 8,
@@ -100,7 +125,7 @@
 		"path": "/main/documentos/guia-cancelacion"
 	},
 	{
-		"id": 10,
+		"id": 11,
 		"type": "timeline",
 		"segment": "Fidelización",
 		"title": "Linea de tiempo",
@@ -111,7 +136,7 @@
 		"path": "/timeline"
 	},
 	{
-		"id": 10,
+		"id": 12,
 		"type": "formNotes",
 		"segment": "Fidelización",
 		"title": "Gestores de notas",

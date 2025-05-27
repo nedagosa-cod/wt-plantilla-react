@@ -7,7 +7,7 @@ import {
 import React from 'react'
 import { cn } from '@/lib/utils'
 import PropTypes from 'prop-types'
-import { icons } from '../../../../icons/icons-list'
+import { icons } from '../../../../../icons/icons-list'
 
 export default function NavItemPortada({ label, icon, submenu }) {
 	return (

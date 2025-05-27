@@ -1,28 +1,10 @@
 import { useEffect, useState } from 'react'
-import {
-	Search,
-	ChevronDown,
-	Home,
-	Menu,
-	User,
-	Target,
-	Building2,
-	BarChart3,
-	Volume2,
-	Lock,
-	Diamond,
-	Info,
-	User2,
-	TextSearch,
-	X,
-} from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { TextSearch } from 'lucide-react'
 import imgLogo from '@images/index/logoSIn.png'
 import { SecondaryNavbar } from './components/SecondaryNav'
 import LEDLine from './components/LedLine'
-import dataNavbar from './dataNavbar.json'
-import ConfigMenu from './components/ConfigMenu'
-import BuscadorWT from './components/Buscador'
+import dataNavbar from '@/data/dataNavbar.json'
+import BuscadorWT from './components/search/Buscador'
 import TopNavbar from './components/TopNavbar'
 
 export default function Navbar() {
@@ -32,36 +14,7 @@ export default function Navbar() {
 	const [searchOpen, setSearchOpen] = useState(false)
 	const [leftItems, setLeftItems] = useState([])
 	const [rightItems, setRightItems] = useState([])
-	const secondaryMenuItems = [
-		{ icon: <Home className="h-4 w-4" />, label: 'Inicio', href: '#' },
-		{
-			icon: <span className="text-sm">📝</span>,
-			label: 'Scripts',
-			href: '#/checklist',
-		},
-		{
-			icon: <span className="text-sm">💳</span>,
-			label: 'Estudio de mercado',
-			href: '#',
-			hasDropdown: true,
-			dropdownKey: 'tarjeta',
-			dropdownItems: [
-				{ label: 'Opción 1', href: '#' },
-				{ label: 'Opción 2', href: '#' },
-			],
-		},
-		{
-			icon: <span className="text-sm">📊</span>,
-			label: 'Argumentario',
-			href: '#',
-			hasDropdown: true,
-			dropdownKey: 'creditos',
-			dropdownItems: [
-				{ label: 'Opción 1', href: '#' },
-				{ label: 'Opción 2', href: '#' },
-			],
-		},
-	]
+
 	useEffect(() => {
 		const itemsBySegment = dataNavbar.NAVBAR.filter(item => {
 			if (item.segments && item.segments.includes(activeSegment)) {

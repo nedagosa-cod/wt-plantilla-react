@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { cn } from '@/lib/utils'
-
+import slides from '@/data/noticias.json'
 import { FullScreenImage } from './components/FullScreenImage'
 import { SlideNavigation } from './components/SlideNavigation'
 
-export const ImageSlider = ({ slides, autoPlayInterval = 4000, className }) => {
+export const ImageSlider = ({ autoPlayInterval = 4000, className }) => {
 	const [currentIndex, setCurrentIndex] = useState(0)
 	const [isFullScreen, setIsFullScreen] = useState(false)
 	const [isPaused, setIsPaused] = useState(false)
@@ -103,7 +103,7 @@ export const ImageSlider = ({ slides, autoPlayInterval = 4000, className }) => {
 							className={cn(
 								'h-2 w-2 rounded-full transition-all duration-300',
 								'focus:outline-none focus:ring-2 focus:ring-primary',
-								index === currentIndex ? 'bg-white w-4' : 'bg-white/60 hover:bg-white/80'
+								index === currentIndex ? 'bg-primary w-4' : 'bg-primary/60 hover:bg-primary/80'
 							)}
 							onClick={e => {
 								e.stopPropagation()

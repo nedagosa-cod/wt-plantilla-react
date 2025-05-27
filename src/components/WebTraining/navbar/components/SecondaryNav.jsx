@@ -1,9 +1,9 @@
 import { Diamond, Home, HomeIcon, Info, Menu, User2 } from 'lucide-react'
 import { NavigationMenu, NavigationMenuList } from '@/components/ui/navigation-menu'
 import { Separator } from '@/components/ui/separator'
-import NavItemRegular from './NavItemRegular'
-import NavItemPortada from './NavItemPortada'
-import NavItemLista from './NavItemLista'
+import NavItemRegular from './search/NavItemRegular'
+import NavItemPortada from './search/NavItemPortada'
+import NavItemLista from './search/NavItemLista'
 import { icons } from '../../../../icons/icons-list'
 import NavItemAppsWeb from './NavItemAppsWeb'
 
