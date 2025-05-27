@@ -53,9 +53,10 @@ import { Textarea } from '../ui/textarea'
 import { toast } from 'sonner'
 
 export default function Checklist({ dataCheckList }) {
-	const { resetCheckList, activeInside } = useContext(CheckListContext)
+	const { resetCheckList, activeInside, respuestas, setRespuestas } = useContext(CheckListContext)
 	const { admin } = useContext(GlobalContext)
 	const [textArea, setTextArea] = useState('')
+	
 	const itemsElemets = [
 		{
 			name: 'Titulo',
@@ -207,13 +208,21 @@ export default function Checklist({ dataCheckList }) {
 		)
 
 		const renderValText = (element, key) => (
-			<ValTextDesc position={element.POS} key={key}>
+			<ValTextDesc
+				position={element.POS}
+				key={key}
+				value={respuestas[element.POS] || ''}
+				onChange={valor => actualizarRespuesta(element.POS, valor, element.DATA_TEXT)}>
 				{element.DATA_TEXT}
 			</ValTextDesc>
 		)
 
 		const renderValDate = (element, key) => (
-			<ValDateDesc position={element.POS} key={key}>
+			<ValDateDesc
+				position={element.POS}
+				key={key}
+				value={respuestas[element.POS]?.value || ''}
+				onChange={valor => actualizarRespuesta(element.POS, valor, element.DATA_DATE)}>
 				{element.DATA_DATE}
 			</ValDateDesc>
 		)
@@ -224,7 +233,9 @@ export default function Checklist({ dataCheckList }) {
 				title={element.DATA_BOOL}
 				key={key}
 				finish={element.FINISH}
-				to={checkListSelected.DESCRIPCIONES.length}>
+				to={checkListSelected.DESCRIPCIONES.length}
+				value={respuestas[element.POS]?.value || ''}
+				onChange={valor => actualizarRespuesta(element.POS, valor, element.DATA_BOOL)}>
 				<InsideAnswer answer="SI" position={element.POS}>
 					{element.SI.map((subElement, j) => renderElement(subElement, j, desc))}
 				</InsideAnswer>
@@ -239,7 +250,9 @@ export default function Checklist({ dataCheckList }) {
 				title={element.DATA_LIST}
 				position={element.POS}
 				list={element.OPTIONS.map(option => option.NAME)}
-				key={key}>
+				key={key}
+				value={respuestas[element.POS]?.value || ''}
+				onChange={valor => actualizarRespuesta(element.POS, valor, element.DATA_LIST)}>
 				{element.OPTIONS.map((option, l) => (
 					<InsideAnswer answer={option.NAME} position={element.POS} key={l}>
 						{option.HTML.map((subElement, j) => renderElement(subElement, j, desc))}
@@ -475,10 +488,26 @@ export default function Checklist({ dataCheckList }) {
 	useEffect(() => {
 		resetCheckList()
 		fixDescriptions()
+		setRespuestas({})
 	}, [checkListSelected])
+	// Funcion para recoger valores de los render
+	const actualizarRespuesta = (pos, valor, label) => {
+		const clave = `${pos}. ${label}`
 
+		// Si es un objeto tipo fecha
+		let valorFormateado = valor
+		if (valor instanceof Date && !isNaN(valor)) {
+			valorFormateado = valor.toISOString().split('T')[0]
+		}
+
+		setRespuestas(prev => ({
+			...prev,
+			[clave]: valorFormateado,
+		}))
+	}
+	
 	return (
-		<Card className="relative z-0 overflow-x-hidden flex flex-col w-6xl max-w-6xl h-4/5 rounded-2xl shadow-lg ring-8 ring-primary/20">
+		<Card className="relative z-0 overflow-x-hidden flex flex-col w-3/4 h-4/5 rounded-2xl shadow-lg ring-8 ring-primary/20">
 			<section className="text-sm overflow-hidden w-full h-full flex">
 				<Split className="w-full flex flex-row " minSize={400} dragInterval={10} sizes={[50, 50]}>
 					<LeftSide
@@ -501,7 +530,17 @@ export default function Checklist({ dataCheckList }) {
 				</Button>
 				<Dialog>
 					<DialogTrigger asChild>
-						<Button>Obtener datos</Button>
+						<Button
+							onClick={() => {
+								// Convertimos respuestas a un formato textual
+								const respuestasTextuales = Object.entries(respuestas)
+									.map(([clave, valor]) => `${clave}: ${valor}`)
+									.join('\n') // Unimos cada línea con saltos de línea
+
+								setTextArea(respuestasTextuales)
+							}}>
+							Obtener datos
+						</Button>
 					</DialogTrigger>
 					<DialogContent>
 						<DialogHeader>
