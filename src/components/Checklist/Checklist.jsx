@@ -478,7 +478,7 @@ export default function Checklist({ dataCheckList }) {
 	}, [checkListSelected])
 
 	return (
-		<Card className="relative z-0 overflow-x-hidden flex flex-col w-6xl max-w-6xl h-4/5 rounded-2xl shadow-lg ring-8 ring-primary/20">
+		<Card className="relative z-0 overflow-x-hidden flex flex-col w-3/5 h-4/5 rounded-2xl shadow-lg ring-8 ring-primary/20">
 			<section className="text-sm overflow-hidden w-full h-full flex">
 				<Split className="w-full flex flex-row " minSize={400} dragInterval={10} sizes={[50, 50]}>
 					<LeftSide
