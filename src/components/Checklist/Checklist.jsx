@@ -53,7 +53,8 @@ import { Textarea } from '../ui/textarea'
 import { toast } from 'sonner'
 
 export default function Checklist({ dataCheckList }) {
-	const { resetCheckList, activeInside, respuestas, setRespuestas } = useContext(CheckListContext)
+	const { resetCheckList, activeInside, respuestas, setRespuestas, setScrollReached } =
+		useContext(CheckListContext)
 	const { admin } = useContext(GlobalContext)
 	const [textArea, setTextArea] = useState('')
 	
@@ -415,11 +416,18 @@ export default function Checklist({ dataCheckList }) {
 			}),
 		}))
 	}
-
+	const handleScroll = (e, descripcion) => {
+		if (descripcion.ENDSCRROLL === 'true') {
+			const el = e.target
+			const bottomReached = el.scrollTop + el.clientHeight >= el.scrollHeight - 10
+			setScrollReached(bottomReached)
+		}
+	}
 	const fixDescriptions = () => {
 		let result = checkListSelected.DESCRIPCIONES.map((element, i) => {
 			let data = {
 				check: element.check,
+				endscroll: element.ENDSCROLL,
 				html: () => {
 					return (
 						<>
@@ -429,7 +437,9 @@ export default function Checklist({ dataCheckList }) {
 								}
 								return null
 							})}
-							<article className="w-full flex overflow-y-auto overflow-x-hidden  h-full flex-col items-center py-2 px-4 gap-2 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700  dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500">
+							<article
+								onScroll={e => handleScroll(e, element)}
+								className="w-full flex overflow-y-auto overflow-x-hidden  h-full flex-col items-center py-2 px-4 gap-2 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700  dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500">
 								{element.html.map((list, j) => {
 									return renderElement(list, j, element)
 								})}

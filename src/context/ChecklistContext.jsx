@@ -7,6 +7,8 @@ const CheckListProvider = ({ children }) => {
 	const [checkSelected, setCheckSelected] = useState('A')
 	const [resetList, setResetList] = useState(true)
 	const [respuestas, setRespuestas] = useState({})
+	const [scrollReached, setScrollReached] = useState(false)
+
 	const [hover, setHover] = useState('')
 	const [posHover, setPosHover] = useState('')
 
@@ -209,6 +211,8 @@ const CheckListProvider = ({ children }) => {
 		setIsJumping,
 		respuestas,
 		setRespuestas,
+		scrollReached,
+		setScrollReached,
 	}
 
 	return <CheckListContext.Provider value={data}>{children}</CheckListContext.Provider>

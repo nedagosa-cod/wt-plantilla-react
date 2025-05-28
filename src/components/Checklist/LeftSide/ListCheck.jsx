@@ -2,8 +2,6 @@ import { useContext, useEffect, useRef, useState } from 'react'
 import CheckListContext from '../../../context/ChecklistContext'
 import IconEdit from '../../../icons/IconEdit'
 import GlobalContext from '../../../context/GlobalContext'
-import { bottom } from '@popperjs/core'
-
 const ListCheck = ({ check, title, updateCheck, data }) => {
 	const {
 		checkSelected,
@@ -16,9 +14,10 @@ const ListCheck = ({ check, title, updateCheck, data }) => {
 		refListCheck,
 		isJumping,
 		setIsJumping,
+		scrollReached,
 	} = useContext(CheckListContext)
 	const { admin, setAdmin } = useContext(GlobalContext)
-
+	const [showScrollDialog, setShowScrollDialog] = useState(false)
 	const [stepTitle, setStepTitle] = useState(title)
 	const [listChecked, setListChecked] = useState('')
 	const [edit, setEdit] = useState(stepTitle === 'XXXXX' ? true : false)
@@ -35,6 +34,15 @@ const ListCheck = ({ check, title, updateCheck, data }) => {
 				setListChecked('')
 				return relativePosition[check][1]
 			}
+		}
+		const currentStepData = data.find(desc => desc.check === check)
+		const endScroll = currentStepData?.ENDSCRROLL === 'true'
+		const pasoCompletado = listChecked === 'checked'
+
+		if (endScroll && !scrollReached && !pasoCompletado) {
+			setShowScrollDialog(true)
+			e.preventDefault()
+			return
 		}
 
 		if (relativePosition[check].includes(checkSelected)) {
