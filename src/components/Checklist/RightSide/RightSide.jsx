@@ -20,6 +20,7 @@ const RightSide = ({ descripciones }) => {
 			})
 		}
 	}, [checkSelected])
+
 	return (
 		<div
 			style={{

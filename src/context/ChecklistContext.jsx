@@ -6,6 +6,8 @@ const CheckListProvider = ({ children }) => {
 	const [activeInside, setActiveInside] = useState([])
 	const [checkSelected, setCheckSelected] = useState('A')
 	const [resetList, setResetList] = useState(true)
+	const [respuestas, setRespuestas] = useState({})
+	const [scrollReached, setScrollReached] = useState(false)
 
 	const [hover, setHover] = useState('')
 	const [posHover, setPosHover] = useState('')
@@ -86,6 +88,7 @@ const CheckListProvider = ({ children }) => {
 		setCheckSelected('A')
 		setResetList(!resetList)
 		updateActiveInside()
+		setRespuestas({})
 	}
 	const zoomChecklist = () => {
 		setZoom(true)
@@ -206,6 +209,10 @@ const CheckListProvider = ({ children }) => {
 		dialogDeleteElement,
 		isJumping,
 		setIsJumping,
+		respuestas,
+		setRespuestas,
+		scrollReached,
+		setScrollReached,
 	}
 
 	return <CheckListContext.Provider value={data}>{children}</CheckListContext.Provider>

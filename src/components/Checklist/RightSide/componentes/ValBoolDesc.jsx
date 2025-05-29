@@ -3,7 +3,7 @@ import 'animate.css'
 import CheckListContext from '../../../../context/ChecklistContext'
 import { Card, CardContent } from '@/components/ui/card'
 
-const ValBoolDesc = ({ children, title, position, finish, to }) => {
+const ValBoolDesc = ({ children, title, position, finish, to, value = '', onChange }) => {
 	const { activeInside, updateActiveInside, resetList, refListCheck, refRightSide, changeDescription } =
 		useContext(CheckListContext)
 
@@ -35,6 +35,9 @@ const ValBoolDesc = ({ children, title, position, finish, to }) => {
 			setOptSelected(e.target.value)
 			SetshowSubEl(true)
 			updateActiveInside(position, e.target.value, title)
+			if (onChange) {
+				onChange(e.target.value)
+			}
 		}
 	}
 

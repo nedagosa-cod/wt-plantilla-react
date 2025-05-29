@@ -3,15 +3,19 @@ import IconArrowDown from '../../../../icons/IconArrowDown'
 import CheckListContext from '../../../../context/ChecklistContext'
 import { ArrowDownIcon } from 'lucide-react'
 
-const ValListDesc = ({ children, position, list, title }) => {
+const ValListDesc = ({ children, position, list, title, onChange }) => {
 	const { activeInside, updateActiveInside, resetList } = useContext(CheckListContext)
 	const [showList, setShowList] = useState(false)
 	const [valueList, setValueList] = useState('')
 
 	const changeValueList = e => {
+		const selectedValue = e.target.textContent
 		setValueList(e.target.textContent)
 		setShowList(false)
 		updateActiveInside(position, e.target.textContent, title)
+		if (onChange) {
+			onChange(selectedValue)
+		}
 	}
 
 	const startAnimated = () => {

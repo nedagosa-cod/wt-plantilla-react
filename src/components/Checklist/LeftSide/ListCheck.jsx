@@ -2,8 +2,7 @@ import { useContext, useEffect, useRef, useState } from 'react'
 import CheckListContext from '../../../context/ChecklistContext'
 import IconEdit from '../../../icons/IconEdit'
 import GlobalContext from '../../../context/GlobalContext'
-import { bottom } from '@popperjs/core'
-
+import { toast } from 'sonner'
 const ListCheck = ({ check, title, updateCheck, data }) => {
 	const {
 		checkSelected,
@@ -16,9 +15,11 @@ const ListCheck = ({ check, title, updateCheck, data }) => {
 		refListCheck,
 		isJumping,
 		setIsJumping,
+		scrollReached,
+		setScrollReached,
 	} = useContext(CheckListContext)
 	const { admin, setAdmin } = useContext(GlobalContext)
-
+	const [showScrollDialog, setShowScrollDialog] = useState(false)
 	const [stepTitle, setStepTitle] = useState(title)
 	const [listChecked, setListChecked] = useState('')
 	const [edit, setEdit] = useState(stepTitle === 'XXXXX' ? true : false)
@@ -35,6 +36,21 @@ const ListCheck = ({ check, title, updateCheck, data }) => {
 				setListChecked('')
 				return relativePosition[check][1]
 			}
+		}
+		// Obtiene los datos del paso actual basado en el valor de `check`
+		const currentStepData = data.find(desc => desc.check === check)
+		// Verifica si el paso actual requiere hacer scroll hasta el final para continuar
+		const endScroll = currentStepData?.ENDSCRROLL === 'true'
+		// Verifica si el paso ya ha sido marcado como completado
+		const pasoCompletado = listChecked === 'checked'
+		// se bloquea el avance si alguna de estas se cumple
+		if (endScroll && !scrollReached && !pasoCompletado) {
+			// alerta que le robe a nestor :V
+			toast.error('Debes leer todo el contenido', {
+				description: 'Para continuar al siguiente paso, primero debes leer completamente la información mostrada.',
+			})
+			e.preventDefault()
+			return
 		}
 
 		if (relativePosition[check].includes(checkSelected)) {
@@ -76,6 +92,9 @@ const ListCheck = ({ check, title, updateCheck, data }) => {
 			setListChecked('checked')
 		}
 	}, [isJumping, check])
+	useEffect(() => {
+		setScrollReached(false)
+	}, [checkSelected])
 	return (
 		<li
 			className="relative none flex w-11/12 hover:scale-105 transition-all duration-300 rounded-lg"
@@ -140,6 +159,7 @@ const ListCheck = ({ check, title, updateCheck, data }) => {
 						ref={inputCheck}
 						onChange={showRelativeDescription}
 						id={check}
+						checked={listChecked === 'checked'}
 					/>
 					{/* <div className="peer ring-0 bg-rose-400  rounded-full outline-none duration-300 after:duration-500 w-8 h-8  shadow-md peer-checked:bg-emerald-500  peer-focus:outline-none  after:content-['✖️'] after:rounded-full after:absolute after:outline-none after:h-6 after:w-6 after:bg-gray-50 after:top-1 after:left-1 after:flex after:justify-center after:items-center  peer-hover:after:scale-75 peer-checked:after:content-['✔️'] after:-rotate-180 peer-checked:after:rotate-0"></div> */}
 					<div

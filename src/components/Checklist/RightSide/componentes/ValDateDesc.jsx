@@ -9,15 +9,17 @@ import { Calendar } from '@/components/ui/calendar'
 import { es } from 'date-fns/locale'
 import { Card } from '@/components/ui/card'
 
-const ValDateDesc = ({ children, position }) => {
+const ValDateDesc = ({ children, position, value = '', onChange }) => {
 	const { updateActiveInside } = useContext(CheckListContext)
 	const [date, setDate] = useState(new Date())
 
-	const getData = e => {
-		updateActiveInside(position, e, children)
-		setDate(e)
-		// if (e.target.nodeName == 'INPUT') {
-		// }
+	const getData = selectedDate => {
+		updateActiveInside(position, selectedDate, children)
+		setDate(selectedDate)
+
+		if (onChange) {
+			onChange(selectedDate) // <-- NO uses selectedDate.target.value
+		}
 	}
 
 	return (

@@ -3,12 +3,15 @@ import CheckListContext from '../../../../context/ChecklistContext'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 
-const ValTextDesc = ({ children, position }) => {
+const ValTextDesc = ({ children, position, onChange }) => {
 	const { updateActiveInside } = useContext(CheckListContext)
 
 	const getData = e => {
 		if (e.target.nodeName == 'INPUT') {
 			updateActiveInside(position, e.target.value, children)
+			if (onChange) {
+				onChange(e.target.value)
+			}
 		}
 	}
 

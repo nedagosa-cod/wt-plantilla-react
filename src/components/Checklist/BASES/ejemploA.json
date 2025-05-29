@@ -1,8 +1,9 @@
 {
-	"TITLE": "COMO CREAR MATERIAL PARA CHECKLIST",
+	"TITLE": "COMO CREAR MATERIAL PARA",
 	"DESCRIPCIONES": [
 		{
 			"check": "A",
+			"ENDSCRROLL": "true",
 			"html": [
 				{ "TITULO": "Tener en cuenta" },
 				{ "SUBTITLE": "Subtitulo de la pagina" },
@@ -131,6 +132,7 @@
 		},
 		{
 			"check": "B",
+			"ENDSCRROLL": "true",
 			"html": [
 				{ "TITULO": "Estructura del material" },
 				{ "P": "1. El check list tiene distintos elementos ya estructurados, como pueden ser:" },

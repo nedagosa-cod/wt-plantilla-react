@@ -1,10 +1,28 @@
 import { useEffect, useState } from 'react'
-import { TextSearch } from 'lucide-react'
+import {
+	Search,
+	ChevronDown,
+	Home,
+	Menu,
+	User,
+	Target,
+	Building2,
+	BarChart3,
+	Volume2,
+	Lock,
+	Diamond,
+	Info,
+	User2,
+	TextSearch,
+	X,
+} from 'lucide-react'
+import { Button } from '@/components/ui/button'
 import imgLogo from '@images/index/logoSIn.png'
 import { SecondaryNavbar } from './components/SecondaryNav'
 import LEDLine from './components/LedLine'
-import dataNavbar from '@/data/dataNavbar.json'
-import BuscadorWT from './components/search/Buscador'
+import dataNavbar from './dataNavbar.json'
+import ConfigMenu from './components/ConfigMenu'
+import BuscadorWT from './components/Buscador'
 import TopNavbar from './components/TopNavbar'
 
 export default function Navbar() {
@@ -14,7 +32,38 @@ export default function Navbar() {
 	const [searchOpen, setSearchOpen] = useState(false)
 	const [leftItems, setLeftItems] = useState([])
 	const [rightItems, setRightItems] = useState([])
+	const [showBuscador, setShowBuscador] = useState(false)
 
+	const secondaryMenuItems = [
+		{ icon: <Home className="h-4 w-4" />, label: 'Inicio', href: '#' },
+		{
+			icon: <span className="text-sm">📝</span>,
+			label: 'Scripts',
+			href: '#/checklist',
+		},
+		{
+			icon: <span className="text-sm">💳</span>,
+			label: 'Estudio de mercado',
+			href: '#',
+			hasDropdown: true,
+			dropdownKey: 'tarjeta',
+			dropdownItems: [
+				{ label: 'Opción 1', href: '#' },
+				{ label: 'Opción 2', href: '#' },
+			],
+		},
+		{
+			icon: <span className="text-sm">📊</span>,
+			label: 'Argumentario',
+			href: '#',
+			hasDropdown: true,
+			dropdownKey: 'creditos',
+			dropdownItems: [
+				{ label: 'Opción 1', href: '#' },
+				{ label: 'Opción 2', href: '#' },
+			],
+		},
+	]
 	useEffect(() => {
 		const itemsBySegment = dataNavbar.NAVBAR.filter(item => {
 			if (item.segments && item.segments.includes(activeSegment)) {
@@ -84,7 +133,17 @@ export default function Navbar() {
 
 							{/* Botón de búsqueda central */}
 							<button
-								onClick={() => setSearchOpen(!searchOpen)}
+								onClick={() => {
+									if (!searchOpen) {
+										// ABRIR
+										setSearchOpen(true)
+										setTimeout(() => setShowBuscador(true), 50) // le damos un pequeño delay
+									} else {
+										// CERRAR
+										setShowBuscador(false)
+										setTimeout(() => setSearchOpen(false), 300) // esperamos la animación para desmontar
+									}
+								}}
 								className="group bg-[hsl(var(--primarywt))] rounded absolute left-1/2 transform -translate-x-1/2 hover:bg-[hsl(var(--primary-light))] py-1 px-3 shadow-xl shadow-primary transition-all z-20 aspect-square cursor-pointer [box-shadow:#3c40434d_0_1px_2px_0,#3c404326_0_2px_6px_2px,#0000004d_0_30px_60px_-30px,#34343459_0_-2px_6px_0_inset] flex items-center justify-center flex-col"
 								aria-label="Buscar">
 								<div className="flex items-center flex-col group-hover:scale-110 transition-all duration-300 p-1">
@@ -105,7 +164,8 @@ export default function Navbar() {
 					</div>
 
 					{/* Barra de búsqueda que aparece debajo del navbar */}
-					{searchOpen && <BuscadorWT open={searchOpen} />}
+					{/* <BuscadorWT open={searchOpen} /> */}
+					{searchOpen && <BuscadorWT open={showBuscador} />}
 
 					{/* Segmento logo y nombre */}
 					<div className="flex items-center justify-end space-x-4 w-1/4 h-full bg-gradient-to-r from-background via-background to-[hsl(var(--primary-dark))] dark:bg-gradient-to-r dark:from-background dark:via-background dark:to-[hsl(var(--primary-light))]">
