@@ -53,11 +53,10 @@ import { Textarea } from '../ui/textarea'
 import { toast } from 'sonner'
 
 export default function Checklist({ dataCheckList }) {
-	const { resetCheckList, activeInside, respuestas, setRespuestas, setScrollReached } =
-		useContext(CheckListContext)
+	const { resetCheckList, activeInside, respuestas, setRespuestas, setScrollReached } = useContext(CheckListContext)
 	const { admin } = useContext(GlobalContext)
 	const [textArea, setTextArea] = useState('')
-	
+
 	const itemsElemets = [
 		{
 			name: 'Titulo',
@@ -416,7 +415,8 @@ export default function Checklist({ dataCheckList }) {
 			}),
 		}))
 	}
-	const handleScroll = (e, descripcion) => {
+	// Verificamos si ENDSCRROLL es true, si es el caso se verifica que el scroll haya llegado al final y se guarda el dato
+	const contadorScrool = (e, descripcion) => {
 		if (descripcion.ENDSCRROLL === 'true') {
 			const el = e.target
 			const bottomReached = el.scrollTop + el.clientHeight >= el.scrollHeight - 10
@@ -438,7 +438,7 @@ export default function Checklist({ dataCheckList }) {
 								return null
 							})}
 							<article
-								onScroll={e => handleScroll(e, element)}
+								onScroll={e => contadorScrool(e, element)}
 								className="w-full flex overflow-y-auto overflow-x-hidden  h-full flex-col items-center py-2 px-4 gap-2 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700  dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500">
 								{element.html.map((list, j) => {
 									return renderElement(list, j, element)
@@ -515,7 +515,7 @@ export default function Checklist({ dataCheckList }) {
 			[clave]: valorFormateado,
 		}))
 	}
-	
+
 	return (
 		<Card className="relative z-0 overflow-x-hidden flex flex-col w-3/4 h-4/5 rounded-2xl shadow-lg ring-8 ring-primary/20">
 			<section className="text-sm overflow-hidden w-full h-full flex">

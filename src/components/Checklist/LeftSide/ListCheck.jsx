@@ -2,6 +2,7 @@ import { useContext, useEffect, useRef, useState } from 'react'
 import CheckListContext from '../../../context/ChecklistContext'
 import IconEdit from '../../../icons/IconEdit'
 import GlobalContext from '../../../context/GlobalContext'
+import { toast } from 'sonner'
 const ListCheck = ({ check, title, updateCheck, data }) => {
 	const {
 		checkSelected,
@@ -15,6 +16,7 @@ const ListCheck = ({ check, title, updateCheck, data }) => {
 		isJumping,
 		setIsJumping,
 		scrollReached,
+		setScrollReached,
 	} = useContext(CheckListContext)
 	const { admin, setAdmin } = useContext(GlobalContext)
 	const [showScrollDialog, setShowScrollDialog] = useState(false)
@@ -35,12 +37,18 @@ const ListCheck = ({ check, title, updateCheck, data }) => {
 				return relativePosition[check][1]
 			}
 		}
+		// Obtiene los datos del paso actual basado en el valor de `check`
 		const currentStepData = data.find(desc => desc.check === check)
+		// Verifica si el paso actual requiere hacer scroll hasta el final para continuar
 		const endScroll = currentStepData?.ENDSCRROLL === 'true'
+		// Verifica si el paso ya ha sido marcado como completado
 		const pasoCompletado = listChecked === 'checked'
-
+		// se bloquea el avance si alguna de estas se cumple
 		if (endScroll && !scrollReached && !pasoCompletado) {
-			setShowScrollDialog(true)
+			// alerta que le robe a nestor :V
+			toast.error('Debes leer todo el contenido', {
+				description: 'Para continuar al siguiente paso, primero debes leer completamente la información mostrada.',
+			})
 			e.preventDefault()
 			return
 		}
@@ -84,6 +92,9 @@ const ListCheck = ({ check, title, updateCheck, data }) => {
 			setListChecked('checked')
 		}
 	}, [isJumping, check])
+	useEffect(() => {
+		setScrollReached(false)
+	}, [checkSelected])
 	return (
 		<li
 			className="relative none flex w-11/12 hover:scale-105 transition-all duration-300 rounded-lg"
