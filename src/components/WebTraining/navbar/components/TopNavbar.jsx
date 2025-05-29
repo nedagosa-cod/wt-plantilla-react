@@ -22,6 +22,20 @@ const icons = {
 	admin: <User2 className="h-4 w-4" />,
 }
 export default function TopNavbar({ segmentos, activeSegment, setActiveSegment }) {
+	
+	function slugify(text) {
+		return text
+			.toString()
+			.normalize("NFD")                    // Para eliminar acentos
+			.replace(/[\u0300-\u036f]/g, "")     // Elimina los diacríticos (tildes)
+			.toLowerCase()
+			.replace(/\s+/g, "_")                // Reemplaza espacios por guion bajo
+			.replace(/[^\w\-]+/g, "")            // Elimina caracteres especiales
+			.replace(/\-\-+/g, "_")              // Reemplaza múltiples guiones bajos por uno
+			.replace(/^_+/, "")                  // Elimina guiones bajos al inicio
+			.replace(/_+$/, "");                 // Elimina guiones bajos al final
+	}
+	
 	return (
 		<div className="bg-primary relative z-10 [box-shadow:#3c40434d_0_1px_2px_0,#3c404326_0_2px_6px_2px,#0000004d_0_30px_60px_-30px,#34343459_0_-2px_6px_0_inset]">
 			<div className="mx-auto">
@@ -39,7 +53,7 @@ export default function TopNavbar({ segmentos, activeSegment, setActiveSegment }
 								}>
 								<a
 									onClick={() => setActiveSegment(item.segment)}
-									href={`#${item.segment.toLowerCase().replace(' ', '_')}`}
+									href={`#${slugify(item.segment)}`}
 									className="flex items-center text-sm font-medium">
 									<span className="mr-1">{icons[item.icon]}</span> {item.segment}
 								</a>

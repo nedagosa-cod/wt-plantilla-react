@@ -2,7 +2,7 @@ import '@styles/app.scss'
 import { Routes, Route } from 'react-router-dom'
 import imgCtrlAccesss from './assets/images/index/sessionBackground.jpg'
 import imgSectionPage from './assets/images/index/backApp.jpg'
-import dataNavbar from './components/Navbar/dataNavbar.json'
+import dataNavbar from '@/data/dataNavbar.json'
 import Bienvenida from './components/Bienvenida/Bienvenida'
 import Corrector from './components/Corrector/Corrector'
 import GlobalContext from './context/GlobalContext'
@@ -19,6 +19,19 @@ import Navbar from './components/WebTraining/navbar/Navbar.jsx'
 
 const App = () => {
 	const { activeAppNote, showApp, admin } = useContext(GlobalContext)
+
+	function slugify(text) {
+		return text
+			.toString()
+			.normalize("NFD")                    // Para eliminar acentos
+			.replace(/[\u0300-\u036f]/g, "")     // Elimina los diacríticos (tildes)
+			.toLowerCase()
+			.replace(/\s+/g, "_")                // Reemplaza espacios por guion bajo
+			.replace(/[^\w\-]+/g, "")            // Elimina caracteres especiales
+			.replace(/\-\-+/g, "_")              // Reemplaza múltiples guiones bajos por uno
+			.replace(/^_+/, "")                  // Elimina guiones bajos al inicio
+			.replace(/_+$/, "");                 // Elimina guiones bajos al final
+	}
 
 	useEffect(() => {
 		document.body.addEventListener('keydown', e => {
@@ -58,7 +71,7 @@ const App = () => {
 						</>
 					)}
 					{dataNavbar.SEGMENTS.map((segment, i) => {
-						return <Route key={i} path={'/' + segment.segment} element={<Bienvenida />} />
+						return <Route key={i} path={'/' + slugify(segment.segment)} element={<Bienvenida />} />
 					})}
 					<Route path="/" element={<Bienvenida />} />
 					<Route path="/checklist" element={<CheckListBase checklist="ejemploA" />} />
