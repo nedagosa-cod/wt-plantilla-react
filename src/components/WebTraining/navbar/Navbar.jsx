@@ -20,9 +20,9 @@ import { Button } from '@/components/ui/button'
 import imgLogo from '@images/index/logoSIn.png'
 import { SecondaryNavbar } from './components/SecondaryNav'
 import LEDLine from './components/LedLine'
-import dataNavbar from './dataNavbar.json'
+import dataNavbar from '@/data/dataNavbar.json'
 import ConfigMenu from './components/ConfigMenu'
-import BuscadorWT from './components/Buscador'
+import BuscadorWT from './components/search/Buscador'
 import TopNavbar from './components/TopNavbar'
 
 export default function Navbar() {

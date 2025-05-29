@@ -23,10 +23,10 @@ const RightSide = ({ descripciones }) => {
 
 	return (
 		<div
-			style={{
-				display: !admin ? 'flex' : 'none',
-			}}
-			className={'relative w-1/2'}
+			// style={{
+			// 	display: !admin ? 'flex' : 'none',
+			// }}
+			className={cn('relative w-1/2', admin ? 'hidden' : 'flex')}
 			id="rightSide"
 			ref={refRightSide}>
 			{data.map((descripcion, i) => {
