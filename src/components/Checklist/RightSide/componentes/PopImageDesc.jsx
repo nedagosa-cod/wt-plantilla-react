@@ -1,6 +1,5 @@
 //descontinuado
 const PopImageDesc = ({ setPopShowImage, imagePop, widthImg }) => {
-	console.log(imagePop.length)
 	return (
 		<div
 			className="PopImageDesc flex z-500 overflow-hidden justify-center items-center absolute top-0 left-0 w-full h-dvh bg-gray-400 backdrop-blur-sm border border-gray-500"

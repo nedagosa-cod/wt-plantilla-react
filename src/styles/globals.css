@@ -55,19 +55,30 @@ p a {
 		--card-foreground: 0 0% 3.9%;
 		--popover: 0 0% 100%;
 		--popover-foreground: 0 0% 3.9%;
-		--primary: 0 72.2% 50.6%;
+		--primary: 356 100% 46%;
 		/* Rojo base - Color primario */
-		--primary-light: 0 72.2% 65.6%;
-		/* Rojo claro - Versión más clara del primario */
-		--primary-dark: 0 72.2% 35.6%;
-		/* Rojo oscuro - Versión más oscura del primario */
-		--primary-soft: 0 72.2% 50.6% / 0.8;
-		/* Rojo suave - Versión con transparencia */
-		--primary-accent: 0 85% 45%;
-		/* Rojo acentuado - Versión más saturada */
-		--primary-foreground: 0 85.7% 97.3%;
-		--secondary: 0 0% 96.1%;
-		--secondary-foreground: 0 0% 9%;
+		--primary-light: 356 80% 70%;
+		/* Más claro */
+		--primary-dark: 356 100% 30%;
+		/* Más oscuro */
+		--primary-soft: 356 60% 60% / 0.8;
+		/* Suave y translúcido */
+		--primary-accent: 356 100% 55%;
+		/* Más saturado y brillante */
+		--primary-foreground: 0 0% 100%;
+		/* Blanco para contraste */
+		--secondary: 43 98% 53%;
+		/* Amarillo/Naranja base */
+		--secondary-light: 43 80% 75%;
+		/* Más claro */
+		--secondary-dark: 43 100% 35%;
+		/* Más oscuro */
+		--secondary-soft: 43 60% 60% / 0.8;
+		/* Suave y translúcido */
+		--secondary-accent: 43 100% 60%;
+		/* Más saturado y brillante */
+		--secondary-foreground: 0 0% 10%;
+		/* Negro para contraste */
 		--muted: 0 0% 96.1%;
 		--muted-foreground: 0 0% 45.1%;
 		--accent: 0 85.7% 88.4%;
@@ -85,6 +96,7 @@ p a {
 		--chart-5: 27 87% 67%;
 		--primarywt: 31 100% 50%;
 		--secondarywt: 215 100% 40.7%;
+		--gris: 210 40% 98%
 	}
 
 	.dark {
@@ -94,19 +106,30 @@ p a {
 		--card-foreground: 0 0% 98%;
 		--popover: 0 0% 3.9%;
 		--popover-foreground: 0 0% 98%;
-		--primary: 0 72.2% 35.6%;
-		/* Rojo base - Color primario */
-		--primary-light: 0 72.2% 65.6%;
-		/* Rojo claro - Versión más clara del primario */
-		--primary-dark: 0 72.2% 35.6%;
-		/* Rojo oscuro - Versión más oscura del primario */
-		--primary-soft: 0 72.2% 50.6% / 0.8;
-		/* Rojo suave - Versión con transparencia */
-		--primary-accent: 0 85% 45%;
-		/* Rojo acentuado - Versión más saturada */
-		--primary-foreground: 0 85.7% 97.3%;
-		--secondary: 0 0% 14.9%;
-		--secondary-foreground: 0 0% 98%;
+		--primary: 356 80% 40%;
+		/* Rojo base oscuro */
+		--primary-light: 356 80% 60%;
+		/* Más claro en dark */
+		--primary-dark: 356 100% 25%;
+		/* Más oscuro en dark */
+		--primary-soft: 356 60% 50% / 0.8;
+		/* Suave y translúcido en dark */
+		--primary-accent: 356 100% 50%;
+		/* Más saturado y brillante en dark */
+		--primary-foreground: 0 0% 100%;
+		/* Blanco para contraste */
+		--secondary: 43 80% 45%;
+		/* Amarillo/Naranja base oscuro */
+		--secondary-light: 43 80% 65%;
+		/* Más claro en dark */
+		--secondary-dark: 43 100% 25%;
+		/* Más oscuro en dark */
+		--secondary-soft: 43 60% 50% / 0.8;
+		/* Suave y translúcido en dark */
+		--secondary-accent: 43 100% 55%;
+		/* Más saturado y brillante en dark */
+		--secondary-foreground: 0 0% 100%;
+		/* Blanco para contraste */
 		--muted: 0 0% 14.9%;
 		--muted-foreground: 0 0% 63.9%;
 		--accent: 0 0% 14.9%;
@@ -123,6 +146,7 @@ p a {
 		--chart-5: 340 75% 55%;
 		--primarywt: 215 100% 40.7%;
 		--secondarywt: 31 100% 50%;
+		--gris: 0, 0%, 100%, 0.3
 	}
 }
 
@@ -192,4 +216,39 @@ p a {
 			0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2),
 			0 5px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15);
 	}
+}
+
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* Scroll personalizado */
+.custom-scroll::-webkit-scrollbar {
+	width: 8px;
+	/* Más delgado */
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+	background: transparent;
+	/* o un gris claro si prefieres */
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+	background-color: #999;
+	/* Color del scroll */
+	border-radius: 4px;
+	border: 1px solid transparent;
+}
+
+.custom-scroll:hover::-webkit-scrollbar-thumb {
+	background-color: #666;
+	/* Más visible al hacer hover */
 }

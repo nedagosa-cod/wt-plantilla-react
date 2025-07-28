@@ -73,16 +73,16 @@ export const ImageSlider = ({ autoPlayInterval = 4000, className }) => {
 		<>
 			<div
 				className={cn(
-					'relative overflow-hidden rounded-lg border border-border',
-					'h-[50vh] w-full max-w-full',
-					'group cursor-pointer',
+					'overflow-hidden relative rounded-lg border border-border',
+					'w-full max-w-full h-[50vh]',
+					'cursor-pointer group',
 					className
 				)}
 				onMouseEnter={() => setIsPaused(true)}
 				onMouseLeave={() => setIsPaused(false)}
 				onClick={openFullScreen}>
 				{/* Image slides */}
-				<div className="relative h-full w-full">
+				<div className="relative w-full h-full">
 					{slides.map((slide, index) => (
 						<div
 							key={slide.id}
@@ -90,13 +90,13 @@ export const ImageSlider = ({ autoPlayInterval = 4000, className }) => {
 								'absolute inset-0 h-full w-full transition-opacity duration-700',
 								index === currentIndex ? 'opacity-100' : 'opacity-0 pointer-events-none'
 							)}>
-							<img src={slide.src} alt={slide.alt} className="h-full w-full object-cover" />
+							<img src={`BASES/NOTICIAS/${slide.src}`} alt={slide.alt} className="object-cover w-full h-full" />
 						</div>
 					))}
 				</div>
 
 				{/* Indicators */}
-				<div className="absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 gap-2">
+				<div className="flex absolute bottom-4 left-1/2 z-10 gap-2 -translate-x-1/2">
 					{slides.map((_, index) => (
 						<button
 							key={index}

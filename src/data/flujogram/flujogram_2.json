@@ -1,0 +1,39 @@
+{
+	"1": {
+		"id": 1,
+		"title": "Validacion de identidad en el registro",
+		"type": "start",
+		"position": { "x": 0, "y": 0 },
+		"content": "Si el cliente no ingresa de manera correcta la información de identificación, deberá ver el siguiente modal",
+		"actions": [
+			{ "type": "image", "label": "Ver Guía Visual", "image": "validacion-registro-1.png" },
+			{ "type": "next", "nextStep": 2 }
+		],
+		"connections": [2]
+	},
+	"2": {
+		"id": 2,
+		"title": "Validación de identidad en el registro",
+		"type": "instruction",
+		"position": { "x": -600, "y": 400 },
+		"content": "Sele le debe indicar al cliente, que, porfavor, verifique que la información ingresada este correcta, si el cliente esta ingresando la informacion bien y se le sigue presentando el mismo modal, se debe informar al cliente que tiene novedad con su documento en la registraduria nacional y el cliente debe ponerse en contacto con esta entidad.",
+		"actions": [
+			{ "type": "back", "nextStep": 1 },
+			{ "type": "next", "nextStep": 3 }
+		],
+		"connections": [3]
+	},
+	"3": {
+		"id": 3,
+		"title": "Tipificación",
+		"type": "success",
+		"position": { "x": 300, "y": 400 },
+		"content": "EL caso debe ser escalado con el área de tecnología se debe tipificar por: <br><br><strong>- VALIDACION DE IDENTIDAD EN EL REGISTRO</strong>",
+		"actions": [
+			{ "type": "image", "label": "Ver Guía Visual", "image": "validacion-registro-2.png" },
+			{ "type": "back", "nextStep": 2 },
+			{ "type": "restart" }
+		],
+		"connections": [1]
+	}
+}

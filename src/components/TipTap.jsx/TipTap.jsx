@@ -17,7 +17,6 @@ import Swal from 'sweetalert2'
 // define your extension array
 
 const TipTap = ({ content, getValueTipTap, onScript, onList, onParagraph }) => {
-	console.log(content)
 	const editor = new Editor({
 		extensions: [
 			StarterKit.configure({
@@ -35,7 +34,7 @@ const TipTap = ({ content, getValueTipTap, onScript, onList, onParagraph }) => {
 				editor.chain().focus().toggleBulletList().run()
 			}
 			if (textEditor.includes('<p>')) {
-				console.log('si tiene')
+				return
 			}
 			// no permite escribir mas de 600 caracteres en parrafos
 			if ((onParagraph || onScript) && textEditor.length > 600) {

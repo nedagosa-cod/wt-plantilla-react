@@ -18,7 +18,6 @@ export function SecondaryNavbar({ data, activeSegment, className }) {
 
 							// Caso especial: Aplicativos web
 							if (item.title === 'Aplicativos web' && item.dropDown) {
-								console.log(item)
 								return (
 									<NavItemAppsWeb
 										key={`${i}-${index}`}

@@ -16,21 +16,26 @@ import IconsTest from './components/WebTraining/IconsTest.jsx'
 import BasesNoti from './components/Test/BasesNoti.jsx'
 import Biblioteca from './components/Biblioteca/Biblioteca.jsx'
 import Navbar from './components/WebTraining/navbar/Navbar.jsx'
-
+import Flujogram from './components/Flujogram/Flujogram'
+import AppsWeb from './components/AppsWeb/AppsWeb'
+import Glosario from './components/Glosario/Glosario'
+import Plantillas from './components/Plantillas/Plantillas'
+import Calculadoras from './components/Calculadoras/Calculadoras'
+import CalculadorasForm from './components/CalculadoraFormula/CalculadoraFormula'
 const App = () => {
 	const { activeAppNote, showApp, admin } = useContext(GlobalContext)
 
 	function slugify(text) {
 		return text
 			.toString()
-			.normalize("NFD")                    // Para eliminar acentos
-			.replace(/[\u0300-\u036f]/g, "")     // Elimina los diacríticos (tildes)
+			.normalize('NFD') // Para eliminar acentos
+			.replace(/[\u0300-\u036f]/g, '') // Elimina los diacríticos (tildes)
 			.toLowerCase()
-			.replace(/\s+/g, "_")                // Reemplaza espacios por guion bajo
-			.replace(/[^\w\-]+/g, "")            // Elimina caracteres especiales
-			.replace(/\-\-+/g, "_")              // Reemplaza múltiples guiones bajos por uno
-			.replace(/^_+/, "")                  // Elimina guiones bajos al inicio
-			.replace(/_+$/, "");                 // Elimina guiones bajos al final
+			.replace(/\s+/g, '_') // Reemplaza espacios por guion bajo
+			.replace(/[^\w\-]+/g, '') // Elimina caracteres especiales
+			.replace(/\-\-+/g, '_') // Reemplaza múltiples guiones bajos por uno
+			.replace(/^_+/, '') // Elimina guiones bajos al inicio
+			.replace(/_+$/, '') // Elimina guiones bajos al final
 	}
 
 	useEffect(() => {
@@ -54,7 +59,7 @@ const App = () => {
 	})
 
 	return (
-		<div className="flex flex-col-reverse h-dvh bg-cover bg-center relative">
+		<div className="flex relative flex-col-reverse bg-center bg-cover h-dvh">
 			<div className="absolute inset-0 -z-10 h-full w-full bg-background bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:6rem_4rem]">
 				<div className="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_800px_at_100%_200px,#ffc5c5,transparent)]"></div>
 			</div>
@@ -86,6 +91,12 @@ const App = () => {
 					<Route path="/iconTest" element={<IconsTest />} />
 					<Route path="/testbases" element={<BasesNoti />} />
 					<Route path="/biblioteca" element={<Biblioteca />} />
+					<Route path="/flujogram/:id" element={<Flujogram />} />
+					<Route path="/appsweb" element={<AppsWeb />} />
+					<Route path="/glosario" element={<Glosario />} />
+					<Route path="/plantillas" element={<Plantillas />} />
+					<Route path="/calculadoras/:id" element={<Calculadoras />} />
+					<Route path="/calculadoras/formula" element={<CalculadorasForm />} />
 				</Routes>
 			</section>
 			{activeAppNote && <NoteApp />}

@@ -27,12 +27,9 @@ import {
 } from '@/components/ui/dialog'
 
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { Label } from '@/components/ui/label'
-import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
 import ExcelDrawer from './DDBBDrawer'
 import { NotesSheet } from '../../notas/MisNotas'
-import AdminButton from './AdminButton'
 
 export default function ConfigMenu() {
 	const { SetActiveAppNote } = useContext(GlobalContext)
@@ -40,44 +37,44 @@ export default function ConfigMenu() {
 	return (
 		<Popover>
 			<PopoverTrigger>
-				<div className="bg-white p-1 my-1 rounded cursor-pointer">
-					<Settings className="h-6 w-6 text-primary" />
+				<div className="p-1 my-1 bg-white rounded cursor-pointer">
+					<Settings className="w-6 h-6 text-primary" />
 				</div>
 			</PopoverTrigger>
 			<PopoverContent>
 				<div className="grid gap-4">
 					<div className="space-y-2">
 						<h4 className="font-medium leading-none">Web Training Config</h4>
-						<p className="text-sm text-muted-foreground">versión 1.0.0</p>
+						<p className="text-sm text-muted-foreground">versión 1.3.0</p>
 					</div>
 					<Separator />
 					<div className="grid gap-2">
 						<div className="grid grid-cols-1 items-center">
 							<Button
 								variant="ghost"
-								className="flex w-full justify-between"
+								className="flex justify-between w-full"
 								onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
-								Cambiar de tema <Palette className="h-4 w-4 text-primary" />
+								Cambiar de tema <Palette className="w-4 h-4 text-primary" />
 							</Button>
 							<ExcelDrawer />
 
-							<Button variant="ghost" className="flex w-full justify-between">
-								Reportar un problema <UserCog className="h-4 w-4 text-primary" />
+							<Button variant="ghost" className="flex justify-between w-full">
+								Reportar un problema <UserCog className="w-4 h-4 text-primary" />
 							</Button>
 							<Separator />
 							<Link to="/corrector">
-								<Button variant="ghost" className="flex w-full justify-between">
-									Corrector Ortografico <SpellCheck className="h-4 w-4 text-primary" />
+								<Button variant="ghost" className="flex justify-between w-full">
+									Corrector Ortografico <SpellCheck className="w-4 h-4 text-primary" />
 								</Button>
 							</Link>
 							<NotesSheet />
 							<Separator />
-							<Button variant="ghost" className="flex w-full justify-between">
-								Guia Web Training <BookOpenCheck className="h-4 w-4 text-primary" />
+							<Button variant="ghost" className="flex justify-between w-full">
+								Guia Web Training <BookOpenCheck className="w-4 h-4 text-primary" />
 							</Button>
 							<Separator />
-							<Button variant="ghost" className="flex w-full justify-between">
-								Salir <LogOut className="h-4 w-4 text-primary" />
+							<Button variant="ghost" className="flex justify-between w-full">
+								Salir <LogOut className="w-4 h-4 text-primary" />
 							</Button>
 						</div>
 					</div>

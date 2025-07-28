@@ -172,7 +172,6 @@ const CheckListProvider = ({ children }) => {
 	}
 
 	const dialogDeleteElement = (check, location, updateUserCheck, e) => {
-		console.log(e.target)
 		if (e.target.innerText === 'Cancelar') {
 			setDeleteChElement(false)
 		} else {

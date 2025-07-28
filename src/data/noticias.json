@@ -1,27 +1,17 @@
 [
 	{
 		"id": "1",
-		"src": "https://images.pexels.com/photos/2662116/pexels-photo-2662116.jpeg",
-		"alt": "Beautiful mountain landscape with lake"
+		"src": "Diapositiva1.JPG",
+		"alt": "Noticia 1"
 	},
 	{
 		"id": "2",
-		"src": "https://images.pexels.com/photos/358457/pexels-photo-358457.jpeg",
-		"alt": "Ocean waves crashing on beach"
+		"src": "Diapositiva2.JPG",
+		"alt": "Noticia 2"
 	},
 	{
 		"id": "3",
-		"src": "https://images.pexels.com/photos/1266810/pexels-photo-1266810.jpeg",
-		"alt": "Desert landscape with sand dunes"
-	},
-	{
-		"id": "4",
-		"src": "https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg",
-		"alt": "Colorful autumn forest"
-	},
-	{
-		"id": "5",
-		"src": "https://images.pexels.com/photos/847393/pexels-photo-847393.jpeg",
-		"alt": "Snowy mountain peak"
+		"src": "Diapositiva3.JPG",
+		"alt": "Noticia 3"
 	}
 ]

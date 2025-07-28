@@ -1,0 +1,106 @@
+{
+	"1": {
+		"id": 1,
+		"title": "Registro Vive Terpel",
+		"type": "start",
+		"position": { "x": 0, "y": 0 },
+		"content": "Cliente se comunica solicitando información de cómo afiliarse al programa ViveTerpel",
+		"actions": [{ "type": "next", "nextStep": 2 }],
+		"connections": [2]
+	},
+	"2": {
+		"id": 2,
+		"title": "Gestión del CES",
+		"type": "instruction",
+		"position": { "x": -200, "y": 400 },
+		"content": "Se indica que debe ingresar a la página por la opción registrarse en vive Terpel a través de la página web <strong>www.ViveTerpel.com</strong> o <strong>App Terpel</strong> y diligenciar el formulario de registro.",
+		"actions": [
+			{
+				"type": "redirect",
+				"label": "Vive Terpel",
+				"url": "https://www.viveterpel.com/"
+			},
+			{ "type": "image", "label": "Ver Guía Visual", "image": "vive-terpel-1.png" },
+			{ "type": "back", "nextStep": 1 },
+			{ "type": "next", "nextStep": 3 }
+		],
+		"connections": [3]
+	},
+	"3": {
+		"id": 3,
+		"title": "FORMULARIO",
+		"type": "instruction",
+		"position": { "x": 0, "y": 800 },
+		"content": "Diligencia el formulario de registro de Vive Terpel.",
+		"actions": [
+			{ "type": "image", "label": "Ver Guía Visual", "image": "vive-terpel-2.png" },
+			{ "type": "back", "nextStep": 2 },
+			{ "type": "next", "nextStep": 4 }
+		],
+		"connections": [4]
+	},
+	"4": {
+		"id": 4,
+		"title": "TIPIFICACION",
+		"type": "instruction",
+		"position": { "x": 800, "y": 400 },
+		"content": "Una vez registrado ingresa la tipificación correspondiente.",
+		"actions": [
+			{ "type": "image", "label": "Ver Guía Visual", "image": "vive-terpel-3.png" },
+			{ "type": "back", "nextStep": 3 },
+			{ "type": "next", "nextStep": 5 }
+		],
+		"connections": [5]
+	},
+	"5":{
+		"id": 5,
+		"title": "ANONIMIZAR A UN CLIENTE",
+		"type": "instruction",
+		"position": { "x": 1500, "y": 400 },
+		"content": "Cliente se comunica para solicitar la eliminación de la cuenta, el <strong>CES</strong> guia al cliente a eliminar la cuenta desde la app o desde la web",
+		"actions": [
+			{ "type": "image", "label": "Ver Guía Visual", "image": "vive-terpel-4.png" },
+			{ "type": "back", "nextStep": 4 },
+			{ "type": "next", "nextStep": 6 }
+		],
+		"connections": [6]
+	},
+	"6":{
+		"id": 6,
+		"title": "TIPIFICACION",
+		"type": "instruction",
+		"position": { "x": 2000, "y": 400 },
+		"content": "Tabla de tipificación:",
+		"actions": [
+			{ "type": "image", "label": "Ver Guía Visual", "image": "vive-terpel-5.png" },
+			{ "type": "back", "nextStep": 5 },
+			{ "type": "next", "nextStep": 7 }
+		],
+		"connections": [7]
+	},
+	"7":{
+		"id": 7,
+		"title": "Cliente no quiere recibir más correos o SMS del programa Autogestión",
+		"type": "instruction",
+		"position": { "x": 2000, "y": 1300 },
+		"content": "<strong>Gestión del CES:</strong> Se debe indicar al cliente que inicie sesión en app o Web, y seguir estos pasos: <br>1 Ingresa a la Opción <strong>más</strong> <br>2. Mis datos<br>3. El cliente debe ingresar a <strong>Notificaciones promocionales</strong><br>4. El cliente puede seleccionar los canales por los cuales quiere recibir información del programa ViveTerpel. El cliente puede seleccionar 1 o varios canales de contacto. <br><br>Si el cliente no quiere ser contactado por correo electrónico, este caso se debe escalar al analista de lealtad.",
+		"actions": [
+			{ "type": "back", "nextStep": 6 },
+			{ "type": "next", "nextStep": 8 }
+		],
+		"connections": [8]
+	},
+	"8":{
+		"id": 8,
+		"title": "TIPIFICACION",
+		"type": "success",
+		"position": { "x": 2000, "y": 1900 },
+		"content": "Tabla de tipificación:",
+		"actions": [
+			{ "type": "image", "label": "Ver Guía Visual", "image": "vive-terpel-6.png" },
+			{ "type": "back", "nextStep": 7 },
+			{ "type": "restart" }
+		],
+		"connections": []
+	}
+}

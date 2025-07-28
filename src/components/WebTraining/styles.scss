@@ -5,11 +5,13 @@
 	gap: 2rem;
 	width: 100%;
 	height: fit-content;
+
 	& .title-icons {
 		font-size: 4rem;
 		text-align: center;
 		width: 100%;
 	}
+
 	& div {
 		display: flex;
 		gap: 1rem;
@@ -25,6 +27,7 @@
 		-moz-border-radius: 0.8rem;
 		-ms-border-radius: 0.8rem;
 		-o-border-radius: 0.8rem;
+
 		& svg {
 			width: 4rem;
 		}

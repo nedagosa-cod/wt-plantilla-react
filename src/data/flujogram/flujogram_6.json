@@ -1,0 +1,157 @@
+{
+  "1": {
+    "id": 1,
+    "title": "Compensación de puntos",
+    "type": "start",
+    "position": { "x": 0, "y": 0 },
+    "content": "<strong>No se acumularon los puntos durante la venta:</strong><br>Se comunica el cliente indicando que no le acumularon los puntos de compra que realizó en la EDS o en la TDC:<br><br>El primer paso es solicitar al cliente la evidencia de esa compra. Si no cuenta con soporte o el soporte supera 24h después de la venta, no aplica compensación.",
+    "actions": [{ "type": "next", "nextStep": 2 }],
+    "connections": [2]
+  },
+  "2": {
+    "id": 2,
+    "title": "Soporte válido",
+    "type": "instruction",
+    "position": { "x": 800, "y": 450 },
+    "content": "El único documento soporte válido para hacer la acumulación manual de puntos será una factura expedida por una <strong>EDS/TDC</strong>. Solo se acepta una vez por cliente. Facturas repetidas o en diferentes cuentas serán rechazadas.",
+    "actions": [
+      { "type": "back", "nextStep": 1 },
+      { "type": "next", "nextStep": 3 }
+    ],
+    "connections": [3]
+  },
+  "3": {
+    "id": 3,
+    "title": "Ejemplo de factura EDS",
+    "type": "instruction",
+    "position": { "x": 0, "y": 900 },
+    "content": "Se relacionan ejemplos de las facturas emitidas por las EDS.",
+    "actions": [
+      { "type": "back", "nextStep": 2 },
+      { "type": "next", "nextStep": 4 },
+      { "type": "image", "label": "Ver ejemplo", "image": "compensacion-puntos-1.png" }
+    ],
+    "connections": [4]
+  },
+  "4": {
+    "id": 4,
+    "title": "Validación de EDS activa",
+    "type": "instruction",
+    "position": { "x": 800, "y": 1350 },
+    "content": "Una vez el cliente envíe la factura, el agente deberá revisar el <strong>Member Vive Terpel</strong> del cliente.<br><br>Se debe verificar que la EDS donde se generó la venta esté activa en Salesforce.",
+    "actions": [
+      { "type": "back", "nextStep": 3 },
+      { "type": "next", "nextStep": 5 },
+      { "type": "image", "label": "Ver EDS", "image": "compensacion-puntos-2.png" }
+    ],
+    "connections": [5]
+  },
+  "5": {
+    "id": 5,
+    "title": "Nota sobre TDC y EDS",
+    "type": "note",
+    "position": { "x": 0, "y": 1800 },
+    "content": "<strong>Ten en cuenta</strong>",
+    "note": "Si la venta se originó desde una TDC no es necesario verificar si está activa en Vive Terpel. En cambio, si es desde una EDS, sí se debe verificar porque aún hay muchas EDS que no participan.",
+    "actions": [
+      { "type": "back", "nextStep": 4 },
+      { "type": "next", "nextStep": 6 }
+    ],
+    "connections": [6]
+  },
+  "6": {
+    "id": 6,
+    "title": "Consulta ticket en informes",
+    "type": "instruction",
+    "position": { "x": 800, "y": 2250 },
+    "content": "Consultar en los siguientes informes si el número de ticket ya fue compensado:",
+    "actions": [
+    {
+        "type": "redirect",
+        "label": "Vive Terpel REPORT",
+        "url": "https://terpel.lightning.force.com/lightning/r/Report/0005a000007bAUFEA2/view"
+    },
+      { "type": "back", "nextStep": 5 },
+      { "type": "next", "nextStep": 7 }
+    ],
+    "connections": [7]
+  },
+  "7": {
+    "id": 7,
+    "title": "Validación en Fuelpic",
+    "type": "instruction",
+    "position": { "x": 0, "y": 2700 },
+    "content": "<strong>Validación obligatoria:</strong><br>Si la venta contiene placa, se debe verificar en <strong>https://portal.fuelpic.com/#/transactions</strong>.<br>Si no aparece, se compensa como efectivo.<br><br>Si aparece, se compensa según reglas (Diesel 60, GNV pesados, Corriente, Extra).",
+    "actions": [
+      { "type": "back", "nextStep": 6 },
+      { "type": "next", "nextStep": 8 }
+    ],
+    "connections": [8]
+  },
+  "8": {
+    "id": 8,
+    "title": "Ingresar al Member",
+    "type": "instruction",
+    "position": { "x": 800, "y": 3150 },
+    "content": "<strong>Ingresar al Member Vive Terpel del cliente</strong> para continuar con la validación.",
+    "actions": [
+      { "type": "back", "nextStep": 7 },
+      { "type": "next", "nextStep": 9 },
+      { "type": "image", "label": "Ver acceso", "image": "compensacion-puntos-3.png" }
+    ],
+    "connections": [9]
+  },
+  "9": {
+    "id": 9,
+    "title": "Estado del Member",
+    "type": "instruction",
+    "position": { "x": 0, "y": 3600 },
+    "content": "Verificar que el estado del Member sea <strong>activo</strong>.<br><br>Si está bloqueado, no aplica compensación.",
+    "actions": [
+      { "type": "back", "nextStep": 8 },
+      { "type": "next", "nextStep": 10 },
+      { "type": "image", "label": "Ver estado", "image": "compensacion-puntos-4.png" }
+    ],
+    "connections": [10]
+  },
+  "10": {
+    "id": 10,
+    "title": "Verificar historial de ventas",
+    "type": "instruction",
+    "position": { "x": 800, "y": 4050 },
+    "content": "Verificar si la venta ya fue registrada en el historial del Member.",
+    "actions": [
+      { "type": "back", "nextStep": 9 },
+      { "type": "next", "nextStep": 11 },
+      { "type": "image", "label": "Historial 1", "image": "compensacion-puntos-5.png" },
+      { "type": "image", "label": "Historial 2", "image": "compensacion-puntos-6.png" }
+    ],
+    "connections": [11]
+  },
+  "11": {
+    "id": 11,
+    "title": "Escenarios de rechazo",
+    "type": "instruction",
+    "position": { "x": 800, "y": 4500 },
+    "content": "a) Venta en estado aprobado: cliente debe consultar en la app o web.<br>b) Venta diferente el mismo día: no aplica.<br>c) Venta en estado rechazado: verificar infracciones por fraude en el Member.",
+    "actions": [
+      { "type": "back", "nextStep": 10 },
+      { "type": "next", "nextStep": 12 },
+      { "type": "image", "label": "Ver ejemplo", "image": "compensacion-puntos-7.png" }
+    ],
+    "connections": [12]
+  },
+  "12": {
+    "id": 12,
+    "title": "Compensación de puntos",
+    "type": "success",
+    "position": { "x": 0, "y": 4950 },
+    "content": "Si pasa todos los filtros, se realiza la compensación.<br><br>Se refleja en el Member inmediatamente.<br>Factura electrónica también aplica como soporte.<br><br>Casos en que sí aplica:<br>- Venta fidelizada el mismo día con otro producto<br>- Venta registrada con menos puntos<br>- Cliente demuestra con factura mayor valor<br>- Vigencia de puntos: según TYC de la promoción.",
+    "actions": [
+      { "type": "back", "nextStep": 11 },
+      { "type": "restart" },
+      { "type": "image", "label": "Ver ejemplo", "image": "compensacion-puntos-8.png" }
+    ],
+    "connections": []
+  }
+}

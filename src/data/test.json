@@ -1,0 +1,151 @@
+"11": {
+		"id": 11,
+		"title": "SELECCIÓN DE TIPO DE CUENTA",
+		"type": "dropdown",
+		"position": { "x": -300, "y": 1200 },
+		"content": "Selecciona el tipo de cuenta que deseas configurar. Cada opción tiene un proceso específico.",
+		"question": "¿Qué tipo de cuenta deseas configurar?",
+		"actions": [
+			{
+				"type": "dropdown",
+				"placeholder": "Selecciona el tipo de cuenta...",
+				"options": [
+					{ "value": "personal", "label": "Cuenta Personal", "nextStep": 4 },
+					{ "value": "empresarial", "label": "Cuenta Empresarial", "nextStep": 12 },
+					{ "value": "premium", "label": "Cuenta Premium", "nextStep": 13 },
+					{ "value": "estudiante", "label": "Cuenta de Estudiante", "nextStep": 14 }
+				]
+			}
+		],
+		"connections": [4, 12, 13, 14]
+	},
+	"12": {
+		"id": 12,
+		"title": "CONFIGURACIÓN EMPRESARIAL",
+		"type": "instruction",
+		"position": { "x": -600, "y": 1600 },
+		"content": "Configuración específica para cuentas empresariales. Se requiere información adicional de la empresa.",
+		"actions": [
+			{ "type": "image", "label": "Ver Requisitos", "image": "/images/support-image.png" },
+			{ "type": "next", "nextStep": 5 }
+		],
+		"connections": [5]
+	},
+	"13": {
+		"id": 13,
+		"title": "CONFIGURACIÓN PREMIUM",
+		"type": "instruction",
+		"position": { "x": 0, "y": 1600 },
+		"content": "Configuración para cuentas premium con características avanzadas y soporte prioritario.",
+		"actions": [
+			{ "type": "redirect", "label": "Ver Beneficios", "url": "https://premium.ejemplo.com" },
+			{ "type": "next", "nextStep": 5 }
+		],
+		"connections": [5]
+	},
+	"14": {
+		"id": 14,
+		"title": "CONFIGURACIÓN ESTUDIANTE",
+		"type": "instruction",
+		"position": { "x": 300, "y": 1600 },
+		"content": "Configuración especial para estudiantes con descuentos y herramientas educativas.",
+		"actions": [
+			{ "type": "image", "label": "Ver Descuentos", "image": "/images/support-image.png" },
+			{ "type": "next", "nextStep": 5 }
+		],
+		"connections": [5]
+	},
+	"4": {
+		"id": 4,
+		"title": "VALIDACIÓN DE DATOS",
+		"type": "validation",
+		"position": { "x": -300, "y": 2000 },
+		"content": "Verifica que todos los datos ingresados sean correctos antes de continuar.",
+		"question": "¿Todos los datos están correctos?",
+		"actions": [
+			{
+				"type": "validation",
+				"options": [
+					{ "value": "si", "label": "Sí, continuar", "nextStep": 5 },
+					{ "value": "no", "label": "No, corregir", "nextStep": 9 }
+				]
+			}
+		],
+		"connections": [5, 9]
+	},
+	"5": {
+		"id": 5,
+		"title": "PREGUNTAS DE SEGURIDAD",
+		"type": "validation",
+		"position": { "x": -600, "y": 2400 },
+		"content": "Para mayor seguridad, debes configurar preguntas de seguridad.",
+		"question": "¿Cliente aprobó las preguntas de seguridad?",
+		"actions": [
+			{
+				"type": "validation",
+				"options": [
+					{ "value": "si", "label": "Sí", "nextStep": 6 },
+					{ "value": "no", "label": "No, corregir", "nextStep": 10 }
+				]
+			}
+		],
+		"connections": [6, 10]
+	},
+	"6": {
+		"id": 6,
+		"title": "CONFIGURACIÓN AVANZADA",
+		"type": "instruction",
+		"position": { "x": -900, "y": 2800 },
+		"content": "Configuremos las opciones avanzadas de tu cuenta.",
+		"actions": [
+			{ "type": "redirect", "label": "Configuración", "url": "https://config.ejemplo.com" },
+			{ "type": "image", "label": "Tutorial", "image": "/images/support-image.png" },
+			{ "type": "next", "nextStep": 7 }
+		],
+		"connections": [7]
+	},
+	"7": {
+		"id": 7,
+		"title": "PROCESO COMPLETADO",
+		"type": "success",
+		"position": { "x": -900, "y": 3200 },
+		"content": "¡Felicitaciones! Has completado exitosamente todo el proceso de configuración.",
+		"actions": [
+			{ "type": "redirect", "label": "Ir al Dashboard", "url": "https://dashboard.ejemplo.com" },
+			{ "type": "summary" }
+		],
+		"connections": []
+	},
+	"8": {
+		"id": 8,
+		"title": "PROBLEMA DE ACCESO",
+		"type": "error",
+		"position": { "x": 300, "y": 800 },
+		"content": "Parece que hay un problema con el acceso. Contacta al soporte técnico.",
+		"actions": [
+			{ "type": "redirect", "label": "Contactar Soporte", "url": "https://soporte.ejemplo.com" },
+			{ "type": "restart" }
+		],
+		"connections": []
+	},
+	"9": {
+		"id": 9,
+		"title": "CORRECCIÓN DE DATOS",
+		"type": "instruction",
+		"position": { "x": 0, "y": 2400 },
+		"content": "Regresa al formulario y corrige los datos incorrectos.",
+		"actions": [
+			{ "type": "image", "label": "Ver Ejemplo", "image": "/images/support-image.png" },
+			{ "type": "back", "nextStep": 11 }
+		],
+		"connections": [11]
+	},
+	"10": {
+		"id": 10,
+		"title": "CONFIGURACIÓN ALTERNATIVA",
+		"type": "instruction",
+		"position": { "x": -300, "y": 2800 },
+		"content": "Configuraremos un método alternativo de seguridad.",
+		"actions": [{ "type": "next", "nextStep": 6 }],
+		"connections": [6]
+	}

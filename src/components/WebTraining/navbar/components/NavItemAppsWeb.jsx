@@ -7,27 +7,28 @@ import {
 import React from 'react'
 import { cn } from '@/lib/utils'
 import PropTypes from 'prop-types'
-import { Diamond, Home, Info, Menu, User2 } from 'lucide-react'
 import { Separator } from '@/components/ui/separator'
 import { Button } from '@/components/ui/button'
+import { useNavigate } from 'react-router-dom'
 
 export default function NavItemAppsWeb({ label, icon, submenu }) {
+	const navigate = useNavigate()
 	return (
 		<NavigationMenuItem>
 			<NavigationMenuTrigger
 				title={label}
-				className="flex items-center justify-center bg-[hsl(var(--primary-dark))] py-2 px-4 text-white rounded-full shadow-md h-8 w-24 xl:w-44 text-nowrap truncate">
-				<span className="w-4 h-4 mr-2 flex items-center justify-center">{icon}</span>
-				<span className="truncate overflow-hidden whitespace-nowrap text-sm hidden xl:block">{label}</span>
+				className="flex justify-center items-center px-4 py-2 w-24 h-8 text-white truncate rounded-full shadow-md bg-primary xl:w-44 text-nowrap">
+				<span className="flex justify-center items-center mr-2 w-4 h-4">{icon}</span>
+				<span className="hidden overflow-hidden text-sm truncate whitespace-nowrap xl:block">{label}</span>
 			</NavigationMenuTrigger>
 			<NavigationMenuContent>
 				<ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
 					<li className="row-span-8">
 						<NavigationMenuLink asChild>
 							<a
-								className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md "
+								className="flex flex-col gap-6 justify-end p-6 w-full h-full no-underline bg-gradient-to-b rounded-md outline-none select-none from-muted/50 to-muted focus:shadow-md"
 								href="#/apps-web">
-								<div className="mb-2 mt-4 text-lg font-medium">
+								<div className="mt-4 mb-2 text-lg font-medium">
 									{icon}
 									Apps web
 								</div>
@@ -35,21 +36,25 @@ export default function NavItemAppsWeb({ label, icon, submenu }) {
 							</a>
 						</NavigationMenuLink>
 					</li>
+
 					<li>
 						<h2 className="text-lg font-medium text-accent">Aplicativos Web Atento</h2>
 					</li>
+
 					<li className="flex flex-wrap gap-3 justify-center items-center">
-						{submenu.map((item, index) => (
-							<ListItem href={item.route} title={item.title} image={item.image} key={index}>
-								{item.description ? item.description : ''}
-							</ListItem>
-						))}
+						{submenu.map((item, index) => {
+							return (
+								<ListItem href={item.route} title={item.title} image={item.image} key={index}>
+									{item.description ? item.description : ''}
+								</ListItem>
+							)
+						})}
 					</li>
 					<li>
 						<Separator className="my-4" />
 					</li>
 					<li>
-						<Button variant="outline" className="w-full bg-primary text-white">
+						<Button variant="outline" className="w-full text-white bg-primary" onClick={() => navigate('/appsweb')}>
 							Ver todos
 						</Button>
 					</li>
@@ -65,15 +70,16 @@ const ListItem = React.forwardRef(({ className, title, children, image, ...props
 			<NavigationMenuLink asChild title={title}>
 				<a
 					ref={ref}
+					target="_blank"
 					className={cn(
-						'block aspect-square w-16 h-16 select-none space-y-1 rounded-xl p-3 leading-none no-underline outline-none transition-colors focus:bg-accent focus:text-accent-foreground shadow-lg hover:shadow-xl hover:scale-105',
+						'flex justify-center items-center p-3 space-y-1 w-16 h-16 leading-none no-underline rounded-xl shadow-lg transition-colors outline-none select-none aspect-square focus:bg-accent focus:text-accent-foreground hover:shadow-xl hover:scale-105',
 						className
 					)}
 					{...props}>
 					<figure className="text-sm font-medium leading-none">
-						<img src={image} alt={title} className="w-full h-full object-cover" />
+						<img src={`./noTocar/imagenes/appsWeb/${image}`} alt={title} className="object-cover w-full h-full" />
 					</figure>
-					<p className="line-clamp-2 text-sm leading-snug text-muted-foreground">{children}</p>
+					<p className="text-sm leading-snug line-clamp-2 text-muted-foreground">{children}</p>
 				</a>
 			</NavigationMenuLink>
 		</div>

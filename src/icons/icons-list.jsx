@@ -13,6 +13,16 @@ import {
 	Info as InfoIcon,
 	BookOpen,
 	Clock,
+	Map,
+	CircleArrowRight,
+	TicketCheck,
+	Ban,
+	BookMarked,
+	Waypoints,
+	Equal,
+	HeartHandshake,
+	HandCoins,
+	ServerCrash,
 } from 'lucide-react'
 
 export const icons = {
@@ -29,4 +39,15 @@ export const icons = {
 	info: <InfoIcon className="h-full" />,
 	catalogue: <BookOpen className="h-full" />,
 	timeLine: <Clock className="h-full" />,
+	map: <Map className="h-full" />,
+	circleArrowRight: <CircleArrowRight className="h-full" />,
+	ticketCheck: <TicketCheck className="h-full" />,
+	ban: <Ban className="h-full" />,
+	bookOpen: <BookOpen className="h-full" />,
+	bookMarket: <BookMarked className="h-full" />,
+	waypoints: <Waypoints className="h-full" />,
+	equal: <Equal className="h-full" />,
+	heartHandshake: <HeartHandshake className="h-full" />,
+	handCoins: <HandCoins className="h-full" />,
+	serverCrash: <ServerCrash className="h-full" />,
 }

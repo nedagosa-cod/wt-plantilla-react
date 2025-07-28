@@ -1,0 +1,122 @@
+{
+  "1": {
+    "id": 1,
+    "title": "Conciliación de cartera",
+    "type": "start",
+    "position": { "x": 0, "y": 0 },
+    "content": "Las estaciones de servicio mes a mes se comunican cuando evidencian una diferencia en el cierre contable diario o mensual de la EDS y/o TDC, indicando que no ven reflejados los pagos de los bonos ViveTerpel que los clientes utilizan como medio de pago.",
+    "actions": [{ "type": "next", "nextStep": 2 }],
+    "connections": [2]
+  },
+  "2": {
+    "id": 2,
+    "title": "Nota sobre documentos cargados",
+    "type": "note",
+    "position": { "x": 500, "y": 450 },
+    "content": "<strong>Ten en cuenta</strong>",
+    "note": "El técnico de lealtad cargará en el Ondrive compartido con el CES de Cierres PDV los documentos necesarios para el cierre del caso. Este documento no debe contener información sensible.",
+    "actions": [
+      { "type": "back", "nextStep": 1 },
+      { "type": "next", "nextStep": 3 }
+    ],
+    "connections": [3]
+  },
+  "3": {
+    "id": 3,
+    "title": "Información que se debe solicitar",
+    "type": "instruction",
+    "position": { "x": 1000, "y": 900 },
+    "content": "Cuando un punto de venta se comunique con dudas sobre pagos faltantes, debemos solicitar:<br><br>- Número de bono<br>- Fecha de la transacción<br>- Valor del bono<br>- Número de venta",
+    "actions": [
+      { "type": "back", "nextStep": 2 },
+      { "type": "next", "nextStep": 4 }
+    ],
+    "connections": [4]
+  },
+  "4": {
+    "id": 4,
+    "title": "Validar documento de cierre",
+    "type": "instruction",
+    "position": { "x": 1500, "y": 1350 },
+    "content": "Solicitar el tiquet donde se vea reflejado el pago con bono. Luego, validar en el documento <strong>“Cierre Salesforce”</strong> del mes correspondiente.",
+    "actions": [
+      { "type": "back", "nextStep": 3 },
+      { "type": "next", "nextStep": 5 }
+    ],
+    "connections": [5]
+  },
+  "5": {
+    "id": 5,
+    "title": "Filtrar en Cierre Salesforce",
+    "type": "instruction",
+    "position": { "x": 0, "y": 1800 },
+    "content": "Filtrar por el código del punto de venta y luego buscar la fecha que indique el cliente como día de la diferencia.",
+    "actions": [
+      { "type": "back", "nextStep": 4 },
+      { "type": "next", "nextStep": 6 }
+    ],
+    "connections": [6]
+  },
+  "6": {
+    "id": 6,
+    "title": "Confirmación con punto de venta",
+    "type": "instruction",
+    "position": { "x": 500, "y": 2250 },
+    "content": "Confirmar con el punto de venta:<br>• Bono que desea consultar<br>• Valor reclamado<br><br>Estos valores deben coincidir entre lo que tiene el punto y lo que se brinda.",
+    "actions": [
+      { "type": "back", "nextStep": 5 },
+      { "type": "next", "nextStep": 7 }
+    ],
+    "connections": [7]
+  },
+  "7": {
+    "id": 7,
+    "title": "Nota sobre hora de la venta",
+    "type": "note",
+    "position": { "x": 1000, "y": 2700 },
+    "content": "<strong>Ten en cuenta</strong>",
+    "note": "Si la venta se realiza antes de las 6:00 am del día en consulta, pertenece al cierre del día anterior. Ejemplo: venta del 1 de abril a las 5:00 am corresponde al cierre del 31 de marzo.",
+    "actions": [
+      { "type": "back", "nextStep": 6 },
+      { "type": "next", "nextStep": 8 }
+    ],
+    "connections": [8]
+  },
+  "8": {
+    "id": 8,
+    "title": "Escenarios posibles",
+    "type": "instruction",
+    "position": { "x": 1500, "y": 3150 },
+    "content": "✔️ Si la información coincide, revisamos el <strong>Total Cartera</strong> y se verifica si el valor fue pagado a la EDS.<br><br>✔️ Si coincide, adjuntar soporte y cerrar el caso.<br><br>❌ Si no coincide, revisar archivo <strong>Notas crédito</strong> y verificar si fue abonado.<br><br>❌ Si no hay pago registrado, se escala al <strong>técnico de Lealtad</strong>.",
+    "actions": [
+      { "type": "back", "nextStep": 7 },
+      { "type": "next", "nextStep": 9 }
+    ],
+    "connections": [9]
+  },
+  "9": {
+    "id": 9,
+    "title": "Consulta por diferencias en conciliación",
+    "type": "instruction",
+    "position": { "x": 0, "y": 3600 },
+    "content": "Cuando una EDS o Tienda informa diferencia por #462, se debe remitir al correo:<br><br><strong>Conciliacion.cartera@terpel.com</strong><br><br>Incluyendo:<br>• Número de bono<br>• Fecha<br>• Valor<br>• Número de venta",
+    "actions": [
+      { "type": "back", "nextStep": 8 },
+      { "type": "next", "nextStep": 10 }
+    ],
+    "connections": [10]
+  },
+  "10": {
+    "id": 10,
+    "title": "Tipificación del caso",
+    "type": "success",
+    "position": { "x": 500, "y": 4050 },
+    "content": "Se debe tipificar el caso según lo evidenciado en la llamada y soportes adjuntos.",
+    "actions": [
+      { "type": "back", "nextStep": 9 },
+      { "type": "restart" },
+      { "type": "image", "label": "Ver Tipificación", "image": "conciliacion-puntos-1.png" }
+    ],
+    "connections": []
+  }
+}

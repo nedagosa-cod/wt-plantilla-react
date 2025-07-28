@@ -8,15 +8,16 @@ import React from 'react'
 import { cn } from '@/lib/utils'
 import PropTypes from 'prop-types'
 import { icons } from '../../../../../icons/icons-list'
+import { NavLink } from 'react-router-dom'
 
 export default function NavItemPortada({ label, icon, submenu }) {
 	return (
 		<NavigationMenuItem>
 			<NavigationMenuTrigger
 				title={label}
-				className="flex items-center justify-center bg-[hsl(var(--primary-dark))] py-2 px-4 text-white rounded-full shadow-md h-8 w-20 xl:w-40 text-nowrap truncate">
-				<span className="w-4 h-4 mr-2 flex items-center justify-center">{icon}</span>
-				<span className="truncate overflow-hidden whitespace-nowrap text-sm hidden xl:block ">{label}</span>
+				className="flex items-center justify-center w-20 h-8 px-4 py-2 text-white truncate rounded-full shadow-md bg-primary xl:w-40 text-nowrap">
+				<span className="flex items-center justify-center w-4 h-4 mr-2">{icon}</span>
+				<span className="hidden overflow-hidden text-sm truncate whitespace-nowrap xl:block ">{label}</span>
 			</NavigationMenuTrigger>
 			<NavigationMenuContent>
 				<ul className="grid gap-3 p-4 md:w-[400px] lg:w-[600px] lg:grid-cols-[.75fr_1fr]">
@@ -24,10 +25,10 @@ export default function NavItemPortada({ label, icon, submenu }) {
 						index === 0 ? (
 							<li className="row-span-4" key={index}>
 								<NavigationMenuLink asChild>
-									<a
-										className="flex h-full  w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-5 no-underline outline-none focus:shadow-md"
-										href={item.route}>
-										<div className="mb-2 mt-4 text-lg font-medium flex items-center justify-center">
+									<NavLink
+										className="flex flex-col justify-end w-full h-full p-5 no-underline rounded-md outline-none select-none bg-gradient-to-b from-muted/50 to-muted focus:shadow-md"
+										to={item.route}>
+										<div className="flex items-center justify-center mt-4 mb-2 text-lg font-medium">
 											{icon}
 
 											{item.title}
@@ -35,7 +36,7 @@ export default function NavItemPortada({ label, icon, submenu }) {
 										<p className="text-sm leading-tight text-muted-foreground">
 											{item.description && item.description}
 										</p>
-									</a>
+									</NavLink>
 								</NavigationMenuLink>
 							</li>
 						) : (
@@ -54,26 +55,26 @@ const ListItem = React.forwardRef(({ className, title, children, iconItem, paren
 	return (
 		<li>
 			<NavigationMenuLink asChild>
-				<a
-					target="_blank"
+				<NavLink
+					to={props.href}
 					ref={ref}
 					className={cn(
 						'flex flex-col select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
 						className
 					)}
 					{...props}>
-					<span className="flex items-center  mr-2 text-primary">
+					<span className="flex items-center mr-2 text-primary">
 						{iconItem ? (
-							<span className="w-4 h-4 mr-2 flex items-center justify-center">{icons[iconItem]}</span>
+							<span className="flex items-center justify-center w-4 h-4 mr-2">{icons[iconItem]}</span>
 						) : (
 							parentIcon
 						)}
 						<div className="text-sm font-medium leading-none">{title}</div>
 					</span>
 					<div className="flex flex-col gap-2">
-						<p className="line-clamp-2 text-sm leading-snug text-muted-foreground">{children}</p>
+						<p className="text-sm leading-snug line-clamp-2 text-muted-foreground">{children}</p>
 					</div>
-				</a>
+				</NavLink>
 			</NavigationMenuLink>
 		</li>
 	)

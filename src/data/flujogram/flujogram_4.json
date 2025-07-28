@@ -1,0 +1,115 @@
+{
+	"1": {
+		"id": 1,
+		"title": "Motivo de la consulta",
+		"type": "start",
+		"position": { "x": 0, "y": 0 },
+		"content": "El cliente se comunica informando que quiere actualizar sus datos personales (Celular, nombre).",
+		"actions": [{ "type": "next", "nextStep": 2 }],
+		"connections": [2]
+	},
+	"2": {
+		"id": 2,
+		"title": "Autogestión - Paso 1",
+		"type": "note",
+		"position": { "x": 800, "y": 200 },
+		"content": "El agente deberá guiar al cliente en la autogestión, si por algún motivo el cliente no se puede autogestionar, el agende debe realizar las siguientes pruebas de seguridad ->",
+		"note": "Para actualizar la informacion del cliente, se debe revisar siempre primero el estado del cliente (Cliente Activo). Si el cliente no esta activo se debe escalar por cualquiera de las otras tipificaciones dependiendo el estado de la cuenta.",
+		"actions": [
+			{ "type": "back", "nextStep": 1 },
+			{ "type": "next", "nextStep": 3 }
+		],
+		"connections": [3]
+	},
+	"3": {
+		"id": 3,
+		"title": "Autogestión - Pruebas de seguridad",
+		"type": "instruction",
+		"position": { "x": -200, "y": 400 },
+		"content": "<ul class='px-6 text-sm list-disc text-left'><li>Preguntar al cliente sobre informacion de la última compra finalizada, si el cliente responde de manera correcta. Se procede con la actualización del correo y/o número de celular, según lo que pida el cliente.</li><br><li>Si la respues es incorrecta o inconsistente se pide al cliente que adjunte o envie una fotocopia de su documento de identidad. Una vez recibida esta información se procede con la actualización del correo y/o número de celular, según lo que pida el cliente.</li></ul>",
+		"actions": [
+			{ "type": "back", "nextStep": 2 },
+			{ "type": "next", "nextStep": 4 }
+		],
+		"connections": [4]
+	},
+	"4": {
+		"id": 4,
+		"title": "Autogestión - Paso 3",
+		"type": "instruction",
+		"position": { "x": 600, "y": 700 },
+		"content": "Para autogestionar al usuario, debemos brindarle los siguientes pasos: <br><br>1. Ingresa a la opción 'Mas' <br>2. Mis datos",
+		"actions": [
+			{ "type": "image", "label": "Ver Guía Visual", "image": "error-registro-4.png" },
+			{ "type": "back", "nextStep": 3 },
+			{ "type": "next", "nextStep": 5 }
+		],
+		"connections": [5]
+	},
+	"5": {
+		"id": 5,
+		"title": "Tipificacion",
+		"type": "instruction",
+		"position": { "x": -300, "y": 900 },
+		"content": "Tabla de tipificación:",
+		"actions": [
+			{ "type": "image", "label": "Ver Guía Visual", "image": "error-registro-4.png" },
+			{ "type": "back", "nextStep": 4 },
+			{ "type": "next", "nextStep": 6 }
+		],
+		"connections": [6]
+	},
+	"6": {
+		"id": 6,
+		"title": "Escalamiento por falta de permisos",
+		"type": "instruction",
+		"position": { "x": 0, "y": 1100 },
+		"content": "En caso de que <strong>no puedas o no tengas los permisos para actualizar el correo</strong>, deberás escalar el caso al técnico de lealtad.",
+		"actions": [
+		{ "type": "image", "label": "Ver Guía Visual", "image": "actualizacion-inicio-session-1.png" },
+		{ "type": "back", "nextStep": 5 },
+		{ "type": "next", "nextStep": 7 }
+		],
+		"connections": [7]
+	},
+	"7": {
+		"id": 7,
+		"title": "Escalamiento por número de celular",
+		"type": "note",
+		"position": { "x": 600, "y": 1300 },
+		"content": "En caso de que en vez de <strong>número de documento esté el número de celular</strong>, se escala el caso con la siguiente información:<br><br>1. Nombres del usuario<br>2. Correo<br>3. Número de documento de identidad<br>4. Adjuntar el documento de identidad del usuario",
+		"note": "si el caso no contiene la información completa, el caso será devuelto.",
+		"actions": [
+		{ "type": "image", "label": "Ver Guía Visual", "image": "actualizacion-inicio-session-2.png" },
+		{ "type": "back", "nextStep": 6 },
+		{ "type": "next", "nextStep": 8 }
+		],
+		"connections": [8]
+	},
+	"8": {
+		"id": 8,
+		"title": "Validación con documento de identidad",
+		"type": "instruction",
+		"position": { "x": -400, "y": 1500 },
+		"content": "En caso de que el cliente <strong>no pueda ingresar con el número de documento</strong>, el agente deberá:<br><br>1. Realizar las preguntas filtro de seguridad y validar con el número de documento si la cuenta presenta novedad.<br>2. Si el usuario pasa las preguntas, solicitar la foto del documento de identidad.<br>3. Validar en la página de la Procuraduría y de antecedentes de la Policía que el documento exista y coincida.<br>4. Si el usuario no tiene el documento a la mano, se le indica que se comunique después con él.",
+		"actions": [
+		{ "type": "image", "label": "Ver Guía Visual", "image": "actualizacion-inicio-session-3.png" },
+		{ "type": "back", "nextStep": 7 },
+		{ "type": "next", "nextStep": 9 }
+		],
+		"connections": [9]
+	},
+	"9": {
+		"id": 9,
+		"title": "Cuenta registrada incorrectamente",
+		"type": "error",
+		"position": { "x": 300, "y": 1700 },
+		"content": "En caso de que <strong>la cuenta esté registrada de manera incorrecta</strong> se debe adjuntar:<br><br>1. Número de documento a actualizar<br>2. Teléfono del usuario<br>3. Correo electrónico del usuario<br>4. Foto del documento de identidad del usuario",
+		"actions": [
+		{ "type": "image", "label": "Ver Guía Visual", "image": "actualizacion-inicio-session-4.png" },
+		{ "type": "back", "nextStep": 8 },
+		{ "type": "restart" }
+		],
+		"connections": []
+	}
+}

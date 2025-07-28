@@ -1,0 +1,178 @@
+{
+  "1": {
+    "id": 1,
+    "title": "Consulta de puntos acumulados",
+    "type": "start",
+    "position": { "x": 0, "y": 0 },
+    "content": "<strong>Solicitud del cliente:</strong> Cliente se comunica solicitando la cantidad de puntos acumulados.<br><strong>Gestión del CES:</strong> El agente debe guiar siempre al usuario a la autogestión, debe decirle al cliente que puede consultar la información de sus puntos en App Terpel o página web www.viveterpel.com.",
+    "actions": [{ "type": "next", "nextStep": 2 }],
+    "connections": [2]
+  },
+  "2": {
+    "id": 2,
+    "title": "Restricción de información",
+    "type": "note",
+    "position": { "x": 600, "y": 400 },
+    "content": "",
+    "note": "No se debe dar ninguna información de la cuenta y si el cliente llega a presentar novedades con el ingreso de la aplicación o inconvenientes con los canales digitales, se debe escalar por la tipificación correspondiente al equipo de tecnología.",
+    "actions": [
+      { "type": "image", "label": "Ver imagen", "image": "informacion-puntos-5.png" },
+      { "type": "back", "nextStep": 1 },
+      { "type": "next", "nextStep": 3 }
+    ],
+    "connections": [3]
+  },
+  "3": {
+    "id": 3,
+    "title": "Tipificación",
+    "type": "success",
+    "position": { "x": -400, "y": 800 },
+    "content": "<strong>Tipificación correspondiente al caso</strong>",
+    "actions": [
+      { "type": "image", "label": "Ver Tipificación", "image": "informacion-puntos-6.png" },
+      { "type": "back", "nextStep": 2 },
+      { "type": "next", "nextStep": 4 }
+    ],
+    "connections": [4]
+  },
+  "4": {
+    "id": 4,
+    "title": "Información sobre acumulaciones",
+    "type": "instruction",
+    "position": { "x": 300, "y": 1200 },
+    "content": "<strong>Solicitud del cliente:</strong> El cliente indica que no entiende las reglas de acumulación.",
+    "actions": [
+      { "type": "image", "label": "Ver Imagen", "image": "informacion-puntos-1.png" },
+      { "type": "back", "nextStep": 3 },
+      { "type": "next", "nextStep": 5 }
+    ],
+    "connections": [5]
+  },
+  "5": {
+    "id": 5,
+    "title": "Gestión CES - Nuevas reglas",
+    "type": "instruction",
+    "position": { "x": -600, "y": 1600 },
+    "content": "Se debe explicar las nuevas reglas de acumulación: desde el 15 de febrero del 2024 ya no se acumula 1 punto por cada $1.000, se acumula por galones consumidos.",
+    "actions": [
+      { "type": "image", "label": "Ver reglas", "image": "informacion-puntos-2.png" },
+      { "type": "back", "nextStep": 4 },
+      { "type": "next", "nextStep": 6 }
+    ],
+    "connections": [6]
+  },
+  "6": {
+    "id": 6,
+    "title": "Derecho de petición / Queja SIC",
+    "type": "instruction",
+    "position": { "x": 400, "y": 2000 },
+    "content": "Solicitar al cliente carta o mail (enviado o a enviar) a la SIC detallando:<br>1. Hechos<br>2. Hallazgos<br>3. Evidencia de incumplimiento<br>4. Solicitud de solución.",
+    "actions": [
+      { "type": "image", "label": "Ver Tipificación", "image": "informacion-puntos-3.png" },
+      { "type": "back", "nextStep": 5 },
+      { "type": "next", "nextStep": 7 }
+    ],
+    "connections": [7]
+  },
+  "7": {
+    "id": 7,
+    "title": "Problemas con redención de bonos",
+    "type": "instruction",
+    "position": { "x": -500, "y": 2400 },
+    "content": "<strong>Solicitud del cliente:</strong> Bono redimido no fue aceptado por el aliado.",
+    "actions": [
+        { "type": "back", "nextStep": 6 },
+        { "type": "next", "nextStep": 8 }
+    ],
+    "connections": [8]
+  },
+  "8": {
+    "id": 8,
+    "title": "Paso a paso para redención",
+    "type": "instruction",
+    "position": { "x": 200, "y": 2800 },
+    "content": "1. Informar al cajero que tienes un bono.<br>2. Todos los aliados deben aceptarlo.<br>3. En caso de problema, contactar al supervisor.",
+    "actions": [
+        { "type": "back", "nextStep": 7 },
+        { "type": "next", "nextStep": 9 }
+    ],
+    "connections": [9]
+  },
+  "9": {
+    "id": 9,
+    "title": "Escalamiento por falla con Aliados",
+    "type": "note",
+    "position": { "x": 700, "y": 3200 },
+    "content": "Si no funciona el paso a paso, escalar el caso por fallo en redención con aliados.",
+    "note": "El cliente debe aclarar que el bono es para redimir con la empresa aliada, no con Terpel.",
+    "actions": [
+        { "type": "back", "nextStep": 8 },
+        { "type": "next", "nextStep": 10 }
+    ],
+    "connections": [10]
+  },
+  "10": {
+    "id": 10,
+    "title": "Información requerida para escalar",
+    "type": "instruction",
+    "position": { "x": 1200, "y": 2800 },
+    "content": "1. Tienda y ubicación<br>2. Fecha del intento<br>3. Redención asociada<br>4. Foto del error si la tiene.",
+    "actions": [
+      { "type": "image", "label": "Ver Guía Visual", "image": "informacion-puntos-4.png" },
+      { "type": "back", "nextStep": 9 },
+      { "type": "next", "nextStep": 11 }
+    ],
+    "connections": [11]
+  },
+  "11": {
+    "id": 11,
+    "title": "Producto no disponible en PDV",
+    "type": "instruction",
+    "position": { "x": 1200, "y": 2400 },
+    "content": "<strong>Solicitud del cliente:</strong> El producto redimido no está disponible en el punto de venta.",
+    "actions": [
+        { "type": "back", "nextStep": 10 },
+        { "type": "next", "nextStep": 12 }
+    ],
+    "connections": [12]
+  },
+  "12": {
+    "id": 12,
+    "title": "Datos para escalar el caso",
+    "type": "instruction",
+    "position": { "x": 1200, "y": 2000 },
+    "content": "Se debe escalar el caso con: <br>• Cédula del cliente<br>• Producto<br>• Redención<br>• PDV con la novedad",
+    "actions": [
+        { "type": "back", "nextStep": 11 },
+        { "type": "next", "nextStep": 13 }
+    ],
+    "connections": [13]
+  },
+  "13": {
+    "id": 13,
+    "title": "Verificación del estado del bono",
+    "type": "instruction",
+    "position": { "x": 1200, "y": 1600 },
+    "content": "Verificar en el Member ViveTerpel del cliente que el bono esté en estado 'Listo'.<br>Si no lo está, explicar al cliente el motivo.",
+    "actions": [
+      { "type": "image", "label": "Vista Redención", "image": "informacion-puntos-7.png" },
+      { "type": "image", "label": "Vista Member", "image": "informacion-puntos-8.png" },
+      { "type": "back", "nextStep": 12 },
+      { "type": "next", "nextStep": 14 }
+    ],
+    "connections": [14]
+  },
+  "14": {
+    "id": 14,
+    "title": "Anulación de redención",
+    "type": "success",
+    "position": { "x": 1200, "y": 1400 },
+    "content": "Si se cumplen las condiciones, generar el caso para la anulación de la redención.",
+    "actions": [
+      { "type": "image", "label": "Ver Guía", "image": "informacion-puntos-9.png" },
+      { "type": "back", "nextStep": 13 },
+      { "type": "restart" }
+    ],
+    "connections": []
+  }
+}

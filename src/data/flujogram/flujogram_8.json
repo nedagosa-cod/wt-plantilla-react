@@ -1,0 +1,508 @@
+{
+  "1": {
+    "id": 1,
+    "title": "Alianza ScotiaBank Colpatria ViveTerpel",
+    "type": "start",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "content": "Llega la nueva alianza ScotiaBank Colpatria ViveTerpel en la que los usuarios pueden acumular m\u00e1s puntos por las compras que realicen con este producto.",
+    "actions": [
+      {
+        "type": "next",
+        "nextStep": 2
+      }
+    ],
+    "connections": [
+      2
+    ]
+  },
+  "2": {
+    "id": 2,
+    "title": "C\u00f3mo obtener la tarjeta",
+    "type": "instruction",
+    "position": {
+      "x": 500,
+      "y": 450
+    },
+    "content": "<strong>INFORMACI\u00d3N SOBRE COMO ADQUIRIR TARJETA SCOTIABANK COLPATRIA EN ALIANZA CON VIVETERPEL</strong><br>Cliente se comunica para obtener informaci\u00f3n sobre c\u00f3mo puede obtener su tarjeta ScotiaBank Colpatria en alianza con ViveTerpel.",
+    "actions": [
+      {
+        "type": "back",
+        "nextStep": 1
+      },
+      {
+        "type": "next",
+        "nextStep": 3
+      }
+    ],
+    "connections": [
+      3
+    ]
+  },
+  "3": {
+    "id": 3,
+    "title": "Gesti\u00f3n del caso",
+    "type": "instruction",
+    "position": {
+      "x": 0,
+      "y": 900
+    },
+    "content": "Guiar al cliente en el proceso de autogesti\u00f3n a trav\u00e9s de www.scotiabankcolpatria.com",
+    "actions": [
+      {
+        "type": "redirect",
+        "label": "Scotiabank Colpatria",
+        "url": "https://www.scotiabankcolpatria.com/"
+      },
+      {
+        "type": "back",
+        "nextStep": 2
+      },
+      {
+        "type": "next",
+        "nextStep": 4
+      }
+    ],
+    "connections": [
+      4
+    ]
+  },
+  "4": {
+    "id": 4,
+    "title": "Consulta de informaci\u00f3n",
+    "type": "instruction",
+    "position": {
+      "x": 500,
+      "y": 1350
+    },
+    "content": "El cliente debe ingresar a www.scotiabankcolpatria.com para consultar informaci\u00f3n de la tarjeta en alianza.",
+    "actions": [
+      {
+        "type": "redirect",
+        "label": "Scotiabank Colpatria",
+        "url": "https://www.scotiabankcolpatria.com/"
+      },
+      {
+        "type": "image",
+        "label": "Ver Gu\u00eda Visual",
+        "image": "alianza-scotiabank-1.png"
+      },
+      {
+        "type": "back",
+        "nextStep": 3
+      },
+      {
+        "type": "next",
+        "nextStep": 5
+      }
+    ],
+    "connections": [
+      5
+    ]
+  },
+  "5": {
+    "id": 5,
+    "title": "Secci\u00f3n especializadas",
+    "type": "instruction",
+    "position": {
+      "x": 0,
+      "y": 1800
+    },
+    "content": "Luego en la secci\u00f3n <strong>Especializadas</strong> selecciona la opci\u00f3n <strong>Tarjeta Terpel</strong>.",
+    "actions": [
+      {
+        "type": "image",
+        "label": "Ver Gu\u00eda Visual",
+        "image": "alianza-scotiabank-2.png"
+      },
+      {
+        "type": "back",
+        "nextStep": 4
+      },
+      {
+        "type": "next",
+        "nextStep": 6
+      }
+    ],
+    "connections": [
+      6
+    ]
+  },
+  "6": {
+    "id": 6,
+    "title": "Informaci\u00f3n y solicitud",
+    "type": "instruction",
+    "position": {
+      "x": 500,
+      "y": 2250
+    },
+    "content": "Pantalla con informaci\u00f3n de tarjetas (Oro o Cl\u00e1sica). Puede solicitarlas desde 'Solic\u00edtala aqu\u00ed'.",
+    "actions": [
+      {
+        "type": "image",
+        "label": "Ver Gu\u00eda Visual",
+        "image": "alianza-scotiabank-3.png"
+      },
+      {
+        "type": "back",
+        "nextStep": 5
+      },
+      {
+        "type": "next",
+        "nextStep": 7
+      }
+    ],
+    "connections": [
+      7
+    ]
+  },
+  "7": {
+    "id": 7,
+    "title": "Detalle de cada tarjeta",
+    "type": "instruction",
+    "position": {
+      "x": 0,
+      "y": 2700
+    },
+    "content": "Para conocer el detalle de cada tarjeta el cliente debe ingresar por la opci\u00f3n <strong>'Conoce m\u00e1s'</strong>.",
+    "actions": [
+      {
+        "type": "image",
+        "label": "Ver Gu\u00eda Visual",
+        "image": "alianza-scotiabank-4.png"
+      },
+      {
+        "type": "back",
+        "nextStep": 6
+      },
+      {
+        "type": "next",
+        "nextStep": 8
+      }
+    ],
+    "connections": [
+      8
+    ]
+  },
+  "8": {
+    "id": 8,
+    "title": "Validaci\u00f3n de fecha",
+    "type": "instruction",
+    "position": {
+      "x": 500,
+      "y": 3150
+    },
+    "content": "Si la TC fue adquirida antes del 1 de mayo de 2024 aplica beneficios actuales (Cashback). Si fue despu\u00e9s aplica beneficios ViveTerpel.",
+    "actions": [
+      {
+        "type": "back",
+        "nextStep": 7
+      },
+      {
+        "type": "next",
+        "nextStep": 9
+      }
+    ],
+    "connections": [
+      9
+    ]
+  },
+  "9": {
+    "id": 9,
+    "title": "Tipificaci\u00f3n",
+    "type": "success",
+    "position": {
+      "x": 0,
+      "y": 3600
+    },
+    "content": "Tipificaci\u00f3n del caso seg\u00fan fecha de adquisici\u00f3n.",
+    "actions": [
+      {
+        "type": "image",
+        "label": "Ver Gu\u00eda Visual",
+        "image": "alianza-scotiabank-5.png"
+      },
+      {
+        "type": "back",
+        "nextStep": 8
+      },
+      {
+        "type": "next",
+        "nextStep": 10
+      }
+    ],
+    "connections": [
+      10
+    ]
+  },
+  "10": {
+    "id": 10,
+    "title": "Inconveniente con acumulaci\u00f3n",
+    "type": "instruction",
+    "position": {
+      "x": 500,
+      "y": 4050
+    },
+    "content": "Cliente informa que no ve reflejados los puntos. Aclarar que se ver\u00e1 en la cuenta ViveTerpel 15 d\u00edas h\u00e1biles despu\u00e9s del corte.",
+    "actions": [
+      {
+        "type": "image",
+        "label": "Ver Gu\u00eda Visual",
+        "image": "alianza-scotiabank-6.png"
+      },
+      {
+        "type": "image",
+        "label": "Ver Gu\u00eda Visual",
+        "image": "alianza-scotiabank-7.png"
+      },
+      {
+        "type": "back",
+        "nextStep": 9
+      },
+      {
+        "type": "next",
+        "nextStep": 11
+      }
+    ],
+    "connections": [
+      11
+    ]
+  },
+  "11": {
+    "id": 11,
+    "title": "Tipificaci\u00f3n",
+    "type": "success",
+    "position": {
+      "x": 0,
+      "y": 4500
+    },
+    "content": "Se debe tipificar el caso seg\u00fan confirmaci\u00f3n de acumulaci\u00f3n.",
+    "actions": [
+      {
+        "type": "image",
+        "label": "Ver Gu\u00eda Visual",
+        "image": "alianza-scotiabank-8.png"
+      },
+      {
+        "type": "back",
+        "nextStep": 10
+      },
+      {
+        "type": "next",
+        "nextStep": 12
+      }
+    ],
+    "connections": [
+      12
+    ]
+  },
+  "12": {
+    "id": 12,
+    "title": "Acumulaci\u00f3n no reflejada",
+    "type": "instruction",
+    "position": {
+      "x": 500,
+      "y": 4950
+    },
+    "content": "Cliente no ve puntos el mes siguiente. Se realiza autogesti\u00f3n y a\u00fan no los ve. Agente debe validar antes de escalar.",
+    "actions": [
+      {
+        "type": "back",
+        "nextStep": 11
+      },
+      {
+        "type": "next",
+        "nextStep": 13
+      }
+    ],
+    "connections": [
+      13
+    ]
+  },
+  "13": {
+    "id": 13,
+    "title": "Validaciones antes de escalar",
+    "type": "instruction",
+    "position": {
+      "x": 0,
+      "y": 5400
+    },
+    "content": "Validar inscripci\u00f3n, fecha (antes del d\u00eda 25), y que los puntos no est\u00e9n en el member.",
+    "actions": [
+      {
+        "type": "image",
+        "label": "Ver Gu\u00eda Visual",
+        "image": "alianza-scotiabank-9.png"
+      },
+      {
+        "type": "back",
+        "nextStep": 12
+      },
+      {
+        "type": "next",
+        "nextStep": 14
+      }
+    ],
+    "connections": [
+      14
+    ]
+  },
+  "14": {
+    "id": 14,
+    "title": "Plantilla para escalar",
+    "type": "instruction",
+    "position": {
+      "x": 500,
+      "y": 5850
+    },
+    "content": "1. C\u00e9dula o documento<br>2. Fecha de inscripci\u00f3n<br>3. Meses faltantes<br>4. Soporte de compras",
+    "actions": [
+      {
+        "type": "image",
+        "label": "Ver Gu\u00eda Visual",
+        "image": "alianza-scotiabank-10.png"
+      },
+      {
+        "type": "back",
+        "nextStep": 13
+      },
+      {
+        "type": "next",
+        "nextStep": 15
+      }
+    ],
+    "connections": [
+      15
+    ]
+  },
+  "15": {
+    "id": 15,
+    "title": "Uso y manejo del producto",
+    "type": "instruction",
+    "position": {
+      "x": 0,
+      "y": 6300
+    },
+    "content": "<strong>INFORMACI\u00d3N SOBRE USO Y MANEJO DE LA TARJETA DE CREDITO SCOTIABANK COLPATRIA</strong><br>Cliente solicita informaci\u00f3n sobre el producto bancario.",
+    "actions": [
+      {
+        "type": "back",
+        "nextStep": 14
+      },
+      {
+        "type": "next",
+        "nextStep": 16
+      }
+    ],
+    "connections": [
+      16
+    ]
+  },
+  "16": {
+    "id": 16,
+    "title": "Gesti\u00f3n bancaria",
+    "type": "instruction",
+    "position": {
+      "x": 500,
+      "y": 6750
+    },
+    "content": "El cliente debe comunicarse con el banco para:<br>- Cuota de manejo<br>- Cupo<br>- Corte<br>- Pago<br>- Transacciones<br>- Extracto<br>- Env\u00edo<br>- Cancelaci\u00f3n<br>- Problemas con puntos",
+    "actions": [
+      {
+        "type": "image",
+        "label": "Ver Gu\u00eda Visual",
+        "image": "alianza-scotiabank-11.png"
+      },
+      {
+        "type": "back",
+        "nextStep": 15
+      },
+      {
+        "type": "next",
+        "nextStep": 17
+      }
+    ],
+    "connections": [
+      17
+    ]
+  },
+  "17": {
+    "id": 17,
+    "title": "Nota sobre servicio en estaciones",
+    "type": "note",
+    "position": {
+      "x": 0,
+      "y": 7200
+    },
+    "content": "Nota importante",
+    "note": "Si hay inconformidad en estaciones o tiendas (datafono, rechazo tarjeta, mal servicio), escalar a la estaci\u00f3n correspondiente.",
+    "actions": [
+      {
+        "type": "back",
+        "nextStep": 16
+      },
+      {
+        "type": "next",
+        "nextStep": 18
+      }
+    ],
+    "connections": [
+      18
+    ]
+  },
+  "18": {
+    "id": 18,
+    "title": "Referidos primer contacto",
+    "type": "instruction",
+    "position": {
+      "x": 500,
+      "y": 7650
+    },
+    "content": "Cliente pide info sobre referidos y campa\u00f1as. Indicar d\u00f3nde ver su c\u00f3digo y que no hay acumulaci\u00f3n actual.",
+    "actions": [
+      {
+        "type": "image",
+        "label": "Ver Gu\u00eda Visual",
+        "image": "alianza-scotiabank-12.png"
+      },
+      {
+        "type": "back",
+        "nextStep": 17
+      },
+      {
+        "type": "next",
+        "nextStep": 19
+      }
+    ],
+    "connections": [
+      19
+    ]
+  },
+  "19": {
+    "id": 19,
+    "title": "Escalar inconveniente con referidos",
+    "type": "instruction",
+    "position": {
+      "x": 0,
+      "y": 8100
+    },
+    "content": "Si hay inconveniente con referidos se debe escalar con:<br>\u2022 Nombre<br>\u2022 Correo<br>\u2022 Evidencia (captura o video)",
+    "actions": [
+      {
+        "type": "image",
+        "label": "Ver Gu\u00eda Visual",
+        "image": "alianza-scotiabank-13.png"
+      },
+      {
+        "type": "back",
+        "nextStep": 18
+      },
+      {
+        "type": "restart"
+      }
+    ],
+    "connections": []
+  }
+}

@@ -1,0 +1,229 @@
+{
+	"1": {
+		"id": 1,
+		"title": "Motivo de la consulta",
+		"type": "start",
+		"position": { "x": 0, "y": 0 },
+		"content": "El cliente se comunica informando que presenta un error al registrarse y en la App o Web le informa que sus datos se encuentran duplicados.",
+		"actions": [{ "type": "next", "nextStep": 2 }],
+		"connections": [2]
+	},
+	"2": {
+		"id": 2,
+		"title": "Autogestión en línea - Paso 1",
+		"type": "instruction",
+		"position": { "x": 800, "y": 200 },
+		"content": "El agente deberá realizar la autogestión con el usuario en línea, indicando los siguientes pasos: <br><br>1. Ingresa a las App Terpel o www.viveterpel.com.co <br>2. Seleccione la opcion para iniciar sesion y llena el formulario.<br>3. Si le aparece la cuenta registrada, le solicitará el medio de contacto de preferencia para recibir el código",
+		"actions": [
+			{ "type": "image", "label": "Ver Guía Visual", "image": "error-registro-1.png" },
+			{ "type": "back", "nextStep": 1 },
+			{ "type": "next", "nextStep": 3 }
+		],
+		"connections": [3]
+	},
+	"3": {
+		"id": 3,
+		"title": "Autogestión en línea - Paso 2",
+		"type": "instruction",
+		"position": { "x": -200, "y": 400 },
+		"content": "Si el cliente reconoce los medios de contacto, le llegará el OTP el cual deberá ingresar en la App.",
+		"actions": [
+			{ "type": "image", "label": "Ver Guía Visual", "image": "error-registro-2.png" },
+			{ "type": "back", "nextStep": 2 },
+			{ "type": "next", "nextStep": 4 }
+		],
+		"connections": [4]
+	},
+	"4": {
+		"id": 4,
+		"title": "Autogestión en línea - Paso 3",
+		"type": "instruction",
+		"position": { "x": 600, "y": 700 },
+		"content": "Una ve2 ingrese el código, le informaremos que acepte los TyC.",
+		"actions": [
+			{ "type": "image", "label": "Ver Guía Visual", "image": "error-registro-3.png" },
+			{ "type": "back", "nextStep": 3 },
+			{ "type": "next", "nextStep": 5 }
+		],
+		"connections": [5]
+	},
+	"5": {
+		"id": 5,
+		"title": "Autogestión en línea - Paso 4",
+		"type": "instruction",
+		"position": { "x": -300, "y": 900 },
+		"content": "Si el cliente no reconoce ningún canal de contacto (Correo electrónico o número celular) debe ingresar por la opción No reconozco ninguna opción<br><br> - Inicia flujo de actualización de datos, donde debe ingresar fecha de expedición de la cedula y primer apellido.<br> - Si ingresa la información de manera correcta se habilita la pantalla para que actualice el correo o número de celular.",
+		"actions": [
+			{ "type": "image", "label": "Ver Guía Visual", "image": "error-registro-4.png" },
+			{ "type": "back", "nextStep": 4 },
+			{ "type": "next", "nextStep": 6 }
+		],
+		"connections": [6]
+	},
+	"6": {
+		"id": 6,
+		"title": "Autogestión en línea - Paso 5",
+		"type": "instruction",
+		"position": { "x": -1000, "y": 400 },
+		"content": "Una vez actualice la información podrá actualizar los TyC.",
+		"actions": [
+			{ "type": "image", "label": "Ver Guía Visual", "image": "error-registro-5.png" },
+			{ "type": "back", "nextStep": 5 },
+			{ "type": "next", "nextStep": 7 }
+		],
+		"connections": [7]
+	},
+	"7": {
+		"id": 7,
+		"title": "Autogestión en línea - Paso 6",
+		"type": "instruction",
+		"position": { "x": -1200, "y": 1000 },
+		"content": "<strong>Nota:</strong> Si la información no se registra de manera correcta, debe contactar los medios de soporte.",
+		"actions": [
+			{ "type": "image", "label": "Ver Guía Visual", "image": "error-registro-6.png" },
+			{ "type": "back", "nextStep": 6 },
+			{ "type": "next", "nextStep": 8 }
+		],
+		"connections": [8]
+	},
+	"8": {
+		"id": 8,
+		"title": "Error al registrarse",
+		"type": "instruction",
+		"position": { "x": -1400, "y": 1400 },
+		"content": "El agente deberá  revisar con el número de documento si se encuentra registrado en ViveTerpel. Una vez encuentre la cuenta registrada, deberá ingresar al Member y validar si aceptó los TyC de ViveTerpel.",
+		"actions": [
+			{ "type": "back", "nextStep": 7 },
+			{ "type": "next", "nextStep": 9 }
+		],
+		"connections": [9]
+	},
+	"9": {
+		"id": 9,
+		"title": "Validación",
+		"type": "instruction",
+		"position": { "x": -1400, "y": 1800 },
+		"content": "- Si el member dice ViVeTerpel, se deberá gestionar el caso de acuerdo con la tipificación correcta. <br><br>- Si el member dice ClubTerpely no logro pasar la autogestión se deberá escalar el caso al ingeniero _Salesforce_AMS indicando que es un usuario migrado y el error que presenta. <strong>Se debe adjuntar la captura del Member y del error registrado en la App</strong>",
+		"actions": [
+			{ "type": "back", "nextStep": 8 },
+			{ "type": "next", "nextStep": 10 }
+		],
+		"connections": [10]
+	},
+	"10": {
+		"id": 10,
+		"title": "Tipificación",
+		"type": "instruction",
+		"position": { "x": -1800, "y": 2200 },
+		"content": "<strong>Nota:</strong> Si el caso es escalado al técnico de lealtad, el caso será devuelto",
+		"actions": [
+			{ "type": "back", "nextStep": 9 },
+			{ "type": "next", "nextStep": 11 },
+			{ "type": "image", "label": "Ver Guía Visual", "image": "error-registro-7.png" }
+			
+		],
+		"connections": [11]
+	},
+	"11": {
+		"id": 11,
+		"title": "Mensaje 'Datos Duplicados'",
+		"type": "instruction",
+		"position": { "x": -1400, "y": 2700 },
+		"content": "Si el cliente reporta que le aparece el mensaje <strong>Datos Duplicados</strong>, el <strong>CES</strong> deberá validar:<br><br>1. Si existe una cuenta con el mismo número de identificación<br>2. Si el usuario estaba registrado en <strong>ClubTerpel</strong> y no completó el registro<br>3. Si ya tiene cuenta con datos incorrectos o desactualizados<br>4. Si solo tiene creado el perfil del cliente y no el <strong>Member</strong><br>5. Si en <strong>Salesforce</strong> aparece el botón <strong>Cuenta duplicada</strong>",
+		"actions": [
+			{ "type": "back", "nextStep": 10 },
+			{ "type": "next", "nextStep": 12 }
+		],
+		"connections": [12]
+	},
+	"12": {
+		"id": 12,
+		"title": "Escenario 1: Cuenta con mismo documento",
+		"type": "instruction",
+		"position": { "x": -1000, "y": 2700 },
+		"content": "Si existe una cuenta con el mismo número de identificación:<br><br>- Realizar validación de identidad con preguntas filtro<br>- Solicitar soporte del documento<br>- Si los datos no concuerdan, escalar a <strong>Tecnico_Programas_Lealtad</strong><br><br><strong>Ejemplo:</strong> Se contacta Juan indicando que no puede registrarse. Al validar, su número de documento está registrado a nombre de Maria.",
+		"actions": [
+			{ "type": "back", "nextStep": 11 },
+			{ "type": "next", "nextStep": 13 }
+		],
+		"connections": [13]
+	},
+	"13": {
+		"id": 13,
+		"title": "Escenario 2: ClubTerpel",
+		"type": "instruction",
+		"position": { "x": -600, "y": 2700 },
+		"content": "El usuario ya se encuentra registrado, pero su <strong>member corresponde a ClubTerpel</strong>. El caso deberá ser gestionado con la <strong>tipificación correcta</strong>.",
+		"actions": [
+		{ "type": "image", "label": "Ver Guía Visual", "image": "error-registro-8.png" },
+		{ "type": "back", "nextStep": 12 },
+		{ "type": "next", "nextStep": 14 }
+		],
+		"connections": [14]
+	},
+	"14": {
+		"id": 14,
+		"title": "Escenario 3: Datos incorrectos",
+		"type": "note",
+		"position": { "x": -200, "y": 2700 },
+		"content": "Si el usuario ya tiene una cuenta creada y presenta <strong>datos incorrectos o desactualizados</strong>, se deberá gestionar el caso por el proceso de actualización de datos.",
+		"note": "Actualizar datos como correo, celular o identificación, validando con pruebas de seguridad.",
+		"actions": [
+			{ "type": "back", "nextStep": 13 },
+			{ "type": "next", "nextStep": 15 }
+		],
+		"connections": [15]
+	},
+	"15": {
+		"id": 15,
+		"title": "Escenario 4: Solo perfil cliente",
+		"type": "instruction",
+		"position": { "x": 200, "y": 2700 },
+		"content": "Si la cuenta tiene creado únicamente el <strong>perfil del cliente</strong> y no el <strong>Member</strong>, el caso deberá ser escalado.",
+		"actions": [
+		{ "type": "image", "label": "Ver Guía Visual", "image": "error-registro-9.png" },
+		{ "type": "back", "nextStep": 14 },
+		{ "type": "next", "nextStep": 16 }
+		],
+		"connections": [16]
+	},
+	"16": {
+		"id": 16,
+		"title": "Tipificación duplicados",
+		"type": "success",
+		"position": { "x": 600, "y": 2700 },
+		"content": "El caso debe ser tipificado según el error identificado y se debe adjuntar evidencia.",
+		"actions": [
+		{ "type": "image", "label": "Ver Guía Visual", "image": "error-registro-10.png" },
+		{ "type": "back", "nextStep": 15 },
+		{ "type": "next", "nextStep": 17 }
+		],
+		"connections": [17]
+	},
+	"17": {
+		"id": 17,
+		"title": "Escalar por duplicidad",
+		"type": "instruction",
+		"position": { "x": 1000, "y": 2750 },
+		"content": "Cuando el usuario <strong>está registrado con datos de otra persona</strong> y no es cliente activo, se debe escalar con:<br><br>1. Foto/PDF del documento de identidad<br>2. Cuenta donde se presenta la duplicidad<br>3. Captura en <strong>Salesforce</strong> del aviso de cuenta duplicada",
+		"actions": [
+		{ "type": "image", "label": "Ver Guía Visual", "image": "error-registro-11.png" },
+		{ "type": "back", "nextStep": 16 },
+		{ "type": "next", "nextStep": 18 }
+		],
+		"connections": [18]
+	},
+	"18": {
+		"id": 18,
+		"title": "Error de redirección",
+		"type": "instruction",
+		"position": { "x": 1400, "y": 2700 },
+		"content": "Si el cliente informa error: <strong>'No se pudo redireccionar al sitio web u ocurrió un error procesando la información'</strong>,<br><br>Se escala a: <strong>ViveTerpel_N2</strong><br>Adjuntar:<br>- Pantallazo del error<br>- Link de ingreso si fue por web",
+		"actions": [
+		{ "type": "image", "label": "Ver Guía Visual", "image": "error-registro-12.png" },
+		{ "type": "back", "nextStep": 17 },
+		{ "type": "restart" }
+		],
+		"connections": []
+	}
+}

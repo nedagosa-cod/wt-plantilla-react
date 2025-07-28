@@ -25,9 +25,6 @@ const FormNote = ({ jsonNote }) => {
 		reset()
 	}
 
-	const handleChange = event => {
-		console.log(event.target.value)
-	}
 	return (
 		<div>
 			<form onSubmit={handleSubmit(formSubmit)}>

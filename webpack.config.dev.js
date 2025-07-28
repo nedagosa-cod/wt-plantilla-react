@@ -90,9 +90,8 @@ module.exports = {
 					noErrorOnMissing: true,
 				},
 				{
-					// crea carpeta biblioteca amiga
-					from: path.join(__dirname, '/src/components/Biblioteca/pdfs'),
-					to: 'BIBLIOTECA',
+					from: path.join(__dirname, '/src/assets/images/flujogram'),
+					to: 'noTocar/imagenes/flujogram',
 					noErrorOnMissing: true,
 				},
 			],
@@ -116,6 +115,7 @@ module.exports = {
 			'@/icons': path.join(__dirname, '/src/icons/'),
 			'@/context': path.join(__dirname, '/src/context/'),
 			'@/data': path.join(__dirname, '/src/data/'),
+			'@/assets': path.join(__dirname, '/src/assets/'),
 		},
 	},
 	devServer: {

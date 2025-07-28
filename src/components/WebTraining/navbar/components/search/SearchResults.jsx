@@ -10,29 +10,35 @@ import {
 	FileText,
 	Clock,
 	Download,
+	MessageCircleQuestion,
+	Globe,
 } from 'lucide-react'
 import { Separator } from '@/components/ui/separator'
 import { Link } from 'react-router-dom'
 const icons = {
 	segments: {
-		checklist: <Menu className="h-6 w-6" />, // Lista/Menu
-		calc: <Calculator className="h-6 w-6" />, // Calculadora
-		library: <Library className="h-6 w-6" />, // Biblioteca
-		tipify: <Diamond className="h-6 w-6" />, // Diamante
-		textSlash: <MessageCircle className="h-6 w-6" />, // Burbuja de mensaje
-		note: <FileText className="h-6 w-6" />, // Nota/Archivo
-		timeLine: <Clock className="h-6 w-6" />, // Reloj/Línea de tiempo
-		download: <Download className="h-6 w-6" />, // Descargar
+		checklist: <Menu className="w-6 h-6" />, // Lista/Menu
+		calc: <Calculator className="w-6 h-6" />, // Calculadora
+		library: <Library className="w-6 h-6" />, // Biblioteca
+		tipify: <Diamond className="w-6 h-6" />, // Diamante
+		textSlash: <MessageCircle className="w-6 h-6" />, // Burbuja de mensaje
+		note: <FileText className="w-6 h-6" />, // Nota/Archivo
+		timeLine: <Clock className="w-6 h-6" />, // Reloj/Línea de tiempo
+		download: <Download className="w-6 h-6" />, // Descargar
+		MessageCircleQuestion: <MessageCircleQuestion className="w-6 h-6" />,
+		globe: <Globe className="w-6 h-6" />,
 	},
 	develops: {
-		checklist: <Menu className="h-5 w-5" />, // Lista/Menu
-		textSlash: <TextCursorInput className="h-5 w-5" />, // Input de texto
-		note: <FileText className="h-5 w-5" />, // Nota/Archivo
-		tipify: <Diamond className="h-5 w-5" />, // Diamante
-		calc: <Calculator className="h-5 w-5" />, // Calculadora
-		library: <Library className="h-5 w-5" />, // Biblioteca
-		timeLine: <Clock className="h-5 w-5" />, // Reloj/Línea de tiempo
-		download: <Download className="h-5 w-5" />, // Descargar
+		checklist: <Menu className="w-5 h-5" />, // Lista/Menu
+		textSlash: <TextCursorInput className="w-5 h-5" />, // Input de texto
+		note: <FileText className="w-5 h-5" />, // Nota/Archivo
+		tipify: <Diamond className="w-5 h-5" />, // Diamante
+		calc: <Calculator className="w-5 h-5" />, // Calculadora
+		library: <Library className="w-5 h-5" />, // Biblioteca
+		timeLine: <Clock className="w-5 h-5" />, // Reloj/Línea de tiempo
+		download: <Download className="w-5 h-5" />, // Descargar
+		MessageCircleQuestion: <MessageCircleQuestion className="w-5 h-5" />,
+		globe: <Globe className="w-5 h-5" />,
 	},
 }
 
@@ -73,14 +79,14 @@ export const SearchResults = ({ results, handleSearch }) => {
 
 	return (
 		<>
-			<div className="text-black flex flex-col overflow-y-auto h-full p-4">
+			<div className="flex overflow-y-auto flex-col p-4 h-full text-black">
 				{Object.entries(groupedResults).map(([key, items]) => {
 					const [title, segment] = key.split('|||')
 					return (
 						<div key={key}>
 							<Separator />
-							<div className="flex items-center justify-between gap-4">
-								<div className="flex items-center gap-4 text-xl font-semibold">
+							<div className="flex gap-4 justify-between items-center">
+								<div className="flex gap-4 items-center text-xl font-semibold">
 									<span className="text-primary">{icons.segments[items[0].icon]}</span>
 									<span className="text-[hsl(var(--primary-dark))]">{title}</span>
 								</div>
@@ -92,10 +98,10 @@ export const SearchResults = ({ results, handleSearch }) => {
 										<a
 											href={item.path}
 											download
-											className="flex cursor-pointer ml-8 p-2 rounded-lg hover:bg-gray-200"
+											className="flex p-2 ml-8 rounded-lg cursor-pointer hover:bg-gray-200"
 											key={item.id || `${item.name}-${idx}`}
 											onClick={e => e.stopPropagation()}>
-											<div className="flex items-center justify-start gap-4 text-base">
+											<div className="flex gap-4 justify-start items-center text-base">
 												<span className="text-accent">{icons.develops[item.icon]}</span>
 												<span className="w-11/12">{item.name}</span>
 											</div>
@@ -106,9 +112,9 @@ export const SearchResults = ({ results, handleSearch }) => {
 										<a
 											href={item.path}
 											target="_blank"
-											className="flex cursor-pointer ml-8 p-2 rounded-lg hover:bg-gray-200"
+											className="flex p-2 ml-8 rounded-lg cursor-pointer hover:bg-gray-200"
 											key={`${item.name}-${idx}`}>
-											<div className="flex items-center justify-start gap-4 text-base">
+											<div className="flex gap-4 justify-start items-center text-base">
 												<span className="text-accent">{icons.develops[item.icon]}</span>
 												<span className="w-11/12">{item.name}</span>
 											</div>
@@ -117,10 +123,10 @@ export const SearchResults = ({ results, handleSearch }) => {
 								} else if (item.action === 'dialog') {
 									return (
 										<div
-											className="flex cursor-pointer ml-8 p-2 rounded-lg hover:bg-gray-200"
+											className="flex p-2 ml-8 rounded-lg cursor-pointer hover:bg-gray-200"
 											key={item.id || `${item.name}-${idx}`}
 											onClick={() => handleItemClick(item)}>
-											<div className="flex items-center justify-start gap-4 text-base">
+											<div className="flex gap-4 justify-start items-center text-base">
 												<span className="text-accent">{icons.develops[item.icon]}</span>
 												<span className="w-11/12">{item.name}</span>
 											</div>
@@ -130,9 +136,9 @@ export const SearchResults = ({ results, handleSearch }) => {
 									return (
 										<Link
 											to={item.path}
-											className="flex cursor-pointer ml-8 p-2 rounded-lg hover:bg-gray-200"
+											className="flex p-2 ml-8 rounded-lg cursor-pointer hover:bg-gray-200"
 											key={item.id || `${item.name}-${idx}`}>
-											<div className="flex items-center justify-start gap-4 text-base">
+											<div className="flex gap-4 justify-start items-center text-base">
 												<span className="text-accent">{icons.develops[item.icon]}</span>
 												<span className="w-11/12">{item.name}</span>
 											</div>
@@ -155,7 +161,7 @@ export const SearchResults = ({ results, handleSearch }) => {
 							</DialogHeader>
 							<div className="mt-4">
 								<p className="text-lg font-semibold">{dialogItem.name}</p>
-								<p className="text-base mt-2">{dialogItem.content}</p>
+								<p className="mt-2 text-base">{dialogItem.content}</p>
 							</div>
 						</>
 					)}

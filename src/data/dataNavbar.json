@@ -1,24 +1,8 @@
 {
 	"SEGMENTS": [
 		{
-			"segment": "Personas",
+			"segment": "Terpel",
 			"icon": "home"
-		},
-		{
-			"segment": "Empresas",
-			"icon": "checklist"
-		},
-		{
-			"segment": "Cuentas",
-			"icon": "note"
-		},
-		{
-			"segment": "Fidelizacion",
-			"icon": "tipify"
-		},
-		{
-			"segment": "Testeos",
-			"icon": "tipify"
 		}
 	],
 	"NAVBAR": [
@@ -28,82 +12,43 @@
 			"icon": "home"
 		},
 		{
-			"title": "Biblioteca",
-			"route": "/biblioteca",
-			"icon": "library"
-		},
-		{
-			"title": "Tets",
-			"route": "/testeos",
-			"icon": "home",
+			"title": "Aplicativos web",
+			"route": "/apps-web",
+			"icon": "web",
 			"segments": [
-				"Testeos"
-			]
-		},
-		{
-			"title": "CheckList",
-			"route": "/checklist",
-			"icon": "checklist",
-			"portada": true,
-			"segments": [
-				"Personas"
+				"Terpel"
 			],
 			"dropDown": [
 				{
-					"title": "Creación de cuenta A",
-					"route": "/checklist/ejemploA",
-					"description": "Manual para creacion de cuenta ",
-					"icon": "checklist"
+					"title": "Atento",
+					"route": "https://terpel.my.salesforce.com/",
+					"image": "TERPELSALESFORCE.png"
 				},
 				{
-					"title": "Temporalidad B",
-					"route": "/checklist/ejemploB",
-					"description": "Suspende la cuenta por tiempos",
-					"icon": "checklist"
+					"title": "Kactus",
+					"route": "https://cajerokactus.atento.com.co:8443/WebKactus/frmLogin.aspx",
+					"image": "KACTUS.png"
 				},
 				{
-					"title": "Cruce de cuentas B",
-					"route": "/checklist/ejemploB",
-					"description": "Manual para cruce de cuentas",
-					"icon": "checklist"
+					"title": "En directo",
+					"route": "http://172.17.125.11/endirecto/web/index.php/main/login",
+					"image": "ENDIRECTO.png"
 				},
 				{
-					"title": "Reporte de facturación B",
-					"route": "/checklist/ejemploB",
-					"description": "Checklist para reporte de facturación",
-					"icon": "checklist"
+					"title": "Cafe Academia",
+					"route": "https://academia.atento.com.co/academia/login/index.php",
+					"image": "ACADEMIA.png"
 				},
 				{
-					"title": "Cancelación de cuenta",
-					"route": "/checklist/ejemploB",
-					"description": "Checklist para cancelación de cuenta",
-					"icon": "checklist"
+					"title": "Café Operaciones",
+					"route": "https://cafesite8.atento.com.co/cafe_terpel/login/",
+					"image": "CAFEOPERACIONES.png"
 				},
 				{
-					"title": "Activación de equipo",
-					"route": "/checklist/ejemploB",
-					"description": "Checklist para activación de equipo",
-					"icon": "checklist"
-				},
-				{
-					"title": "Reactivación de cuenta",
-					"route": "/checklist/ejemploB",
-					"description": "Checklist para reactivación de cuenta",
-					"icon": "checklist"
-				},
-				{
-					"title": "Cambio de plan",
-					"route": "/checklist/ejemploB",
-					"description": "Checklist para cambio de plan"
+					"title": "GAP",
+					"route": "https://gap.atento.com.co/gap/login/index.php",
+					"image": "GAP.png"
 				}
-			]
-		},
-		{
-			"title": "Gestor de notas",
-			"route": "/checklist",
-			"icon": "note",
-			"segments": [
-				"Fidelizacion"
 			]
 		},
 		{
@@ -111,127 +56,98 @@
 			"route": "/tipificador",
 			"icon": "tipify",
 			"segments": [
-				"Personas"
+				"Terpel"
+			]
+		},
+		{
+			"title": "Protocolos",
+			"route": "/protocolo",
+			"icon": "bookMarket",
+			"portada": false,
+			"segments": [
+				"Terpel"
+			],
+			"dropDown": [
+				{
+					"title": "Registro Vive Terpel",
+					"route": "/flujogram/1",
+					"description": "Manual para registro de cuenta Vive Terpel",
+					"icon": "circleArrowRight"
+				},
+				{
+					"title": "Validación de identidad",
+					"route": "/flujogram/2",
+					"description": "Validación de identidad en el registro de cuenta Vive Terpel",
+					"icon": "ticketCheck"
+				},
+				{
+					"title": "Error registro vive terpel",
+					"route": "/flujogram/3",
+					"description": "Datos duplicados número de documento o error al ingresar",
+					"icon": "ban"
+				},
+				{
+					"title": "Actualizacion de datos personales",
+					"route": "/flujogram/4",
+					"description": "Actualización de datos personales Terpel",
+					"icon": "tipify"
+				},
+				{
+					"title": "Información de Puntos",
+					"route": "/flujogram/5",
+					"description": "Información de puntos acomulables y redenciones",
+					"icon": "waypoints"
+				},
+				{
+					"title": "Compensación de Puntos",
+					"route": "/flujogram/6",
+					"description": "Manual de procedimientos de compensación de puntos",
+					"icon": "equal"
+				},
+				{
+					"title": "Conciliación de Puntos",
+					"route": "/flujogram/7",
+					"description": "Manual de procedimientos de compensación de puntos",
+					"icon": "heartHandshake"
+				},
+				{
+					"title": "Alianza Scotiabank",
+					"route": "/flujogram/8",
+					"description": "Diversos procesos con aliados",
+					"icon": "handCoins"
+				}
+			]
+		},
+		{
+			"title": "Glosario",
+			"route": "/glosario",
+			"icon": "bookOpen",
+			"segments": [
+				"Terpel"
+			]
+		},
+		{
+			"title": "Plantillas",
+			"route": "/plantillas",
+			"icon": "bookOpen",
+			"segments": [
+				"Terpel"
 			]
 		},
 		{
 			"title": "Calculadoras",
-			"route": "/checklist",
+			"route": "/calculadoras/puntos",
 			"icon": "calc",
 			"segments": [
-				"Personas"
-			],
-			"dropDown": [
-				{
-					"title": "Estandar",
-					"route": "/calculadoras/estandar",
-					"icon": "calc"
-				},
-				{
-					"title": "Estandar",
-					"route": "/calculadoras/estandar",
-					"icon": "calc"
-				},
-				{
-					"title": "Estandar",
-					"route": "/calculadoras/estandar",
-					"icon": "calc"
-				},
-				{
-					"title": "Estandar",
-					"route": "/calculadoras/estandar",
-					"icon": "calc"
-				}
+				"Terpel"
 			]
 		},
 		{
-			"title": "Aplicativos web",
-			"route": "/apps-web",
-			"icon": "web",
+			"title": "Formula Liberaciones",
+			"route": "/calculadoras/formula",
+			"icon": "calc",
 			"segments": [
-				"Fidelizacion"
-			],
-			"dropDown": [
-				{
-					"title": "Atento",
-					"route": "https://atento.com",
-					"image": "https://media.licdn.com/dms/image/v2/D4E0BAQEnK1_at9q3PA/company-logo_200_200/company-logo_200_200/0/1656675003147/atento_logo?e=2147483647&v=beta&t=cR0yrmi55BoJ7iqIvyR3fEV2eTexChOzi29zWvPlWhM"
-				},
-				{
-					"title": "GAP",
-					"route": "https://GAP.atento.com",
-					"image": "https://images.emojiterra.com/google/android-12l/512px/1f512.png"
-				},
-				{
-					"title": "En directo",
-					"route": "https://en-directo.atento.com",
-					"image": "https://www.citypng.com/public/uploads/preview/wifi-signal-round-blue-icon-701751694972785dgvtnar569.png"
-				},
-				{
-					"title": "Cafe Academia",
-					"route": "https://en-directo.atento.com",
-					"image": "https://cdn-icons-png.flaticon.com/512/3965/3965065.png"
-				},
-				{
-					"title": "Café Operaciones",
-					"route": "https://en-directo.atento.com",
-					"image": "https://images.icon-icons.com/3356/PNG/512/symbol_emoj_food_steaming_drink_beverage_hot_tea_coffee_icon_210598.png"
-				},
-				{
-					"title": "En directo",
-					"route": "https://en-directo.atento.com",
-					"image": "https://img.freepik.com/vector-premium/logotipo-mundo-tecnologia-digital-ilustracion-icono-identidad-marca_7109-615.jpg"
-				}
-			]
-		},
-		{
-			"title": "Corrector ortográfico",
-			"route": "/checklist",
-			"icon": "textSlash",
-			"segments": [
-				"Fidelizacion"
-			]
-		},
-		{
-			"title": "Scripts",
-			"route": "/checklist",
-			"icon": "comments",
-			"segments": [
-				"Fidelizacion"
-			]
-		},
-		{
-			"title": "Consulta de documentación",
-			"route": "/checklist",
-			"icon": "library"
-		},
-		{
-			"title": "Consulta de información",
-			"route": "/checklist",
-			"icon": "info",
-			"segments": [
-				"Fidelizacion"
-			]
-		},
-		{
-			"title": "Catálogo",
-			"route": "/checklist",
-			"icon": "catalogue"
-		},
-		{
-			"title": "Linea de tiempo",
-			"route": "/timeline",
-			"icon": "timeLine",
-			"segments": [
-				"Personas"
-			]
-		},
-		{
-			"title": "Plantilla Checklist",
-			"route": "/checklist/plantilla",
-			"icon": "checklist",
-			"segments": [
-				"ADMIN"
+				"Terpel"
 			]
 		}
 	]

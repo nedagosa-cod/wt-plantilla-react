@@ -1,0 +1,137 @@
+[
+    {
+        "id": 1,
+        "titulo": "Activación de cuenta Vive Terpel",
+        "descripcion": "Se comunica el cliente {nombre} para solicitar la activación de la cuenta en Vive Terpel ya que el pertenecía a Club Gazel<br>• Nombre completo: {nombre}<br>• Email: {email}<br>• Identificación: {identificacion}<br>• Celular: {celular}"
+    },
+    {
+        "id": 2,
+        "titulo": "Validación de cargue de puntos",
+        "descripcion": "Se comunica el sr(a) {nombre} con CC {identificacion} solicitando validar el cargue de los siguientes puntos:<br>Fecha de la compra: {fecha_compra}<br>EDS (Validar que este asociado al programa): {eds}<br>Valor: {valor}<br>Numero de recibo: {numero_recibo}<br>Cantidad de galones: {galones}<br>(Recuerda validar que la venta NO sea RUMBO)<br>Puntos cargados: {puntos_cargados}<br>Venta en línea: {venta_en_linea}<br>Producto: {producto}"
+    },
+    {
+        "id": 3,
+        "titulo": "Solicitud de información del convenio con LATAM Pass",
+        "descripcion": "Se comunica el cliente {nombre} para solicitar información del convenio con LATAM Pass<br>• Nombre completo: {nombre}<br>• Email: {email}<br>• Identificación: {identificacion}<br>• Tipo de identificación: {tipo_identificacion}<br>• Celular: {celular}"
+    },
+    {
+        "id": 4,
+        "titulo": "Solicitud de desbloqueo en el programa Vive Terpel",
+        "descripcion": "Se comunica el sr(a) {nombre} solicitando validar el motivo por el cual se encuentra bloqueado en el programa de Vive Terpel.<br><br>Se valida en el sistema y no presenta infracciones, ni pertenece a una EDS. Solicita sea desbloqueado en el programa.<br><br>• CC: {identificacion}<br>• Nombre completo: {nombre}<br>• Correo: {email}<br>• Teléfono: {celular}"
+    },
+    {
+        "id": 5,
+        "titulo": "Validación de cargue de puntos (formato alterno)",
+        "descripcion": "Se comunica el sr(a) {nombre} con CC {identificacion} solicitando validar el cargue de los siguientes puntos:<br>• Fecha de la compra: {fecha_compra}<br>• EDS (Validar que este asociado al programa): {eds}<br>• Valor: {valor}<br>• Número de recibo: {numero_recibo}<br>• Cantidad de galones: {galones}<br>(Recuerda validar que la venta NO sea RUMBO)<br>• Puntos cargados: {puntos_cargados}<br>• Venta en línea: {venta_en_linea}<br>• Producto: {producto}"
+    },
+    {
+        "id": 6,
+        "titulo": "Validación de error en redención",
+        "descripcion": "Se comunica el sr(a) {nombre} solicitando validar el siguiente error que registra al momento de redimir:<br><br>• EDS: {eds}<br>• Fecha del error: {fecha_error}<br>• Ciudad: {ciudad}<br>• Sistema de la EDS: {sistema_eds}<br>• CC del cliente: {identificacion}<br><br>• Correo: {email}<br>• Teléfono: {celular}<br><br>Se adjunta pantallazo"
+    },
+    {
+        "id": 7,
+        "titulo": "Validación de error al momento de redimir",
+        "descripcion": "Se comunica el sr(a) {nombre} solicitando validar el siguiente error que registra al momento de redimir:<br><br>• EDS: {eds}<br>• Fecha del error: {fecha_error}<br>• Ciudad: {ciudad}<br>• Sistema de la EDS: {sistema_eds}<br>• CC del cliente: {identificacion}<br><br>• Correo: {email}<br>• Teléfono: {celular}<br><br>Se adjunta pantallazo"
+    },
+    {
+        "id": 8,
+        "titulo": "Reporte de error en el cargue de puntos",
+        "descripcion": "Se comunica el cliente {nombre} para reportar error en el cargue de los puntos. Se valida el proceso y se adjunta evidencia del proceso correcto en isla y la novedad presentada.<br><br>• Nombre completo: {nombre}<br>• Identificación: {identificacion}<br>• Email: {email}<br>• Celular: {celular}<br>• Error que le arroja: {error}"
+    },
+    {
+        "id": 9,
+        "titulo": "Reporte de error en redención de puntos",
+        "descripcion": "Se comunica el cliente {nombre} para reportar que no le permite realizar redención de puntos.<br><br>• Nombre completo: {nombre}<br>• Email: {email}<br>• Identificación: {identificacion}<br>• Producto que desea redimir: {producto}<br>• Error que arroja: {error}<br>• Tipo de identificación: {tipo_identificacion}<br>• Celular: {celular}"
+    },
+    {
+        "id": 10,
+        "titulo": "Consulta por bloqueo en el programa Vive Terpel",
+        "descripcion": "Se comunica el sr(a) {nombre} solicitando validar el motivo por el cual se encuentra bloqueado en el programa de Vive Terpel.<br><br>Se valida en el sistema y se le informa que: {motivo_bloqueo}"
+    },
+    {
+        "id": 11,
+        "titulo": "Solicitud de actualización de datos",
+        "descripcion": "Se comunica el cliente {nombre} para solicitar actualización de {dato_a_actualizar}<br><br>• Nombre completo: {nombre}<br>• Email: {email}<br>• Identificación: {identificacion}<br>• Tipo de identificación: {tipo_identificacion}<br>• Celular: {celular}"
+    },
+    {
+        "id": 12,
+        "titulo": "Solicitud de información sobre pago con puntos en tiendas Altoque",
+        "descripcion": "Se comunica el cliente {nombre} para solicitar información del pago con puntos en las tiendas Altoque.<br><br>• Nombre completo: {nombre}<br>• Identificación: {identificacion}<br>• Email: {email}<br>• Celular: {celular}"
+    },
+    {
+        "id": 13,
+        "titulo": "Solicitud de información sobre radicado",
+        "descripcion": "Se comunica el cliente {nombre} para solicitar información del radicado {radicado}.<br><br>• Información brindada: {informacion_brindada}<br>• Identificación: {identificacion}<br>• Email: {email}<br>• Celular: {celular}"
+    },
+    {
+        "id": 14,
+        "titulo": "Solicitud de exclusión de información del programa Vive Terpel",
+        "descripcion": "Se comunica el cliente {nombre} para solicitar que no le vuelva a llegar información del programa Vive Terpel.<br><br>• Nombre completo: {nombre}<br>• Email: {email}<br>• Identificación: {identificacion}<br>• Celular: {celular}"
+    },
+    {
+        "id": 15,
+        "titulo": "Reporte de error en registro por autenticación de identidad",
+        "descripcion": "Se comunica el cliente {nombre} para reportar que no le permite realizar el registro en Vive Terpel por la autenticación de identidad.<br><br>• Nombre completo: {nombre}<br>• Identificación: {identificacion}<br>• Email: {email}<br>• Celular: {celular}<br>• Error que le arroja: {error}"
+    },
+    {
+        "id": 16,
+        "titulo": "Reporte de error en registro por autenticación de identidad",
+        "descripcion": "Se comunica el cliente {nombre} para reportar que no le permite realizar el registro en Vive Terpel por la autenticación de identidad.<br><br>• Nombre completo: {nombre}<br>• Identificación: {identificacion}<br>• Email: {email}<br>• Celular: {celular}<br>• Error que le arroja: {error}"
+    },
+    {
+        "id": 17,
+        "titulo": "Validación de cargue de puntos",
+        "descripcion": "Se comunica el sr(a) {nombre} con CC {identificacion} solicitando validar el cargue de los siguientes puntos:<br><br>• Fecha de la compra: {fecha_compra}<br>• EDS (Validar que este asociado al programa): {eds}<br>• Valor: {valor}<br>• Número de recibo: {numero_recibo}<br>• Cantidad de galones: {galones}<br>(Recuerda validar que la venta NO sea RUMBO)<br>• Puntos cargados: {puntos_cargados}<br>• Venta en línea: {venta_en_linea}<br>• Producto: {producto}"
+    },
+    {
+        "id": 18,
+        "titulo": "Solicitud de información sobre reglas de acumulación",
+        "descripcion": "Se comunica el cliente {nombre} para solicitar información de las reglas de acumulación.<br><br>• Identificación: {identificacion}<br>• Email: {email}<br>• Celular: {celular}"
+    },
+    {
+        "id": 19,
+        "titulo": "Validación de no acumulación de puntos",
+        "descripcion": "Se comunica el cliente {nombre} para validar el motivo por el cual no le acumularon los puntos de una venta.<br><br>• Nombre completo: {nombre}<br>• Identificación: {identificacion}<br>• Fecha de la venta: {fecha_venta}<br>• Motivo del rechazo: {motivo_rechazo}"
+    },
+    {
+        "id": 20,
+        "titulo": "Reporte de novedad en redención de puntos por bono de aliado",
+        "descripcion": "Se comunica el cliente {nombre} para reportar novedad con la redención de puntos por bono {bono} del aliado {aliado}.<br><br>• Nombre completo: {nombre}<br>• Identificación: {identificacion}<br>• Email: {email}<br>• Celular: {celular}<br>• Error que le arroja: {error}"
+    },
+    {
+        "id": 21,
+        "titulo": "Reporte de novedad en redención de puntos por bono de aliado",
+        "descripcion": "Se comunica el cliente {nombre} para reportar novedad con la redención de puntos por bono {bono} del aliado {aliado}.<br><br>• Nombre completo: {nombre}<br>• Identificación: {identificacion}<br>• Email: {email}<br>• Celular: {celular}<br>• Error que le arroja: {error}"
+    },
+    {
+        "id": 22,
+        "titulo": "Reporte de novedad para reclamar bono con aliado",
+        "descripcion": "Se comunica el cliente {nombre} para reportar novedad para reclamar un bono con el aliado {aliado}, ya que le indican {detalle_novedad}.<br><br>• Nombre completo: {nombre}<br>• Identificación: {identificacion}<br>• Email: {email}<br>• Celular: {celular}<br>• Aliado: {aliado}<br>• Ciudad: {ciudad}"
+    },
+    {
+        "id": 23,
+        "titulo": "Reporte de error en POS al intentar redimir bono",
+        "descripcion": "Se comunica el/la Sr/Sra {nombre} de la EDS {nombre_eds} para reportar que el POS {pos} no le permite utilizar un bono, ya que le arroja el error {error}.<br><br>• Nombre completo: {nombre}<br>• Email: {email}<br>• Identificación: {identificacion}<br>• Tipo de identificación: {tipo_identificacion}<br>• Celular: {celular}<br>• Nombre EDS: {nombre_eds}<br>• Sistema de la EDS: {sistema_eds}<br>• Estado del bono: {estado_bono}<br>• Imagen del error o de tirilla de compra (si aplica): {imagen}"
+    },
+    {
+        "id": 24,
+        "titulo": "Solicitud de información sobre aliado de Vive Terpel",
+        "descripcion": "Se comunica el cliente {nombre} para solicitar información del aliado {aliado} de Vive Terpel.<br><br>• Información brindada: {informacion_brindada}<br>• Identificación: {identificacion}<br>• Email: {email}<br>• Celular: {celular}"
+    },
+    {
+        "id": 25,
+        "titulo": "Reporte de novedad en redención de puntos por millas LifeMiles",
+        "descripcion": "Se comunica el cliente {nombre} para reportar novedad con la redención de puntos por millas de la alianza LifeMiles.<br><br>• Nombre completo: {nombre}<br>• Identificación: {identificacion}<br>• Número de viajero frecuente: {numero_viajero}<br>• Email: {email}<br>• Celular: {celular}<br>• Error que le arroja: {error}"
+    },
+    {
+        "id": 26,
+        "titulo": "Reporte de error en inicio de sesión (OTP no recibido)",
+        "descripcion": "Se comunica el cliente {nombre} para reportar que no puede iniciar sesión ya que no le llega el código OTP.<br><br>• Descripción: {descripcion}<br>• Nombre completo: {nombre}<br>• Tipo de Documento: {tipo_documento}<br>• No. de Documento: {identificacion}<br>• Celular: {celular}<br>• Email: {email}"
+    },
+    {
+        "id": 27,
+        "titulo": "Solicitud de información sobre la alianza LifeMiles",
+        "descripcion": "Se comunica el cliente {nombre} para solicitar información de la alianza LifeMiles.<br><br>• Nombre completo: {nombre}<br>• Identificación: {identificacion}"
+    }
+]
