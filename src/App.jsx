@@ -10,18 +10,13 @@ import CheckListBase from './components/Checklist/CheckListBase'
 import Testeos from './components/Test/Testeos'
 import { useContext, useEffect } from 'react'
 import TimeLine from './components/TimeLine/TimeLine'
-import Tipificador from './components/Tipificador/Tipificador'
 import { NoteApp } from './components/NoteApp/NoteApp.jsx'
 import IconsTest from './components/WebTraining/IconsTest.jsx'
 import BasesNoti from './components/Test/BasesNoti.jsx'
-import Biblioteca from './components/Biblioteca/Biblioteca.jsx'
 import Navbar from './components/WebTraining/navbar/Navbar.jsx'
 import Flujogram from './components/Flujogram/Flujogram'
 import AppsWeb from './components/AppsWeb/AppsWeb'
-import Glosario from './components/Glosario/Glosario'
-import Plantillas from './components/Plantillas/Plantillas'
-import Calculadoras from './components/Calculadoras/Calculadoras'
-import CalculadorasForm from './components/CalculadoraFormula/CalculadoraFormula'
+
 const App = () => {
 	const { activeAppNote, showApp, admin } = useContext(GlobalContext)
 
@@ -83,20 +78,13 @@ const App = () => {
 					<Route path="/checklist/ejemploA" element={<CheckListBase checklist="ejemploA" />} />
 					<Route path="/checklist/ejemploB" element={<CheckListBase checklist="ejemploB" />} />
 					<Route path="/checklist/ejemploC" element={<CheckListBase checklist="ejemploC" />} />
-					<Route path="/tipificador" element={<Tipificador />} />
-					<Route path="/calculadoras/estandar" element={<Tipificador />} />
 					<Route path="/timeline" element={<TimeLine />} />
 					<Route path="/corrector" element={<Corrector />} />
 					<Route path="/testeos" element={<Testeos />} />
 					<Route path="/iconTest" element={<IconsTest />} />
 					<Route path="/testbases" element={<BasesNoti />} />
-					<Route path="/biblioteca" element={<Biblioteca />} />
 					<Route path="/flujogram/:id" element={<Flujogram />} />
 					<Route path="/appsweb" element={<AppsWeb />} />
-					<Route path="/glosario" element={<Glosario />} />
-					<Route path="/plantillas" element={<Plantillas />} />
-					<Route path="/calculadoras/:id" element={<Calculadoras />} />
-					<Route path="/calculadoras/formula" element={<CalculadorasForm />} />
 				</Routes>
 			</section>
 			{activeAppNote && <NoteApp />}

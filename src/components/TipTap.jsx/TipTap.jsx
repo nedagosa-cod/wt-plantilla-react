@@ -12,7 +12,7 @@ import IconError from '../../icons/IconError'
 import IconTextSublineOt from '../../icons/IconTextSublineOt'
 import IconListOt from '../../icons/IconListOt'
 import IconTooltipOt from '../../icons/IconTooltipOt'
-import Swal from 'sweetalert2'
+import { toast } from 'sonner'
 
 // define your extension array
 
@@ -39,11 +39,7 @@ const TipTap = ({ content, getValueTipTap, onScript, onList, onParagraph }) => {
 			// no permite escribir mas de 600 caracteres en parrafos
 			if ((onParagraph || onScript) && textEditor.length > 600) {
 				editor.commands.setContent(textEditor.substring(0, 600))
-				Swal.fire({
-					icon: 'error',
-					title: 'Oops...',
-					text: 'Maximo de caracteres alcanzado solo se permiten maximo 600 caracteres por párrafo',
-				})
+				toast.error('Maximo de caracteres alcanzado solo se permiten maximo 600 caracteres por párrafo')
 			}
 		},
 	})

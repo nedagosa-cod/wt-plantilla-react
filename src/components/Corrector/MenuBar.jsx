@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import 'remixicon/fonts/remixicon.css'
-import Swal from 'sweetalert2'
+import { toast } from 'sonner'
 
 export default function MenuBar({ editor }) {
 	const alignTranslate = {
@@ -38,9 +38,13 @@ export default function MenuBar({ editor }) {
 
 	const handleClickOutside = e => {
 		if (
-			![FontFamilyRef.current, fontSizeDropdownRef.current, highlightInputRef.current, colorInputRef.current, justifyDropdownRef.current].some(
-				ref => ref?.contains(e.target)
-			)
+			![
+				FontFamilyRef.current,
+				fontSizeDropdownRef.current,
+				highlightInputRef.current,
+				colorInputRef.current,
+				justifyDropdownRef.current,
+			].some(ref => ref?.contains(e.target))
 		) {
 			closeAllDropdowns()
 		}
@@ -100,17 +104,7 @@ export default function MenuBar({ editor }) {
 	}
 
 	const handleCopy = () => {
-		navigator.clipboard.writeText(editor.getText()).then(() =>
-			Swal.fire({
-				title: 'Contenido copiado',
-				icon: 'success',
-				toast: true,
-				position: 'top-end',
-				showConfirmButton: false,
-				timer: 2000,
-				timerProgressBar: true,
-			})
-		)
+		navigator.clipboard.writeText(editor.getText()).then(() => toast.success('Copiado al portapapeles'))
 	}
 
 	useEffect(() => {
@@ -120,11 +114,11 @@ export default function MenuBar({ editor }) {
 
 	if (!editor) return null
 
-	const baseBtn = "p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700"
-	const activeBtn = "bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-white"
+	const baseBtn = 'p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700'
+	const activeBtn = 'bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-white'
 
 	return (
-		<div className="flex flex-wrap justify-center gap-2 p-3 border-b border-gray-300 dark:border-gray-700 bg-background shadow-sm rounded-xl">
+		<div className="flex flex-wrap gap-2 justify-center p-3 rounded-xl border-b border-gray-300 shadow-sm dark:border-gray-700 bg-background">
 			{/* Formatting Buttons */}
 			{[
 				{ cmd: 'toggleBold', icon: 'ri-bold', active: editor.isActive('bold') },
@@ -135,33 +129,38 @@ export default function MenuBar({ editor }) {
 				<button
 					key={cmd}
 					onClick={() => editor.chain().focus()[cmd]().run()}
-					className={`p-2 rounded-md transition-all duration-200 ease-in-out transform hover:scale-105 hover:bg-gray-200 dark:hover:bg-gray-700 ${active ? 'bg-blue-100 text-blue-600 dark:bg-blue-800 dark:text-white' : 'text-gray-700 dark:text-gray-200'
-						}`}
-				>
-					<i className={`${icon} text-lg`}></i>
+					className={`p-2 rounded-md transition-all duration-200 ease-in-out transform hover:scale-105 hover:bg-gray-200 dark:hover:bg-gray-700 ${
+						active ? 'text-blue-600 bg-blue-100 dark:bg-blue-800 dark:text-white' : 'text-gray-700 dark:text-gray-200'
+					}`}>
+					<i className={`text-lg ${icon}`}></i>
 				</button>
 			))}
 
 			{/* Color Picker */}
-			{[{ ref: colorInputRef, handler: handleColorChange, color: selectedColor, icon: 'ri-palette-line' },
-			{ ref: highlightInputRef, handler: handleHighlightChange, color: selectedHighlightColor, icon: 'ri-mark-pen-line' }]
-				.map(({ ref, handler, color, icon }, idx) => (
-					<div key={idx} className="relative">
-						<button
-							onClick={() => ref.current.click()}
-							className="p-2 rounded-md transition hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200"
-						>
-							<i className={`${icon} text-lg`}></i>
-						</button>
-						<input
-							type="color"
-							ref={ref}
-							value={color}
-							onChange={handler}
-							className="absolute top-0 left-0 w-0 h-0 opacity-0"
-						/>
-					</div>
-				))}
+			{[
+				{ ref: colorInputRef, handler: handleColorChange, color: selectedColor, icon: 'ri-palette-line' },
+				{
+					ref: highlightInputRef,
+					handler: handleHighlightChange,
+					color: selectedHighlightColor,
+					icon: 'ri-mark-pen-line',
+				},
+			].map(({ ref, handler, color, icon }, idx) => (
+				<div key={idx} className="relative">
+					<button
+						onClick={() => ref.current.click()}
+						className="p-2 text-gray-700 rounded-md transition hover:bg-gray-200 dark:hover:bg-gray-700 dark:text-gray-200">
+						<i className={`text-lg ${icon}`}></i>
+					</button>
+					<input
+						type="color"
+						ref={ref}
+						value={color}
+						onChange={handler}
+						className="absolute top-0 left-0 w-0 h-0 opacity-0"
+					/>
+				</div>
+			))}
 
 			{/* Dropdowns */}
 			{[
@@ -171,11 +170,19 @@ export default function MenuBar({ editor }) {
 					toggle: () => setFontFamilyDropdownOpen(prev => !prev),
 					ref: FontFamilyRef,
 					list: [
-						'font-Arial', 'font-Verdana', 'font-Helvetica', 'font-Tahoma',
-						'font-Georgia', 'font-TimesNewRoman', 'font-CourierNew',
-						'font-TrebuchetMS', 'font-ComicSansMS', 'font-Impact', 'font-Ubuntu'
+						'font-Arial',
+						'font-Verdana',
+						'font-Helvetica',
+						'font-Tahoma',
+						'font-Georgia',
+						'font-TimesNewRoman',
+						'font-CourierNew',
+						'font-TrebuchetMS',
+						'font-ComicSansMS',
+						'font-Impact',
+						'font-Ubuntu',
 					],
-					onClick: setFontFamily
+					onClick: setFontFamily,
 				},
 				{
 					name: nameFontSize,
@@ -183,7 +190,7 @@ export default function MenuBar({ editor }) {
 					toggle: () => setFontSizeDropdownOpen(prev => !prev),
 					ref: fontSizeDropdownRef,
 					list: [12, 14, 16, 18, 24, 32, 48].map(size => `${size}px`),
-					onClick: size => setFontSize(parseInt(size))
+					onClick: size => setFontSize(parseInt(size)),
 				},
 				{
 					name: nameTextAlign,
@@ -192,22 +199,23 @@ export default function MenuBar({ editor }) {
 					ref: justifyDropdownRef,
 					list: ['left', 'center', 'right', 'justify'],
 					onClick: setAlign,
-					translate: alignTranslate
+					translate: alignTranslate,
 				},
 			].map(({ name, isOpen, toggle, ref, list, onClick, translate }, i) => (
 				<div key={i} className="relative" ref={ref}>
-					<button onClick={toggle} className="p-2 rounded-md flex items-center gap-1 transition hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200">
+					<button
+						onClick={toggle}
+						className="flex gap-1 items-center p-2 text-gray-700 rounded-md transition hover:bg-gray-200 dark:hover:bg-gray-700 dark:text-gray-200">
 						<span className="text-sm">{name}</span>
 						<i className="ri-arrow-down-s-line text-md"></i>
 					</button>
 					{isOpen && (
-						<div className="absolute z-20 mt-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md shadow-lg w-40 overflow-hidden animate-fade-in">
+						<div className="overflow-hidden absolute z-20 mt-2 w-40 bg-white rounded-md border border-gray-300 shadow-lg dark:bg-gray-800 dark:border-gray-600 animate-fade-in">
 							{list.map((item, idx) => (
 								<button
 									key={idx}
 									onClick={() => onClick(item)}
-									className="w-full px-4 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition"
-								>
+									className="px-4 py-2 w-full text-sm text-left transition hover:bg-gray-100 dark:hover:bg-gray-700">
 									{translate ? translate[item] : item.split('-')[1] || item}
 								</button>
 							))}
@@ -219,19 +227,18 @@ export default function MenuBar({ editor }) {
 			{/* Mic */}
 			<button
 				onClick={startRecognition}
-				className={`p-2 rounded-md transition hover:bg-gray-200 dark:hover:bg-gray-700 ${listening ? 'text-red-500' : 'text-gray-700 dark:text-gray-200'}`}
-			>
-				<i className="ri-mic-line text-lg"></i>
+				className={`p-2 rounded-md transition hover:bg-gray-200 dark:hover:bg-gray-700 ${
+					listening ? 'text-red-500' : 'text-gray-700 dark:text-gray-200'
+				}`}>
+				<i className="text-lg ri-mic-line"></i>
 			</button>
 
 			{/* Copy */}
 			<button
 				onClick={handleCopy}
-				className="p-2 rounded-md transition hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200"
-			>
-				<i className="ri-file-copy-line text-lg"></i>
+				className="p-2 text-gray-700 rounded-md transition hover:bg-gray-200 dark:hover:bg-gray-700 dark:text-gray-200">
+				<i className="text-lg ri-file-copy-line"></i>
 			</button>
 		</div>
-
 	)
 }

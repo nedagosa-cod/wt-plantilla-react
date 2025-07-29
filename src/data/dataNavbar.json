@@ -15,9 +15,7 @@
 			"title": "Aplicativos web",
 			"route": "/apps-web",
 			"icon": "web",
-			"segments": [
-				"Terpel"
-			],
+			"segments": ["Terpel"],
 			"dropDown": [
 				{
 					"title": "Atento",
@@ -52,21 +50,11 @@
 			]
 		},
 		{
-			"title": "Tipificador",
-			"route": "/tipificador",
-			"icon": "tipify",
-			"segments": [
-				"Terpel"
-			]
-		},
-		{
 			"title": "Protocolos",
 			"route": "/protocolo",
 			"icon": "bookMarket",
 			"portada": false,
-			"segments": [
-				"Terpel"
-			],
+			"segments": ["Terpel"],
 			"dropDown": [
 				{
 					"title": "Registro Vive Terpel",
@@ -116,38 +104,6 @@
 					"description": "Diversos procesos con aliados",
 					"icon": "handCoins"
 				}
-			]
-		},
-		{
-			"title": "Glosario",
-			"route": "/glosario",
-			"icon": "bookOpen",
-			"segments": [
-				"Terpel"
-			]
-		},
-		{
-			"title": "Plantillas",
-			"route": "/plantillas",
-			"icon": "bookOpen",
-			"segments": [
-				"Terpel"
-			]
-		},
-		{
-			"title": "Calculadoras",
-			"route": "/calculadoras/puntos",
-			"icon": "calc",
-			"segments": [
-				"Terpel"
-			]
-		},
-		{
-			"title": "Formula Liberaciones",
-			"route": "/calculadoras/formula",
-			"icon": "calc",
-			"segments": [
-				"Terpel"
 			]
 		}
 	]

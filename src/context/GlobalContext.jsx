@@ -1,6 +1,5 @@
 import { createContext, useState } from 'react'
 import Localbase from 'localbase'
-import Swal from 'sweetalert2'
 import readXlsxFile from 'read-excel-file'
 import { toast } from 'sonner'
 
