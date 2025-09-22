@@ -9,35 +9,33 @@ import { cn } from '@/lib/utils'
 import PropTypes from 'prop-types'
 import { icons } from '../../../../../icons/icons-list'
 import { NavLink } from 'react-router-dom'
+import { useNavigationMenuPosition } from '@/hooks/useNavigationMenuPosition'
 
-export default function NavItemPortada({ label, icon, submenu }) {
+export default function NavItemPortada({ label, icon, submenu, containerRef }) {
+	const triggerRef = useNavigationMenuPosition()
 	return (
 		<NavigationMenuItem>
 			<NavigationMenuTrigger
+				ref={triggerRef}
 				title={label}
-				className="flex items-center justify-center w-20 h-8 px-4 py-2 text-white truncate rounded-full shadow-md bg-primary xl:w-40 text-nowrap">
-				<span className="flex items-center justify-center w-4 h-4 mr-2">{icon}</span>
-				<span className="hidden overflow-hidden text-sm truncate whitespace-nowrap xl:block ">{label}</span>
+				className="flex justify-center items-center px-4 py-1 w-fit h-[36px] text-primaryDark shadow-md bg-white hover:bg-primaryLight 2xl:w-40 rounded-full ring-2 ring-secondary">
+				<span className="flex justify-center items-center mr-2 w-4 h-4">{icon}</span>
+				<span className="hidden overflow-hidden text-xs font-bold truncate whitespace-nowrap 2xl:text-sm xl:block">
+					{label}
+				</span>
 			</NavigationMenuTrigger>
 			<NavigationMenuContent>
 				<ul className="grid gap-3 p-4 md:w-[400px] lg:w-[600px] lg:grid-cols-[.75fr_1fr]">
 					{submenu.map((item, index) =>
 						index === 0 ? (
 							<li className="row-span-4" key={index}>
-								<NavigationMenuLink asChild>
-									<NavLink
-										className="flex flex-col justify-end w-full h-full p-5 no-underline rounded-md outline-none select-none bg-gradient-to-b from-muted/50 to-muted focus:shadow-md"
-										to={item.route}>
-										<div className="flex items-center justify-center mt-4 mb-2 text-lg font-medium">
-											{icon}
-
-											{item.title}
-										</div>
-										<p className="text-sm leading-tight text-muted-foreground">
-											{item.description && item.description}
-										</p>
-									</NavLink>
-								</NavigationMenuLink>
+								<div className="flex flex-col justify-end p-5 w-full h-full bg-gradient-to-b rounded-md outline-none select-none from-muted/50 to-muted">
+									<div className="flex justify-center items-center mt-4 mb-2 text-lg font-medium">
+										{icon}
+										{item.title}
+									</div>
+									<p className="text-sm leading-tight text-muted-foreground">{item.description && item.description}</p>
+								</div>
 							</li>
 						) : (
 							<ListItem href={item.route} title={item.title} key={index} iconItem={item.icon} parentIcon={icon}>
@@ -59,13 +57,13 @@ const ListItem = React.forwardRef(({ className, title, children, iconItem, paren
 					to={props.href}
 					ref={ref}
 					className={cn(
-						'flex flex-col select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
+						'flex flex-col p-3 space-y-1 leading-none no-underline rounded-md transition-colors outline-none select-none hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
 						className
 					)}
 					{...props}>
 					<span className="flex items-center mr-2 text-primary">
 						{iconItem ? (
-							<span className="flex items-center justify-center w-4 h-4 mr-2">{icons[iconItem]}</span>
+							<span className="flex justify-center items-center mr-2 w-4 h-4">{icons[iconItem]}</span>
 						) : (
 							parentIcon
 						)}

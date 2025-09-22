@@ -4,22 +4,31 @@ import {
 	NavigationMenuLink,
 	NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu'
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { cn } from '@/lib/utils'
 import PropTypes from 'prop-types'
 import { Separator } from '@/components/ui/separator'
 import { Button } from '@/components/ui/button'
 import { useNavigate } from 'react-router-dom'
+import { useNavigationMenuPosition } from '@/hooks/useNavigationMenuPosition'
 
 export default function NavItemAppsWeb({ label, icon, submenu }) {
 	const navigate = useNavigate()
+	const triggerRef = useRef(null)
+	useEffect(() => {
+		const navMenuContent = triggerRef.current.parentElement.parentElement.parentElement.nextElementSibling
+		navMenuContent.style.left = `300px`
+	}, [triggerRef.current])
 	return (
 		<NavigationMenuItem>
 			<NavigationMenuTrigger
+				ref={triggerRef}
 				title={label}
-				className="flex justify-center items-center px-4 py-2 w-24 h-8 text-white truncate rounded-full shadow-md bg-primary xl:w-44 text-nowrap">
+				className="flex justify-center items-center px-4 py-1 w-fit h-[36px] text-primaryDark shadow-md bg-white hover:bg-primaryLight 2xl:w-40 rounded-full ring-2 ring-secondary">
 				<span className="flex justify-center items-center mr-2 w-4 h-4">{icon}</span>
-				<span className="hidden overflow-hidden text-sm truncate whitespace-nowrap xl:block">{label}</span>
+				<span className="hidden overflow-hidden text-xs font-bold truncate whitespace-nowrap 2xl:text-sm xl:block">
+					{label}
+				</span>
 			</NavigationMenuTrigger>
 			<NavigationMenuContent>
 				<ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
@@ -27,7 +36,7 @@ export default function NavItemAppsWeb({ label, icon, submenu }) {
 						<NavigationMenuLink asChild>
 							<a
 								className="flex flex-col gap-6 justify-end p-6 w-full h-full no-underline bg-gradient-to-b rounded-md outline-none select-none from-muted/50 to-muted focus:shadow-md"
-								href="#/apps-web">
+								href="#/appsweb">
 								<div className="mt-4 mb-2 text-lg font-medium">
 									{icon}
 									Apps web

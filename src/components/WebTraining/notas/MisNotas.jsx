@@ -76,25 +76,25 @@ export function NotesSheet() {
 	return (
 		<Sheet open={isOpen} onOpenChange={setIsOpen}>
 			<SheetTrigger asChild>
-				<Button variant="ghost" className="flex w-full justify-between">
-					Mis Notas <NotebookPen className="h-4 w-4 text-primary" />
+				<Button variant="ghost" className="p-1 w-8 h-8 bg-white rounded cursor-pointer">
+					<NotebookPen className="w-4 h-4 text-primary" />
 				</Button>
 			</SheetTrigger>
-			<SheetContent className="w-full sm:max-w-md md:max-w-lg overflow-y-auto" side="right">
+			<SheetContent className="overflow-y-auto w-full sm:max-w-md md:max-w-lg" side="right">
 				<SheetHeader>
-					<SheetTitle className="text-red-600 text-xl">Sistema de Notas</SheetTitle>
+					<SheetTitle className="text-xl text-red-600">Sistema de Notas</SheetTitle>
 					<SheetDescription>Organiza tus ideas, tareas y recordatorios de manera sencilla.</SheetDescription>
 				</SheetHeader>
 
 				<div className="mt-6 space-y-4">
 					{editingNote ? (
-						<div className="border border-gray-200 rounded-lg p-4 shadow-sm">
-							<h3 className="text-lg font-medium mb-2">Editar Nota</h3>
+						<div className="p-4 rounded-lg border border-gray-200 shadow-sm">
+							<h3 className="mb-2 text-lg font-medium">Editar Nota</h3>
 							<NoteForm initialNote={editingNote} onSubmit={handleUpdateNote} onCancel={() => setEditingNote(null)} />
 						</div>
 					) : isCreating ? (
-						<div className="border border-gray-200 rounded-lg p-4 shadow-sm">
-							<h3 className="text-lg font-medium mb-2">Nueva Nota</h3>
+						<div className="p-4 rounded-lg border border-gray-200 shadow-sm">
+							<h3 className="mb-2 text-lg font-medium">Nueva Nota</h3>
 							<NoteForm
 								initialNote={{ title: '', content: '', color: '#ffffff' }}
 								onSubmit={handleCreateNote}
@@ -103,13 +103,13 @@ export function NotesSheet() {
 						</div>
 					) : (
 						<Button onClick={() => setIsCreating(true)} className="w-full bg-red-600 hover:bg-red-700">
-							<PlusCircle className="mr-2 h-4 w-4" />
+							<PlusCircle className="mr-2 w-4 h-4" />
 							Crear Nueva Nota
 						</Button>
 					)}
 
 					{!isCreating && !editingNote && notes.length === 0 && (
-						<div className="text-center py-8 text-gray-500">No tienes notas. ¡Crea una nueva!</div>
+						<div className="py-8 text-center text-gray-500">No tienes notas. ¡Crea una nueva!</div>
 					)}
 
 					{!isCreating && !editingNote && (
@@ -124,7 +124,7 @@ export function NotesSheet() {
 				</div>
 
 				<SheetFooter className="mt-6">
-					<p className="text-xs text-gray-500 w-full text-center">
+					<p className="w-full text-xs text-center text-gray-500">
 						Tus notas se guardan automáticamente en este dispositivo
 					</p>
 				</SheetFooter>

@@ -1,39 +1,54 @@
 import { Button } from '@/components/ui/button'
 
-import { Book, BookOpenCheck, Database, LogOut, Palette, Settings, SpellCheck, User, UserCog } from 'lucide-react'
-import { useContext } from 'react'
+import { BookOpenCheck, LogOut, Palette, Settings, SpellCheck, UserCog } from 'lucide-react'
+import { useContext, useEffect, useState } from 'react'
 import GlobalContext from '@/context/GlobalContext'
 import { Link } from 'react-router-dom'
 import { useTheme } from '@/context/ThemeContext'
-import {
-	Drawer,
-	DrawerClose,
-	DrawerContent,
-	DrawerDescription,
-	DrawerFooter,
-	DrawerHeader,
-	DrawerTitle,
-	DrawerTrigger,
-} from '@/components/ui/drawer'
-
-import {
-	Dialog,
-	DialogContent,
-	DialogDescription,
-	DialogFooter,
-	DialogHeader,
-	DialogTitle,
-	DialogTrigger,
-} from '@/components/ui/dialog'
 
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { Separator } from '@/components/ui/separator'
 import ExcelDrawer from './DDBBDrawer'
 import { NotesSheet } from '../../notas/MisNotas'
+import readXlsxFile from 'read-excel-file'
 
 export default function ConfigMenu() {
-	const { SetActiveAppNote } = useContext(GlobalContext)
+	const [version, setVersion] = useState(null)
 	const { setTheme, theme } = useTheme()
+	const setVersionState = async () => {
+		const ruta = `./BASES_Plantilla/NO_TOCAR.xlsx`
+		const rutaCompleta = new URL(ruta, window.location.href).href
+		const response = await fetch(rutaCompleta)
+		const data = await response.blob()
+		const dataExcel = await readXlsxFile(data)
+		const [headerRow, ...dataRows] = dataExcel
+		// Validar la estructura del archivo
+		if (headerRow[0] !== 'CLAVE' || headerRow[1] !== 'VALOR') {
+			throw new Error('El archivo Excel no tiene la estructura correcta')
+		}
+		const jsonGeneral = dataRows.map(row => {
+			const objeto = {}
+			row.forEach((value, index) => {
+				objeto[headerRow[index]] = value
+			})
+			return objeto
+		})
+		console.log(jsonGeneral[0].VALOR)
+		return jsonGeneral[0].VALOR
+	}
+	useEffect(() => {
+		const getVersion = async () => {
+			try {
+				const versionValue = await setVersionState()
+				setVersion(versionValue)
+			} catch (error) {
+				console.error('Error al obtener la versión:', error)
+				setVersion('Error al cargar')
+			}
+		}
+		getVersion()
+	}, [])
+
 	return (
 		<Popover>
 			<PopoverTrigger>
@@ -45,7 +60,7 @@ export default function ConfigMenu() {
 				<div className="grid gap-4">
 					<div className="space-y-2">
 						<h4 className="font-medium leading-none">Web Training Config</h4>
-						<p className="text-sm text-muted-foreground">versión 1.3.0</p>
+						<p className="text-sm text-muted-foreground">versión {version ? version : 'cargando...'}</p>
 					</div>
 					<Separator />
 					<div className="grid gap-2">
@@ -57,17 +72,9 @@ export default function ConfigMenu() {
 								Cambiar de tema <Palette className="w-4 h-4 text-primary" />
 							</Button>
 							<ExcelDrawer />
-
 							<Button variant="ghost" className="flex justify-between w-full">
 								Reportar un problema <UserCog className="w-4 h-4 text-primary" />
 							</Button>
-							<Separator />
-							<Link to="/corrector">
-								<Button variant="ghost" className="flex justify-between w-full">
-									Corrector Ortografico <SpellCheck className="w-4 h-4 text-primary" />
-								</Button>
-							</Link>
-							<NotesSheet />
 							<Separator />
 							<Button variant="ghost" className="flex justify-between w-full">
 								Guia Web Training <BookOpenCheck className="w-4 h-4 text-primary" />

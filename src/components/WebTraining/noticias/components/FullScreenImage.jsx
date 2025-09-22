@@ -40,7 +40,7 @@ export const FullScreenImage = ({ image, isOpen, onClose }) => {
 
 			<div className="relative max-h-[90vh] max-w-[90vw] overflow-hidden rounded-lg" onClick={e => e.stopPropagation()}>
 				<img
-					src={`BASES/NOTICIAS/${image.src}`}
+					src={`BASES_Plantilla/NOTICIAS/${image.src}`}
 					alt={image.alt}
 					className="h-auto w-full max-h-[90vh] object-contain"
 				/>

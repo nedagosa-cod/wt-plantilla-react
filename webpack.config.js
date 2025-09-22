@@ -91,12 +91,17 @@ module.exports = {
 				},
 				{
 					from: path.join(__dirname, '/src/assets/images/NOTICIAS'),
-					to: 'BASES/NOTICIAS',
+					to: 'BASES_Plantilla/NOTICIAS',
 					noErrorOnMissing: true,
 				},
 				{
 					from: path.join(__dirname, '/src/assets/images/flujogram'),
 					to: 'noTocar/imagenes/flujogram',
+					noErrorOnMissing: true,
+				},
+				{
+					from: path.join(__dirname, '/public/ddbb/'), // Ruta de la carpeta de bases de datos
+					to: 'BASES_Plantilla', // Ruta donde se copiará la carpeta ddbb
 					noErrorOnMissing: true,
 				},
 			],
@@ -121,6 +126,7 @@ module.exports = {
 			'@/context': path.join(__dirname, '/src/context/'),
 			'@/data': path.join(__dirname, '/src/data/'),
 			'@/assets': path.join(__dirname, '/src/assets/'),
+			'@/hooks': path.join(__dirname, '/src/hooks/'),
 		},
 	},
 	devServer: {

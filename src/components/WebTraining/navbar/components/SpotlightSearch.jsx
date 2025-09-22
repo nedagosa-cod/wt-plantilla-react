@@ -1,204 +1,136 @@
 import { useEffect, useRef, useState } from 'react'
-import 'animate.css'
-import '../../../../styles/search.scss'
-import {
-	Menu,
-	Calculator,
-	Library,
-	Diamond,
-	TextCursorInput,
-	MessageCircle,
-	FileText,
-	Clock,
-	Globe,
-	LayoutPanelTop,
-	X,
-	MessageCircleQuestionMark,
-} from 'lucide-react'
-import { Link } from 'react-router-dom'
 import { useSearch } from '@/context/SearchProvider'
+import 'animate.css'
+import IconChecklistC from '@/icons/Color/IconChecklistC'
+import IconCalculator from '@/icons/IconCalculator'
+import IconCheckList from '@/icons/IconCheckList'
+import IconCalculatorC from '@/icons/Color/IconCalculatorC'
+import IconLibraryC from '@/icons/Color/IconLibraryC'
+import IconLibrary from '@/icons/IconLibrary'
+import IconTypifierC from '@/icons/Color/IconTypifierC'
+import IconTipify from '@/icons/IconTipify'
+import IconTextSlash from '@/icons/IconTextSlash'
+import IconTextBubleC from '@/icons/Color/IconTextBubleC'
+import IconWeb from '@/icons/IconWeb'
+import IconNote from '@/icons/IconNote'
+import IconWindowFormC from '@/icons/Color/IconWindowFormC'
+import IconTimeLine from '@/icons/IconTimeLine'
+import IconUser from '@/icons/IconUser'
+import IconPhone from '@/icons/IconPhone'
+import IconTimeLineC from '@/icons/Color/IconTimeLineC'
+import IconDeleteOt from '@/icons/IconDeleteOt'
+import IconUserC from '@/icons/Color/IconUserC'
+import IconPhoneC from '@/icons/Color/IconPhoneC'
+import IconWebC from '@/icons/Color/IconWebC'
+import IconComents from '@/icons/IconCommets'
+import IconComentsC from '@/icons/Color/IconComentsC'
+import IconGear from '@/icons/IconGear'
+import { IconGearC } from '@/icons/Color/IconGearC'
+import IconMatrizC from '@/icons/Color/IconMatrizC'
+import IconMatriz from '@/icons/IconMatriz'
+import IconCatalogue from '@/icons/IconCatalog'
+import IconCatalogueC from '@/icons/Color/IconCatalogC'
+import IconTable from '@/icons/IconTable'
+import IconTableC from '@/icons/Color/IconTableC'
+import IconFilesTree from '@/icons/IconFilesTree'
+import IconFilesTreeC from '@/icons/Color/IconFilesTreeC'
+import IconUserX from '@/icons/IconUserX'
+import IconUserXC from '@/icons/Color/IconUserXC'
+import IconX from '@/icons/IconX'
+import IconXC from '@/icons/Color/iconXC'
+import IconClockC from '@/icons/Color/IconClockC'
+import IconClock from '@/icons/IconClock'
+import IconVentas from '@/icons/IconVentas'
+import IconVentasC from '@/icons/Color/IconVentasC'
+import { Globe, GlobeIcon, Search } from 'lucide-react'
+import BuscadorWT from './search/Buscador'
+import {
+	Dialog,
+	DialogContent,
+	DialogDescription,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+} from '@/components/ui/dialog'
+import { SearchResults } from './search/SearchResults'
 
 const SpotlightSearch = () => {
-	const icons = {
-		segments: {
-			checklist: <Menu className="w-6 h-6" />, // Lista/Menu
-			calc: <Calculator className="w-6 h-6" />, // Calculadora
-			library: <Library className="w-6 h-6" />, // Biblioteca
-			tipify: <Diamond className="w-6 h-6" />, // Diamante
-			textSlash: <MessageCircle className="w-6 h-6" />, // Burbuja de mensaje
-			note: <FileText className="w-6 h-6" />, // Nota/Archivo
-			timeLine: <Clock className="w-6 h-6" />, // Reloj/Línea de tiempo
-			messageCircleQuestionMark: <MessageCircleQuestionMark className="w-6 h-6" />,
-		},
-		develops: {
-			checklist: <Menu className="w-5 h-5" />, // Lista/Menu
-			textSlash: <TextCursorInput className="w-5 h-5" />, // Input de texto
-			note: <FileText className="w-5 h-5" />, // Nota/Archivo
-			tipify: <Diamond className="w-5 h-5" />, // Diamante
-			calc: <Calculator className="w-5 h-5" />, // Calculadora
-			library: <Library className="w-5 h-5" />, // Biblioteca
-			timeLine: <Clock className="w-5 h-5" />, // Reloj/Línea de tiempo
-			messageCircleQuestionMark: <MessageCircleQuestionMark className="w-5 h-5" />,
-		},
-	}
-	const { searchGlobal } = useSearch()
-	const [query, setQuery] = useState('')
+	const { handleSearchVista, handleSearchGlobal } = useSearch()
 	const [results, setResults] = useState([])
-	const [typeSearch, setTypeSearch] = useState(() => {
-		const activeSearch = localStorage.getItem('activeSearch')
-		return activeSearch || 'vista'
-	})
+	const [query, setQuery] = useState('')
 
-	const [searchFocus, setSearchFocus] = useState(false)
+	const inputRef = useRef(null)
 
-	const handleSearch = value => {
+	const handleInputChange = e => {
+		const value = e.target.value
 		setQuery(value)
-		if (typeSearch == 'global') {
-			const searchResults = searchGlobal(value)
+		handleSearchVista(value)
+		if (open) {
+			const searchResults = handleSearchGlobal(value)
 			setResults(searchResults)
-		} else {
-			const lowerCase = value.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-			const allCards = document.querySelectorAll('.dato-buscado')
-			const mobileCards = Array.from(allCards).filter(card =>
-				card.textContent
-					.toLowerCase()
-					.normalize('NFD')
-					.replace(/[\u0300-\u036f]/g, '')
-					.includes(lowerCase.toLowerCase())
-			)
-			Array.from(allCards).forEach(card => {
-				card.classList.add('hide')
-			})
-			mobileCards.forEach(card => {
-				card.classList.remove('hide')
-			})
 		}
 	}
 
+	const resetSearch = () => {
+		setQuery('')
+		setResults([])
+		handleSearchVista('')
+	}
+
 	useEffect(() => {
-		document.addEventListener('click', e => {
-			if (
-				e.target.classList.contains('spotlight-radio-inputs') ||
-				e.target.classList.contains('spotlight-hornav') ||
-				e.target.classList.contains('spotlight-radio-input') ||
-				e.target.classList.contains('spotlight-search-input')
-			) {
-				setSearchFocus(true)
-			} else {
-				setSearchFocus(false)
-			}
-		})
-		document.querySelector('.radioInput--check').checked = true
-	}, [])
+		if (open && inputRef.current) {
+			inputRef.current.focus()
+		} else {
+			resetSearch()
+		}
+		// eslint-disable-next-line
+	}, [open])
+
 	return (
-		<section className="absolute top-full left-1/2 z-10 w-96 h-16 bg-blue-500 transform -translate-x-1/2 spotlight-hornav">
-			<div className="relative bg-gradient-to-br from-primary-500 to-primary-700 rounded-full p-2 grid place-content-center z-10 min-w-[200px]">
-				<div className="relative w-full rounded-full bg-gradient-to-br from-primary-300 to-primary-500 p-1.5 h-14 flex items-center">
-					<button className="mr-2 cursor-pointer" onClick={() => handleSearch('')}>
-						<X className="w-6 h-6" />
+		<section className="relative">
+			<div className="grid relative z-10 place-content-center p-2 bg-gradient-to-r rounded-full hornav__links--search from-primaryDark to-primaryDark">
+				<div className="flex relative items-center p-1 h-10 bg-gradient-to-r rounded-full search__container from-primary to-primaryDark">
+					<button className="search__container--delete" onClick={() => resetSearch()}>
+						<IconDeleteOt />
 					</button>
 					<input
-						className="pl-4 w-full text-lg text-white bg-gradient-to-br rounded-full border-none from-primary-300 to-primary-500 focus:outline-none spotlight-search-input"
+						ref={inputRef}
+						name="search"
+						className="pl-2 w-full text-white border-none outline-none"
 						type="text"
-						onChange={e => handleSearch(e.target.value)}
+						onChange={handleInputChange}
 						value={query}
-						onFocus={() => setSearchFocus(true)}
-						onBlur={() => setSearchFocus(false)}
 					/>
-					<svg
-						viewBox="0 0 24 24"
-						className="pl-3 ml-2 w-12 rounded-full border-l-2 border-white transition-all aspect-square hover:border-l-4"
-						onClick={handleSearch}>
-						<g>
-							<path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
-						</g>
-					</svg>
+					<Search className="mx-2 w-8 h-8" />
+					{/* Buscador Global */}
+					<Dialog>
+						<DialogTrigger>
+							<div className="cursor-pointer relative after:content-['Busqueda_global'] after:text-white after:absolute after:text-nowrap after:scale-0 hover:after:scale-100 after:duration-200 w-14 h-9 rounded-full  border-2 border-white bg-primary pointer flex items-center justify-center duration-300 hover:rounded-[50px] hover:w-48 group/button overflow-hidden active:scale-90 ">
+								<GlobeIcon className="w-4 h-4 text-white duration-200 delay-50 group-hover/button:-translate-y-12" />
+							</div>
+						</DialogTrigger>
+						<DialogContent className="flex flex-col min-w-[700px] translate-y-0 top-[5%] min-h-52 max-h-[90%]">
+							<DialogHeader className="flex flex-col text-black" side="left">
+								<DialogTitle className="mb-4 text-2xl font-bold">Buscador Global</DialogTitle>
+								<DialogDescription className="text-sm text-gray-500">
+									Busca por palabra clave el contenido que deseas buscar en toda la web training.
+								</DialogDescription>
+								<div className="flex flex-col gap-2 w-full">
+									<label className="flex gap-2 w-full" htmlFor="name">
+										<input
+											className="rounded-full bg-primary/10 text-xl border-2 border-primary p-4 placeholder-primary focus:text-[hsl(var(--primary-dark))] focus:border-[hsl(var(--primary-light))] focus:outline-none focus:ring-2 focus:ring-primary w-full"
+											placeholder="Buscar..."
+											value={query}
+											onChange={handleInputChange}
+										/>
+									</label>
+								</div>
+							</DialogHeader>
+							<SearchResults results={results} handleSearch={handleSearchVista} />
+						</DialogContent>
+					</Dialog>
 				</div>
 			</div>
-			{/* selectores de busqueda */}
-			<div
-				className={`spotlight-radio-inputs absolute z-50 left-1/2 w-4/5 flex gap-8 justify-center bg-primary-300 text-base py-2 px-4 rounded-tl-lg rounded-tr-lg animate__animated ${
-					searchFocus ? 'animate__fadeInUp bottom-full' : 'bottom-[10%]'
-				} ${searchFocus ? 'block' : 'hidden'}`}
-				style={{ transform: 'translateX(-50%)' }}>
-				<label
-					className="flex gap-4 items-center cursor-pointer"
-					onClick={() => {
-						setQuery('')
-						setTypeSearch('vista')
-					}}>
-					<input type="radio" name="radio" className="hidden spotlight-radio-input radioInput--check" />
-					<span className="flex relative gap-4 items-center px-3 py-2 text-white rounded-tl-lg rounded-tr-lg border-none transition-all">
-						<LayoutPanelTop className="w-5 h-5" />
-						Vista
-					</span>
-				</label>
-				<label
-					className="flex gap-4 items-center cursor-pointer"
-					onClick={() => {
-						setQuery('')
-						setTypeSearch('global')
-					}}>
-					<input type="radio" name="radio" className="hidden spotlight-radio-input" />
-					<span className="flex relative gap-4 items-center px-3 py-2 text-white rounded-tl-lg rounded-tr-lg border-none transition-all">
-						<Globe className="w-5 h-5" />
-						Global
-					</span>
-				</label>
-			</div>
-			{/* elementos buscados globalmente */}
-			{results.length > 0 && (
-				<div
-					className="opacity-100 w-full min-h-[40px] absolute left-1/2 top-0 z-50 bg-primary-500 text-white rounded-[4rem] shadow-lg text-base p-7 pt-8 animate__fadeInDown"
-					style={{ transform: 'translateX(-50%)' }}>
-					<div className="flex flex-col text-lg">
-						{results.reduce((acc, curr, i) => {
-							if (i > 0 && results[i - 1].type === curr.type && results[i - 1].title === curr.title) {
-								return [
-									...acc,
-									<div
-										className="flex flex-col p-2 ml-16 text-white rounded-lg cursor-pointer hover:bg-gray-200"
-										key={i}
-										onClick={() => {
-											handleSearch(curr.name)
-										}}>
-										<Link to={curr.path}>
-											<div className="flex gap-4 items-center text-base">
-												{icons.develops[curr.icon]}
-												<p className="w-11/12">{curr.name}</p>
-											</div>
-										</Link>
-									</div>,
-								]
-							}
-
-							return [
-								...acc,
-								<div className="flex gap-4 justify-between items-center text-white" key={i}>
-									<div className="flex gap-4 items-center text-xl font-semibold">
-										{icons.segments[curr.icon]}
-										<span>{curr.title}</span>
-									</div>
-									<span className="text-sm text-right text-gray-300">{curr.segment}</span>
-								</div>,
-								<div
-									className="flex flex-col p-2 ml-16 text-white rounded-lg cursor-pointer hover:bg-gray-200"
-									key={i + 'dev'}
-									onClick={() => {
-										handleSearch(curr.name)
-									}}>
-									<Link to={curr.path}>
-										<div className="flex gap-4 items-center text-base">
-											{icons.develops[curr.icon]}
-											<p className="w-11/12">{curr.name}</p>
-										</div>
-									</Link>
-								</div>,
-							]
-						}, [])}
-					</div>
-				</div>
-			)}
 		</section>
 	)
 }
