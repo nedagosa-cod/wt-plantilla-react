@@ -1,7 +1,7 @@
 {
 	"SEGMENTS": [
 		{
-			"segment": "Terpel",
+			"segment": "Plantilla",
 			"icon": "home"
 		}
 	],
@@ -15,12 +15,12 @@
 			"title": "Aplicativos web",
 			"route": "/apps-web",
 			"icon": "web",
-			"segments": ["Terpel"],
+			"segments": ["Plantilla"],
 			"dropDown": [
 				{
 					"title": "Atento",
-					"route": "https://terpel.my.salesforce.com/",
-					"image": "TERPELSALESFORCE.png"
+					"route": "https://Plantilla.my.salesforce.com/",
+					"image": "PlantillaSALESFORCE.png"
 				},
 				{
 					"title": "Kactus",
@@ -39,7 +39,7 @@
 				},
 				{
 					"title": "Café Operaciones",
-					"route": "https://cafesite8.atento.com.co/cafe_terpel/login/",
+					"route": "https://cafesite8.atento.com.co/cafe_Plantilla/login/",
 					"image": "CAFEOPERACIONES.png"
 				},
 				{
@@ -54,22 +54,22 @@
 			"route": "/protocolo",
 			"icon": "bookMarket",
 			"portada": false,
-			"segments": ["Terpel"],
+			"segments": ["Plantilla"],
 			"dropDown": [
 				{
-					"title": "Registro Vive Terpel",
+					"title": "Registro Vive Plantilla",
 					"route": "/flujogram/1",
-					"description": "Manual para registro de cuenta Vive Terpel",
+					"description": "Manual para registro de cuenta Vive Plantilla",
 					"icon": "circleArrowRight"
 				},
 				{
 					"title": "Validación de identidad",
 					"route": "/flujogram/2",
-					"description": "Validación de identidad en el registro de cuenta Vive Terpel",
+					"description": "Validación de identidad en el registro de cuenta Vive Plantilla",
 					"icon": "ticketCheck"
 				},
 				{
-					"title": "Error registro vive terpel",
+					"title": "Error registro vive Plantilla",
 					"route": "/flujogram/3",
 					"description": "Datos duplicados número de documento o error al ingresar",
 					"icon": "ban"
@@ -77,7 +77,7 @@
 				{
 					"title": "Actualizacion de datos personales",
 					"route": "/flujogram/4",
-					"description": "Actualización de datos personales Terpel",
+					"description": "Actualización de datos personales Plantilla",
 					"icon": "tipify"
 				},
 				{

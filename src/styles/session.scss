@@ -15,6 +15,12 @@
 	background-repeat: no-repeat;
 	background: white;
 
+	&__error {
+		color: red;
+		font-size: 1.2rem;
+		margin-top: 1rem;
+	}
+
 	&.hide {
 		display: none;
 	}
@@ -97,7 +103,6 @@
 		-ms-border-radius: 1.4rem;
 		-o-border-radius: 1.4rem;
 		box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
-
 
 		& .title-top {
 			font-size: 3.1rem;
@@ -202,7 +207,7 @@
 			border: 1px solid rgba(105, 105, 105, 0.397);
 			border-radius: 10px;
 
-			&+span {
+			& + span {
 				color: $g-color;
 				position: absolute;
 				left: 10px;
@@ -212,15 +217,15 @@
 				transition: 0.3s ease;
 			}
 
-			&:placeholder-shown+span {
+			&:placeholder-shown + span {
 				top: 17.5px;
 				font-size: 0.9em;
 			}
 		}
 	}
 
-	& .form label .input:focus+span,
-	.form label .input:valid+span {
+	& .form label .input:focus + span,
+	.form label .input:valid + span {
 		color: $g-color;
 		top: 4px;
 		font-size: 1.2rem;

@@ -216,7 +216,7 @@ const HorNav = ({ activeSegment }) => {
 	})
 	return (
 		<div className="w-full hornav">
-			<nav className="flex relative justify-between items-center px-5 w-full h-20 bg-white hornav__links">
+			<nav className="flex relative justify-between items-center px-5 w-full h-20 bg-background hornav__links">
 				<Dialog>
 					<DialogTrigger className="flex justify-center items-center px-1 mx-1 -ml-4 w-8 h-8 rounded-full ring-2 cursor-pointer bg-primary ring-secondary">
 						<SquareMenu className="w-3 h-3 font-bold text-white" />
@@ -387,7 +387,7 @@ const HorNav = ({ activeSegment }) => {
 				</div>
 				<div className="flex justify-end items-center space-x-4 w-1/4 h-full">
 					<div className="w-1 h-12 rounded bg-gradient-to-b from-primary to-[hsl(var(--primary-dark))] mx-1"></div>
-					<div className="flex items-center h-full rounded-r-full bg-background">
+					<div className="flex items-center h-full">
 						<div className="flex items-center">
 							<figure className="w-20">
 								<img src={imgLogo} alt="logo" />
@@ -395,7 +395,7 @@ const HorNav = ({ activeSegment }) => {
 
 							<div className="hidden relative flex-col justify-center items-center mx-4 lg:flex">
 								<h2 className="text-3xl text-center text-primary dark:text-white text-nowrap">Web Training</h2>
-								<span className="text-sm text-center text-primary dark:text-white text-nowrap">Plantilla</span>
+								<span className="text-sm text-center text-primary dark:text-white text-nowrap">Claro Swat</span>
 							</div>
 						</div>
 					</div>
