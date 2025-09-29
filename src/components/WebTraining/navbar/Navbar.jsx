@@ -6,7 +6,7 @@ import HorNav from './components/HorNav'
 
 export default function Navbar() {
 	const [activeSegment, setActiveSegment] = useState(() => {
-		return localStorage.getItem('activeSegment') || 'SWAT'
+		return localStorage.getItem('activeSegment') || 'Plantilla'
 	})
 
 	useEffect(() => {
