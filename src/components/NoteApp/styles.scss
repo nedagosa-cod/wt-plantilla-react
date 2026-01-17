@@ -70,14 +70,10 @@
 				padding: 16px 32px 8px 48px;
 				border-radius: 4px 4px 20px 4px;
 				overflow-y: auto;
-				background-color: #ffefd5;
-
 				font-size: 1.6rem;
 				line-height: 4rem;
 				font-weight: 800;
-
 				box-shadow: 1px 1px 3px #242424;
-
 				resize: none; // Deshabilita el redimensionamiento predeterminado
 				position: relative; // Posicionamiento relativo para el pseudo-elemento
 				scrollbar-width: none;
